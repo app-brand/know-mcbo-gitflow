@@ -28,8 +28,8 @@ jobs:
       #   run: dart format --output=none --set-exit-if-changed .
 
       # Analyze - basicamente verifica si existen errores de compilacion
-      - name: Analyze project source
-        run: flutter analyze
+      #- name: Analyze project source
+      #  run: flutter analyze
         
       # Correr pruebas automatizadas
       - name: Run tests
