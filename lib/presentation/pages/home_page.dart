@@ -109,7 +109,7 @@ class MainHome extends StatelessWidget {
         ),
       ),
       body: Container(
-        color: Colors.deepPurple,
+        color: Colors.red,
       ),
     );
   }
