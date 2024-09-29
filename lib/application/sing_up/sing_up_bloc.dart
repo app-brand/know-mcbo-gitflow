@@ -28,18 +28,21 @@ class SingUpBloc extends Bloc<SingUpEvent, SingUpState> {
           // Verificar si existe session activa!
         },
         emailChanged: (e) async {
+          print('bloc mail changed ' + e.email);
           emit(state.copyWith(
             emailAddress: EmailAddress(e.email),
             userFailureOrUserSuccess: none(),
           ));
         },
         passwordChanged: (e) async {
+          print('bloc password changed ' + e.password);
           emit(state.copyWith(
             emailAddress: EmailAddress(e.password),
             userFailureOrUserSuccess: none(),
           ));
         },
         signUpMail: (e) async {
+          print('Evento de registro de email');
           Either<UserFailure, Unit>? failureOrSuccess;
           final isEmailValid = state.emailAddress.isValid();
           final isPasswordValid = state.password.isValid();
