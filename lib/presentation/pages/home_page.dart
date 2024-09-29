@@ -33,10 +33,6 @@ class _HomePageState extends State<HomePage> {
     // final signInBloc = sl<SignInBloc>();
     return BlocBuilder<SignInBloc, SignInState>(
       bloc: _signInBloc,
-      //listener: (context, state) {
-      // Existe algun cambio que afecte.
-      //print('Algo cambio en los state');
-      //},
       builder: (context, state) {
         if (state.isSubmitting) {
           print('Iniciando comunicacion servidor | SingIn - Bloc');
