@@ -101,9 +101,6 @@ class _LoginDialogState extends State<LoginDialog>
               final errorMessage = failure.map(
                 cancelledByUser: (_) => 'Sign in cancelled',
                 serverError: (_) => 'Server error. Try again later.',
-                // TODO: reparar este de los errores globales o encapsular
-                // mas adelante errores individuales.
-                // Este estado solo sirve en el caso de sing_up
                 emailAlreadyInUse: (_) => 'Email is already in use.',
                 invalidEmailAndPasswordCombination: (_) =>
                     'Invalid email/password combination',

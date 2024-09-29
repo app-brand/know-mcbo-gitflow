@@ -99,6 +99,8 @@ class _SignUpDialogState extends State<SignUpDialog>
             curve: Curves.easeInOut,
           )),
           child: Dialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             child: Container(
               width: MediaQuery.of(context).size.width * 0.95,
               height: MediaQuery.of(context).size.height * 0.95,
@@ -128,7 +130,6 @@ class _SignUpDialogState extends State<SignUpDialog>
                         ),
                         autocorrect: false,
                         onChanged: (email) {
-                          print(email);
                           _signUpBloc.add(SingUpEvent.emailChanged(
                               email)); // Corregido SingUpEvent a SignUpEvent
                         },
@@ -153,7 +154,7 @@ class _SignUpDialogState extends State<SignUpDialog>
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        obscureText: true,
+                        autocorrect: false,
                         onChanged: (password) {
                           print(password);
                           _signUpBloc.add(SingUpEvent.passwordChanged(
@@ -192,7 +193,6 @@ class _SignUpDialogState extends State<SignUpDialog>
                                 ElevatedButton(
                                   onPressed: () {
                                     if (formKey.currentState!.validate()) {
-                                      print('Entra validado');
                                       _signUpBloc.add(SingUpEvent.signUpMail());
                                     }
                                   },
