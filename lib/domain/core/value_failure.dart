@@ -27,6 +27,14 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
     required T failedValue,
   }) = MissingNumberPassword<T>;
 
+  const factory ValueFailure.invalidPhoneNumber({
+    required T failedValue,
+  }) = invalidPhoneNumber<T>;
+
+  const factory ValueFailure.invalidOtp({
+    required T failedValue,
+  }) = invalidOtp<T>;
+
   factory ValueFailure.customFailure({
     required String message,
     required T failedValue,
@@ -37,12 +45,14 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
   /// Returns a human-readable message describing the failure.
   String get message {
     return when(
-        missingUppercase: (f) => 'Missing uppercase character',
-        invalidEmail: (f) => 'Invalid email format',
-        shortPassword: (f) => 'Password is too short',
-        missingSpecialSymbol: (f) => 'Missing special symbol',
-        customFailure: (message, failedValue) => message,
-        missingNumberPassword: (failedValue) =>
-            'Missing a number in the password');
+      missingUppercase: (f) => 'Missing uppercase character',
+      invalidEmail: (f) => 'Invalid email format',
+      shortPassword: (f) => 'Password is too short',
+      missingSpecialSymbol: (f) => 'Missing special symbol',
+      customFailure: (message, f) => message,
+      missingNumberPassword: (f) => 'Missing a number in the password',
+      invalidPhoneNumber: (f) => 'Phone number invalid',
+      invalidOtp: (f) => 'Invalid OTP',
+    );
   }
 }

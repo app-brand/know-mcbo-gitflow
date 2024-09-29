@@ -8,10 +8,8 @@ class ThemeCore {
   //
   static ThemeData getThemeCore() {
     return ThemeData(
-      fontFamily: 'AlcaldiaFont',
+      fontFamily: 'AlcaldiaFonts',
       colorScheme: ColorScheme.fromSwatch(
-        primarySwatch:
-            Colors.green, // Use a default color for the primary swatch
         accentColor: accentColor,
         backgroundColor: primaryColor,
         brightness: Brightness.light,
@@ -23,6 +21,17 @@ class ThemeCore {
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.white,
         foregroundColor: primaryColor,
+      ),
+      textTheme: const TextTheme(
+        titleLarge: TextStyle(
+          color: primaryColor,
+        ),
+        titleMedium: TextStyle(
+          color: primaryColor,
+        ),
+        titleSmall: TextStyle(
+          color: primaryColor,
+        ),
       ),
     );
   }
