@@ -54,6 +54,7 @@ class FirebaseUserRepository implements InterfaceUserFacade {
     required EmailAddress emailAddress,
     required Password password,
   }) async {
+    print('Entro al metodo en infra - sing-up');
     final userMail = emailAddress.getOrCrash();
     final userPassword = password.getOrCrash();
     try {
@@ -120,16 +121,20 @@ class FirebaseUserRepository implements InterfaceUserFacade {
         timeout: Duration(seconds: 30),
         verificationCompleted: (PhoneAuthCredential credential) async {
           // Esta funcion se llama usualmente en telefonos android
+          print('verification - phone number');
           await _firebaseAuth.currentUser!.linkWithCredential(credential);
         },
         verificationFailed: (FirebaseAuthException e) {
+          print('verification - Falla');
           throw UserFailure.serverError();
         },
         codeSent: (String userId, int? resendToken) {
+          print('code - sent');
           _verificationId = userId;
         },
         codeAutoRetrievalTimeout: (String userId) {
           _verificationId = userId;
+          print('cambio de verification_id +' + _verificationId!);
         },
       );
       return right(unit);

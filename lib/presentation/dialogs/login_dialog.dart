@@ -5,7 +5,7 @@ import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/dialogs/sign_up_dialog.dart';
 
 class LoginDialog extends StatefulWidget {
-  LoginDialog({super.key});
+  const LoginDialog({super.key});
   @override
   State<LoginDialog> createState() => _LoginDialogState();
 }
@@ -158,7 +158,8 @@ class _LoginDialogState extends State<LoginDialog>
                       ),
                       autocorrect: false,
                       onChanged: (email) {
-                        _signInBloc.add(SignInEvent.emailChanged(email));
+                        _signInBloc.add(
+                            SignInEvent.emailChanged(_emailController.text));
                       },
                       validator: (email) {
                         return _signInBloc.state.emailAddress.value.fold(

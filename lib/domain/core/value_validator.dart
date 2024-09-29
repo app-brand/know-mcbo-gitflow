@@ -41,6 +41,7 @@ Either<ValueFailure<String>, String> validatePhoneNumber(String input) {
   }
 }
 
+//Validador de OTP
 Either<ValueFailure<String>, String> validateOTP(String input) {
   if (input.length == 6 && RegExp(r'^[0-9]+$').hasMatch(input)) {
     return right(input);

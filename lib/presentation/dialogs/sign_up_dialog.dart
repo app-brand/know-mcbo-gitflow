@@ -109,6 +109,7 @@ class _SignUpDialogState extends State<SignUpDialog>
                 key: formKey,
                 child: SingleChildScrollView(
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       const Text(
                         'Paso #1 - Registro de correo',
@@ -131,7 +132,8 @@ class _SignUpDialogState extends State<SignUpDialog>
                         autocorrect: false,
                         onChanged: (email) {
                           _signUpBloc.add(SingUpEvent.emailChanged(
-                              email)); // Corregido SingUpEvent a SignUpEvent
+                              _emailController
+                                  .text)); // Corregido SingUpEvent a SignUpEvent
                         },
                         validator: (email) {
                           return _signUpBloc.state.emailAddress.value.fold(
@@ -154,11 +156,11 @@ class _SignUpDialogState extends State<SignUpDialog>
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        autocorrect: false,
+                        obscureText: true,
                         onChanged: (password) {
-                          print(password);
                           _signUpBloc.add(SingUpEvent.passwordChanged(
-                              password)); // Corregido SingUpEvent a SignUpEvent
+                              _passwordController
+                                  .text)); // Corregido SingUpEvent a SignUpEvent
                         },
                         validator: (password) {
                           return _signUpBloc.state.password.value.fold(
@@ -192,8 +194,13 @@ class _SignUpDialogState extends State<SignUpDialog>
                                 ),
                                 ElevatedButton(
                                   onPressed: () {
+                                    print(_signUpBloc.state.emailAddress
+                                        .toString());
+                                    print(
+                                        _signUpBloc.state.password.toString());
                                     if (formKey.currentState!.validate()) {
-                                      _signUpBloc.add(SingUpEvent.signUpMail());
+                                      _signUpBloc
+                                          .add(const SingUpEvent.signUpMail());
                                     }
                                   },
                                   child: const Text('Registro de correo'),
