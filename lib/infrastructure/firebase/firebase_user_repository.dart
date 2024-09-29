@@ -60,15 +60,12 @@ class FirebaseUserRepository implements InterfaceUserFacade {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: userMail, password: userPassword);
+      await _firebaseAuth.currentUser!.sendEmailVerification();
       return right(unit);
-    } on FirebaseAuthException catch (e) {
+    } catch (e) {
       print(e.toString() + 'Creando usuario - Error de firebase_auth');
-      // Reforzar programacion defensiva y si el correo ya existe
-      // Cual mensaje se debe mostrar.
-      if (e.code == 'wrong-password' ||
-          e.code == 'user-not-found' ||
-          e.code == 'invalid-credential') {
-        return left(const UserFailure.serverError());
+      if (e.toString() == 'email-already-in-use') {
+        return left(const UserFailure.emailAlreadyInUse());
       } else {
         return left(const UserFailure.serverError());
       }
@@ -98,8 +95,11 @@ class FirebaseUserRepository implements InterfaceUserFacade {
   Future<Either<UserFailure, Unit>> emailIsVerificated() async {
     try {
       User? user = _firebaseAuth.currentUser;
-      await user!.reload();
-      if (user.emailVerified) {
+      await Future.delayed(Duration(seconds: 30), () async {
+        await user!.reload();
+      });
+
+      if (_firebaseAuth.currentUser!.emailVerified) {
         return right(unit);
       } else {
         return left(UserFailure.emailNotVerified());
@@ -107,7 +107,7 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       // Como capturar cualquier error y en esta fase, devolverlo
       // Como alert-dialog.
     } on FirebaseAuthException catch (e) {
-      print(e.toString() + 'Creando usuario - Error de firebase_auth');
+      print(e.toString() + 'Verificando corre - Error de verificacion');
       return left(UserFailure.serverError());
     }
   }

@@ -51,18 +51,19 @@ class SingUpBloc extends Bloc<SingUpEvent, SingUpState> {
               isSubmitting: true,
               userFailureOrUserSuccess: none(),
             ));
-            // Intento raw a inicio de sesion
-            // Future.delayed(const Duration(seconds: 10));
-            failureOrSuccess =
-                await _interfaceUserFacade.registerWithEmailAndPassword(
+
+            failureOrSuccess = await _interfaceUserFacade
+                .registerWithEmailAndPassword(
               emailAddress: state.emailAddress,
               password: state.password,
-            );
+            )
+                .whenComplete(() {
+              emit(state.copyWith(
+                isSubmitting: false,
+                userFailureOrUserSuccess: optionOf(failureOrSuccess),
+              ));
+            });
             // Emitir nuevo estado
-            emit(state.copyWith(
-              isSubmitting: false,
-              userFailureOrUserSuccess: optionOf(failureOrSuccess),
-            ));
           } else {
             print('something is missing');
           }
