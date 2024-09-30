@@ -60,7 +60,8 @@ class FirebaseUserRepository implements InterfaceUserFacade {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: userMail, password: userPassword);
-      await _firebaseAuth.currentUser!.sendEmailVerification();
+      // Envia correo de verificacion.
+      // await _firebaseAuth.currentUser!.sendEmailVerification();
       return right(unit);
     } catch (e) {
       print(e.toString() + 'Creando usuario - Error de firebase_auth');
@@ -72,7 +73,6 @@ class FirebaseUserRepository implements InterfaceUserFacade {
     }
   }
 
-  // # 2 - Enviando correo de verification
   @override
   Future<Either<UserFailure, Unit>> sendVerificationEmail() async {
     try {
@@ -81,7 +81,7 @@ class FirebaseUserRepository implements InterfaceUserFacade {
         await user.sendEmailVerification();
         return right(unit);
       } else {
-        return left(UserFailure.emailAlreadyInUse());
+        return left(const UserFailure.emailAlreadyInUse());
       }
     } on FirebaseAuthException catch (e) {
       print(e.toString() +

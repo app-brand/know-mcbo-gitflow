@@ -8,6 +8,7 @@ class SingUpState with _$SingUpState {
     required Password password,
     required bool showErrorMessages,
     required bool isSubmitting,
+    required bool isEmailVerified,
     required Option<Either<UserFailure, Unit>> userFailureOrUserSuccess,
   }) = _SingUpState;
 
@@ -16,6 +17,7 @@ class SingUpState with _$SingUpState {
         password: Password(''),
         showErrorMessages: false,
         isSubmitting: false,
+        isEmailVerified: false,
         userFailureOrUserSuccess: none(),
       );
 }

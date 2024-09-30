@@ -14,15 +14,12 @@ part 'sing_up_bloc.freezed.dart';
 @injectable
 class SingUpBloc extends Bloc<SingUpEvent, SingUpState> {
   final InterfaceUserFacade _interfaceUserFacade;
-
   SingUpBloc(
     this._interfaceUserFacade,
   ) : super(
           SingUpState.initial(),
         ) {
     on<SingUpEvent>((event, emit) async {
-      // TODO: implement event handler
-      // 1 # Logica para la viladacion de correo
       event.map(
         started: (e) async {
           // Verificar si existe session activa!
@@ -40,36 +37,28 @@ class SingUpBloc extends Bloc<SingUpEvent, SingUpState> {
           ));
         },
         signUpMail: (e) async {
-          print('Evento de registro de email');
           Either<UserFailure, Unit>? failureOrSuccess;
           final isEmailValid = state.emailAddress.isValid();
           final isPasswordValid = state.password.isValid();
           if (isEmailValid && isPasswordValid) {
-            // Activando la interzas de comunicacion asincrono
-            print('Email and password are valid, attempting register');
             emit(state.copyWith(
               isSubmitting: true,
               userFailureOrUserSuccess: none(),
             ));
-
-            failureOrSuccess = await _interfaceUserFacade
-                .registerWithEmailAndPassword(
+            failureOrSuccess =
+                await _interfaceUserFacade.registerWithEmailAndPassword(
               emailAddress: state.emailAddress,
               password: state.password,
-            )
-                .whenComplete(() {
-              emit(state.copyWith(
-                isSubmitting: false,
-                userFailureOrUserSuccess: optionOf(failureOrSuccess),
-              ));
-            });
-            // Emitir nuevo estado
-          } else {
-            print('something is missing');
+            );
+            emit(state.copyWith(
+              isSubmitting: false,
+              userFailureOrUserSuccess: optionOf(failureOrSuccess),
+            ));
           }
         },
         signUpPhone: (e) async {},
         siguUpFirestore: (e) async {},
+        emailIsVeryfied: (e) async {},
       );
     });
   }

@@ -24,6 +24,7 @@ mixin _$SingUpEvent {
     required TResult Function() signUpMail,
     required TResult Function() signUpPhone,
     required TResult Function() siguUpFirestore,
+    required TResult Function() emailIsVeryfied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +35,7 @@ mixin _$SingUpEvent {
     TResult? Function()? signUpMail,
     TResult? Function()? signUpPhone,
     TResult? Function()? siguUpFirestore,
+    TResult? Function()? emailIsVeryfied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +46,7 @@ mixin _$SingUpEvent {
     TResult Function()? signUpMail,
     TResult Function()? signUpPhone,
     TResult Function()? siguUpFirestore,
+    TResult Function()? emailIsVeryfied,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +58,7 @@ mixin _$SingUpEvent {
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_SignUpPhone value) signUpPhone,
     required TResult Function(_SignUpFirestore value) siguUpFirestore,
+    required TResult Function(_EmailIsVerified value) emailIsVeryfied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +69,7 @@ mixin _$SingUpEvent {
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_SignUpPhone value)? signUpPhone,
     TResult? Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult? Function(_EmailIsVerified value)? emailIsVeryfied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +80,7 @@ mixin _$SingUpEvent {
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_SignUpPhone value)? signUpPhone,
     TResult Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult Function(_EmailIsVerified value)? emailIsVeryfied,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -148,6 +154,7 @@ class _$StartedImpl implements _Started {
     required TResult Function() signUpMail,
     required TResult Function() signUpPhone,
     required TResult Function() siguUpFirestore,
+    required TResult Function() emailIsVeryfied,
   }) {
     return started();
   }
@@ -161,6 +168,7 @@ class _$StartedImpl implements _Started {
     TResult? Function()? signUpMail,
     TResult? Function()? signUpPhone,
     TResult? Function()? siguUpFirestore,
+    TResult? Function()? emailIsVeryfied,
   }) {
     return started?.call();
   }
@@ -174,6 +182,7 @@ class _$StartedImpl implements _Started {
     TResult Function()? signUpMail,
     TResult Function()? signUpPhone,
     TResult Function()? siguUpFirestore,
+    TResult Function()? emailIsVeryfied,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -191,6 +200,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_SignUpPhone value) signUpPhone,
     required TResult Function(_SignUpFirestore value) siguUpFirestore,
+    required TResult Function(_EmailIsVerified value) emailIsVeryfied,
   }) {
     return started(this);
   }
@@ -204,6 +214,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_SignUpPhone value)? signUpPhone,
     TResult? Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult? Function(_EmailIsVerified value)? emailIsVeryfied,
   }) {
     return started?.call(this);
   }
@@ -217,6 +228,7 @@ class _$StartedImpl implements _Started {
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_SignUpPhone value)? signUpPhone,
     TResult Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult Function(_EmailIsVerified value)? emailIsVeryfied,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -304,6 +316,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     required TResult Function() signUpMail,
     required TResult Function() signUpPhone,
     required TResult Function() siguUpFirestore,
+    required TResult Function() emailIsVeryfied,
   }) {
     return emailChanged(email);
   }
@@ -317,6 +330,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult? Function()? signUpMail,
     TResult? Function()? signUpPhone,
     TResult? Function()? siguUpFirestore,
+    TResult? Function()? emailIsVeryfied,
   }) {
     return emailChanged?.call(email);
   }
@@ -330,6 +344,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult Function()? signUpMail,
     TResult Function()? signUpPhone,
     TResult Function()? siguUpFirestore,
+    TResult Function()? emailIsVeryfied,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -347,6 +362,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_SignUpPhone value) signUpPhone,
     required TResult Function(_SignUpFirestore value) siguUpFirestore,
+    required TResult Function(_EmailIsVerified value) emailIsVeryfied,
   }) {
     return emailChanged(this);
   }
@@ -360,6 +376,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_SignUpPhone value)? signUpPhone,
     TResult? Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult? Function(_EmailIsVerified value)? emailIsVeryfied,
   }) {
     return emailChanged?.call(this);
   }
@@ -373,6 +390,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_SignUpPhone value)? signUpPhone,
     TResult Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult Function(_EmailIsVerified value)? emailIsVeryfied,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -470,6 +488,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     required TResult Function() signUpMail,
     required TResult Function() signUpPhone,
     required TResult Function() siguUpFirestore,
+    required TResult Function() emailIsVeryfied,
   }) {
     return passwordChanged(password);
   }
@@ -483,6 +502,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult? Function()? signUpMail,
     TResult? Function()? signUpPhone,
     TResult? Function()? siguUpFirestore,
+    TResult? Function()? emailIsVeryfied,
   }) {
     return passwordChanged?.call(password);
   }
@@ -496,6 +516,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult Function()? signUpMail,
     TResult Function()? signUpPhone,
     TResult Function()? siguUpFirestore,
+    TResult Function()? emailIsVeryfied,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -513,6 +534,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_SignUpPhone value) signUpPhone,
     required TResult Function(_SignUpFirestore value) siguUpFirestore,
+    required TResult Function(_EmailIsVerified value) emailIsVeryfied,
   }) {
     return passwordChanged(this);
   }
@@ -526,6 +548,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_SignUpPhone value)? signUpPhone,
     TResult? Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult? Function(_EmailIsVerified value)? emailIsVeryfied,
   }) {
     return passwordChanged?.call(this);
   }
@@ -539,6 +562,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_SignUpPhone value)? signUpPhone,
     TResult Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult Function(_EmailIsVerified value)? emailIsVeryfied,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -607,6 +631,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     required TResult Function() signUpMail,
     required TResult Function() signUpPhone,
     required TResult Function() siguUpFirestore,
+    required TResult Function() emailIsVeryfied,
   }) {
     return signUpMail();
   }
@@ -620,6 +645,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     TResult? Function()? signUpMail,
     TResult? Function()? signUpPhone,
     TResult? Function()? siguUpFirestore,
+    TResult? Function()? emailIsVeryfied,
   }) {
     return signUpMail?.call();
   }
@@ -633,6 +659,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     TResult Function()? signUpMail,
     TResult Function()? signUpPhone,
     TResult Function()? siguUpFirestore,
+    TResult Function()? emailIsVeryfied,
     required TResult orElse(),
   }) {
     if (signUpMail != null) {
@@ -650,6 +677,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_SignUpPhone value) signUpPhone,
     required TResult Function(_SignUpFirestore value) siguUpFirestore,
+    required TResult Function(_EmailIsVerified value) emailIsVeryfied,
   }) {
     return signUpMail(this);
   }
@@ -663,6 +691,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_SignUpPhone value)? signUpPhone,
     TResult? Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult? Function(_EmailIsVerified value)? emailIsVeryfied,
   }) {
     return signUpMail?.call(this);
   }
@@ -676,6 +705,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_SignUpPhone value)? signUpPhone,
     TResult Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult Function(_EmailIsVerified value)? emailIsVeryfied,
     required TResult orElse(),
   }) {
     if (signUpMail != null) {
@@ -736,6 +766,7 @@ class _$SignUpPhoneImpl implements _SignUpPhone {
     required TResult Function() signUpMail,
     required TResult Function() signUpPhone,
     required TResult Function() siguUpFirestore,
+    required TResult Function() emailIsVeryfied,
   }) {
     return signUpPhone();
   }
@@ -749,6 +780,7 @@ class _$SignUpPhoneImpl implements _SignUpPhone {
     TResult? Function()? signUpMail,
     TResult? Function()? signUpPhone,
     TResult? Function()? siguUpFirestore,
+    TResult? Function()? emailIsVeryfied,
   }) {
     return signUpPhone?.call();
   }
@@ -762,6 +794,7 @@ class _$SignUpPhoneImpl implements _SignUpPhone {
     TResult Function()? signUpMail,
     TResult Function()? signUpPhone,
     TResult Function()? siguUpFirestore,
+    TResult Function()? emailIsVeryfied,
     required TResult orElse(),
   }) {
     if (signUpPhone != null) {
@@ -779,6 +812,7 @@ class _$SignUpPhoneImpl implements _SignUpPhone {
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_SignUpPhone value) signUpPhone,
     required TResult Function(_SignUpFirestore value) siguUpFirestore,
+    required TResult Function(_EmailIsVerified value) emailIsVeryfied,
   }) {
     return signUpPhone(this);
   }
@@ -792,6 +826,7 @@ class _$SignUpPhoneImpl implements _SignUpPhone {
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_SignUpPhone value)? signUpPhone,
     TResult? Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult? Function(_EmailIsVerified value)? emailIsVeryfied,
   }) {
     return signUpPhone?.call(this);
   }
@@ -805,6 +840,7 @@ class _$SignUpPhoneImpl implements _SignUpPhone {
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_SignUpPhone value)? signUpPhone,
     TResult Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult Function(_EmailIsVerified value)? emailIsVeryfied,
     required TResult orElse(),
   }) {
     if (signUpPhone != null) {
@@ -865,6 +901,7 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
     required TResult Function() signUpMail,
     required TResult Function() signUpPhone,
     required TResult Function() siguUpFirestore,
+    required TResult Function() emailIsVeryfied,
   }) {
     return siguUpFirestore();
   }
@@ -878,6 +915,7 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
     TResult? Function()? signUpMail,
     TResult? Function()? signUpPhone,
     TResult? Function()? siguUpFirestore,
+    TResult? Function()? emailIsVeryfied,
   }) {
     return siguUpFirestore?.call();
   }
@@ -891,6 +929,7 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
     TResult Function()? signUpMail,
     TResult Function()? signUpPhone,
     TResult Function()? siguUpFirestore,
+    TResult Function()? emailIsVeryfied,
     required TResult orElse(),
   }) {
     if (siguUpFirestore != null) {
@@ -908,6 +947,7 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_SignUpPhone value) signUpPhone,
     required TResult Function(_SignUpFirestore value) siguUpFirestore,
+    required TResult Function(_EmailIsVerified value) emailIsVeryfied,
   }) {
     return siguUpFirestore(this);
   }
@@ -921,6 +961,7 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_SignUpPhone value)? signUpPhone,
     TResult? Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult? Function(_EmailIsVerified value)? emailIsVeryfied,
   }) {
     return siguUpFirestore?.call(this);
   }
@@ -934,6 +975,7 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_SignUpPhone value)? signUpPhone,
     TResult Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult Function(_EmailIsVerified value)? emailIsVeryfied,
     required TResult orElse(),
   }) {
     if (siguUpFirestore != null) {
@@ -948,11 +990,147 @@ abstract class _SignUpFirestore implements SingUpEvent {
 }
 
 /// @nodoc
+abstract class _$$EmailIsVerifiedImplCopyWith<$Res> {
+  factory _$$EmailIsVerifiedImplCopyWith(_$EmailIsVerifiedImpl value,
+          $Res Function(_$EmailIsVerifiedImpl) then) =
+      __$$EmailIsVerifiedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$EmailIsVerifiedImplCopyWithImpl<$Res>
+    extends _$SingUpEventCopyWithImpl<$Res, _$EmailIsVerifiedImpl>
+    implements _$$EmailIsVerifiedImplCopyWith<$Res> {
+  __$$EmailIsVerifiedImplCopyWithImpl(
+      _$EmailIsVerifiedImpl _value, $Res Function(_$EmailIsVerifiedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SingUpEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$EmailIsVerifiedImpl implements _EmailIsVerified {
+  const _$EmailIsVerifiedImpl();
+
+  @override
+  String toString() {
+    return 'SingUpEvent.emailIsVeryfied()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$EmailIsVerifiedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String email) emailChanged,
+    required TResult Function(String password) passwordChanged,
+    required TResult Function() signUpMail,
+    required TResult Function() signUpPhone,
+    required TResult Function() siguUpFirestore,
+    required TResult Function() emailIsVeryfied,
+  }) {
+    return emailIsVeryfied();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String email)? emailChanged,
+    TResult? Function(String password)? passwordChanged,
+    TResult? Function()? signUpMail,
+    TResult? Function()? signUpPhone,
+    TResult? Function()? siguUpFirestore,
+    TResult? Function()? emailIsVeryfied,
+  }) {
+    return emailIsVeryfied?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String email)? emailChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function()? signUpMail,
+    TResult Function()? signUpPhone,
+    TResult Function()? siguUpFirestore,
+    TResult Function()? emailIsVeryfied,
+    required TResult orElse(),
+  }) {
+    if (emailIsVeryfied != null) {
+      return emailIsVeryfied();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_SignUpMail value) signUpMail,
+    required TResult Function(_SignUpPhone value) signUpPhone,
+    required TResult Function(_SignUpFirestore value) siguUpFirestore,
+    required TResult Function(_EmailIsVerified value) emailIsVeryfied,
+  }) {
+    return emailIsVeryfied(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_EmailChanged value)? emailChanged,
+    TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_SignUpMail value)? signUpMail,
+    TResult? Function(_SignUpPhone value)? signUpPhone,
+    TResult? Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult? Function(_EmailIsVerified value)? emailIsVeryfied,
+  }) {
+    return emailIsVeryfied?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_SignUpMail value)? signUpMail,
+    TResult Function(_SignUpPhone value)? signUpPhone,
+    TResult Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult Function(_EmailIsVerified value)? emailIsVeryfied,
+    required TResult orElse(),
+  }) {
+    if (emailIsVeryfied != null) {
+      return emailIsVeryfied(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EmailIsVerified implements SingUpEvent {
+  const factory _EmailIsVerified() = _$EmailIsVerifiedImpl;
+}
+
+/// @nodoc
 mixin _$SingUpState {
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
   Password get password => throw _privateConstructorUsedError;
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
+  bool get isEmailVerified => throw _privateConstructorUsedError;
   Option<Either<UserFailure, Unit>> get userFailureOrUserSuccess =>
       throw _privateConstructorUsedError;
 
@@ -974,6 +1152,7 @@ abstract class $SingUpStateCopyWith<$Res> {
       Password password,
       bool showErrorMessages,
       bool isSubmitting,
+      bool isEmailVerified,
       Option<Either<UserFailure, Unit>> userFailureOrUserSuccess});
 }
 
@@ -996,6 +1175,7 @@ class _$SingUpStateCopyWithImpl<$Res, $Val extends SingUpState>
     Object? password = null,
     Object? showErrorMessages = null,
     Object? isSubmitting = null,
+    Object? isEmailVerified = null,
     Object? userFailureOrUserSuccess = null,
   }) {
     return _then(_value.copyWith(
@@ -1014,6 +1194,10 @@ class _$SingUpStateCopyWithImpl<$Res, $Val extends SingUpState>
       isSubmitting: null == isSubmitting
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isEmailVerified: null == isEmailVerified
+          ? _value.isEmailVerified
+          : isEmailVerified // ignore: cast_nullable_to_non_nullable
               as bool,
       userFailureOrUserSuccess: null == userFailureOrUserSuccess
           ? _value.userFailureOrUserSuccess
@@ -1036,6 +1220,7 @@ abstract class _$$SingUpStateImplCopyWith<$Res>
       Password password,
       bool showErrorMessages,
       bool isSubmitting,
+      bool isEmailVerified,
       Option<Either<UserFailure, Unit>> userFailureOrUserSuccess});
 }
 
@@ -1056,6 +1241,7 @@ class __$$SingUpStateImplCopyWithImpl<$Res>
     Object? password = null,
     Object? showErrorMessages = null,
     Object? isSubmitting = null,
+    Object? isEmailVerified = null,
     Object? userFailureOrUserSuccess = null,
   }) {
     return _then(_$SingUpStateImpl(
@@ -1075,6 +1261,10 @@ class __$$SingUpStateImplCopyWithImpl<$Res>
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
+      isEmailVerified: null == isEmailVerified
+          ? _value.isEmailVerified
+          : isEmailVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
       userFailureOrUserSuccess: null == userFailureOrUserSuccess
           ? _value.userFailureOrUserSuccess
           : userFailureOrUserSuccess // ignore: cast_nullable_to_non_nullable
@@ -1091,6 +1281,7 @@ class _$SingUpStateImpl implements _SingUpState {
       required this.password,
       required this.showErrorMessages,
       required this.isSubmitting,
+      required this.isEmailVerified,
       required this.userFailureOrUserSuccess});
 
   @override
@@ -1102,11 +1293,13 @@ class _$SingUpStateImpl implements _SingUpState {
   @override
   final bool isSubmitting;
   @override
+  final bool isEmailVerified;
+  @override
   final Option<Either<UserFailure, Unit>> userFailureOrUserSuccess;
 
   @override
   String toString() {
-    return 'SingUpState(emailAddress: $emailAddress, password: $password, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, userFailureOrUserSuccess: $userFailureOrUserSuccess)';
+    return 'SingUpState(emailAddress: $emailAddress, password: $password, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, isEmailVerified: $isEmailVerified, userFailureOrUserSuccess: $userFailureOrUserSuccess)';
   }
 
   @override
@@ -1122,14 +1315,22 @@ class _$SingUpStateImpl implements _SingUpState {
                 other.showErrorMessages == showErrorMessages) &&
             (identical(other.isSubmitting, isSubmitting) ||
                 other.isSubmitting == isSubmitting) &&
+            (identical(other.isEmailVerified, isEmailVerified) ||
+                other.isEmailVerified == isEmailVerified) &&
             (identical(
                     other.userFailureOrUserSuccess, userFailureOrUserSuccess) ||
                 other.userFailureOrUserSuccess == userFailureOrUserSuccess));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, emailAddress, password,
-      showErrorMessages, isSubmitting, userFailureOrUserSuccess);
+  int get hashCode => Object.hash(
+      runtimeType,
+      emailAddress,
+      password,
+      showErrorMessages,
+      isSubmitting,
+      isEmailVerified,
+      userFailureOrUserSuccess);
 
   /// Create a copy of SingUpState
   /// with the given fields replaced by the non-null parameter values.
@@ -1146,6 +1347,7 @@ abstract class _SingUpState implements SingUpState {
       required final Password password,
       required final bool showErrorMessages,
       required final bool isSubmitting,
+      required final bool isEmailVerified,
       required final Option<Either<UserFailure, Unit>>
           userFailureOrUserSuccess}) = _$SingUpStateImpl;
 
@@ -1157,6 +1359,8 @@ abstract class _SingUpState implements SingUpState {
   bool get showErrorMessages;
   @override
   bool get isSubmitting;
+  @override
+  bool get isEmailVerified;
   @override
   Option<Either<UserFailure, Unit>> get userFailureOrUserSuccess;
 

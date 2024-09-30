@@ -180,35 +180,31 @@ class _SignUpDialogState extends State<SignUpDialog>
                         },
                       ),
                       const SizedBox(height: 16.0),
-                      if (state.isSubmitting)
-                        const CircularProgressIndicator()
-                      else
-                        Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                ElevatedButton(
-                                  onPressed: () => _closeWithReverseDialog(),
-                                  child: const Text('Cancelar'),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    print(_signUpBloc.state.emailAddress
-                                        .toString());
-                                    print(
-                                        _signUpBloc.state.password.toString());
-                                    if (formKey.currentState!.validate()) {
-                                      _signUpBloc
-                                          .add(const SingUpEvent.signUpMail());
-                                    }
-                                  },
-                                  child: const Text('Registro de correo'),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                      Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () => _closeWithReverseDialog(),
+                                child: const Text('Cancelar'),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  print(_signUpBloc.state.emailAddress
+                                      .toString());
+                                  print(_signUpBloc.state.password.toString());
+                                  if (formKey.currentState!.validate()) {
+                                    _signUpBloc
+                                        .add(const SingUpEvent.signUpMail());
+                                  }
+                                },
+                                child: const Text('Registro de correo'),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),

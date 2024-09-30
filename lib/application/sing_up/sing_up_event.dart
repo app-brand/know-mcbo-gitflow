@@ -8,4 +8,5 @@ class SingUpEvent with _$SingUpEvent {
   const factory SingUpEvent.signUpMail() = _SignUpMail;
   const factory SingUpEvent.signUpPhone() = _SignUpPhone;
   const factory SingUpEvent.siguUpFirestore() = _SignUpFirestore;
+  const factory SingUpEvent.emailIsVeryfied() = _EmailIsVerified;
 }
