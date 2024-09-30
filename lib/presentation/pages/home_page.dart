@@ -105,7 +105,7 @@ class MainHome extends StatelessWidget {
         ),
       ),
       body: Container(
-        color: Colors.red,
+        color: Colors.pink,
       ),
     );
   }
