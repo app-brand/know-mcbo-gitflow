@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:know_my_city/domain/core/value_failure.dart';
 import 'package:know_my_city/domain/core/value_object.dart';
 import 'package:know_my_city/domain/core/value_validator.dart';
-
+/*
 @immutable
 class PhoneNumber extends ValueObject<String> {
   // Return
@@ -12,10 +12,11 @@ class PhoneNumber extends ValueObject<String> {
   factory PhoneNumber(String input) {
     //assert(input != null);
     return PhoneNumber._(
-      validatePhoneNumber(input),
-    );
+        //validatePhoneNumber(input),
+        );
   }
   // Uso de either
   const PhoneNumber._(this.value);
   // toString, equals, hashCode...
 }
+*/

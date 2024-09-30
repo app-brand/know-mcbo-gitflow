@@ -28,7 +28,6 @@ class _SignUpDialogState extends State<SignUpDialog>
     _animationController.forward();
   }
 
-  // Función para mostrar el AlertDialog en caso de error
   void _showErrorDialog(String message) {
     showDialog(
       context: context,
@@ -47,7 +46,6 @@ class _SignUpDialogState extends State<SignUpDialog>
     );
   }
 
-  // Código para cerrar el diálogo con animación en reversa
   void _closeWithReverseDialog() {
     _animationController.reverse();
     _animationController.addStatusListener((status) {
@@ -55,6 +53,29 @@ class _SignUpDialogState extends State<SignUpDialog>
         Navigator.of(context).pop();
       }
     });
+  }
+
+  void _showSuccessDialog() {
+    // Activando animacion en reversa
+    //_closeWithReverseDialog();
+    // Cierra el diálogo de login primero
+    // Luego muestra el AlertDialog de éxito al terminar la animacion de salida
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Success'),
+          content: const Text('Sign-up successful!'),
+          actions: [
+            TextButton(
+              onPressed: () =>
+                  Navigator.of(context).pop(), // Cierra el diálogo de éxito
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -66,25 +87,23 @@ class _SignUpDialogState extends State<SignUpDialog>
           () => {},
           (either) => either.fold(
             (failure) {
+              // Mostrar AlertDialog en caso de error
               final errorMessage = failure.map(
-                cancelledByUser: (e) => 'Cancelado por el usuario',
-                serverError: (e) => 'Error del servidor',
-                emailAlreadyInUse: (e) => 'El correo ya está en uso',
-                invalidEmailAndPasswordCombination: (e) =>
-                    'Combinación de correo y contraseña incorrectos',
-                otpExpired: (e) =>
-                    'El código OTP ha expirado, inténtelo de nuevo',
-                emailLinkExpired: (e) =>
-                    'El enlace ha expirado, solicite uno nuevo',
-                emailNotVerified: (e) => 'Correo electrónico no verificado',
+                cancelledByUser: (_) => 'Cencelado por el usuario',
+                serverError: (_) => 'Error de servidor',
+                emailAlreadyInUse: (_) => 'Correo en uso',
+                invalidEmailAndPasswordCombination: (_) =>
+                    'Conbinacion invalida de contrasena y usuario',
+                otpExpired: (_) => 'Codigo SMS expiro',
+                emailLinkExpired: (_) => 'Link de validacion expiro',
+                emailNotVerified: (_) => 'Email no esta verificado',
               );
-              _showErrorDialog(
-                  errorMessage); // Usando errorMessage en lugar de message_error
+              _showErrorDialog(errorMessage);
+              //_closeWithReverseDialog(); // Muestra el diálogo con el error
             },
-            (success) {
-              // Lógica para cuando el proceso de registro es exitoso
-              _closeWithReverseDialog();
-              // Aquí puedes navegar a otra pantalla si es necesario
+            (_) {
+              // Si el inicio de sesión fue exitoso, mostrar el diálogo de éxito
+              //_showSuccessDialog();
             },
           ),
         );
@@ -146,7 +165,6 @@ class _SignUpDialogState extends State<SignUpDialog>
                         },
                       ),
                       const SizedBox(height: 16.0),
-                      // Password field
                       TextFormField(
                         controller: _passwordController,
                         decoration: InputDecoration(
@@ -191,9 +209,6 @@ class _SignUpDialogState extends State<SignUpDialog>
                               ),
                               ElevatedButton(
                                 onPressed: () {
-                                  print(_signUpBloc.state.emailAddress
-                                      .toString());
-                                  print(_signUpBloc.state.password.toString());
                                   if (formKey.currentState!.validate()) {
                                     _signUpBloc
                                         .add(const SingUpEvent.signUpMail());
@@ -208,6 +223,83 @@ class _SignUpDialogState extends State<SignUpDialog>
                     ],
                   ),
                 ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class EmailVerification extends StatefulWidget {
+  const EmailVerification({super.key});
+  @override
+  State<EmailVerification> createState() => _EmailVerificationState();
+}
+
+class _EmailVerificationState extends State<EmailVerification>
+    with SingleTickerProviderStateMixin {
+  late SingUpBloc _signUpBloc; // Corregido SingUpBloc a SignUpBloc
+  late AnimationController _animationController;
+  @override
+  void initState() {
+    super.initState();
+    _signUpBloc = sl<SingUpBloc>(); // Corregido SingUpBloc a SignUpBloc
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    );
+    _animationController.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<SingUpBloc, SingUpState>(
+      bloc: _signUpBloc,
+      listener: (context, state) {
+        // TOD
+      },
+      builder: (context, state) {
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, 1), // Comienza fuera de la pantalla
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: _animationController,
+            curve: Curves.easeInOut,
+          )),
+          child: Dialog(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.95,
+              height: MediaQuery.of(context).size.height * 0.95,
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Paso #2 - Valida el correo',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 16.0),
+                  const Text(
+                    'Por favor visita tu bandeja de correo y presiona el link que se te envio, para validar el correo',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 16.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      _signUpBloc.add(const SingUpEvent.mailVerification());
+                    },
+                    child: const Text('Verificar correo'),
+                  ),
+                ],
               ),
             ),
           ),

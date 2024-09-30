@@ -111,6 +111,7 @@ class _LoginDialogState extends State<LoginDialog>
               _showErrorDialog(errorMessage); // Muestra el diálogo con el error
             },
             (_) {
+              print('todo-ok');
               // Si el inicio de sesión fue exitoso, mostrar el diálogo de éxito
               _showSuccessDialog();
             },
@@ -177,7 +178,7 @@ class _LoginDialogState extends State<LoginDialog>
                       controller: _passwordController,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.lock),
-                        labelText: 'Password',
+                        labelText: 'Contraseña',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -239,6 +240,7 @@ class _LoginDialogState extends State<LoginDialog>
                           // Botón para ir a "Registrarse"
                           TextButton(
                             onPressed: () {
+                              //_closeWithReverseDialog();
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {

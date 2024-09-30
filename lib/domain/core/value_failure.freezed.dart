@@ -24,9 +24,6 @@ mixin _$ValueFailure<T> {
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) missingSpecialSymbol,
     required TResult Function(T failedValue) missingNumberPassword,
-    required TResult Function(T failedValue) invalidPhoneNumber,
-    required TResult Function(T failedValue) invalidOtp,
-    required TResult Function(String message, T failedValue) customFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,9 +33,6 @@ mixin _$ValueFailure<T> {
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? missingSpecialSymbol,
     TResult? Function(T failedValue)? missingNumberPassword,
-    TResult? Function(T failedValue)? invalidPhoneNumber,
-    TResult? Function(T failedValue)? invalidOtp,
-    TResult? Function(String message, T failedValue)? customFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -48,9 +42,6 @@ mixin _$ValueFailure<T> {
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? missingSpecialSymbol,
     TResult Function(T failedValue)? missingNumberPassword,
-    TResult Function(T failedValue)? invalidPhoneNumber,
-    TResult Function(T failedValue)? invalidOtp,
-    TResult Function(String message, T failedValue)? customFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,9 +54,6 @@ mixin _$ValueFailure<T> {
         missingSpecialSymbol,
     required TResult Function(MissingNumberPassword<T> value)
         missingNumberPassword,
-    required TResult Function(invalidPhoneNumber<T> value) invalidPhoneNumber,
-    required TResult Function(invalidOtp<T> value) invalidOtp,
-    required TResult Function(CustomFailure<T> value) customFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,9 +63,6 @@ mixin _$ValueFailure<T> {
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
     TResult? Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult? Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult? Function(invalidOtp<T> value)? invalidOtp,
-    TResult? Function(CustomFailure<T> value)? customFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,9 +72,6 @@ mixin _$ValueFailure<T> {
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
     TResult Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult Function(invalidOtp<T> value)? invalidOtp,
-    TResult Function(CustomFailure<T> value)? customFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -223,9 +205,6 @@ class _$MissingUppercaseImpl<T> extends MissingUppercase<T>
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) missingSpecialSymbol,
     required TResult Function(T failedValue) missingNumberPassword,
-    required TResult Function(T failedValue) invalidPhoneNumber,
-    required TResult Function(T failedValue) invalidOtp,
-    required TResult Function(String message, T failedValue) customFailure,
   }) {
     return missingUppercase(failedValue);
   }
@@ -238,9 +217,6 @@ class _$MissingUppercaseImpl<T> extends MissingUppercase<T>
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? missingSpecialSymbol,
     TResult? Function(T failedValue)? missingNumberPassword,
-    TResult? Function(T failedValue)? invalidPhoneNumber,
-    TResult? Function(T failedValue)? invalidOtp,
-    TResult? Function(String message, T failedValue)? customFailure,
   }) {
     return missingUppercase?.call(failedValue);
   }
@@ -253,9 +229,6 @@ class _$MissingUppercaseImpl<T> extends MissingUppercase<T>
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? missingSpecialSymbol,
     TResult Function(T failedValue)? missingNumberPassword,
-    TResult Function(T failedValue)? invalidPhoneNumber,
-    TResult Function(T failedValue)? invalidOtp,
-    TResult Function(String message, T failedValue)? customFailure,
     required TResult orElse(),
   }) {
     if (missingUppercase != null) {
@@ -274,9 +247,6 @@ class _$MissingUppercaseImpl<T> extends MissingUppercase<T>
         missingSpecialSymbol,
     required TResult Function(MissingNumberPassword<T> value)
         missingNumberPassword,
-    required TResult Function(invalidPhoneNumber<T> value) invalidPhoneNumber,
-    required TResult Function(invalidOtp<T> value) invalidOtp,
-    required TResult Function(CustomFailure<T> value) customFailure,
   }) {
     return missingUppercase(this);
   }
@@ -289,9 +259,6 @@ class _$MissingUppercaseImpl<T> extends MissingUppercase<T>
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
     TResult? Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult? Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult? Function(invalidOtp<T> value)? invalidOtp,
-    TResult? Function(CustomFailure<T> value)? customFailure,
   }) {
     return missingUppercase?.call(this);
   }
@@ -304,9 +271,6 @@ class _$MissingUppercaseImpl<T> extends MissingUppercase<T>
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
     TResult Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult Function(invalidOtp<T> value)? invalidOtp,
-    TResult Function(CustomFailure<T> value)? customFailure,
     required TResult orElse(),
   }) {
     if (missingUppercase != null) {
@@ -419,9 +383,6 @@ class _$InvalidEmailImpl<T> extends InvalidEmail<T>
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) missingSpecialSymbol,
     required TResult Function(T failedValue) missingNumberPassword,
-    required TResult Function(T failedValue) invalidPhoneNumber,
-    required TResult Function(T failedValue) invalidOtp,
-    required TResult Function(String message, T failedValue) customFailure,
   }) {
     return invalidEmail(failedValue);
   }
@@ -434,9 +395,6 @@ class _$InvalidEmailImpl<T> extends InvalidEmail<T>
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? missingSpecialSymbol,
     TResult? Function(T failedValue)? missingNumberPassword,
-    TResult? Function(T failedValue)? invalidPhoneNumber,
-    TResult? Function(T failedValue)? invalidOtp,
-    TResult? Function(String message, T failedValue)? customFailure,
   }) {
     return invalidEmail?.call(failedValue);
   }
@@ -449,9 +407,6 @@ class _$InvalidEmailImpl<T> extends InvalidEmail<T>
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? missingSpecialSymbol,
     TResult Function(T failedValue)? missingNumberPassword,
-    TResult Function(T failedValue)? invalidPhoneNumber,
-    TResult Function(T failedValue)? invalidOtp,
-    TResult Function(String message, T failedValue)? customFailure,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -470,9 +425,6 @@ class _$InvalidEmailImpl<T> extends InvalidEmail<T>
         missingSpecialSymbol,
     required TResult Function(MissingNumberPassword<T> value)
         missingNumberPassword,
-    required TResult Function(invalidPhoneNumber<T> value) invalidPhoneNumber,
-    required TResult Function(invalidOtp<T> value) invalidOtp,
-    required TResult Function(CustomFailure<T> value) customFailure,
   }) {
     return invalidEmail(this);
   }
@@ -485,9 +437,6 @@ class _$InvalidEmailImpl<T> extends InvalidEmail<T>
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
     TResult? Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult? Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult? Function(invalidOtp<T> value)? invalidOtp,
-    TResult? Function(CustomFailure<T> value)? customFailure,
   }) {
     return invalidEmail?.call(this);
   }
@@ -500,9 +449,6 @@ class _$InvalidEmailImpl<T> extends InvalidEmail<T>
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
     TResult Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult Function(invalidOtp<T> value)? invalidOtp,
-    TResult Function(CustomFailure<T> value)? customFailure,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -615,9 +561,6 @@ class _$ShortPasswordImpl<T> extends ShortPassword<T>
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) missingSpecialSymbol,
     required TResult Function(T failedValue) missingNumberPassword,
-    required TResult Function(T failedValue) invalidPhoneNumber,
-    required TResult Function(T failedValue) invalidOtp,
-    required TResult Function(String message, T failedValue) customFailure,
   }) {
     return shortPassword(failedValue);
   }
@@ -630,9 +573,6 @@ class _$ShortPasswordImpl<T> extends ShortPassword<T>
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? missingSpecialSymbol,
     TResult? Function(T failedValue)? missingNumberPassword,
-    TResult? Function(T failedValue)? invalidPhoneNumber,
-    TResult? Function(T failedValue)? invalidOtp,
-    TResult? Function(String message, T failedValue)? customFailure,
   }) {
     return shortPassword?.call(failedValue);
   }
@@ -645,9 +585,6 @@ class _$ShortPasswordImpl<T> extends ShortPassword<T>
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? missingSpecialSymbol,
     TResult Function(T failedValue)? missingNumberPassword,
-    TResult Function(T failedValue)? invalidPhoneNumber,
-    TResult Function(T failedValue)? invalidOtp,
-    TResult Function(String message, T failedValue)? customFailure,
     required TResult orElse(),
   }) {
     if (shortPassword != null) {
@@ -666,9 +603,6 @@ class _$ShortPasswordImpl<T> extends ShortPassword<T>
         missingSpecialSymbol,
     required TResult Function(MissingNumberPassword<T> value)
         missingNumberPassword,
-    required TResult Function(invalidPhoneNumber<T> value) invalidPhoneNumber,
-    required TResult Function(invalidOtp<T> value) invalidOtp,
-    required TResult Function(CustomFailure<T> value) customFailure,
   }) {
     return shortPassword(this);
   }
@@ -681,9 +615,6 @@ class _$ShortPasswordImpl<T> extends ShortPassword<T>
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
     TResult? Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult? Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult? Function(invalidOtp<T> value)? invalidOtp,
-    TResult? Function(CustomFailure<T> value)? customFailure,
   }) {
     return shortPassword?.call(this);
   }
@@ -696,9 +627,6 @@ class _$ShortPasswordImpl<T> extends ShortPassword<T>
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
     TResult Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult Function(invalidOtp<T> value)? invalidOtp,
-    TResult Function(CustomFailure<T> value)? customFailure,
     required TResult orElse(),
   }) {
     if (shortPassword != null) {
@@ -813,9 +741,6 @@ class _$MissingSpecialSymbolImpl<T> extends MissingSpecialSymbol<T>
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) missingSpecialSymbol,
     required TResult Function(T failedValue) missingNumberPassword,
-    required TResult Function(T failedValue) invalidPhoneNumber,
-    required TResult Function(T failedValue) invalidOtp,
-    required TResult Function(String message, T failedValue) customFailure,
   }) {
     return missingSpecialSymbol(failedValue);
   }
@@ -828,9 +753,6 @@ class _$MissingSpecialSymbolImpl<T> extends MissingSpecialSymbol<T>
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? missingSpecialSymbol,
     TResult? Function(T failedValue)? missingNumberPassword,
-    TResult? Function(T failedValue)? invalidPhoneNumber,
-    TResult? Function(T failedValue)? invalidOtp,
-    TResult? Function(String message, T failedValue)? customFailure,
   }) {
     return missingSpecialSymbol?.call(failedValue);
   }
@@ -843,9 +765,6 @@ class _$MissingSpecialSymbolImpl<T> extends MissingSpecialSymbol<T>
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? missingSpecialSymbol,
     TResult Function(T failedValue)? missingNumberPassword,
-    TResult Function(T failedValue)? invalidPhoneNumber,
-    TResult Function(T failedValue)? invalidOtp,
-    TResult Function(String message, T failedValue)? customFailure,
     required TResult orElse(),
   }) {
     if (missingSpecialSymbol != null) {
@@ -864,9 +783,6 @@ class _$MissingSpecialSymbolImpl<T> extends MissingSpecialSymbol<T>
         missingSpecialSymbol,
     required TResult Function(MissingNumberPassword<T> value)
         missingNumberPassword,
-    required TResult Function(invalidPhoneNumber<T> value) invalidPhoneNumber,
-    required TResult Function(invalidOtp<T> value) invalidOtp,
-    required TResult Function(CustomFailure<T> value) customFailure,
   }) {
     return missingSpecialSymbol(this);
   }
@@ -879,9 +795,6 @@ class _$MissingSpecialSymbolImpl<T> extends MissingSpecialSymbol<T>
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
     TResult? Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult? Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult? Function(invalidOtp<T> value)? invalidOtp,
-    TResult? Function(CustomFailure<T> value)? customFailure,
   }) {
     return missingSpecialSymbol?.call(this);
   }
@@ -894,9 +807,6 @@ class _$MissingSpecialSymbolImpl<T> extends MissingSpecialSymbol<T>
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
     TResult Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult Function(invalidOtp<T> value)? invalidOtp,
-    TResult Function(CustomFailure<T> value)? customFailure,
     required TResult orElse(),
   }) {
     if (missingSpecialSymbol != null) {
@@ -1012,9 +922,6 @@ class _$MissingNumberPasswordImpl<T> extends MissingNumberPassword<T>
     required TResult Function(T failedValue) shortPassword,
     required TResult Function(T failedValue) missingSpecialSymbol,
     required TResult Function(T failedValue) missingNumberPassword,
-    required TResult Function(T failedValue) invalidPhoneNumber,
-    required TResult Function(T failedValue) invalidOtp,
-    required TResult Function(String message, T failedValue) customFailure,
   }) {
     return missingNumberPassword(failedValue);
   }
@@ -1027,9 +934,6 @@ class _$MissingNumberPasswordImpl<T> extends MissingNumberPassword<T>
     TResult? Function(T failedValue)? shortPassword,
     TResult? Function(T failedValue)? missingSpecialSymbol,
     TResult? Function(T failedValue)? missingNumberPassword,
-    TResult? Function(T failedValue)? invalidPhoneNumber,
-    TResult? Function(T failedValue)? invalidOtp,
-    TResult? Function(String message, T failedValue)? customFailure,
   }) {
     return missingNumberPassword?.call(failedValue);
   }
@@ -1042,9 +946,6 @@ class _$MissingNumberPasswordImpl<T> extends MissingNumberPassword<T>
     TResult Function(T failedValue)? shortPassword,
     TResult Function(T failedValue)? missingSpecialSymbol,
     TResult Function(T failedValue)? missingNumberPassword,
-    TResult Function(T failedValue)? invalidPhoneNumber,
-    TResult Function(T failedValue)? invalidOtp,
-    TResult Function(String message, T failedValue)? customFailure,
     required TResult orElse(),
   }) {
     if (missingNumberPassword != null) {
@@ -1063,9 +964,6 @@ class _$MissingNumberPasswordImpl<T> extends MissingNumberPassword<T>
         missingSpecialSymbol,
     required TResult Function(MissingNumberPassword<T> value)
         missingNumberPassword,
-    required TResult Function(invalidPhoneNumber<T> value) invalidPhoneNumber,
-    required TResult Function(invalidOtp<T> value) invalidOtp,
-    required TResult Function(CustomFailure<T> value) customFailure,
   }) {
     return missingNumberPassword(this);
   }
@@ -1078,9 +976,6 @@ class _$MissingNumberPasswordImpl<T> extends MissingNumberPassword<T>
     TResult? Function(ShortPassword<T> value)? shortPassword,
     TResult? Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
     TResult? Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult? Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult? Function(invalidOtp<T> value)? invalidOtp,
-    TResult? Function(CustomFailure<T> value)? customFailure,
   }) {
     return missingNumberPassword?.call(this);
   }
@@ -1093,9 +988,6 @@ class _$MissingNumberPasswordImpl<T> extends MissingNumberPassword<T>
     TResult Function(ShortPassword<T> value)? shortPassword,
     TResult Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
     TResult Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult Function(invalidOtp<T> value)? invalidOtp,
-    TResult Function(CustomFailure<T> value)? customFailure,
     required TResult orElse(),
   }) {
     if (missingNumberPassword != null) {
@@ -1119,602 +1011,4 @@ abstract class MissingNumberPassword<T> extends ValueFailure<T> {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MissingNumberPasswordImplCopyWith<T, _$MissingNumberPasswordImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$invalidPhoneNumberImplCopyWith<T, $Res>
-    implements $ValueFailureCopyWith<T, $Res> {
-  factory _$$invalidPhoneNumberImplCopyWith(_$invalidPhoneNumberImpl<T> value,
-          $Res Function(_$invalidPhoneNumberImpl<T>) then) =
-      __$$invalidPhoneNumberImplCopyWithImpl<T, $Res>;
-  @override
-  @useResult
-  $Res call({T failedValue});
-}
-
-/// @nodoc
-class __$$invalidPhoneNumberImplCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res, _$invalidPhoneNumberImpl<T>>
-    implements _$$invalidPhoneNumberImplCopyWith<T, $Res> {
-  __$$invalidPhoneNumberImplCopyWithImpl(_$invalidPhoneNumberImpl<T> _value,
-      $Res Function(_$invalidPhoneNumberImpl<T>) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ValueFailure
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? failedValue = freezed,
-  }) {
-    return _then(_$invalidPhoneNumberImpl<T>(
-      failedValue: freezed == failedValue
-          ? _value.failedValue
-          : failedValue // ignore: cast_nullable_to_non_nullable
-              as T,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$invalidPhoneNumberImpl<T> extends invalidPhoneNumber<T>
-    with DiagnosticableTreeMixin {
-  const _$invalidPhoneNumberImpl({required this.failedValue}) : super._();
-
-  @override
-  final T failedValue;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ValueFailure<$T>.invalidPhoneNumber(failedValue: $failedValue)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ValueFailure<$T>.invalidPhoneNumber'))
-      ..add(DiagnosticsProperty('failedValue', failedValue));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$invalidPhoneNumberImpl<T> &&
-            const DeepCollectionEquality()
-                .equals(other.failedValue, failedValue));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(failedValue));
-
-  /// Create a copy of ValueFailure
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$invalidPhoneNumberImplCopyWith<T, _$invalidPhoneNumberImpl<T>>
-      get copyWith => __$$invalidPhoneNumberImplCopyWithImpl<T,
-          _$invalidPhoneNumberImpl<T>>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(T failedValue) missingUppercase,
-    required TResult Function(T failedValue) invalidEmail,
-    required TResult Function(T failedValue) shortPassword,
-    required TResult Function(T failedValue) missingSpecialSymbol,
-    required TResult Function(T failedValue) missingNumberPassword,
-    required TResult Function(T failedValue) invalidPhoneNumber,
-    required TResult Function(T failedValue) invalidOtp,
-    required TResult Function(String message, T failedValue) customFailure,
-  }) {
-    return invalidPhoneNumber(failedValue);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T failedValue)? missingUppercase,
-    TResult? Function(T failedValue)? invalidEmail,
-    TResult? Function(T failedValue)? shortPassword,
-    TResult? Function(T failedValue)? missingSpecialSymbol,
-    TResult? Function(T failedValue)? missingNumberPassword,
-    TResult? Function(T failedValue)? invalidPhoneNumber,
-    TResult? Function(T failedValue)? invalidOtp,
-    TResult? Function(String message, T failedValue)? customFailure,
-  }) {
-    return invalidPhoneNumber?.call(failedValue);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T failedValue)? missingUppercase,
-    TResult Function(T failedValue)? invalidEmail,
-    TResult Function(T failedValue)? shortPassword,
-    TResult Function(T failedValue)? missingSpecialSymbol,
-    TResult Function(T failedValue)? missingNumberPassword,
-    TResult Function(T failedValue)? invalidPhoneNumber,
-    TResult Function(T failedValue)? invalidOtp,
-    TResult Function(String message, T failedValue)? customFailure,
-    required TResult orElse(),
-  }) {
-    if (invalidPhoneNumber != null) {
-      return invalidPhoneNumber(failedValue);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(MissingUppercase<T> value) missingUppercase,
-    required TResult Function(InvalidEmail<T> value) invalidEmail,
-    required TResult Function(ShortPassword<T> value) shortPassword,
-    required TResult Function(MissingSpecialSymbol<T> value)
-        missingSpecialSymbol,
-    required TResult Function(MissingNumberPassword<T> value)
-        missingNumberPassword,
-    required TResult Function(invalidPhoneNumber<T> value) invalidPhoneNumber,
-    required TResult Function(invalidOtp<T> value) invalidOtp,
-    required TResult Function(CustomFailure<T> value) customFailure,
-  }) {
-    return invalidPhoneNumber(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(MissingUppercase<T> value)? missingUppercase,
-    TResult? Function(InvalidEmail<T> value)? invalidEmail,
-    TResult? Function(ShortPassword<T> value)? shortPassword,
-    TResult? Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
-    TResult? Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult? Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult? Function(invalidOtp<T> value)? invalidOtp,
-    TResult? Function(CustomFailure<T> value)? customFailure,
-  }) {
-    return invalidPhoneNumber?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(MissingUppercase<T> value)? missingUppercase,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(ShortPassword<T> value)? shortPassword,
-    TResult Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
-    TResult Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult Function(invalidOtp<T> value)? invalidOtp,
-    TResult Function(CustomFailure<T> value)? customFailure,
-    required TResult orElse(),
-  }) {
-    if (invalidPhoneNumber != null) {
-      return invalidPhoneNumber(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class invalidPhoneNumber<T> extends ValueFailure<T> {
-  const factory invalidPhoneNumber({required final T failedValue}) =
-      _$invalidPhoneNumberImpl<T>;
-  const invalidPhoneNumber._() : super._();
-
-  @override
-  T get failedValue;
-
-  /// Create a copy of ValueFailure
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$invalidPhoneNumberImplCopyWith<T, _$invalidPhoneNumberImpl<T>>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$invalidOtpImplCopyWith<T, $Res>
-    implements $ValueFailureCopyWith<T, $Res> {
-  factory _$$invalidOtpImplCopyWith(
-          _$invalidOtpImpl<T> value, $Res Function(_$invalidOtpImpl<T>) then) =
-      __$$invalidOtpImplCopyWithImpl<T, $Res>;
-  @override
-  @useResult
-  $Res call({T failedValue});
-}
-
-/// @nodoc
-class __$$invalidOtpImplCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res, _$invalidOtpImpl<T>>
-    implements _$$invalidOtpImplCopyWith<T, $Res> {
-  __$$invalidOtpImplCopyWithImpl(
-      _$invalidOtpImpl<T> _value, $Res Function(_$invalidOtpImpl<T>) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ValueFailure
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? failedValue = freezed,
-  }) {
-    return _then(_$invalidOtpImpl<T>(
-      failedValue: freezed == failedValue
-          ? _value.failedValue
-          : failedValue // ignore: cast_nullable_to_non_nullable
-              as T,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$invalidOtpImpl<T> extends invalidOtp<T> with DiagnosticableTreeMixin {
-  const _$invalidOtpImpl({required this.failedValue}) : super._();
-
-  @override
-  final T failedValue;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ValueFailure<$T>.invalidOtp(failedValue: $failedValue)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ValueFailure<$T>.invalidOtp'))
-      ..add(DiagnosticsProperty('failedValue', failedValue));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$invalidOtpImpl<T> &&
-            const DeepCollectionEquality()
-                .equals(other.failedValue, failedValue));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(failedValue));
-
-  /// Create a copy of ValueFailure
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$invalidOtpImplCopyWith<T, _$invalidOtpImpl<T>> get copyWith =>
-      __$$invalidOtpImplCopyWithImpl<T, _$invalidOtpImpl<T>>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(T failedValue) missingUppercase,
-    required TResult Function(T failedValue) invalidEmail,
-    required TResult Function(T failedValue) shortPassword,
-    required TResult Function(T failedValue) missingSpecialSymbol,
-    required TResult Function(T failedValue) missingNumberPassword,
-    required TResult Function(T failedValue) invalidPhoneNumber,
-    required TResult Function(T failedValue) invalidOtp,
-    required TResult Function(String message, T failedValue) customFailure,
-  }) {
-    return invalidOtp(failedValue);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T failedValue)? missingUppercase,
-    TResult? Function(T failedValue)? invalidEmail,
-    TResult? Function(T failedValue)? shortPassword,
-    TResult? Function(T failedValue)? missingSpecialSymbol,
-    TResult? Function(T failedValue)? missingNumberPassword,
-    TResult? Function(T failedValue)? invalidPhoneNumber,
-    TResult? Function(T failedValue)? invalidOtp,
-    TResult? Function(String message, T failedValue)? customFailure,
-  }) {
-    return invalidOtp?.call(failedValue);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T failedValue)? missingUppercase,
-    TResult Function(T failedValue)? invalidEmail,
-    TResult Function(T failedValue)? shortPassword,
-    TResult Function(T failedValue)? missingSpecialSymbol,
-    TResult Function(T failedValue)? missingNumberPassword,
-    TResult Function(T failedValue)? invalidPhoneNumber,
-    TResult Function(T failedValue)? invalidOtp,
-    TResult Function(String message, T failedValue)? customFailure,
-    required TResult orElse(),
-  }) {
-    if (invalidOtp != null) {
-      return invalidOtp(failedValue);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(MissingUppercase<T> value) missingUppercase,
-    required TResult Function(InvalidEmail<T> value) invalidEmail,
-    required TResult Function(ShortPassword<T> value) shortPassword,
-    required TResult Function(MissingSpecialSymbol<T> value)
-        missingSpecialSymbol,
-    required TResult Function(MissingNumberPassword<T> value)
-        missingNumberPassword,
-    required TResult Function(invalidPhoneNumber<T> value) invalidPhoneNumber,
-    required TResult Function(invalidOtp<T> value) invalidOtp,
-    required TResult Function(CustomFailure<T> value) customFailure,
-  }) {
-    return invalidOtp(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(MissingUppercase<T> value)? missingUppercase,
-    TResult? Function(InvalidEmail<T> value)? invalidEmail,
-    TResult? Function(ShortPassword<T> value)? shortPassword,
-    TResult? Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
-    TResult? Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult? Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult? Function(invalidOtp<T> value)? invalidOtp,
-    TResult? Function(CustomFailure<T> value)? customFailure,
-  }) {
-    return invalidOtp?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(MissingUppercase<T> value)? missingUppercase,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(ShortPassword<T> value)? shortPassword,
-    TResult Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
-    TResult Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult Function(invalidOtp<T> value)? invalidOtp,
-    TResult Function(CustomFailure<T> value)? customFailure,
-    required TResult orElse(),
-  }) {
-    if (invalidOtp != null) {
-      return invalidOtp(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class invalidOtp<T> extends ValueFailure<T> {
-  const factory invalidOtp({required final T failedValue}) =
-      _$invalidOtpImpl<T>;
-  const invalidOtp._() : super._();
-
-  @override
-  T get failedValue;
-
-  /// Create a copy of ValueFailure
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$invalidOtpImplCopyWith<T, _$invalidOtpImpl<T>> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$CustomFailureImplCopyWith<T, $Res>
-    implements $ValueFailureCopyWith<T, $Res> {
-  factory _$$CustomFailureImplCopyWith(_$CustomFailureImpl<T> value,
-          $Res Function(_$CustomFailureImpl<T>) then) =
-      __$$CustomFailureImplCopyWithImpl<T, $Res>;
-  @override
-  @useResult
-  $Res call({String message, T failedValue});
-}
-
-/// @nodoc
-class __$$CustomFailureImplCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res, _$CustomFailureImpl<T>>
-    implements _$$CustomFailureImplCopyWith<T, $Res> {
-  __$$CustomFailureImplCopyWithImpl(_$CustomFailureImpl<T> _value,
-      $Res Function(_$CustomFailureImpl<T>) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ValueFailure
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-    Object? failedValue = freezed,
-  }) {
-    return _then(_$CustomFailureImpl<T>(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      failedValue: freezed == failedValue
-          ? _value.failedValue
-          : failedValue // ignore: cast_nullable_to_non_nullable
-              as T,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CustomFailureImpl<T> extends CustomFailure<T>
-    with DiagnosticableTreeMixin {
-  _$CustomFailureImpl({required this.message, required this.failedValue})
-      : super._();
-
-  @override
-  final String message;
-  @override
-  final T failedValue;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ValueFailure<$T>.customFailure(message: $message, failedValue: $failedValue)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ValueFailure<$T>.customFailure'))
-      ..add(DiagnosticsProperty('message', message))
-      ..add(DiagnosticsProperty('failedValue', failedValue));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CustomFailureImpl<T> &&
-            (identical(other.message, message) || other.message == message) &&
-            const DeepCollectionEquality()
-                .equals(other.failedValue, failedValue));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, message, const DeepCollectionEquality().hash(failedValue));
-
-  /// Create a copy of ValueFailure
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CustomFailureImplCopyWith<T, _$CustomFailureImpl<T>> get copyWith =>
-      __$$CustomFailureImplCopyWithImpl<T, _$CustomFailureImpl<T>>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(T failedValue) missingUppercase,
-    required TResult Function(T failedValue) invalidEmail,
-    required TResult Function(T failedValue) shortPassword,
-    required TResult Function(T failedValue) missingSpecialSymbol,
-    required TResult Function(T failedValue) missingNumberPassword,
-    required TResult Function(T failedValue) invalidPhoneNumber,
-    required TResult Function(T failedValue) invalidOtp,
-    required TResult Function(String message, T failedValue) customFailure,
-  }) {
-    return customFailure(message, failedValue);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(T failedValue)? missingUppercase,
-    TResult? Function(T failedValue)? invalidEmail,
-    TResult? Function(T failedValue)? shortPassword,
-    TResult? Function(T failedValue)? missingSpecialSymbol,
-    TResult? Function(T failedValue)? missingNumberPassword,
-    TResult? Function(T failedValue)? invalidPhoneNumber,
-    TResult? Function(T failedValue)? invalidOtp,
-    TResult? Function(String message, T failedValue)? customFailure,
-  }) {
-    return customFailure?.call(message, failedValue);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T failedValue)? missingUppercase,
-    TResult Function(T failedValue)? invalidEmail,
-    TResult Function(T failedValue)? shortPassword,
-    TResult Function(T failedValue)? missingSpecialSymbol,
-    TResult Function(T failedValue)? missingNumberPassword,
-    TResult Function(T failedValue)? invalidPhoneNumber,
-    TResult Function(T failedValue)? invalidOtp,
-    TResult Function(String message, T failedValue)? customFailure,
-    required TResult orElse(),
-  }) {
-    if (customFailure != null) {
-      return customFailure(message, failedValue);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(MissingUppercase<T> value) missingUppercase,
-    required TResult Function(InvalidEmail<T> value) invalidEmail,
-    required TResult Function(ShortPassword<T> value) shortPassword,
-    required TResult Function(MissingSpecialSymbol<T> value)
-        missingSpecialSymbol,
-    required TResult Function(MissingNumberPassword<T> value)
-        missingNumberPassword,
-    required TResult Function(invalidPhoneNumber<T> value) invalidPhoneNumber,
-    required TResult Function(invalidOtp<T> value) invalidOtp,
-    required TResult Function(CustomFailure<T> value) customFailure,
-  }) {
-    return customFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(MissingUppercase<T> value)? missingUppercase,
-    TResult? Function(InvalidEmail<T> value)? invalidEmail,
-    TResult? Function(ShortPassword<T> value)? shortPassword,
-    TResult? Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
-    TResult? Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult? Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult? Function(invalidOtp<T> value)? invalidOtp,
-    TResult? Function(CustomFailure<T> value)? customFailure,
-  }) {
-    return customFailure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(MissingUppercase<T> value)? missingUppercase,
-    TResult Function(InvalidEmail<T> value)? invalidEmail,
-    TResult Function(ShortPassword<T> value)? shortPassword,
-    TResult Function(MissingSpecialSymbol<T> value)? missingSpecialSymbol,
-    TResult Function(MissingNumberPassword<T> value)? missingNumberPassword,
-    TResult Function(invalidPhoneNumber<T> value)? invalidPhoneNumber,
-    TResult Function(invalidOtp<T> value)? invalidOtp,
-    TResult Function(CustomFailure<T> value)? customFailure,
-    required TResult orElse(),
-  }) {
-    if (customFailure != null) {
-      return customFailure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CustomFailure<T> extends ValueFailure<T> {
-  factory CustomFailure(
-      {required final String message,
-      required final T failedValue}) = _$CustomFailureImpl<T>;
-  CustomFailure._() : super._();
-
-  String get message;
-  @override
-  T get failedValue;
-
-  /// Create a copy of ValueFailure
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CustomFailureImplCopyWith<T, _$CustomFailureImpl<T>> get copyWith =>
-      throw _privateConstructorUsedError;
 }

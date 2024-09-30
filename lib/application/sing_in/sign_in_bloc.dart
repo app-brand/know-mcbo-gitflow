@@ -20,9 +20,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           SignInState.initial(),
         ) {
     on<SignInEvent>((event, emit) async {
-      // TODO: implement event handler
-      // Nota especial atencion a este detalle del Handler de eventos
-      // Debe ser declarado asincrono si se van a interactuar con eventos asincronos
       await event.map(
         started: (e) {},
         singInEmail: (e) async {
@@ -30,25 +27,24 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           final isEmailValid = state.emailAddress.isValid();
           final isPasswordValid = state.password.isValid();
           if (isEmailValid && isPasswordValid) {
-            // Activando la interzas de comunicacion asincrono
-            print('Email and password are valid, attempting sign-in');
             emit(state.copyWith(
               isSubmitting: true,
               userFailureOrUserSuccess: none(),
             ));
-            // Intento raw a inicio de sesion
-            // Future.delayed(const Duration(seconds: 10));
             failureOrSuccess = await _interfaceUserFacade.signInWithEmail(
               emailAddress: state.emailAddress,
               password: state.password,
             );
-            // Emitir nuevo estado
-            emit(state.copyWith(
-              isSubmitting: false,
-              userFailureOrUserSuccess: optionOf(failureOrSuccess),
-            ));
-          } else {
-            print('something is missing');
+            failureOrSuccess.fold(
+                (failure) => emit(state.copyWith(
+                      isSubmitting: false,
+                      //showErrorMessages: true,
+                      userFailureOrUserSuccess: some(left(failure)),
+                    )),
+                (_) => emit(state.copyWith(
+                      isSubmitting: false,
+                      userFailureOrUserSuccess: none(),
+                    )));
           }
         },
         emailChanged: (e) {
