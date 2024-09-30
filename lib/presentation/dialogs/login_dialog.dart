@@ -5,7 +5,7 @@ import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/dialogs/sign_up_dialog.dart';
 
 class LoginDialog extends StatefulWidget {
-  LoginDialog({super.key});
+  const LoginDialog({super.key});
   @override
   State<LoginDialog> createState() => _LoginDialogState();
 }
@@ -111,6 +111,7 @@ class _LoginDialogState extends State<LoginDialog>
               _showErrorDialog(errorMessage); // Muestra el diálogo con el error
             },
             (_) {
+              print('todo-ok');
               // Si el inicio de sesión fue exitoso, mostrar el diálogo de éxito
               _showSuccessDialog();
             },
@@ -158,7 +159,8 @@ class _LoginDialogState extends State<LoginDialog>
                       ),
                       autocorrect: false,
                       onChanged: (email) {
-                        _signInBloc.add(SignInEvent.emailChanged(email));
+                        _signInBloc.add(
+                            SignInEvent.emailChanged(_emailController.text));
                       },
                       validator: (email) {
                         return _signInBloc.state.emailAddress.value.fold(
@@ -176,7 +178,7 @@ class _LoginDialogState extends State<LoginDialog>
                       controller: _passwordController,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.lock),
-                        labelText: 'Password',
+                        labelText: 'Contraseña',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -238,6 +240,7 @@ class _LoginDialogState extends State<LoginDialog>
                           // Botón para ir a "Registrarse"
                           TextButton(
                             onPressed: () {
+                              //_closeWithReverseDialog();
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) {

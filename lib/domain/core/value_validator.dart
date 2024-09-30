@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:know_my_city/domain/core/value_failure.dart';
-import 'package:know_my_city/domain/value_objects/phone_number.dart';
+//import 'package:know_my_city/domain/value_objects/phone_number.dart';
 
 // Validar correo
 Either<ValueFailure<String>, String> validateEmailAddress(String input) {
@@ -31,6 +31,7 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
 }
 
 //Validador de numeros internacionales
+/*
 Either<ValueFailure<String>, String> validatePhoneNumber(String input) {
   const phoneRegex =
       r'^\+?\d{10,15}$'; // Validamos que sea un número internacional.
@@ -41,6 +42,7 @@ Either<ValueFailure<String>, String> validatePhoneNumber(String input) {
   }
 }
 
+//Validador de OTP
 Either<ValueFailure<String>, String> validateOTP(String input) {
   if (input.length == 6 && RegExp(r'^[0-9]+$').hasMatch(input)) {
     return right(input);
@@ -48,3 +50,4 @@ Either<ValueFailure<String>, String> validateOTP(String input) {
     return left(ValueFailure.invalidOtp(failedValue: input));
   }
 }
+*/

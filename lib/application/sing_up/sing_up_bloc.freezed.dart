@@ -22,8 +22,7 @@ mixin _$SingUpEvent {
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
     required TResult Function() signUpMail,
-    required TResult Function() signUpPhone,
-    required TResult Function() siguUpFirestore,
+    required TResult Function() mailVerification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,8 +31,7 @@ mixin _$SingUpEvent {
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? signUpMail,
-    TResult? Function()? signUpPhone,
-    TResult? Function()? siguUpFirestore,
+    TResult? Function()? mailVerification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,8 +40,7 @@ mixin _$SingUpEvent {
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
     TResult Function()? signUpMail,
-    TResult Function()? signUpPhone,
-    TResult Function()? siguUpFirestore,
+    TResult Function()? mailVerification,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -53,8 +50,7 @@ mixin _$SingUpEvent {
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_SignUpMail value) signUpMail,
-    required TResult Function(_SignUpPhone value) signUpPhone,
-    required TResult Function(_SignUpFirestore value) siguUpFirestore,
+    required TResult Function(_MailVerification value) mailVerification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,8 +59,7 @@ mixin _$SingUpEvent {
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
-    TResult? Function(_SignUpPhone value)? signUpPhone,
-    TResult? Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult? Function(_MailVerification value)? mailVerification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,8 +68,7 @@ mixin _$SingUpEvent {
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_SignUpMail value)? signUpMail,
-    TResult Function(_SignUpPhone value)? signUpPhone,
-    TResult Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult Function(_MailVerification value)? mailVerification,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -146,8 +140,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
     required TResult Function() signUpMail,
-    required TResult Function() signUpPhone,
-    required TResult Function() siguUpFirestore,
+    required TResult Function() mailVerification,
   }) {
     return started();
   }
@@ -159,8 +152,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? signUpMail,
-    TResult? Function()? signUpPhone,
-    TResult? Function()? siguUpFirestore,
+    TResult? Function()? mailVerification,
   }) {
     return started?.call();
   }
@@ -172,8 +164,7 @@ class _$StartedImpl implements _Started {
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
     TResult Function()? signUpMail,
-    TResult Function()? signUpPhone,
-    TResult Function()? siguUpFirestore,
+    TResult Function()? mailVerification,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -189,8 +180,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_SignUpMail value) signUpMail,
-    required TResult Function(_SignUpPhone value) signUpPhone,
-    required TResult Function(_SignUpFirestore value) siguUpFirestore,
+    required TResult Function(_MailVerification value) mailVerification,
   }) {
     return started(this);
   }
@@ -202,8 +192,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
-    TResult? Function(_SignUpPhone value)? signUpPhone,
-    TResult? Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult? Function(_MailVerification value)? mailVerification,
   }) {
     return started?.call(this);
   }
@@ -215,8 +204,7 @@ class _$StartedImpl implements _Started {
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_SignUpMail value)? signUpMail,
-    TResult Function(_SignUpPhone value)? signUpPhone,
-    TResult Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult Function(_MailVerification value)? mailVerification,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -302,8 +290,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
     required TResult Function() signUpMail,
-    required TResult Function() signUpPhone,
-    required TResult Function() siguUpFirestore,
+    required TResult Function() mailVerification,
   }) {
     return emailChanged(email);
   }
@@ -315,8 +302,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? signUpMail,
-    TResult? Function()? signUpPhone,
-    TResult? Function()? siguUpFirestore,
+    TResult? Function()? mailVerification,
   }) {
     return emailChanged?.call(email);
   }
@@ -328,8 +314,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
     TResult Function()? signUpMail,
-    TResult Function()? signUpPhone,
-    TResult Function()? siguUpFirestore,
+    TResult Function()? mailVerification,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -345,8 +330,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_SignUpMail value) signUpMail,
-    required TResult Function(_SignUpPhone value) signUpPhone,
-    required TResult Function(_SignUpFirestore value) siguUpFirestore,
+    required TResult Function(_MailVerification value) mailVerification,
   }) {
     return emailChanged(this);
   }
@@ -358,8 +342,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
-    TResult? Function(_SignUpPhone value)? signUpPhone,
-    TResult? Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult? Function(_MailVerification value)? mailVerification,
   }) {
     return emailChanged?.call(this);
   }
@@ -371,8 +354,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_SignUpMail value)? signUpMail,
-    TResult Function(_SignUpPhone value)? signUpPhone,
-    TResult Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult Function(_MailVerification value)? mailVerification,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -468,8 +450,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
     required TResult Function() signUpMail,
-    required TResult Function() signUpPhone,
-    required TResult Function() siguUpFirestore,
+    required TResult Function() mailVerification,
   }) {
     return passwordChanged(password);
   }
@@ -481,8 +462,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? signUpMail,
-    TResult? Function()? signUpPhone,
-    TResult? Function()? siguUpFirestore,
+    TResult? Function()? mailVerification,
   }) {
     return passwordChanged?.call(password);
   }
@@ -494,8 +474,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
     TResult Function()? signUpMail,
-    TResult Function()? signUpPhone,
-    TResult Function()? siguUpFirestore,
+    TResult Function()? mailVerification,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -511,8 +490,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_SignUpMail value) signUpMail,
-    required TResult Function(_SignUpPhone value) signUpPhone,
-    required TResult Function(_SignUpFirestore value) siguUpFirestore,
+    required TResult Function(_MailVerification value) mailVerification,
   }) {
     return passwordChanged(this);
   }
@@ -524,8 +502,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
-    TResult? Function(_SignUpPhone value)? signUpPhone,
-    TResult? Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult? Function(_MailVerification value)? mailVerification,
   }) {
     return passwordChanged?.call(this);
   }
@@ -537,8 +514,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_SignUpMail value)? signUpMail,
-    TResult Function(_SignUpPhone value)? signUpPhone,
-    TResult Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult Function(_MailVerification value)? mailVerification,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -605,8 +581,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
     required TResult Function() signUpMail,
-    required TResult Function() signUpPhone,
-    required TResult Function() siguUpFirestore,
+    required TResult Function() mailVerification,
   }) {
     return signUpMail();
   }
@@ -618,8 +593,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? signUpMail,
-    TResult? Function()? signUpPhone,
-    TResult? Function()? siguUpFirestore,
+    TResult? Function()? mailVerification,
   }) {
     return signUpMail?.call();
   }
@@ -631,8 +605,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
     TResult Function()? signUpMail,
-    TResult Function()? signUpPhone,
-    TResult Function()? siguUpFirestore,
+    TResult Function()? mailVerification,
     required TResult orElse(),
   }) {
     if (signUpMail != null) {
@@ -648,8 +621,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_SignUpMail value) signUpMail,
-    required TResult Function(_SignUpPhone value) signUpPhone,
-    required TResult Function(_SignUpFirestore value) siguUpFirestore,
+    required TResult Function(_MailVerification value) mailVerification,
   }) {
     return signUpMail(this);
   }
@@ -661,8 +633,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
-    TResult? Function(_SignUpPhone value)? signUpPhone,
-    TResult? Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult? Function(_MailVerification value)? mailVerification,
   }) {
     return signUpMail?.call(this);
   }
@@ -674,8 +645,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_SignUpMail value)? signUpMail,
-    TResult Function(_SignUpPhone value)? signUpPhone,
-    TResult Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult Function(_MailVerification value)? mailVerification,
     required TResult orElse(),
   }) {
     if (signUpMail != null) {
@@ -690,18 +660,18 @@ abstract class _SignUpMail implements SingUpEvent {
 }
 
 /// @nodoc
-abstract class _$$SignUpPhoneImplCopyWith<$Res> {
-  factory _$$SignUpPhoneImplCopyWith(
-          _$SignUpPhoneImpl value, $Res Function(_$SignUpPhoneImpl) then) =
-      __$$SignUpPhoneImplCopyWithImpl<$Res>;
+abstract class _$$MailVerificationImplCopyWith<$Res> {
+  factory _$$MailVerificationImplCopyWith(_$MailVerificationImpl value,
+          $Res Function(_$MailVerificationImpl) then) =
+      __$$MailVerificationImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SignUpPhoneImplCopyWithImpl<$Res>
-    extends _$SingUpEventCopyWithImpl<$Res, _$SignUpPhoneImpl>
-    implements _$$SignUpPhoneImplCopyWith<$Res> {
-  __$$SignUpPhoneImplCopyWithImpl(
-      _$SignUpPhoneImpl _value, $Res Function(_$SignUpPhoneImpl) _then)
+class __$$MailVerificationImplCopyWithImpl<$Res>
+    extends _$SingUpEventCopyWithImpl<$Res, _$MailVerificationImpl>
+    implements _$$MailVerificationImplCopyWith<$Res> {
+  __$$MailVerificationImplCopyWithImpl(_$MailVerificationImpl _value,
+      $Res Function(_$MailVerificationImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SingUpEvent
@@ -710,18 +680,18 @@ class __$$SignUpPhoneImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SignUpPhoneImpl implements _SignUpPhone {
-  const _$SignUpPhoneImpl();
+class _$MailVerificationImpl implements _MailVerification {
+  const _$MailVerificationImpl();
 
   @override
   String toString() {
-    return 'SingUpEvent.signUpPhone()';
+    return 'SingUpEvent.mailVerification()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SignUpPhoneImpl);
+        (other.runtimeType == runtimeType && other is _$MailVerificationImpl);
   }
 
   @override
@@ -734,10 +704,9 @@ class _$SignUpPhoneImpl implements _SignUpPhone {
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
     required TResult Function() signUpMail,
-    required TResult Function() signUpPhone,
-    required TResult Function() siguUpFirestore,
+    required TResult Function() mailVerification,
   }) {
-    return signUpPhone();
+    return mailVerification();
   }
 
   @override
@@ -747,10 +716,9 @@ class _$SignUpPhoneImpl implements _SignUpPhone {
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? signUpMail,
-    TResult? Function()? signUpPhone,
-    TResult? Function()? siguUpFirestore,
+    TResult? Function()? mailVerification,
   }) {
-    return signUpPhone?.call();
+    return mailVerification?.call();
   }
 
   @override
@@ -760,12 +728,11 @@ class _$SignUpPhoneImpl implements _SignUpPhone {
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
     TResult Function()? signUpMail,
-    TResult Function()? signUpPhone,
-    TResult Function()? siguUpFirestore,
+    TResult Function()? mailVerification,
     required TResult orElse(),
   }) {
-    if (signUpPhone != null) {
-      return signUpPhone();
+    if (mailVerification != null) {
+      return mailVerification();
     }
     return orElse();
   }
@@ -777,10 +744,9 @@ class _$SignUpPhoneImpl implements _SignUpPhone {
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_SignUpMail value) signUpMail,
-    required TResult Function(_SignUpPhone value) signUpPhone,
-    required TResult Function(_SignUpFirestore value) siguUpFirestore,
+    required TResult Function(_MailVerification value) mailVerification,
   }) {
-    return signUpPhone(this);
+    return mailVerification(this);
   }
 
   @override
@@ -790,10 +756,9 @@ class _$SignUpPhoneImpl implements _SignUpPhone {
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
-    TResult? Function(_SignUpPhone value)? signUpPhone,
-    TResult? Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult? Function(_MailVerification value)? mailVerification,
   }) {
-    return signUpPhone?.call(this);
+    return mailVerification?.call(this);
   }
 
   @override
@@ -803,156 +768,29 @@ class _$SignUpPhoneImpl implements _SignUpPhone {
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_SignUpMail value)? signUpMail,
-    TResult Function(_SignUpPhone value)? signUpPhone,
-    TResult Function(_SignUpFirestore value)? siguUpFirestore,
+    TResult Function(_MailVerification value)? mailVerification,
     required TResult orElse(),
   }) {
-    if (signUpPhone != null) {
-      return signUpPhone(this);
+    if (mailVerification != null) {
+      return mailVerification(this);
     }
     return orElse();
   }
 }
 
-abstract class _SignUpPhone implements SingUpEvent {
-  const factory _SignUpPhone() = _$SignUpPhoneImpl;
-}
-
-/// @nodoc
-abstract class _$$SignUpFirestoreImplCopyWith<$Res> {
-  factory _$$SignUpFirestoreImplCopyWith(_$SignUpFirestoreImpl value,
-          $Res Function(_$SignUpFirestoreImpl) then) =
-      __$$SignUpFirestoreImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SignUpFirestoreImplCopyWithImpl<$Res>
-    extends _$SingUpEventCopyWithImpl<$Res, _$SignUpFirestoreImpl>
-    implements _$$SignUpFirestoreImplCopyWith<$Res> {
-  __$$SignUpFirestoreImplCopyWithImpl(
-      _$SignUpFirestoreImpl _value, $Res Function(_$SignUpFirestoreImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SingUpEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$SignUpFirestoreImpl implements _SignUpFirestore {
-  const _$SignUpFirestoreImpl();
-
-  @override
-  String toString() {
-    return 'SingUpEvent.siguUpFirestore()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SignUpFirestoreImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(String email) emailChanged,
-    required TResult Function(String password) passwordChanged,
-    required TResult Function() signUpMail,
-    required TResult Function() signUpPhone,
-    required TResult Function() siguUpFirestore,
-  }) {
-    return siguUpFirestore();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function(String email)? emailChanged,
-    TResult? Function(String password)? passwordChanged,
-    TResult? Function()? signUpMail,
-    TResult? Function()? signUpPhone,
-    TResult? Function()? siguUpFirestore,
-  }) {
-    return siguUpFirestore?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(String email)? emailChanged,
-    TResult Function(String password)? passwordChanged,
-    TResult Function()? signUpMail,
-    TResult Function()? signUpPhone,
-    TResult Function()? siguUpFirestore,
-    required TResult orElse(),
-  }) {
-    if (siguUpFirestore != null) {
-      return siguUpFirestore();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_EmailChanged value) emailChanged,
-    required TResult Function(_PasswordChanged value) passwordChanged,
-    required TResult Function(_SignUpMail value) signUpMail,
-    required TResult Function(_SignUpPhone value) signUpPhone,
-    required TResult Function(_SignUpFirestore value) siguUpFirestore,
-  }) {
-    return siguUpFirestore(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_EmailChanged value)? emailChanged,
-    TResult? Function(_PasswordChanged value)? passwordChanged,
-    TResult? Function(_SignUpMail value)? signUpMail,
-    TResult? Function(_SignUpPhone value)? signUpPhone,
-    TResult? Function(_SignUpFirestore value)? siguUpFirestore,
-  }) {
-    return siguUpFirestore?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_EmailChanged value)? emailChanged,
-    TResult Function(_PasswordChanged value)? passwordChanged,
-    TResult Function(_SignUpMail value)? signUpMail,
-    TResult Function(_SignUpPhone value)? signUpPhone,
-    TResult Function(_SignUpFirestore value)? siguUpFirestore,
-    required TResult orElse(),
-  }) {
-    if (siguUpFirestore != null) {
-      return siguUpFirestore(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SignUpFirestore implements SingUpEvent {
-  const factory _SignUpFirestore() = _$SignUpFirestoreImpl;
+abstract class _MailVerification implements SingUpEvent {
+  const factory _MailVerification() = _$MailVerificationImpl;
 }
 
 /// @nodoc
 mixin _$SingUpState {
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
-  Password get password => throw _privateConstructorUsedError;
+  Password get password =>
+      throw _privateConstructorUsedError; //required PhoneNumber phone_number,
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
+  bool get isEmailVerified =>
+      throw _privateConstructorUsedError; //required bool isPhoneNumberVerified,
   Option<Either<UserFailure, Unit>> get userFailureOrUserSuccess =>
       throw _privateConstructorUsedError;
 
@@ -974,6 +812,7 @@ abstract class $SingUpStateCopyWith<$Res> {
       Password password,
       bool showErrorMessages,
       bool isSubmitting,
+      bool isEmailVerified,
       Option<Either<UserFailure, Unit>> userFailureOrUserSuccess});
 }
 
@@ -996,6 +835,7 @@ class _$SingUpStateCopyWithImpl<$Res, $Val extends SingUpState>
     Object? password = null,
     Object? showErrorMessages = null,
     Object? isSubmitting = null,
+    Object? isEmailVerified = null,
     Object? userFailureOrUserSuccess = null,
   }) {
     return _then(_value.copyWith(
@@ -1014,6 +854,10 @@ class _$SingUpStateCopyWithImpl<$Res, $Val extends SingUpState>
       isSubmitting: null == isSubmitting
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isEmailVerified: null == isEmailVerified
+          ? _value.isEmailVerified
+          : isEmailVerified // ignore: cast_nullable_to_non_nullable
               as bool,
       userFailureOrUserSuccess: null == userFailureOrUserSuccess
           ? _value.userFailureOrUserSuccess
@@ -1036,6 +880,7 @@ abstract class _$$SingUpStateImplCopyWith<$Res>
       Password password,
       bool showErrorMessages,
       bool isSubmitting,
+      bool isEmailVerified,
       Option<Either<UserFailure, Unit>> userFailureOrUserSuccess});
 }
 
@@ -1056,6 +901,7 @@ class __$$SingUpStateImplCopyWithImpl<$Res>
     Object? password = null,
     Object? showErrorMessages = null,
     Object? isSubmitting = null,
+    Object? isEmailVerified = null,
     Object? userFailureOrUserSuccess = null,
   }) {
     return _then(_$SingUpStateImpl(
@@ -1075,6 +921,10 @@ class __$$SingUpStateImplCopyWithImpl<$Res>
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
+      isEmailVerified: null == isEmailVerified
+          ? _value.isEmailVerified
+          : isEmailVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
       userFailureOrUserSuccess: null == userFailureOrUserSuccess
           ? _value.userFailureOrUserSuccess
           : userFailureOrUserSuccess // ignore: cast_nullable_to_non_nullable
@@ -1091,22 +941,27 @@ class _$SingUpStateImpl implements _SingUpState {
       required this.password,
       required this.showErrorMessages,
       required this.isSubmitting,
+      required this.isEmailVerified,
       required this.userFailureOrUserSuccess});
 
   @override
   final EmailAddress emailAddress;
   @override
   final Password password;
+//required PhoneNumber phone_number,
   @override
   final bool showErrorMessages;
   @override
   final bool isSubmitting;
   @override
+  final bool isEmailVerified;
+//required bool isPhoneNumberVerified,
+  @override
   final Option<Either<UserFailure, Unit>> userFailureOrUserSuccess;
 
   @override
   String toString() {
-    return 'SingUpState(emailAddress: $emailAddress, password: $password, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, userFailureOrUserSuccess: $userFailureOrUserSuccess)';
+    return 'SingUpState(emailAddress: $emailAddress, password: $password, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, isEmailVerified: $isEmailVerified, userFailureOrUserSuccess: $userFailureOrUserSuccess)';
   }
 
   @override
@@ -1122,14 +977,22 @@ class _$SingUpStateImpl implements _SingUpState {
                 other.showErrorMessages == showErrorMessages) &&
             (identical(other.isSubmitting, isSubmitting) ||
                 other.isSubmitting == isSubmitting) &&
+            (identical(other.isEmailVerified, isEmailVerified) ||
+                other.isEmailVerified == isEmailVerified) &&
             (identical(
                     other.userFailureOrUserSuccess, userFailureOrUserSuccess) ||
                 other.userFailureOrUserSuccess == userFailureOrUserSuccess));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, emailAddress, password,
-      showErrorMessages, isSubmitting, userFailureOrUserSuccess);
+  int get hashCode => Object.hash(
+      runtimeType,
+      emailAddress,
+      password,
+      showErrorMessages,
+      isSubmitting,
+      isEmailVerified,
+      userFailureOrUserSuccess);
 
   /// Create a copy of SingUpState
   /// with the given fields replaced by the non-null parameter values.
@@ -1146,17 +1009,20 @@ abstract class _SingUpState implements SingUpState {
       required final Password password,
       required final bool showErrorMessages,
       required final bool isSubmitting,
+      required final bool isEmailVerified,
       required final Option<Either<UserFailure, Unit>>
           userFailureOrUserSuccess}) = _$SingUpStateImpl;
 
   @override
   EmailAddress get emailAddress;
   @override
-  Password get password;
+  Password get password; //required PhoneNumber phone_number,
   @override
   bool get showErrorMessages;
   @override
   bool get isSubmitting;
+  @override
+  bool get isEmailVerified; //required bool isPhoneNumberVerified,
   @override
   Option<Either<UserFailure, Unit>> get userFailureOrUserSuccess;
 

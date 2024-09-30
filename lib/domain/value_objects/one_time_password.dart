@@ -1,3 +1,4 @@
+/*
 import 'package:dartz/dartz.dart';
 import 'package:know_my_city/domain/core/value_failure.dart';
 import 'package:know_my_city/domain/core/value_object.dart';
@@ -9,8 +10,9 @@ class OneTimePassword extends ValueObject {
   factory OneTimePassword(String input) {
     //assert(input != null);
     return OneTimePassword._(
-      validateOTP(input),
+      //validateOTP(input),
     );
   }
   const OneTimePassword._(this.value);
 }
+*/

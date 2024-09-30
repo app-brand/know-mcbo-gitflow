@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:know_my_city/domain/user/user_failures.dart';
 import 'package:know_my_city/domain/value_objects/email_address.dart';
-import 'package:know_my_city/domain/value_objects/one_time_password.dart';
+//import 'package:know_my_city/domain/value_objects/one_time_password.dart';
 import 'package:know_my_city/domain/value_objects/password.dart';
-import 'package:know_my_city/domain/value_objects/phone_number.dart';
+//import 'package:know_my_city/domain/value_objects/phone_number.dart';
 
 abstract interface class InterfaceUserFacade {
   // Inicio de sesion
@@ -16,11 +16,9 @@ abstract interface class InterfaceUserFacade {
     required EmailAddress emailAddress,
     required Password password,
   });
-  // Enviar correo de validacion
-  Future<Either<UserFailure, Unit>> sendVerificationEmail();
   // Verificar correo
-  Future<Either<UserFailure, Unit>> emailIsVerificated();
-  // Enviar OTP
+  Future<Either<UserFailure, Unit>> verifyIsMailisActive();
+  /*
   Future<Either<UserFailure, Unit>> sendOneTimePassword(
       {required PhoneNumber phone_number});
   // Verificar Phone number and OTP
@@ -36,4 +34,5 @@ abstract interface class InterfaceUserFacade {
     required PhoneNumber phone_number,
     required EmailAddress email_address,
   });
+  */
 }
