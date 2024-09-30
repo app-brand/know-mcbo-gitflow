@@ -1,12 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-// Esto indica que despues de correr la clase, en la terminal
-// dart run build runner // Se genera todo el codigo boiler-plate para
-// ser un data transfer object
+
 part 'value_failure.freezed.dart';
 
 @freezed
 abstract class ValueFailure<T> with _$ValueFailure<T> {
+  //
   const factory ValueFailure.missingUppercase({
     required T failedValue,
   }) = MissingUppercase<T>;
@@ -27,22 +26,34 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
     required T failedValue,
   }) = MissingNumberPassword<T>;
 
+  /*
+  const factory ValueFailure.invalidPhoneNumber({
+    required T failedValue,
+  }) = invalidPhoneNumber<T>;
+
+  const factory ValueFailure.invalidOtp({
+    required T failedValue,
+  }) = invalidOtp<T>;
+
   factory ValueFailure.customFailure({
     required String message,
     required T failedValue,
   }) = CustomFailure<T>;
   //
+  */
   const ValueFailure._();
 
   /// Returns a human-readable message describing the failure.
   String get message {
     return when(
-        missingUppercase: (f) => 'Missing uppercase character',
-        invalidEmail: (f) => 'Invalid email format',
-        shortPassword: (f) => 'Password is too short',
-        missingSpecialSymbol: (f) => 'Missing special symbol',
-        customFailure: (message, failedValue) => message,
-        missingNumberPassword: (failedValue) =>
-            'Missing a number in the password');
+      missingUppercase: (f) => 'Falta de un caracter mayuscula',
+      invalidEmail: (f) => 'Formato de email invalido',
+      shortPassword: (f) => 'Contrasena muy corta',
+      missingSpecialSymbol: (f) => 'No contiene un caracter especial',
+      //customFailure: (message, f) => message,
+      missingNumberPassword: (f) => 'No existe un numero en la contrasena',
+      //invalidPhoneNumber: (f) => 'Numero de telefono invalido',
+      //invalidOtp: (f) => 'Codigo de SMS invalido',
+    );
   }
 }

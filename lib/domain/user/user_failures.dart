@@ -6,9 +6,11 @@ part 'user_failures.freezed.dart';
 @freezed
 abstract class UserFailure with _$UserFailure {
   const factory UserFailure.cancelledByUser() = CancelledByUser;
-  const factory UserFailure.serverError() =
-      ServerError; // implementar la logica para agarrar el error.
+  const factory UserFailure.serverError() = ServerError;
   const factory UserFailure.emailAlreadyInUse() = EmailAlreadyInUse;
   const factory UserFailure.invalidEmailAndPasswordCombination() =
       InvalidEmailAndPasswordCombination;
+  const factory UserFailure.otpExpired() = OtpExpired;
+  const factory UserFailure.emailLinkExpired() = EmailLinkExpired;
+  const factory UserFailure.emailNotVerified() = EmailNotVerified;
 }

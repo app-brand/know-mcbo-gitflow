@@ -22,6 +22,9 @@ mixin _$UserFailure {
     required TResult Function() serverError,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmailAndPasswordCombination,
+    required TResult Function() otpExpired,
+    required TResult Function() emailLinkExpired,
+    required TResult Function() emailNotVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +33,9 @@ mixin _$UserFailure {
     TResult? Function()? serverError,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? invalidEmailAndPasswordCombination,
+    TResult? Function()? otpExpired,
+    TResult? Function()? emailLinkExpired,
+    TResult? Function()? emailNotVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +44,9 @@ mixin _$UserFailure {
     TResult Function()? serverError,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
+    TResult Function()? otpExpired,
+    TResult Function()? emailLinkExpired,
+    TResult Function()? emailNotVerified,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +57,9 @@ mixin _$UserFailure {
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
+    required TResult Function(OtpExpired value) otpExpired,
+    required TResult Function(EmailLinkExpired value) emailLinkExpired,
+    required TResult Function(EmailNotVerified value) emailNotVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +69,9 @@ mixin _$UserFailure {
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
+    TResult? Function(OtpExpired value)? otpExpired,
+    TResult? Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,6 +81,9 @@ mixin _$UserFailure {
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
+    TResult Function(OtpExpired value)? otpExpired,
+    TResult Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult Function(EmailNotVerified value)? emailNotVerified,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -145,6 +163,9 @@ class _$CancelledByUserImpl
     required TResult Function() serverError,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmailAndPasswordCombination,
+    required TResult Function() otpExpired,
+    required TResult Function() emailLinkExpired,
+    required TResult Function() emailNotVerified,
   }) {
     return cancelledByUser();
   }
@@ -156,6 +177,9 @@ class _$CancelledByUserImpl
     TResult? Function()? serverError,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? invalidEmailAndPasswordCombination,
+    TResult? Function()? otpExpired,
+    TResult? Function()? emailLinkExpired,
+    TResult? Function()? emailNotVerified,
   }) {
     return cancelledByUser?.call();
   }
@@ -167,6 +191,9 @@ class _$CancelledByUserImpl
     TResult Function()? serverError,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
+    TResult Function()? otpExpired,
+    TResult Function()? emailLinkExpired,
+    TResult Function()? emailNotVerified,
     required TResult orElse(),
   }) {
     if (cancelledByUser != null) {
@@ -183,6 +210,9 @@ class _$CancelledByUserImpl
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
+    required TResult Function(OtpExpired value) otpExpired,
+    required TResult Function(EmailLinkExpired value) emailLinkExpired,
+    required TResult Function(EmailNotVerified value) emailNotVerified,
   }) {
     return cancelledByUser(this);
   }
@@ -195,6 +225,9 @@ class _$CancelledByUserImpl
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
+    TResult? Function(OtpExpired value)? otpExpired,
+    TResult? Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
   }) {
     return cancelledByUser?.call(this);
   }
@@ -207,6 +240,9 @@ class _$CancelledByUserImpl
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
+    TResult Function(OtpExpired value)? otpExpired,
+    TResult Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult Function(EmailNotVerified value)? emailNotVerified,
     required TResult orElse(),
   }) {
     if (cancelledByUser != null) {
@@ -271,6 +307,9 @@ class _$ServerErrorImpl with DiagnosticableTreeMixin implements ServerError {
     required TResult Function() serverError,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmailAndPasswordCombination,
+    required TResult Function() otpExpired,
+    required TResult Function() emailLinkExpired,
+    required TResult Function() emailNotVerified,
   }) {
     return serverError();
   }
@@ -282,6 +321,9 @@ class _$ServerErrorImpl with DiagnosticableTreeMixin implements ServerError {
     TResult? Function()? serverError,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? invalidEmailAndPasswordCombination,
+    TResult? Function()? otpExpired,
+    TResult? Function()? emailLinkExpired,
+    TResult? Function()? emailNotVerified,
   }) {
     return serverError?.call();
   }
@@ -293,6 +335,9 @@ class _$ServerErrorImpl with DiagnosticableTreeMixin implements ServerError {
     TResult Function()? serverError,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
+    TResult Function()? otpExpired,
+    TResult Function()? emailLinkExpired,
+    TResult Function()? emailNotVerified,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -309,6 +354,9 @@ class _$ServerErrorImpl with DiagnosticableTreeMixin implements ServerError {
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
+    required TResult Function(OtpExpired value) otpExpired,
+    required TResult Function(EmailLinkExpired value) emailLinkExpired,
+    required TResult Function(EmailNotVerified value) emailNotVerified,
   }) {
     return serverError(this);
   }
@@ -321,6 +369,9 @@ class _$ServerErrorImpl with DiagnosticableTreeMixin implements ServerError {
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
+    TResult? Function(OtpExpired value)? otpExpired,
+    TResult? Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
   }) {
     return serverError?.call(this);
   }
@@ -333,6 +384,9 @@ class _$ServerErrorImpl with DiagnosticableTreeMixin implements ServerError {
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
+    TResult Function(OtpExpired value)? otpExpired,
+    TResult Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult Function(EmailNotVerified value)? emailNotVerified,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -400,6 +454,9 @@ class _$EmailAlreadyInUseImpl
     required TResult Function() serverError,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmailAndPasswordCombination,
+    required TResult Function() otpExpired,
+    required TResult Function() emailLinkExpired,
+    required TResult Function() emailNotVerified,
   }) {
     return emailAlreadyInUse();
   }
@@ -411,6 +468,9 @@ class _$EmailAlreadyInUseImpl
     TResult? Function()? serverError,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? invalidEmailAndPasswordCombination,
+    TResult? Function()? otpExpired,
+    TResult? Function()? emailLinkExpired,
+    TResult? Function()? emailNotVerified,
   }) {
     return emailAlreadyInUse?.call();
   }
@@ -422,6 +482,9 @@ class _$EmailAlreadyInUseImpl
     TResult Function()? serverError,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
+    TResult Function()? otpExpired,
+    TResult Function()? emailLinkExpired,
+    TResult Function()? emailNotVerified,
     required TResult orElse(),
   }) {
     if (emailAlreadyInUse != null) {
@@ -438,6 +501,9 @@ class _$EmailAlreadyInUseImpl
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
+    required TResult Function(OtpExpired value) otpExpired,
+    required TResult Function(EmailLinkExpired value) emailLinkExpired,
+    required TResult Function(EmailNotVerified value) emailNotVerified,
   }) {
     return emailAlreadyInUse(this);
   }
@@ -450,6 +516,9 @@ class _$EmailAlreadyInUseImpl
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
+    TResult? Function(OtpExpired value)? otpExpired,
+    TResult? Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
   }) {
     return emailAlreadyInUse?.call(this);
   }
@@ -462,6 +531,9 @@ class _$EmailAlreadyInUseImpl
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
+    TResult Function(OtpExpired value)? otpExpired,
+    TResult Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult Function(EmailNotVerified value)? emailNotVerified,
     required TResult orElse(),
   }) {
     if (emailAlreadyInUse != null) {
@@ -533,6 +605,9 @@ class _$InvalidEmailAndPasswordCombinationImpl
     required TResult Function() serverError,
     required TResult Function() emailAlreadyInUse,
     required TResult Function() invalidEmailAndPasswordCombination,
+    required TResult Function() otpExpired,
+    required TResult Function() emailLinkExpired,
+    required TResult Function() emailNotVerified,
   }) {
     return invalidEmailAndPasswordCombination();
   }
@@ -544,6 +619,9 @@ class _$InvalidEmailAndPasswordCombinationImpl
     TResult? Function()? serverError,
     TResult? Function()? emailAlreadyInUse,
     TResult? Function()? invalidEmailAndPasswordCombination,
+    TResult? Function()? otpExpired,
+    TResult? Function()? emailLinkExpired,
+    TResult? Function()? emailNotVerified,
   }) {
     return invalidEmailAndPasswordCombination?.call();
   }
@@ -555,6 +633,9 @@ class _$InvalidEmailAndPasswordCombinationImpl
     TResult Function()? serverError,
     TResult Function()? emailAlreadyInUse,
     TResult Function()? invalidEmailAndPasswordCombination,
+    TResult Function()? otpExpired,
+    TResult Function()? emailLinkExpired,
+    TResult Function()? emailNotVerified,
     required TResult orElse(),
   }) {
     if (invalidEmailAndPasswordCombination != null) {
@@ -571,6 +652,9 @@ class _$InvalidEmailAndPasswordCombinationImpl
     required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
     required TResult Function(InvalidEmailAndPasswordCombination value)
         invalidEmailAndPasswordCombination,
+    required TResult Function(OtpExpired value) otpExpired,
+    required TResult Function(EmailLinkExpired value) emailLinkExpired,
+    required TResult Function(EmailNotVerified value) emailNotVerified,
   }) {
     return invalidEmailAndPasswordCombination(this);
   }
@@ -583,6 +667,9 @@ class _$InvalidEmailAndPasswordCombinationImpl
     TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult? Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
+    TResult? Function(OtpExpired value)? otpExpired,
+    TResult? Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
   }) {
     return invalidEmailAndPasswordCombination?.call(this);
   }
@@ -595,6 +682,9 @@ class _$InvalidEmailAndPasswordCombinationImpl
     TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
     TResult Function(InvalidEmailAndPasswordCombination value)?
         invalidEmailAndPasswordCombination,
+    TResult Function(OtpExpired value)? otpExpired,
+    TResult Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult Function(EmailNotVerified value)? emailNotVerified,
     required TResult orElse(),
   }) {
     if (invalidEmailAndPasswordCombination != null) {
@@ -607,4 +697,440 @@ class _$InvalidEmailAndPasswordCombinationImpl
 abstract class InvalidEmailAndPasswordCombination implements UserFailure {
   const factory InvalidEmailAndPasswordCombination() =
       _$InvalidEmailAndPasswordCombinationImpl;
+}
+
+/// @nodoc
+abstract class _$$OtpExpiredImplCopyWith<$Res> {
+  factory _$$OtpExpiredImplCopyWith(
+          _$OtpExpiredImpl value, $Res Function(_$OtpExpiredImpl) then) =
+      __$$OtpExpiredImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OtpExpiredImplCopyWithImpl<$Res>
+    extends _$UserFailureCopyWithImpl<$Res, _$OtpExpiredImpl>
+    implements _$$OtpExpiredImplCopyWith<$Res> {
+  __$$OtpExpiredImplCopyWithImpl(
+      _$OtpExpiredImpl _value, $Res Function(_$OtpExpiredImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserFailure
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$OtpExpiredImpl with DiagnosticableTreeMixin implements OtpExpired {
+  const _$OtpExpiredImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UserFailure.otpExpired()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'UserFailure.otpExpired'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$OtpExpiredImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() cancelledByUser,
+    required TResult Function() serverError,
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidEmailAndPasswordCombination,
+    required TResult Function() otpExpired,
+    required TResult Function() emailLinkExpired,
+    required TResult Function() emailNotVerified,
+  }) {
+    return otpExpired();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? cancelledByUser,
+    TResult? Function()? serverError,
+    TResult? Function()? emailAlreadyInUse,
+    TResult? Function()? invalidEmailAndPasswordCombination,
+    TResult? Function()? otpExpired,
+    TResult? Function()? emailLinkExpired,
+    TResult? Function()? emailNotVerified,
+  }) {
+    return otpExpired?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? serverError,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    TResult Function()? otpExpired,
+    TResult Function()? emailLinkExpired,
+    TResult Function()? emailNotVerified,
+    required TResult orElse(),
+  }) {
+    if (otpExpired != null) {
+      return otpExpired();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidEmailAndPasswordCombination value)
+        invalidEmailAndPasswordCombination,
+    required TResult Function(OtpExpired value) otpExpired,
+    required TResult Function(EmailLinkExpired value) emailLinkExpired,
+    required TResult Function(EmailNotVerified value) emailNotVerified,
+  }) {
+    return otpExpired(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CancelledByUser value)? cancelledByUser,
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult? Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    TResult? Function(OtpExpired value)? otpExpired,
+    TResult? Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
+  }) {
+    return otpExpired?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    TResult Function(OtpExpired value)? otpExpired,
+    TResult Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult Function(EmailNotVerified value)? emailNotVerified,
+    required TResult orElse(),
+  }) {
+    if (otpExpired != null) {
+      return otpExpired(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OtpExpired implements UserFailure {
+  const factory OtpExpired() = _$OtpExpiredImpl;
+}
+
+/// @nodoc
+abstract class _$$EmailLinkExpiredImplCopyWith<$Res> {
+  factory _$$EmailLinkExpiredImplCopyWith(_$EmailLinkExpiredImpl value,
+          $Res Function(_$EmailLinkExpiredImpl) then) =
+      __$$EmailLinkExpiredImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$EmailLinkExpiredImplCopyWithImpl<$Res>
+    extends _$UserFailureCopyWithImpl<$Res, _$EmailLinkExpiredImpl>
+    implements _$$EmailLinkExpiredImplCopyWith<$Res> {
+  __$$EmailLinkExpiredImplCopyWithImpl(_$EmailLinkExpiredImpl _value,
+      $Res Function(_$EmailLinkExpiredImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserFailure
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$EmailLinkExpiredImpl
+    with DiagnosticableTreeMixin
+    implements EmailLinkExpired {
+  const _$EmailLinkExpiredImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UserFailure.emailLinkExpired()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'UserFailure.emailLinkExpired'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$EmailLinkExpiredImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() cancelledByUser,
+    required TResult Function() serverError,
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidEmailAndPasswordCombination,
+    required TResult Function() otpExpired,
+    required TResult Function() emailLinkExpired,
+    required TResult Function() emailNotVerified,
+  }) {
+    return emailLinkExpired();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? cancelledByUser,
+    TResult? Function()? serverError,
+    TResult? Function()? emailAlreadyInUse,
+    TResult? Function()? invalidEmailAndPasswordCombination,
+    TResult? Function()? otpExpired,
+    TResult? Function()? emailLinkExpired,
+    TResult? Function()? emailNotVerified,
+  }) {
+    return emailLinkExpired?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? serverError,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    TResult Function()? otpExpired,
+    TResult Function()? emailLinkExpired,
+    TResult Function()? emailNotVerified,
+    required TResult orElse(),
+  }) {
+    if (emailLinkExpired != null) {
+      return emailLinkExpired();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidEmailAndPasswordCombination value)
+        invalidEmailAndPasswordCombination,
+    required TResult Function(OtpExpired value) otpExpired,
+    required TResult Function(EmailLinkExpired value) emailLinkExpired,
+    required TResult Function(EmailNotVerified value) emailNotVerified,
+  }) {
+    return emailLinkExpired(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CancelledByUser value)? cancelledByUser,
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult? Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    TResult? Function(OtpExpired value)? otpExpired,
+    TResult? Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
+  }) {
+    return emailLinkExpired?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    TResult Function(OtpExpired value)? otpExpired,
+    TResult Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult Function(EmailNotVerified value)? emailNotVerified,
+    required TResult orElse(),
+  }) {
+    if (emailLinkExpired != null) {
+      return emailLinkExpired(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmailLinkExpired implements UserFailure {
+  const factory EmailLinkExpired() = _$EmailLinkExpiredImpl;
+}
+
+/// @nodoc
+abstract class _$$EmailNotVerifiedImplCopyWith<$Res> {
+  factory _$$EmailNotVerifiedImplCopyWith(_$EmailNotVerifiedImpl value,
+          $Res Function(_$EmailNotVerifiedImpl) then) =
+      __$$EmailNotVerifiedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$EmailNotVerifiedImplCopyWithImpl<$Res>
+    extends _$UserFailureCopyWithImpl<$Res, _$EmailNotVerifiedImpl>
+    implements _$$EmailNotVerifiedImplCopyWith<$Res> {
+  __$$EmailNotVerifiedImplCopyWithImpl(_$EmailNotVerifiedImpl _value,
+      $Res Function(_$EmailNotVerifiedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserFailure
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$EmailNotVerifiedImpl
+    with DiagnosticableTreeMixin
+    implements EmailNotVerified {
+  const _$EmailNotVerifiedImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UserFailure.emailNotVerified()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'UserFailure.emailNotVerified'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$EmailNotVerifiedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() cancelledByUser,
+    required TResult Function() serverError,
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() invalidEmailAndPasswordCombination,
+    required TResult Function() otpExpired,
+    required TResult Function() emailLinkExpired,
+    required TResult Function() emailNotVerified,
+  }) {
+    return emailNotVerified();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? cancelledByUser,
+    TResult? Function()? serverError,
+    TResult? Function()? emailAlreadyInUse,
+    TResult? Function()? invalidEmailAndPasswordCombination,
+    TResult? Function()? otpExpired,
+    TResult? Function()? emailLinkExpired,
+    TResult? Function()? emailNotVerified,
+  }) {
+    return emailNotVerified?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? serverError,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    TResult Function()? otpExpired,
+    TResult Function()? emailLinkExpired,
+    TResult Function()? emailNotVerified,
+    required TResult orElse(),
+  }) {
+    if (emailNotVerified != null) {
+      return emailNotVerified();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(InvalidEmailAndPasswordCombination value)
+        invalidEmailAndPasswordCombination,
+    required TResult Function(OtpExpired value) otpExpired,
+    required TResult Function(EmailLinkExpired value) emailLinkExpired,
+    required TResult Function(EmailNotVerified value) emailNotVerified,
+  }) {
+    return emailNotVerified(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CancelledByUser value)? cancelledByUser,
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult? Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    TResult? Function(OtpExpired value)? otpExpired,
+    TResult? Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult? Function(EmailNotVerified value)? emailNotVerified,
+  }) {
+    return emailNotVerified?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    TResult Function(OtpExpired value)? otpExpired,
+    TResult Function(EmailLinkExpired value)? emailLinkExpired,
+    TResult Function(EmailNotVerified value)? emailNotVerified,
+    required TResult orElse(),
+  }) {
+    if (emailNotVerified != null) {
+      return emailNotVerified(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmailNotVerified implements UserFailure {
+  const factory EmailNotVerified() = _$EmailNotVerifiedImpl;
 }
