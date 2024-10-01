@@ -4,6 +4,7 @@ import 'package:know_my_city/application/sing_in/sign_in_bloc.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/core/theme_core.dart';
 import 'package:know_my_city/presentation/dialogs/login_dialog.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatefulWidget {
   // Constructo #1 - Diagrama y UML
@@ -62,6 +63,17 @@ class MainHome extends StatelessWidget {
             child: Center(
               child: IconButton(
                 onPressed: () {
+                  context.go('/maps');
+                },
+                color: ThemeCore.primaryColor,
+                icon: const Icon(Icons.map),
+              )
+            )
+          ),
+          SizedBox(
+            child: Center(
+              child: IconButton(
+                onPressed: () {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -73,8 +85,8 @@ class MainHome extends StatelessWidget {
                 icon: const Icon(Icons.person),
               ),
             ),
-          )
-        ],
+          ),          
+        ],  
       ),
       drawer: Drawer(
         child: ListView(
