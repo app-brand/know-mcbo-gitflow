@@ -56,7 +56,7 @@ class FirebaseUserRepository implements InterfaceUserFacade {
           email: userMail, password: userPassword);
       await _firebaseAuth.currentUser!.sendEmailVerification();
       return right(unit);
-      print('todo-ok');
+      //print('todo-ok');
     } on FirebaseAuthException catch (e) {
       print(e.code);
       if (e.code == 'email-already-in-use') {
