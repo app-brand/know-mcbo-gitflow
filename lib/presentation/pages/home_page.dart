@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:know_my_city/presentation/core/theme_core.dart';
-import 'package:know_my_city/presentation/dialogs-clean/sign_in_dialog.dart';
+import 'package:know_my_city/presentation/dialogs/sign_in_dialog.dart';
 import 'package:go_router/go_router.dart';
 
 class HomePage extends StatefulWidget {

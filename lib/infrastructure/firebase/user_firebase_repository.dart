@@ -6,15 +6,12 @@ import 'package:injectable/injectable.dart';
 import 'package:know_my_city/domain/user/interface_user_facade.dart';
 import 'package:know_my_city/domain/user/user_failures.dart';
 import 'package:know_my_city/domain/value_objects/email_address.dart';
-import 'package:know_my_city/domain/value_objects/one_time_password.dart';
 import 'package:know_my_city/domain/value_objects/password.dart';
-import 'package:know_my_city/domain/value_objects/phone_number.dart';
 
 @LazySingleton(as: InterfaceUserFacade)
 class FirebaseUserRepository implements InterfaceUserFacade {
   final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firebaseFirestore;
-  String? _verificationId;
 
   FirebaseUserRepository(
     this._firebaseAuth,
@@ -26,6 +23,7 @@ class FirebaseUserRepository implements InterfaceUserFacade {
     required EmailAddress emailAddress,
     required Password password,
   }) async {
+    print('SignInWithMail - Infraestructura');
     final userMail = emailAddress.getOrCrash();
     final userPassword = password.getOrCrash();
     try {
@@ -36,9 +34,10 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       if (e.code == 'wrong-password' ||
           e.code == 'user-not-found' ||
           e.code == 'invalid-credential') {
-        return left(const UserFailure.invalidEmailAndPasswordCombination());
+        return left(const UserFailure.invalidEmailAndPasswordCombination(
+            failedValue: ''));
       } else {
-        return left(const UserFailure.serverError());
+        return left(const UserFailure.serverError(failedValue: ''));
       }
     }
   }
@@ -48,7 +47,8 @@ class FirebaseUserRepository implements InterfaceUserFacade {
     required EmailAddress emailAddress,
     required Password password,
   }) async {
-    print('inicio registro');
+    print('RegisterInWithMail - Infraestructura');
+    Future.delayed(const Duration(seconds: 3));
     final userMail = emailAddress.getOrCrash();
     final userPassword = password.getOrCrash();
     try {
@@ -56,13 +56,13 @@ class FirebaseUserRepository implements InterfaceUserFacade {
           email: userMail, password: userPassword);
       await _firebaseAuth.currentUser!.sendEmailVerification();
       return right(unit);
-      //print('todo-ok');
     } on FirebaseAuthException catch (e) {
       print(e.code);
       if (e.code == 'email-already-in-use') {
-        return left(const UserFailure.emailAlreadyInUse());
+        return left(const UserFailure.invalidEmailAndPasswordCombination(
+            failedValue: ''));
       } else {
-        return left(const UserFailure.serverError());
+        return left(const UserFailure.serverError(failedValue: ''));
       }
     }
   }
@@ -75,10 +75,10 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       if (_firebaseAuth.currentUser!.emailVerified) {
         return right(unit);
       } else {
-        return left(UserFailure.emailNotVerified());
+        return left(const UserFailure.emailNotVerified(failedValue: ''));
       }
     } on FirebaseAuthException {
-      return left(UserFailure.serverError());
+      return left(const UserFailure.serverError(failedValue: ''));
     }
   }
   /*
