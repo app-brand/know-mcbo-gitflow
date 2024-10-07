@@ -66,7 +66,7 @@ class MainHome extends StatelessWidget {
                   context.go('/maps');
                 },
                 color: ThemeCore.primaryColor,
-                icon: const Icon(Icons.map),
+                icon: const Icon(Icons.map_outlined),
               )
             )
           ),
