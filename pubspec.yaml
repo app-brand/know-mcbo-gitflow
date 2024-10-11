@@ -25,6 +25,8 @@ dependencies:
   google_maps_flutter: ^2.9.0
   dio: ^4.0.0
   flutter_polyline_points: ^2.1.0
+  http: ^1.2.2
+  geolocator: ^13.0.1
 
 dev_dependencies:
   flutter_test:
@@ -47,3 +49,5 @@ flutter:
     - assets/shrek.png
     - assets/tranvia.png
     - assets/obelisco.png
+    - assets/casa.png
+    - assets/hospital.png

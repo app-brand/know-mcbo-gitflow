@@ -59,7 +59,7 @@ class MainHome extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
-          SizedBox(
+          /* SizedBox(
             child: Center(
               child: IconButton(
                 onPressed: () {
@@ -69,7 +69,7 @@ class MainHome extends StatelessWidget {
                 icon: const Icon(Icons.map_outlined),
               )
             )
-          ),
+          ), */
           SizedBox(
             child: Center(
               child: IconButton(
