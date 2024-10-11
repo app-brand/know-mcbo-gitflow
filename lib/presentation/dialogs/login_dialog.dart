@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:know_my_city/application/sing_in/sign_in_bloc.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/dialogs/sign_up_dialog.dart';
@@ -79,7 +80,7 @@ class _LoginDialogState extends State<LoginDialog>
           actions: [
             TextButton(
               onPressed: () =>
-                  Navigator.of(context).pop(), // Cierra el diálogo de éxito
+                  context.go('/maps'), // Cierra el diálogo de éxito
               child: const Text('OK'),
             ),
           ],
@@ -223,6 +224,7 @@ class _LoginDialogState extends State<LoginDialog>
                                   if (formKey.currentState!.validate()) {
                                     _signInBloc
                                         .add(const SignInEvent.singInEmail());
+                                        context.go('/maps');
                                   }
                                 },
                                 child: const Text('Iniciar sesion'),

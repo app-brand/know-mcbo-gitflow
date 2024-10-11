@@ -23,6 +23,10 @@ dependencies:
   injectable_generator: ^2.6.2
   cloud_firestore: ^5.4.2
   google_maps_flutter: ^2.9.0
+  dio: ^4.0.0
+  flutter_polyline_points: ^2.1.0
+  http: ^1.2.2
+  geolocator: ^13.0.1
 
 dev_dependencies:
   flutter_test:
@@ -52,10 +56,19 @@ flutter:
         - asset: fonts/Poppins-ExtraBoldItalic.ttf
         - asset: fonts/Poppins-BlackItalic.ttf
         - asset: fonts/Poppins-ThinItalic.ttf
+        
   assets:
+    - lib/presentation/core/map_style.json
+    - assets/data4iflogo.png
+    - assets/shrek.png
+    - assets/tranvia.png
+    - assets/obelisco.png
+    - assets/casa.png
+    - assets/hospital.png
     - assets/images/axis/
     - assets/images/brand/
     - assets/images/events_png/
     - assets/images/main/
     - assets/images/vector/
-    - assets/json/
+    - assets/json/        
+        
