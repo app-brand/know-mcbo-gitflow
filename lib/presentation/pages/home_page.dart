@@ -59,17 +59,17 @@ class MainHome extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
-          /* SizedBox(
+          SizedBox(
             child: Center(
               child: IconButton(
                 onPressed: () {
                   context.go('/maps');
                 },
                 color: ThemeCore.primaryColor,
-                icon: const Icon(Icons.map_outlined),
+                icon: const Icon(Icons.map),
               )
             )
-          ), */
+          ),
           SizedBox(
             child: Center(
               child: IconButton(
