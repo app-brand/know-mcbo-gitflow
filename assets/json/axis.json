@@ -1,0 +1,20 @@
+[ 
+  {
+    "title": "Tranvía de Maracaibo",
+    "axis_name": "Idiosincrasia",
+    "axis_description": "Explora sobre nuestras tradiciones y costumbre",
+    "axis_image_url" : "images/axis/axi_3.jpeg"
+  },
+  {
+    "title": "Basílica de Nuestra Señora de Chiquinquirá",
+    "axis_name": "Espacios",
+    "axis_description": "Disfruta de las maravillosas vista que regala la ciudad",
+    "axis_image_url" : "images/axis/axi_2.jpeg"
+  },
+  {
+    "title": "Patacón Zuliano",
+    "axis_name": "Gastronomía",
+    "axis_description": "Deleita tu paladar con nuestra gastronomía",
+    "axis_image_url" : "images/axis/axi_1.jpeg"
+  }
+]
