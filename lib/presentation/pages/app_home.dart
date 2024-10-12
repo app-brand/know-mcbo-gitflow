@@ -73,6 +73,20 @@ class AppHome extends StatelessWidget {
                   ),
                   SizedBox(
                     height: 0.0549 * (width),
+                    width: 0.0549 * (width),
+                    child: Center(
+                      child: IconButton(
+                        onPressed: () {
+                          context.go('/maps');
+                        },
+                        iconSize: 0.0355 * (width),
+                        color: AppTheme.primaryColor,
+                        icon: const Icon(Icons.location_on),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 0.0549 * (width),
                     child: Center(
                       child: IconButton(
                         onPressed: () {

@@ -1,11 +1,6 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:know_my_city/presentation/core/.env.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:know_my_city/presentation/core/directions_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
 /* class DirectionsRepository {
@@ -52,7 +47,7 @@ class DirectionsRepository {
 
         if (response.statusCode == 200) {
           final data = json.decode(response.body);
-          print('Response data: $data');
+          /* print('Response data: $data'); */
 
           final List<LatLng> polylinePoints = [];
 
@@ -61,14 +56,14 @@ class DirectionsRepository {
             polylinePoints.addAll(_decodePolyline(points));
           }
 
-          print('Polyline points: $polylinePoints');
+          /* print('Polyline points: $polylinePoints'); */
           allPolylines.add(polylinePoints);
         } else {
-          print('Failed to load directions: ${response.statusCode}');
+          /* print('Failed to load directions: ${response.statusCode}'); */
           throw Exception('Failed to load directions');
         }
       } catch (e) {
-        print('Error fetching directions: $e');
+        /* print('Error fetching directions: $e'); */
         throw e;
       }
     }
