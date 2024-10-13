@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:know_my_city/application/sing_in/sign_in_bloc.dart';
+import 'package:know_my_city/application/sign_in/sign_in_bloc.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/core/theme_core.dart';
-import 'package:know_my_city/presentation/dialogs/login_dialog.dart';
-import 'package:know_my_city/presentation/pages/home_page.dart';
 import 'package:go_router/go_router.dart';
+import 'package:know_my_city/presentation/dialogs/sign_in_dialog.dart';
 
 class MapsPage extends StatefulWidget {
   const MapsPage({super.key});
-  
+
   @override
   State<MapsPage> createState() => _MapsPageState();
 }
@@ -45,11 +44,11 @@ class MainMaps extends StatelessWidget {
 
   final SignInBloc signInBloc;
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
-          SizedBox(            
+          SizedBox(
             child: Center(
               child: IconButton(
                 // investigar como hacer que esto aparezca hasta la izquierda padding: EdgeInsets.zero,
@@ -62,16 +61,14 @@ class MainMaps extends StatelessWidget {
             ),
           ),
           SizedBox(
-            child: Center(
-              child: IconButton(
-                onPressed: () {
-                  context.go('/maps');
-                },
-                color: ThemeCore.primaryColor,
-                icon: const Icon(Icons.map),
-              )
-            )
-          ),
+              child: Center(
+                  child: IconButton(
+            onPressed: () {
+              context.go('/maps');
+            },
+            color: ThemeCore.primaryColor,
+            icon: const Icon(Icons.map),
+          ))),
           SizedBox(
             child: Center(
               child: IconButton(
@@ -79,7 +76,7 @@ class MainMaps extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return LoginDialog();
+                      return const SignInDialog();
                     },
                   );
                 },
@@ -87,8 +84,8 @@ class MainMaps extends StatelessWidget {
                 icon: const Icon(Icons.person),
               ),
             ),
-          ),                    
-        ],  
+          ),
+        ],
       ),
       body: Container(
         color: Colors.green.shade200,
