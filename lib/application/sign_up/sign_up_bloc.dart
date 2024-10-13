@@ -11,9 +11,10 @@ part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 part 'sign_up_bloc.freezed.dart';
 
-@injectable
+@lazySingleton
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   final InterfaceUserFacade _interfaceUserFacade;
+
   SignUpBloc(
     this._interfaceUserFacade,
   ) : super(
@@ -50,6 +51,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
             );
             emit(state.copyWith(
               isSubmitting: false,
+              isEmailVerified: true,
               userFailureOrUserSuccess: optionOf(failureOrSuccess),
             ));
           }
@@ -63,6 +65,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           failureOrSuccess = await _interfaceUserFacade.verifyIsMailisActive();
           emit(state.copyWith(
             isSubmitting: false,
+            isEmailVerified: true,
             userFailureOrUserSuccess: optionOf(failureOrSuccess),
           ));
         },

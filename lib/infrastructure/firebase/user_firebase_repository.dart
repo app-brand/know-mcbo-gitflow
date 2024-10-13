@@ -6,7 +6,9 @@ import 'package:injectable/injectable.dart';
 import 'package:know_my_city/domain/user/interface_user_facade.dart';
 import 'package:know_my_city/domain/user/user_failures.dart';
 import 'package:know_my_city/domain/value_objects/email_address.dart';
+import 'package:know_my_city/domain/value_objects/one_time_password.dart';
 import 'package:know_my_city/domain/value_objects/password.dart';
+import 'package:know_my_city/domain/value_objects/phone_number.dart';
 
 @LazySingleton(as: InterfaceUserFacade)
 class FirebaseUserRepository implements InterfaceUserFacade {
@@ -14,9 +16,10 @@ class FirebaseUserRepository implements InterfaceUserFacade {
   final FirebaseFirestore _firebaseFirestore;
 
   FirebaseUserRepository(
-    this._firebaseAuth,
-    this._firebaseFirestore,
-  );
+      {required FirebaseAuth firebaseAuth,
+      required FirebaseFirestore firebaseFirestore})
+      : _firebaseAuth = firebaseAuth,
+        _firebaseFirestore = firebaseFirestore;
 
   @override
   Future<Either<UserFailure, Unit>> signInWithEmail({
@@ -104,15 +107,16 @@ class FirebaseUserRepository implements InterfaceUserFacade {
         },
         verificationFailed: (FirebaseAuthException e) {
           print('verification - Falla');
-          return completer.complete(left(UserFailure.serverError()));
+          return completer
+              .complete(left(UserFailure.serverError(failedValue: '')));
         },
         codeSent: (String userId, int? resendToken) {
           print('code - sent');
-          _verificationId = userId;
+          //_verificationId = userId;
           return completer.complete(right(unit));
         },
         codeAutoRetrievalTimeout: (String userId) {
-          _verificationId = userId;
+          //_verificationId = userId;
           return completer.complete(right(unit));
         },
       );
@@ -120,7 +124,7 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       return right(unit);
     } on FirebaseAuthException catch (e) {
       print(e.toString() + 'Error de Firebase - Out Control');
-      return left(UserFailure.serverError());
+      return left(UserFailure.serverError(failedValue: ''));
     }
   }
 
@@ -138,7 +142,7 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       return right(unit);
     } catch (e) {
       print(e.toString() + ' Entendiendo el error');
-      return left(UserFailure.otpExpired());
+      return left(UserFailure.otpExpired(failedValue: ''));
     }
   }
 
@@ -162,10 +166,10 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       return right(unit);
     } on FirebaseException catch (e) {
       print(e.toString());
-      return left(UserFailure.serverError());
+      return left(UserFailure.serverError(failedValue: ''));
     } catch (e) {
       print(e.toString());
-      return left(UserFailure.serverError());
+      return left(UserFailure.serverError(failedValue: ''));
     }
   }
   */

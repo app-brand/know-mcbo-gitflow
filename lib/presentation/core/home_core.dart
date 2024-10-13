@@ -8,6 +8,7 @@ import 'package:know_my_city/presentation/core/theme_core.dart';
 import 'package:know_my_city/presentation/dialogs/mail_check_dialog.dart';
 import 'package:know_my_city/presentation/dialogs/sign_in_dialog.dart';
 import 'package:know_my_city/presentation/dialogs/sign_up_dialog.dart';
+import 'package:know_my_city/presentation/pages/home_page.dart';
 //import 'package:know_my_city/presentation/pages/home_page.dart';
 
 class HomeCore extends StatelessWidget {
@@ -30,6 +31,11 @@ class HomeCore extends StatelessWidget {
           lazy: false,
           create: (context) => sl<SignUpBloc>(),
           child: const MailVerificationDialog(),
+        ),
+        BlocProvider(
+          lazy: false,
+          create: (context) => sl<SignUpBloc>(),
+          child: const HomePage(),
         ),
       ],
       child: MaterialApp.router(

@@ -36,12 +36,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => firebaseCoreModule.firestore);
     gh.lazySingleton<_i746.InterfaceUserFacade>(
         () => _i191.FirebaseUserRepository(
-              gh<_i59.FirebaseAuth>(),
-              gh<_i974.FirebaseFirestore>(),
+              firebaseAuth: gh<_i59.FirebaseAuth>(),
+              firebaseFirestore: gh<_i974.FirebaseFirestore>(),
             ));
-    gh.factory<_i1011.SignUpBloc>(
+    gh.lazySingleton<_i1011.SignUpBloc>(
         () => _i1011.SignUpBloc(gh<_i746.InterfaceUserFacade>()));
-    gh.factory<_i939.SignInBloc>(
+    gh.lazySingleton<_i939.SignInBloc>(
         () => _i939.SignInBloc(gh<_i746.InterfaceUserFacade>()));
     return this;
   }
