@@ -35,7 +35,7 @@ class _QRCodeGeneratorState extends State<QRCodeGenerator> {
               IconButton(
                 onPressed: () {
                   setState(() {
-                    _qrCodeData = 'https://www.alcaldiademaracaibo.org/${widget.ruta}';
+                    _qrCodeData = 'https://www.alcaldiademaracaibo.org'; /* ${widget.ruta} */
                   }); 
                   IconButton(
                     onPressed: () {
