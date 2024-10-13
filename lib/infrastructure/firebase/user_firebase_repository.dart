@@ -29,6 +29,7 @@ class FirebaseUserRepository implements InterfaceUserFacade {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: userMail, password: userPassword);
+      print('SignInWithMail - right');
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password' ||
@@ -48,13 +49,14 @@ class FirebaseUserRepository implements InterfaceUserFacade {
     required Password password,
   }) async {
     print('RegisterInWithMail - Infraestructura');
-    Future.delayed(const Duration(seconds: 3));
+    //Future.delayed(const Duration(seconds: 3));
     final userMail = emailAddress.getOrCrash();
     final userPassword = password.getOrCrash();
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: userMail, password: userPassword);
       await _firebaseAuth.currentUser!.sendEmailVerification();
+      print('RegisterInWith Verification email it is send - right');
       return right(unit);
     } on FirebaseAuthException catch (e) {
       print(e.code);
@@ -69,12 +71,17 @@ class FirebaseUserRepository implements InterfaceUserFacade {
 
   @override
   Future<Either<UserFailure, Unit>> verifyIsMailisActive() async {
+    //TODO: Agregar correr en un bucle - for o u otra salida
     try {
       User? user = _firebaseAuth.currentUser;
+      //await Future.delayed(Duration(seconds: 59));
       await user!.reload();
       if (_firebaseAuth.currentUser!.emailVerified) {
+        print('IsValidatedMail - right');
         return right(unit);
       } else {
+        print('IsValidatedMain - wrong');
+        _firebaseAuth.currentUser!.delete();
         return left(const UserFailure.emailNotVerified(failedValue: ''));
       }
     } on FirebaseAuthException {

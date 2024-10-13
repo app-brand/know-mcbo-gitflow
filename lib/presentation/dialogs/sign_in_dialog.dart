@@ -29,6 +29,11 @@ class _SignInDialog extends State<SignInDialog>
       vsync: this,
       duration: const Duration(seconds: 1),
     );
+    _animationController.addStatusListener((listener) {
+      if (listener == AnimationStatus.dismissed) {
+        Navigator.of(context).pop();
+      }
+    });
     _animationController.forward();
   }
 
@@ -42,11 +47,6 @@ class _SignInDialog extends State<SignInDialog>
 
   void _closeWithReverseDialog() {
     _animationController.reverse();
-    _animationController.addStatusListener((listener) {
-      if (listener == AnimationStatus.dismissed) {
-        Navigator.of(context).pop();
-      }
-    });
   }
 
   void _showErrorDialog(String message) {
@@ -67,32 +67,29 @@ class _SignInDialog extends State<SignInDialog>
     );
   }
 
-  void _loadingDialog() {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return LoadingDialog();
-        });
-  }
-
-  void _showSuccessDialog() {
-    _closeWithReverseDialog();
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Inicio exitoso!'),
-          content: const Text('Bienvenido'),
-          actions: [
-            TextButton(
-              onPressed: () =>
-                  Navigator.of(context).pop(), // Cierra el diálogo de éxito
-              child: const Text('OK'),
-            ),
-          ],
+  void _successSignInDialog() {
+    _animationController.reverse();
+    _animationController.addStatusListener((listener) {
+      if (listener == AnimationStatus.dismissed) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Inicio exitoso!'),
+              content: const Text('Bienvenido'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).popUntil((route) => route.isFirst);
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
         );
-      },
-    );
+      }
+    });
   }
 
   @override
@@ -100,152 +97,166 @@ class _SignInDialog extends State<SignInDialog>
     return BlocConsumer<SignInBloc, SignInState>(
         bloc: _signInBloc,
         listener: (context, state) {
-          if (state.isSubmitting) {}
-          state.userFailureOrUserSuccess.fold(
-              () => {},
-              (ifSome) => {
-                    ifSome.fold((failure) {
-                      _loadingDialog();
-                      _showErrorDialog(failure.message);
-                      Navigator.of(context).pop();
-                    }, (ifRight) {
-                      _loadingDialog();
-                      _showSuccessDialog();
-                      Navigator.of(context).pop();
-                    })
-                  });
+          ///_loadingDialog(state.isSubmitting);
+          state.userFailureOrUserSuccess.fold(() => {}, (ifSome) {
+            ifSome.fold((failure) {
+              print('failure - ui - sign_in');
+              _showErrorDialog(failure.message);
+            }, (success) {
+              print('exitoso - ui - sign_in');
+              _successSignInDialog();
+            });
+          });
         },
-        builder: (context, state) => SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(0, 1), // Comienza fuera de la pantalla
-                end: Offset.zero,
-              ).animate(CurvedAnimation(
-                parent: _animationController,
-                curve: Curves.easeInOut,
-              )),
-              child: Dialog(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16)),
-                child: SingleChildScrollView(
-                  child: Center(
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.95,
-                      height: MediaQuery.of(context).size.height * 0.95,
-                      padding: const EdgeInsets.all(20),
-                      child: Container(
+        builder: (context, state) => Builder(builder: (context) {
+              if (state.isSubmitting) {
+                return LoadingDialog(
+                  text:
+                      'Ingresando mediante el sistema cerrada de autenticacion',
+                  content: 'Validando la combinacion de correo de usuario',
+                  onConfirm: () {},
+                  onCancel: () {},
+                );
+              } else {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0, 1), // Comienza fuera de la pantalla
+                    end: Offset.zero,
+                  ).animate(CurvedAnimation(
+                    parent: _animationController,
+                    curve: Curves.easeInOut,
+                  )),
+                  child: Dialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)),
+                    child: SingleChildScrollView(
+                      child: Center(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.95,
+                          height: MediaQuery.of(context).size.height * 0.95,
                           padding: const EdgeInsets.all(20),
-                          child: Form(
-                              key: formKey,
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    // TODO: tarea uno crear los diseno W,T,M.
-                                    // Crear widget - Diseno X3
-                                    const Text('Iniciar sesion',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        )),
-                                    const SizedBox(height: 10.0),
-                                    EmailFormField(
-                                      mailController: _emailController,
-                                      onChanged: (email) {
-                                        _signInBloc.add(
-                                          SignInEvent.emailChanged(
-                                            email,
-                                          ),
-                                        );
-                                      },
-                                      validator: (email) {
-                                        return _signInBloc
-                                            .state.emailAddress.value
-                                            .fold(
-                                          (failure) {
-                                            print('failed: ${failure.message}');
-                                            return failure.message;
-                                          },
-                                          (email) {
-                                            print('success: ${email}}');
-                                          },
-                                        );
-                                      },
-                                    ),
-                                    const SizedBox(height: 10.0),
-                                    PasswordFormField(
-                                        passwordController: _passwordController,
-                                        validator: (password) {
-                                          return state.password.value.fold(
-                                            (failure) {
-                                              print(
-                                                  'failed: ${failure.message}');
-                                              return failure.message;
-                                            },
-                                            (password) {
-                                              print('success: ${password}');
-                                            },
-                                          );
-                                        },
-                                        onChanged: (password) =>
-                                            _signInBloc.add(
-                                              SignInEvent.passwordChanged(
-                                                password,
-                                              ),
-                                            )),
-                                    const SizedBox(height: 10.0),
-                                    Column(
+                          child: Container(
+                              padding: const EdgeInsets.all(20),
+                              child: Form(
+                                  key: formKey,
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            ElevatedButton(
-                                              onPressed: () {
-                                                _closeWithReverseDialog();
-                                              },
-                                              child: const Text('Cancelar'),
-                                            ),
-                                            ElevatedButton(
-                                              onPressed: () {
-                                                if (formKey.currentState!
-                                                    .validate()) {
-                                                  _signInBloc.add(
-                                                      const SignInEvent
-                                                          .singInEmail());
-                                                }
-                                              },
-                                              child:
-                                                  const Text('Iniciar sesion'),
-                                            ),
-                                          ],
-                                        ),
+                                        /*TODO: #1 tarea uno crear los diseno W,T,M.
+                                         Crear tres propuestas graficas*/
+                                        const Text('Iniciar sesion',
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            )),
                                         const SizedBox(height: 10.0),
-                                        TextButton(
-                                          onPressed: () {},
-                                          child: const Text(
-                                              'Recuperar Contraseña'),
-                                        ),
-                                        const SizedBox(height: 10.0),
-                                        TextButton(
-                                          onPressed: () {
-                                            showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return SignUpDialog();
+                                        EmailFormField(
+                                          mailController: _emailController,
+                                          onChanged: (email) {
+                                            _signInBloc.add(
+                                              SignInEvent.emailChanged(
+                                                email,
+                                              ),
+                                            );
+                                          },
+                                          validator: (email) {
+                                            return _signInBloc
+                                                .state.emailAddress.value
+                                                .fold(
+                                              (failure) {
+                                                print(
+                                                    'failed: ${failure.message}');
+                                                return failure.message;
+                                              },
+                                              (email) {
+                                                print('success: ${email}}');
+                                                return null;
                                               },
                                             );
                                           },
-                                          child: const Text('Registrarse'),
                                         ),
+                                        const SizedBox(height: 10.0),
+                                        PasswordFormField(
+                                            passwordController:
+                                                _passwordController,
+                                            validator: (password) {
+                                              return state.password.value.fold(
+                                                (failure) {
+                                                  print(
+                                                      'failed: ${failure.message}');
+                                                  return failure.message;
+                                                },
+                                                (password) {
+                                                  print('success: ${password}');
+                                                },
+                                              );
+                                            },
+                                            onChanged: (password) =>
+                                                _signInBloc.add(
+                                                  SignInEvent.passwordChanged(
+                                                    password,
+                                                  ),
+                                                )),
+                                        const SizedBox(height: 10.0),
+                                        Column(
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                ElevatedButton(
+                                                  onPressed: () {
+                                                    _closeWithReverseDialog();
+                                                  },
+                                                  child: const Text('Cancelar'),
+                                                ),
+                                                ElevatedButton(
+                                                  onPressed: () {
+                                                    if (formKey.currentState!
+                                                        .validate()) {
+                                                      _signInBloc.add(
+                                                          const SignInEvent
+                                                              .singInEmail());
+                                                    }
+                                                  },
+                                                  child: const Text(
+                                                      'Iniciar sesion'),
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 10.0),
+                                            TextButton(
+                                              onPressed: () {},
+                                              child: const Text(
+                                                  'Recuperar Contraseña'),
+                                            ),
+                                            const SizedBox(height: 10.0),
+                                            TextButton(
+                                              onPressed: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return SignUpDialog();
+                                                  },
+                                                );
+                                              },
+                                              child: const Text('Registrarse'),
+                                            ),
+                                          ],
+                                        )
                                       ],
-                                    )
-                                  ],
-                                ),
-                              ))),
+                                    ),
+                                  ))),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-            ));
+                );
+              }
+            }));
   }
 }

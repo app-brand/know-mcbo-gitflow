@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class LoadingDialog extends StatelessWidget {
+  //TODO: Esta clase se puede mejorar, para dar
+  // la opcion al usuario de que puede cancelar
+  // una peticion asincrona en el progreso.
+  final String text;
+  final String content;
+  final VoidCallback onConfirm;
+  final VoidCallback onCancel;
+
+  const LoadingDialog({
+    super.key,
+    required this.text,
+    required this.content,
+    required this.onConfirm,
+    required this.onCancel,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -13,14 +28,18 @@ class LoadingDialog extends StatelessWidget {
         child: Center(
           child: Container(
             padding: const EdgeInsets.all(20),
-            child: const Column(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Verificando correo y contrasena..'),
+                Text(text),
                 SizedBox(
                   height: 10,
                 ),
                 CircularProgressIndicator(),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(content),
               ],
             ),
           ),

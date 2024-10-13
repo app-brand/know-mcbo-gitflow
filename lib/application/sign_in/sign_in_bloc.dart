@@ -35,15 +35,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
               emailAddress: state.emailAddress,
               password: state.password,
             );
-            failureOrSuccess.fold(
-                (failure) => emit(state.copyWith(
-                      isSubmitting: false,
-                      userFailureOrUserSuccess: some(left(failure)),
-                    )),
-                (_) => emit(state.copyWith(
-                      isSubmitting: false,
-                      userFailureOrUserSuccess: none(),
-                    )));
+            emit(state.copyWith(
+              isSubmitting: false,
+              userFailureOrUserSuccess: optionOf(failureOrSuccess),
+            ));
           }
         },
         emailChanged: (e) {

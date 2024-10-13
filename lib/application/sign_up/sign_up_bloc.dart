@@ -6,8 +6,6 @@ import 'package:know_my_city/domain/user/interface_user_facade.dart';
 import 'package:know_my_city/domain/user/user_failures.dart';
 import 'package:know_my_city/domain/value_objects/email_address.dart';
 import 'package:know_my_city/domain/value_objects/password.dart';
-import 'package:know_my_city/domain/value_objects/phone_number.dart';
-//import 'package:know_my_city/domain/value_objects/phone_number.dart';
 
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
@@ -23,9 +21,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         ) {
     on<SignUpEvent>((event, emit) async {
       await event.map(
-        started: (e) async {
-          // Logica para validar.
-        },
+        started: (e) async {},
         emailChanged: (e) async {
           emit(state.copyWith(
             emailAddress: EmailAddress(e.email),
@@ -52,22 +48,24 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
               emailAddress: state.emailAddress,
               password: state.password,
             );
-            failureOrSuccess.fold(
-                (failure) => emit(state.copyWith(
-                      isSubmitting: false,
-                      userFailureOrUserSuccess: some(left(failure)),
-                    )),
-                (_) => emit(state.copyWith(
-                      isSubmitting: false,
-                      userFailureOrUserSuccess: none(),
-                    )));
+            emit(state.copyWith(
+              isSubmitting: false,
+              userFailureOrUserSuccess: optionOf(failureOrSuccess),
+            ));
           }
         },
-        mailVerification: (e) async {},
-        sendOtp: (e) async {},
-        verifyOtp: (e) async {},
-        phoneChanged: (e) async {},
-        completeRegistration: (e) async {},
+        mailVerification: (e) async {
+          Either<UserFailure, Unit>? failureOrSuccess;
+          emit(state.copyWith(
+            isSubmitting: true,
+            userFailureOrUserSuccess: none(),
+          ));
+          failureOrSuccess = await _interfaceUserFacade.verifyIsMailisActive();
+          emit(state.copyWith(
+            isSubmitting: false,
+            userFailureOrUserSuccess: optionOf(failureOrSuccess),
+          ));
+        },
       );
     });
   }

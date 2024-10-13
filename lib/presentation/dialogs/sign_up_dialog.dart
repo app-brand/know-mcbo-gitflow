@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:know_my_city/application/sing_up/sign_up_bloc.dart';
+import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/dialogs/loading_dialog.dart';
+import 'package:know_my_city/presentation/dialogs/mail_check_dialog.dart';
 import 'package:know_my_city/presentation/widgets/email_form_field.dart';
 import 'package:know_my_city/presentation/widgets/password_form_field.dart';
 
@@ -28,6 +29,11 @@ class _SignUpDialog extends State<SignUpDialog>
       vsync: this,
       duration: const Duration(seconds: 1),
     );
+    _animationController.addStatusListener((status) {
+      if (status == AnimationStatus.dismissed) {
+        Navigator.of(context).pop();
+      }
+    });
     _animationController.forward();
   }
 
@@ -41,11 +47,6 @@ class _SignUpDialog extends State<SignUpDialog>
 
   void _closeWithReverseDialog() {
     _animationController.reverse();
-    _animationController.addStatusListener((listener) {
-      if (listener == AnimationStatus.dismissed) {
-        Navigator.of(context).pop();
-      }
-    });
   }
 
   void _showErrorDialog(String message) {
@@ -67,53 +68,42 @@ class _SignUpDialog extends State<SignUpDialog>
   }
 
   void _showSuccessDialog() {
-    _closeWithReverseDialog();
+    Navigator.of(context).popUntil((route) => route.isFirst);
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: const Text('Paso #1 - exitoso!'),
-          content: const Text('Por favor continue'),
-          actions: [
-            TextButton(
-              onPressed: () =>
-                  Navigator.of(context).pop(), // Cierra el diálogo de éxito
-              child: const Text('OK'),
-            ),
-          ],
-        );
+        return MailVerificationDialog();
       },
     );
-  }
-
-  void _loadingDialog() {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return LoadingDialog();
-        });
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpBloc, SignUpState>(
-        bloc: _signUpBloc,
-        listener: (context, state) {
-          state.userFailureOrUserSuccess.fold(
-              () => {},
-              (ifSome) => {
-                    ifSome.fold((failure) {
-                      _loadingDialog();
-                      Navigator.of(context).pop();
-                      _showErrorDialog(failure.message);
-                    }, (ifRight) {
-                      _loadingDialog();
-                      Navigator.of(context).pop();
-                      _showSuccessDialog();
-                    })
-                  });
-        },
-        builder: (context, state) => SlideTransition(
+      bloc: _signUpBloc,
+      listener: (context, state) {
+        state.userFailureOrUserSuccess.fold(
+            () => {},
+            (ifSome) => {
+                  ifSome.fold((failure) {
+                    _showErrorDialog(failure.message);
+                  }, (ifRight) {
+                    _showSuccessDialog();
+                  })
+                });
+      },
+      builder: (context, state) => Builder(
+        builder: (context) {
+          if (state.isSubmitting) {
+            return LoadingDialog(
+              text: 'Ingresando el correo y contrasena a la base de datos',
+              content:
+                  'Recuerde debe validar el correo en el tiempo marcado o repetir el proceso desde el principio',
+              onConfirm: () {},
+              onCancel: () {},
+            );
+          } else {
+            return SlideTransition(
               position: Tween<Offset>(
                 begin: const Offset(0, 1), // Comienza fuera de la pantalla
                 end: Offset.zero,
@@ -164,6 +154,7 @@ class _SignUpDialog extends State<SignUpDialog>
                                         },
                                         (email) {
                                           print('success: ${email}}');
+                                          return null;
                                         },
                                       );
                                     },
@@ -172,7 +163,8 @@ class _SignUpDialog extends State<SignUpDialog>
                                   PasswordFormField(
                                       passwordController: _passwordController,
                                       validator: (password) {
-                                        return state.password.value.fold(
+                                        return _signUpBloc.state.password.value
+                                            .fold(
                                           (failure) {
                                             print('failed: ${failure.message}');
                                             return failure.message;
@@ -221,6 +213,10 @@ class _SignUpDialog extends State<SignUpDialog>
                   ),
                 ),
               ),
-            ));
+            );
+          }
+        },
+      ),
+    );
   }
 }

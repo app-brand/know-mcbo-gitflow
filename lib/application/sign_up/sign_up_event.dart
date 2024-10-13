@@ -7,6 +7,7 @@ class SignUpEvent with _$SignUpEvent {
   const factory SignUpEvent.passwordChanged(String password) = _PasswordChanged;
   const factory SignUpEvent.signUpMail() = _SignUpMail;
   const factory SignUpEvent.mailVerification() = _MailVerification;
+  /*
   const factory SignUpEvent.sendOtp() = _SendOtp;
   const factory SignUpEvent.verifyOtp() = _SignUpFirestore;
   const factory SignUpEvent.phoneChanged(String phone_numer) = _PhoneChanged;
@@ -14,4 +15,5 @@ class SignUpEvent with _$SignUpEvent {
     required String first_name,
     required String first_lastname,
   }) = _CompleteRegistration;
+  */
 }
