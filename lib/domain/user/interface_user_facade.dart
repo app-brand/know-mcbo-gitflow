@@ -16,7 +16,7 @@ abstract interface class InterfaceUserFacade {
     required EmailAddress emailAddress,
     required Password password,
   });
-  // Verificar correo
+  // Verificador de correo electronico
   Future<Either<UserFailure, Unit>> verifyIsMailisActive();
   /*
   Future<Either<UserFailure, Unit>> sendOneTimePassword(

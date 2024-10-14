@@ -11,9 +11,10 @@ part 'sign_in_event.dart';
 part 'sign_in_state.dart';
 part 'sign_in_bloc.freezed.dart';
 
-@injectable
+@lazySingleton
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final InterfaceUserFacade _interfaceUserFacade;
+
   SignInBloc(
     this._interfaceUserFacade,
   ) : super(
@@ -35,16 +36,11 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
               emailAddress: state.emailAddress,
               password: state.password,
             );
-            failureOrSuccess.fold(
-                (failure) => emit(state.copyWith(
-                      isSubmitting: false,
-                      //showErrorMessages: true,
-                      userFailureOrUserSuccess: some(left(failure)),
-                    )),
-                (_) => emit(state.copyWith(
-                      isSubmitting: false,
-                      userFailureOrUserSuccess: none(),
-                    )));
+            emit(state.copyWith(
+              isSubmitting: false,
+              showErrorMessages: true,
+              userFailureOrUserSuccess: optionOf(failureOrSuccess),
+            ));
           }
         },
         emailChanged: (e) {
