@@ -4,7 +4,6 @@ import 'package:know_my_city/application/sing_in/sign_in_bloc.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/core/theme_core.dart';
 import 'package:know_my_city/presentation/dialogs/login_dialog.dart';
-import 'package:go_router/go_router.dart';
 
 class HomePage extends StatefulWidget {
   // Constructo #1 - Diagrama y UML
