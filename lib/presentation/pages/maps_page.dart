@@ -1,3 +1,4 @@
+import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +22,7 @@ class _MapsPageState extends State<MapsPage> {
 
   List<BitmapDescriptor> _customIcons = [];
   late GoogleMapController _mapController;
+  final CustomInfoWindowController _customInfoWindowController = CustomInfoWindowController();  // CUSTOM INFOW WINDOW CONTROLLER NEW
   late Marker _tranvia;
   late Marker _plaza;
   late Marker _casaCapitulacion;
@@ -142,7 +144,7 @@ Future<void> _loadCustomMarkerIcons() async {
       CameraUpdate.newCameraPosition(
         CameraPosition(
           target: position,
-          zoom: 15,
+          zoom: 14,
         )
       ),
     );
@@ -324,8 +326,10 @@ Future<void> _loadCustomMarkerIcons() async {
                   seleccionarRuta: _seleccionarRuta,
                   limpiarRuta: _limpiarRuta,
                   rutaSeleccionada: rutaSeleccionada,
+                  
                   onMapCreated: (controller) {
                   _mapController = controller;
+                  _customInfoWindowController.googleMapController = controller;
                     // ignore: deprecated_member_use
                   _mapController.setMapStyle(snapshot.data!);
                   }                  
@@ -653,6 +657,9 @@ class MainMaps extends StatelessWidget {
                           target: center,
                           zoom: 14,                  
                         ),
+                        /* onTap: (LatLng latLng) {
+                          _customInfoWindowController.hideInfoWindow();
+                        }, */
                         markers: {
                           tranvia = Marker(
                             markerId: const MarkerId('Tranvía de Maracaibo'),
@@ -662,7 +669,7 @@ class MainMaps extends StatelessWidget {
                               goToLocation(
                                 const LatLng(10.6564178133895, -71.59488684178918)
                               );
-                              /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
+                              showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); //MUESTRA EL INFOWINDOW CON CLICK
                             },
                           ),
                           plaza = Marker(
