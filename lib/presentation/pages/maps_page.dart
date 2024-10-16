@@ -2,7 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:know_my_city/application/sing_in/sign_in_bloc.dart';
+import 'package:know_my_city/application/sign_in/sign_in_bloc.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/core/directions_model.dart';
 import 'package:know_my_city/presentation/core/theme_core.dart';
