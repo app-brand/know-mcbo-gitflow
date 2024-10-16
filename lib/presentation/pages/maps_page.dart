@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +11,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:know_my_city/presentation/core/directions_repository.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
+import 'package:know_my_city/presentation/core/router_core.dart';
 
 class MapsPage extends StatefulWidget {
   const MapsPage({super.key});
@@ -70,9 +72,9 @@ class _MapsPageState extends State<MapsPage> {
   Future<void> _loadCustomMarkerIcons() async {
     List<String> iconPaths = [
       'assets/tranvia.png',
-      'assets/obelisco.png',
+      'assets/plaza.png',
       'assets/casa.png',
-      'assets/hospital.png',
+      'assets/central.png'
     ];
 
     for (String path in iconPaths) {
@@ -163,11 +165,12 @@ class _MapsPageState extends State<MapsPage> {
       _mapController.animateCamera(
         CameraUpdate.newCameraPosition(CameraPosition(
           target: position,
-          zoom: 15,
-        )),
-      );
-    }
+          zoom: 14,
+        )
+      ),
+    );     
   }
+}
 
   void _reservaTranvia(String ruta) {
     showDialog(
@@ -191,35 +194,52 @@ class _MapsPageState extends State<MapsPage> {
       rutaSeleccionada = false;
     });
   }
-
-  void _showCustomInfoWindow(
-      BuildContext context, String title, String snippet) {
-    showDialog(
+ 
+  
+  void _showCustomInfoWindow(BuildContext context, String title, String ruta, String snippet, String assetname) {
+    AwesomeDialog(
       context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Text(title, style: const TextStyle(fontSize: 20)),
-                const SizedBox(height: 8),
-                Text(snippet),
-                const SizedBox(height: 8),
-                TextButton(
-                  child: const Text('Cerrar'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
+      dialogType: DialogType.noHeader,
+      animType: AnimType.bottomSlide,
+      customHeader:
+        ClipOval(
+              child: Image.asset(
+                'assets/$assetname.png',
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
+            ),        
+      title: title,    
+      titleTextStyle: const TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        fontFamily: 'alcaldia_fonts',
+      ),
+      descTextStyle: const TextStyle(
+        fontSize: 16,
+        fontFamily: 'alcaldia_fonts',
+      ),
+      desc:
+        ruta.substring(0, 4).toLowerCase() == 'ruta'        
+          ? '$snippet\n\n Visita este lugar en las siguientes rutas: $ruta'
+          : snippet,
+      width: MediaQuery.of(context).size.width * 0.4,
+      padding: const EdgeInsets.all(24),
+      headerAnimationLoop: false,
+      showCloseIcon: true,
+      /* btnCancelText: 'Cerrar',
+      btnCancelOnPress: () {},
+      btnOkText: 'Dibujar Ruta',
+      btnOkOnPress: () {    
+        if (ruta == 'Ruta de la Alegría') {
+          _drawMultiplePolylines();
+        } else if (ruta == 'Ruta del Terror') {
+        _drawTerrorRoute();
+        }        
+      }, */
+   ).show();       
+}
 
   /* Future<void> _drawPolylines() async {
     try {
@@ -333,31 +353,33 @@ class _MapsPageState extends State<MapsPage> {
                 return Center(child: Text('Error loading map style'));
               } else {
                 return MainMaps(
-                    polylines: _polylines,
-                    signInBloc: _signInBloc,
-                    center: _center,
-                    mapStyle: snapshot.data!,
-                    customIcons: _customIcons,
-                    goToLocation: _goToLocation,
-                    goToCenter: _goToCenter,
-                    drawTerrorRoute: _drawTerrorRoute,
-                    drawPolylines: _drawMultiplePolylines,
-                    tranvia: _tranvia,
-                    plaza: _plaza,
-                    hospitalCentral: _hospitalCentral,
-                    casaCapitulacion: _casaCapitulacion,
-                    quintaLuxor: _quintaLuxor,
-                    info: _info,
-                    showCustomInfoWindow: _showCustomInfoWindow,
-                    reservaTranvia: _reservaTranvia,
-                    seleccionarRuta: _seleccionarRuta,
-                    limpiarRuta: _limpiarRuta,
-                    rutaSeleccionada: rutaSeleccionada,
-                    onMapCreated: (controller) {
-                      _mapController = controller;
-                      // ignore: deprecated_member_use
-                      _mapController.setMapStyle(snapshot.data!);
-                    });
+                  polylines: _polylines,
+                  signInBloc: _signInBloc,
+                  center: _center, 
+                  mapStyle: snapshot.data!,
+                  customIcons: _customIcons,
+                  goToLocation: _goToLocation, 
+                  goToCenter: _goToCenter,
+                  drawTerrorRoute: _drawTerrorRoute,
+                  drawPolylines: _drawMultiplePolylines,
+                  tranvia: _tranvia,
+                  plaza: _plaza,
+                  hospitalCentral: _hospitalCentral,
+                  casaCapitulacion: _casaCapitulacion,
+                  quintaLuxor: _quintaLuxor,
+                  info: _info,
+                  showCustomInfoWindow: (context, title, ruta, snippet, assetname) => _showCustomInfoWindow(context, title, ruta, snippet, assetname),
+                  reservaTranvia: _reservaTranvia,
+                  seleccionarRuta: _seleccionarRuta,
+                  limpiarRuta: _limpiarRuta,
+                  rutaSeleccionada: rutaSeleccionada,
+                  
+                  onMapCreated: (controller) {
+                  _mapController = controller;
+                    // ignore: deprecated_member_use
+                  _mapController.setMapStyle(snapshot.data!);
+                  }                  
+                );
               }
             },
           );
@@ -412,7 +434,7 @@ class MainMaps extends StatelessWidget {
   final Function(LatLng) goToLocation;
   final Function(LatLng) goToCenter;
   final Function(GoogleMapController) onMapCreated;
-  final void Function(BuildContext, String, String) showCustomInfoWindow;
+  final void Function(BuildContext, String, String, String, String) showCustomInfoWindow;
   final bool rutaSeleccionada;
 
   @override
@@ -584,8 +606,7 @@ class MainMaps extends StatelessWidget {
                         children: <Widget>[
                           ListTile(
                             title: Text('Ruta de la Alegría'),
-                            subtitle:
-                                Text('Disfruta de rascarte escuchando gaita'),
+                            subtitle: Text('Disfruta de la ciudad por la noche'),
                             onTap: () {
                               drawPolylines();
                               seleccionarRuta('Ruta de la Alegría');
@@ -675,84 +696,68 @@ class MainMaps extends StatelessWidget {
                   flex: 3, // Ajusta el tamaño del mapa
                   child: Stack(
                     children: [
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          GoogleMap(
-                            onMapCreated: onMapCreated,
-                            initialCameraPosition: CameraPosition(
-                              target: center,
-                              zoom: 14,
-                            ),
-                            markers: {
-                              tranvia = Marker(
-                                markerId:
-                                    const MarkerId('Tranvía de Maracaibo'),
-                                position: const LatLng(
-                                    10.6564178133895, -71.59488684178918),
-                                icon: customIcons.isNotEmpty
-                                    ? customIcons[0]
-                                    : BitmapDescriptor.defaultMarker,
-                                onTap: () {
-                                  goToLocation(const LatLng(
-                                      10.6564178133895, -71.59488684178918));
-                                  /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                                },
-                              ),
-                              plaza = Marker(
-                                markerId:
-                                    const MarkerId('Plaza de la Republica'),
-                                position: const LatLng(
-                                    10.66623260705817, -71.60581323765165),
-                                icon: customIcons.isNotEmpty
-                                    ? customIcons[1]
-                                    : BitmapDescriptor.defaultMarker,
-                                onTap: () {
-                                  goToLocation(const LatLng(
-                                      10.665841201331798, -71.60603111374822));
-                                  /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                                },
-                              ),
-                              hospitalCentral = Marker(
-                                markerId: const MarkerId('Hospital Central'),
-                                position: const LatLng(
-                                    10.64214695401155, -71.60557377666612),
-                                icon: customIcons.isNotEmpty
-                                    ? customIcons[3]
-                                    : BitmapDescriptor.defaultMarker,
-                                onTap: () {
-                                  goToLocation(const LatLng(
-                                      10.64214695401155, -71.60557377666612));
-                                  /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                                },
-                              ),
-                              casaCapitulacion = Marker(
-                                markerId:
-                                    const MarkerId('Casa de la Capitulación'),
-                                position: const LatLng(
-                                    10.64231896416391, -71.60783610049393),
-                                icon: customIcons.isNotEmpty
-                                    ? customIcons[2]
-                                    : BitmapDescriptor.defaultMarker,
-                                onTap: () {
-                                  goToLocation(const LatLng(
-                                      10.64231896416391, -71.60783610049393));
-                                  /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                                },
-                              ),
-                              quintaLuxor = Marker(
-                                markerId: const MarkerId('Quinta Luxor'),
-                                position: const LatLng(
-                                    10.666711923974145, -71.6317473478305),
-                                icon: customIcons.isNotEmpty
-                                    ? customIcons[2]
-                                    : BitmapDescriptor.defaultMarker,
-                                onTap: () {
-                                  goToLocation(const LatLng(
-                                      10.666711923974145, -71.6317473478305));
-                                  /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                                },
-                              ),
+                      GoogleMap(
+                        onMapCreated: onMapCreated,            
+                        initialCameraPosition: CameraPosition(
+                          target: center,
+                          zoom: 14,                  
+                        ),
+                        markers: {
+                          tranvia = Marker(
+                            markerId: const MarkerId('Tranvía de Maracaibo'),
+                            position: const LatLng(10.6564178133895, -71.59488684178918),       
+                            icon: customIcons.isNotEmpty ? customIcons[0] : BitmapDescriptor.defaultMarker,  
+                            onTap: () {
+                              /* goToLocation(
+                                const LatLng(10.6564178133895, -71.59488684178918)
+                              ); */
+                              showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede', 'Sede del tranvía de Maracaibo, punto de salida para las rutas del Tranvía, ¡Descubre nuestras rutas en el menú lateral!', 'tranvia'); //MUESTRA EL INFOWINDOW CON CLICK
+                            },
+                          ),
+                          plaza = Marker(
+                            markerId: const MarkerId('Plaza de la Republica'),
+                            position: const LatLng(10.66623260705817, -71.60581323765165),
+                            icon: customIcons.isNotEmpty ? customIcons[1] : BitmapDescriptor.defaultMarker,
+                            onTap: () {
+                              /* goToLocation(
+                                const LatLng(10.665841201331798, -71.60603111374822)
+                              ); */
+                              showCustomInfoWindow(context, 'Plaza de la República', 'Ruta de la Alegría', 'La plaza de la República es una de las principales plazas de la ciudad de Maracaibo, está ubicada en la calle 5 de Julio, un importante bulevar de Maracaibo, que lleva el nombre de la fecha de la independencia de Venezuela.', 'plaza');
+                              /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
+                            },
+                          ),
+                          hospitalCentral = Marker(
+                            markerId: const MarkerId('Hospital Central'),
+                            position: const LatLng(10.64214695401155, -71.60557377666612),
+                            icon: customIcons.isNotEmpty ? customIcons[3] : BitmapDescriptor.defaultMarker,
+                            onTap: () {
+                              /* goToLocation(
+                                const LatLng(10.64214695401155, -71.60557377666612)
+                              ); */
+                              showCustomInfoWindow(context, 'Hospital Central', 'Ruta del Terror', 'El Hospital Central de Maracaibo es uno de los centros de salud más antiguos de la ciudad de Maracaibo. Fue la sede del primer hospital de la ciudad creado como la "Casa de Beneficencia" pero también recibió el nombre de Hospital de Santa Ana, siendo inaugurado el 26 de julio de 1608.', 'central');
+                              /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
+                            },
+                          ),
+                          casaCapitulacion = Marker(
+                            markerId: const MarkerId('Casa de la Capitulación'),
+                            position: const LatLng(10.64231896416391, -71.60783610049393),
+                            icon: customIcons.isNotEmpty ? customIcons[2] : BitmapDescriptor.defaultMarker,
+                            onTap: () {
+                              goToLocation(
+                                const LatLng(10.64231896416391, -71.60783610049393)
+                              );
+                              /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
+                            },
+                          ),
+                          quintaLuxor = Marker(
+                            markerId: const MarkerId('Quinta Luxor'),
+                            position: const LatLng(10.666711923974145, -71.6317473478305),
+                            icon: customIcons.isNotEmpty ? customIcons[2] : BitmapDescriptor.defaultMarker,
+                            onTap: () {
+                              goToLocation(
+                                const LatLng(10.666711923974145, -71.6317473478305)
+                              );
+                              /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
                             },
                             polylines: polylines,
                             /* polylines: {
