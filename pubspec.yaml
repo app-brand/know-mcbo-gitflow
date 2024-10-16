@@ -30,6 +30,7 @@ dependencies:
   pretty_qr_code: ^3.3.0
   custom_info_window: ^1.0.1
   awesome_dialog: ^3.2.1
+  quickalert: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -64,14 +65,13 @@ flutter:
     - lib/presentation/core/map_style.json
     - assets/data4iflogo.png
     - assets/shrek.png
+    - assets/central.png
     - assets/tranvia.png
-    - assets/obelisco.png
+    - assets/plaza.png
     - assets/casa.png
-    - assets/hospital.png
     - assets/images/axis/
     - assets/images/brand/
     - assets/images/events_png/
     - assets/images/main/
     - assets/images/vector/
     - assets/json/        
-        
