@@ -14,31 +14,34 @@ import 'package:know_my_city/domain/value_objects/phone_number.dart';
 class FirebaseUserRepository implements InterfaceUserFacade {
   final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firebaseFirestore;
-  String? _verificationId;
 
   FirebaseUserRepository(
-    this._firebaseAuth,
-    this._firebaseFirestore,
-  );
+      {required FirebaseAuth firebaseAuth,
+      required FirebaseFirestore firebaseFirestore})
+      : _firebaseAuth = firebaseAuth,
+        _firebaseFirestore = firebaseFirestore;
 
   @override
   Future<Either<UserFailure, Unit>> signInWithEmail({
     required EmailAddress emailAddress,
     required Password password,
   }) async {
+    print('SignInWithMail - Infraestructura');
     final userMail = emailAddress.getOrCrash();
     final userPassword = password.getOrCrash();
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: userMail, password: userPassword);
+      print('SignInWithMail - right');
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password' ||
           e.code == 'user-not-found' ||
           e.code == 'invalid-credential') {
-        return left(const UserFailure.invalidEmailAndPasswordCombination());
+        return left(const UserFailure.invalidEmailAndPasswordCombination(
+            failedValue: ''));
       } else {
-        return left(const UserFailure.serverError());
+        return left(const UserFailure.serverError(failedValue: ''));
       }
     }
   }
@@ -48,37 +51,44 @@ class FirebaseUserRepository implements InterfaceUserFacade {
     required EmailAddress emailAddress,
     required Password password,
   }) async {
-    print('inicio registro');
+    print('RegisterInWithMail - Infraestructura');
+    //Future.delayed(const Duration(seconds: 3));
     final userMail = emailAddress.getOrCrash();
     final userPassword = password.getOrCrash();
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: userMail, password: userPassword);
       await _firebaseAuth.currentUser!.sendEmailVerification();
+      print('RegisterInWith Verification email it is send - right');
       return right(unit);
-      print('todo-ok');
     } on FirebaseAuthException catch (e) {
       print(e.code);
       if (e.code == 'email-already-in-use') {
-        return left(const UserFailure.emailAlreadyInUse());
+        return left(const UserFailure.invalidEmailAndPasswordCombination(
+            failedValue: ''));
       } else {
-        return left(const UserFailure.serverError());
+        return left(const UserFailure.serverError(failedValue: ''));
       }
     }
   }
 
   @override
   Future<Either<UserFailure, Unit>> verifyIsMailisActive() async {
+    //TODO: Agregar correr en un bucle - for o u otra salida
     try {
       User? user = _firebaseAuth.currentUser;
+      //await Future.delayed(Duration(seconds: 59));
       await user!.reload();
       if (_firebaseAuth.currentUser!.emailVerified) {
+        print('IsValidatedMail - right');
         return right(unit);
       } else {
-        return left(UserFailure.emailNotVerified());
+        print('IsValidatedMain - wrong');
+        _firebaseAuth.currentUser!.delete();
+        return left(const UserFailure.emailNotVerified(failedValue: ''));
       }
     } on FirebaseAuthException {
-      return left(UserFailure.serverError());
+      return left(const UserFailure.serverError(failedValue: ''));
     }
   }
   /*
@@ -97,15 +107,16 @@ class FirebaseUserRepository implements InterfaceUserFacade {
         },
         verificationFailed: (FirebaseAuthException e) {
           print('verification - Falla');
-          return completer.complete(left(UserFailure.serverError()));
+          return completer
+              .complete(left(UserFailure.serverError(failedValue: '')));
         },
         codeSent: (String userId, int? resendToken) {
           print('code - sent');
-          _verificationId = userId;
+          //_verificationId = userId;
           return completer.complete(right(unit));
         },
         codeAutoRetrievalTimeout: (String userId) {
-          _verificationId = userId;
+          //_verificationId = userId;
           return completer.complete(right(unit));
         },
       );
@@ -113,7 +124,7 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       return right(unit);
     } on FirebaseAuthException catch (e) {
       print(e.toString() + 'Error de Firebase - Out Control');
-      return left(UserFailure.serverError());
+      return left(UserFailure.serverError(failedValue: ''));
     }
   }
 
@@ -131,7 +142,7 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       return right(unit);
     } catch (e) {
       print(e.toString() + ' Entendiendo el error');
-      return left(UserFailure.otpExpired());
+      return left(UserFailure.otpExpired(failedValue: ''));
     }
   }
 
@@ -155,10 +166,10 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       return right(unit);
     } on FirebaseException catch (e) {
       print(e.toString());
-      return left(UserFailure.serverError());
+      return left(UserFailure.serverError(failedValue: ''));
     } catch (e) {
       print(e.toString());
-      return left(UserFailure.serverError());
+      return left(UserFailure.serverError(failedValue: ''));
     }
   }
   */

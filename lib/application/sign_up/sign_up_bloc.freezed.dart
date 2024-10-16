@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'sing_up_bloc.dart';
+part of 'sign_up_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$SingUpEvent {
+mixin _$SignUpEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
@@ -75,23 +75,23 @@ mixin _$SingUpEvent {
 }
 
 /// @nodoc
-abstract class $SingUpEventCopyWith<$Res> {
-  factory $SingUpEventCopyWith(
-          SingUpEvent value, $Res Function(SingUpEvent) then) =
-      _$SingUpEventCopyWithImpl<$Res, SingUpEvent>;
+abstract class $SignUpEventCopyWith<$Res> {
+  factory $SignUpEventCopyWith(
+          SignUpEvent value, $Res Function(SignUpEvent) then) =
+      _$SignUpEventCopyWithImpl<$Res, SignUpEvent>;
 }
 
 /// @nodoc
-class _$SingUpEventCopyWithImpl<$Res, $Val extends SingUpEvent>
-    implements $SingUpEventCopyWith<$Res> {
-  _$SingUpEventCopyWithImpl(this._value, this._then);
+class _$SignUpEventCopyWithImpl<$Res, $Val extends SignUpEvent>
+    implements $SignUpEventCopyWith<$Res> {
+  _$SignUpEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SingUpEvent
+  /// Create a copy of SignUpEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -104,13 +104,13 @@ abstract class _$$StartedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$StartedImplCopyWithImpl<$Res>
-    extends _$SingUpEventCopyWithImpl<$Res, _$StartedImpl>
+    extends _$SignUpEventCopyWithImpl<$Res, _$StartedImpl>
     implements _$$StartedImplCopyWith<$Res> {
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SingUpEvent
+  /// Create a copy of SignUpEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -121,7 +121,7 @@ class _$StartedImpl implements _Started {
 
   @override
   String toString() {
-    return 'SingUpEvent.started()';
+    return 'SignUpEvent.started()';
   }
 
   @override
@@ -214,7 +214,7 @@ class _$StartedImpl implements _Started {
   }
 }
 
-abstract class _Started implements SingUpEvent {
+abstract class _Started implements SignUpEvent {
   const factory _Started() = _$StartedImpl;
 }
 
@@ -229,13 +229,13 @@ abstract class _$$EmailChangedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$EmailChangedImplCopyWithImpl<$Res>
-    extends _$SingUpEventCopyWithImpl<$Res, _$EmailChangedImpl>
+    extends _$SignUpEventCopyWithImpl<$Res, _$EmailChangedImpl>
     implements _$$EmailChangedImplCopyWith<$Res> {
   __$$EmailChangedImplCopyWithImpl(
       _$EmailChangedImpl _value, $Res Function(_$EmailChangedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SingUpEvent
+  /// Create a copy of SignUpEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -261,7 +261,7 @@ class _$EmailChangedImpl implements _EmailChanged {
 
   @override
   String toString() {
-    return 'SingUpEvent.emailChanged(email: $email)';
+    return 'SignUpEvent.emailChanged(email: $email)';
   }
 
   @override
@@ -275,7 +275,7 @@ class _$EmailChangedImpl implements _EmailChanged {
   @override
   int get hashCode => Object.hash(runtimeType, email);
 
-  /// Create a copy of SingUpEvent
+  /// Create a copy of SignUpEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -364,12 +364,12 @@ class _$EmailChangedImpl implements _EmailChanged {
   }
 }
 
-abstract class _EmailChanged implements SingUpEvent {
+abstract class _EmailChanged implements SignUpEvent {
   const factory _EmailChanged(final String email) = _$EmailChangedImpl;
 
   String get email;
 
-  /// Create a copy of SingUpEvent
+  /// Create a copy of SignUpEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EmailChangedImplCopyWith<_$EmailChangedImpl> get copyWith =>
@@ -387,13 +387,13 @@ abstract class _$$PasswordChangedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$PasswordChangedImplCopyWithImpl<$Res>
-    extends _$SingUpEventCopyWithImpl<$Res, _$PasswordChangedImpl>
+    extends _$SignUpEventCopyWithImpl<$Res, _$PasswordChangedImpl>
     implements _$$PasswordChangedImplCopyWith<$Res> {
   __$$PasswordChangedImplCopyWithImpl(
       _$PasswordChangedImpl _value, $Res Function(_$PasswordChangedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SingUpEvent
+  /// Create a copy of SignUpEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -419,7 +419,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
 
   @override
   String toString() {
-    return 'SingUpEvent.passwordChanged(password: $password)';
+    return 'SignUpEvent.passwordChanged(password: $password)';
   }
 
   @override
@@ -434,7 +434,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
   @override
   int get hashCode => Object.hash(runtimeType, password);
 
-  /// Create a copy of SingUpEvent
+  /// Create a copy of SignUpEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -524,12 +524,12 @@ class _$PasswordChangedImpl implements _PasswordChanged {
   }
 }
 
-abstract class _PasswordChanged implements SingUpEvent {
+abstract class _PasswordChanged implements SignUpEvent {
   const factory _PasswordChanged(final String password) = _$PasswordChangedImpl;
 
   String get password;
 
-  /// Create a copy of SingUpEvent
+  /// Create a copy of SignUpEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PasswordChangedImplCopyWith<_$PasswordChangedImpl> get copyWith =>
@@ -545,13 +545,13 @@ abstract class _$$SignUpMailImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SignUpMailImplCopyWithImpl<$Res>
-    extends _$SingUpEventCopyWithImpl<$Res, _$SignUpMailImpl>
+    extends _$SignUpEventCopyWithImpl<$Res, _$SignUpMailImpl>
     implements _$$SignUpMailImplCopyWith<$Res> {
   __$$SignUpMailImplCopyWithImpl(
       _$SignUpMailImpl _value, $Res Function(_$SignUpMailImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SingUpEvent
+  /// Create a copy of SignUpEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -562,7 +562,7 @@ class _$SignUpMailImpl implements _SignUpMail {
 
   @override
   String toString() {
-    return 'SingUpEvent.signUpMail()';
+    return 'SignUpEvent.signUpMail()';
   }
 
   @override
@@ -655,7 +655,7 @@ class _$SignUpMailImpl implements _SignUpMail {
   }
 }
 
-abstract class _SignUpMail implements SingUpEvent {
+abstract class _SignUpMail implements SignUpEvent {
   const factory _SignUpMail() = _$SignUpMailImpl;
 }
 
@@ -668,13 +668,13 @@ abstract class _$$MailVerificationImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$MailVerificationImplCopyWithImpl<$Res>
-    extends _$SingUpEventCopyWithImpl<$Res, _$MailVerificationImpl>
+    extends _$SignUpEventCopyWithImpl<$Res, _$MailVerificationImpl>
     implements _$$MailVerificationImplCopyWith<$Res> {
   __$$MailVerificationImplCopyWithImpl(_$MailVerificationImpl _value,
       $Res Function(_$MailVerificationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SingUpEvent
+  /// Create a copy of SignUpEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -685,7 +685,7 @@ class _$MailVerificationImpl implements _MailVerification {
 
   @override
   String toString() {
-    return 'SingUpEvent.mailVerification()';
+    return 'SignUpEvent.mailVerification()';
   }
 
   @override
@@ -778,62 +778,58 @@ class _$MailVerificationImpl implements _MailVerification {
   }
 }
 
-abstract class _MailVerification implements SingUpEvent {
+abstract class _MailVerification implements SignUpEvent {
   const factory _MailVerification() = _$MailVerificationImpl;
 }
 
 /// @nodoc
-mixin _$SingUpState {
+mixin _$SignUpState {
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
   Password get password =>
       throw _privateConstructorUsedError; //required PhoneNumber phone_number,
-  bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
-  bool get isEmailVerified =>
-      throw _privateConstructorUsedError; //required bool isPhoneNumberVerified,
+  bool get isEmailVerified => throw _privateConstructorUsedError;
   Option<Either<UserFailure, Unit>> get userFailureOrUserSuccess =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of SingUpState
+  /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $SingUpStateCopyWith<SingUpState> get copyWith =>
+  $SignUpStateCopyWith<SignUpState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SingUpStateCopyWith<$Res> {
-  factory $SingUpStateCopyWith(
-          SingUpState value, $Res Function(SingUpState) then) =
-      _$SingUpStateCopyWithImpl<$Res, SingUpState>;
+abstract class $SignUpStateCopyWith<$Res> {
+  factory $SignUpStateCopyWith(
+          SignUpState value, $Res Function(SignUpState) then) =
+      _$SignUpStateCopyWithImpl<$Res, SignUpState>;
   @useResult
   $Res call(
       {EmailAddress emailAddress,
       Password password,
-      bool showErrorMessages,
       bool isSubmitting,
       bool isEmailVerified,
       Option<Either<UserFailure, Unit>> userFailureOrUserSuccess});
 }
 
 /// @nodoc
-class _$SingUpStateCopyWithImpl<$Res, $Val extends SingUpState>
-    implements $SingUpStateCopyWith<$Res> {
-  _$SingUpStateCopyWithImpl(this._value, this._then);
+class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
+    implements $SignUpStateCopyWith<$Res> {
+  _$SignUpStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SingUpState
+  /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? emailAddress = null,
     Object? password = null,
-    Object? showErrorMessages = null,
     Object? isSubmitting = null,
     Object? isEmailVerified = null,
     Object? userFailureOrUserSuccess = null,
@@ -847,10 +843,6 @@ class _$SingUpStateCopyWithImpl<$Res, $Val extends SingUpState>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
-      showErrorMessages: null == showErrorMessages
-          ? _value.showErrorMessages
-          : showErrorMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
       isSubmitting: null == isSubmitting
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
@@ -868,43 +860,41 @@ class _$SingUpStateCopyWithImpl<$Res, $Val extends SingUpState>
 }
 
 /// @nodoc
-abstract class _$$SingUpStateImplCopyWith<$Res>
-    implements $SingUpStateCopyWith<$Res> {
-  factory _$$SingUpStateImplCopyWith(
-          _$SingUpStateImpl value, $Res Function(_$SingUpStateImpl) then) =
-      __$$SingUpStateImplCopyWithImpl<$Res>;
+abstract class _$$SignUpStateImplCopyWith<$Res>
+    implements $SignUpStateCopyWith<$Res> {
+  factory _$$SignUpStateImplCopyWith(
+          _$SignUpStateImpl value, $Res Function(_$SignUpStateImpl) then) =
+      __$$SignUpStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {EmailAddress emailAddress,
       Password password,
-      bool showErrorMessages,
       bool isSubmitting,
       bool isEmailVerified,
       Option<Either<UserFailure, Unit>> userFailureOrUserSuccess});
 }
 
 /// @nodoc
-class __$$SingUpStateImplCopyWithImpl<$Res>
-    extends _$SingUpStateCopyWithImpl<$Res, _$SingUpStateImpl>
-    implements _$$SingUpStateImplCopyWith<$Res> {
-  __$$SingUpStateImplCopyWithImpl(
-      _$SingUpStateImpl _value, $Res Function(_$SingUpStateImpl) _then)
+class __$$SignUpStateImplCopyWithImpl<$Res>
+    extends _$SignUpStateCopyWithImpl<$Res, _$SignUpStateImpl>
+    implements _$$SignUpStateImplCopyWith<$Res> {
+  __$$SignUpStateImplCopyWithImpl(
+      _$SignUpStateImpl _value, $Res Function(_$SignUpStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SingUpState
+  /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? emailAddress = null,
     Object? password = null,
-    Object? showErrorMessages = null,
     Object? isSubmitting = null,
     Object? isEmailVerified = null,
     Object? userFailureOrUserSuccess = null,
   }) {
-    return _then(_$SingUpStateImpl(
+    return _then(_$SignUpStateImpl(
       emailAddress: null == emailAddress
           ? _value.emailAddress
           : emailAddress // ignore: cast_nullable_to_non_nullable
@@ -913,10 +903,6 @@ class __$$SingUpStateImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
-      showErrorMessages: null == showErrorMessages
-          ? _value.showErrorMessages
-          : showErrorMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
       isSubmitting: null == isSubmitting
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
@@ -935,11 +921,10 @@ class __$$SingUpStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SingUpStateImpl implements _SingUpState {
-  const _$SingUpStateImpl(
+class _$SignUpStateImpl implements _SignUpState {
+  const _$SignUpStateImpl(
       {required this.emailAddress,
       required this.password,
-      required this.showErrorMessages,
       required this.isSubmitting,
       required this.isEmailVerified,
       required this.userFailureOrUserSuccess});
@@ -950,31 +935,26 @@ class _$SingUpStateImpl implements _SingUpState {
   final Password password;
 //required PhoneNumber phone_number,
   @override
-  final bool showErrorMessages;
-  @override
   final bool isSubmitting;
   @override
   final bool isEmailVerified;
-//required bool isPhoneNumberVerified,
   @override
   final Option<Either<UserFailure, Unit>> userFailureOrUserSuccess;
 
   @override
   String toString() {
-    return 'SingUpState(emailAddress: $emailAddress, password: $password, showErrorMessages: $showErrorMessages, isSubmitting: $isSubmitting, isEmailVerified: $isEmailVerified, userFailureOrUserSuccess: $userFailureOrUserSuccess)';
+    return 'SignUpState(emailAddress: $emailAddress, password: $password, isSubmitting: $isSubmitting, isEmailVerified: $isEmailVerified, userFailureOrUserSuccess: $userFailureOrUserSuccess)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SingUpStateImpl &&
+            other is _$SignUpStateImpl &&
             (identical(other.emailAddress, emailAddress) ||
                 other.emailAddress == emailAddress) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.showErrorMessages, showErrorMessages) ||
-                other.showErrorMessages == showErrorMessages) &&
             (identical(other.isSubmitting, isSubmitting) ||
                 other.isSubmitting == isSubmitting) &&
             (identical(other.isEmailVerified, isEmailVerified) ||
@@ -985,51 +965,42 @@ class _$SingUpStateImpl implements _SingUpState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      emailAddress,
-      password,
-      showErrorMessages,
-      isSubmitting,
-      isEmailVerified,
-      userFailureOrUserSuccess);
+  int get hashCode => Object.hash(runtimeType, emailAddress, password,
+      isSubmitting, isEmailVerified, userFailureOrUserSuccess);
 
-  /// Create a copy of SingUpState
+  /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SingUpStateImplCopyWith<_$SingUpStateImpl> get copyWith =>
-      __$$SingUpStateImplCopyWithImpl<_$SingUpStateImpl>(this, _$identity);
+  _$$SignUpStateImplCopyWith<_$SignUpStateImpl> get copyWith =>
+      __$$SignUpStateImplCopyWithImpl<_$SignUpStateImpl>(this, _$identity);
 }
 
-abstract class _SingUpState implements SingUpState {
-  const factory _SingUpState(
+abstract class _SignUpState implements SignUpState {
+  const factory _SignUpState(
       {required final EmailAddress emailAddress,
       required final Password password,
-      required final bool showErrorMessages,
       required final bool isSubmitting,
       required final bool isEmailVerified,
       required final Option<Either<UserFailure, Unit>>
-          userFailureOrUserSuccess}) = _$SingUpStateImpl;
+          userFailureOrUserSuccess}) = _$SignUpStateImpl;
 
   @override
   EmailAddress get emailAddress;
   @override
   Password get password; //required PhoneNumber phone_number,
   @override
-  bool get showErrorMessages;
-  @override
   bool get isSubmitting;
   @override
-  bool get isEmailVerified; //required bool isPhoneNumberVerified,
+  bool get isEmailVerified;
   @override
   Option<Either<UserFailure, Unit>> get userFailureOrUserSuccess;
 
-  /// Create a copy of SingUpState
+  /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SingUpStateImplCopyWith<_$SingUpStateImpl> get copyWith =>
+  _$$SignUpStateImplCopyWith<_$SignUpStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
