@@ -31,6 +31,7 @@ dependencies:
   custom_info_window: ^1.0.1
   awesome_dialog: ^3.2.1
   quickalert: ^1.1.0
+  pdf: ^3.11.1
 
 dev_dependencies:
   flutter_test:
