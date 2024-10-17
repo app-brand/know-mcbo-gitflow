@@ -63,7 +63,7 @@
       opacity: 1;
       background-size: cover;
       background-position: center;
-      transition: opacity 1s ease-out, filter 1s ease-out;
+      transition: opacity 1.4s ease-out, filter 1.4s ease-out;
     }
 
     #loading.fade-out {
@@ -93,7 +93,18 @@
       z-index: 1;
       opacity: 0.7;
     }
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    #loading img {
+      width: 80%;
+    }
+  }
 
+  @media (max-width: 480px) {
+    #loading img {
+      width: 70%;
+    }
+  }
   </style>
 </head>
 <body>
@@ -131,3 +142,4 @@
   </script>
 </body>
 </html>
+
