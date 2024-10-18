@@ -6,6 +6,7 @@ import 'package:know_my_city/presentation/widgets/event_list.dart';
 import 'package:know_my_city/presentation/widgets/first_row.dart';
 import 'package:know_my_city/presentation/widgets/second_row.dart';
 import 'package:flutter/material.dart';
+import 'package:know_my_city/presentation/widgets/main_footer.dart';
 
 class AppHome extends StatelessWidget {
   const AppHome({super.key});
@@ -114,6 +115,8 @@ class AppHome extends StatelessWidget {
                   height: 0.0496 * width,
                 ),
                 const AxisList(),
+                SizedBox(height: 10), // Espacio adicional antes del footer
+                FooterWidget(),
               ],
             ),
           ),
