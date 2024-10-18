@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -26,8 +27,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-
 class FooterWidget extends StatelessWidget {
   // Función para abrir un enlace
   Future<void> _launchURL(String url) async {
@@ -35,144 +34,204 @@ class FooterWidget extends StatelessWidget {
       throw 'No se pudo abrir el enlace $url';
     }
   }
+
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.of(context).size.width;
+    bool isMobileOrTablet = screenWidth < 800;
+
     return Container(
+      width: double.infinity,
       color: Colors.grey[850],
-      padding: EdgeInsets.symmetric(vertical: 100, horizontal: 20),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+      padding: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Wrap para organizar las columnas de manera responsive
+            Wrap(
+              spacing: 20,
+              runSpacing: 20,
+              alignment: WrapAlignment.spaceAround,
+              children: [
+                // Primera columna (Logo + FOMUTUR)
+                Container(
+                  width: isMobileOrTablet ? screenWidth * 0.9 : screenWidth * 0.28,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.asset(
-                        'assets/alcaldia-de-maracaibo.png', // Ruta de la imagen
-                        width: 150, // Ajusta el tamaño de la imagen
-                        height: 150,
+                      // Aseguramos que el logo sea visible y el texto FOMUTUR esté correctamente alineado
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/alcaldia-de-maracaibo.png',
+                            width: 80, // Ajustamos el tamaño fijo para evitar overflow
+                            height: 80,
+                            fit: BoxFit.contain,
+                          ),
+                          SizedBox(width: 10),
+                          Flexible(
+                            child: Text(
+                              'FOMUTUR',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24, // Ajustamos el tamaño del texto para evitar overflow
+                                fontFamily: 'AlcaldiaFonts',
+                              ),
+                              overflow: TextOverflow.ellipsis, // Añadimos elipsis si el texto es demasiado largo
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(width: 10),
+                      SizedBox(height: 10),
                       Text(
-                        'FOMUTUR',
+                        'En nuestra alcaldía, la transparencia es\nnuestra prioridad. Accede a la información\npública de manera clara y accesible.',
+                        textAlign: TextAlign.center, // Centrado para móviles y tablets
                         style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 40,
-                            fontFamily: 'AlcaldiaFonts'),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'En nuestra alcaldía, la transparencia es\nnuestra prioridad. Accede a la información\npública de manera clara y accesible.',
-                    style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: 'AlcaldiaFonts'),
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Contacto',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20, fontFamily: 'AlcaldiaFonts'),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    'Horario:\nLunes a viernes 8:00 a.m. a 4:00 p.m.',
-                    style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: 'AlcaldiaFonts'),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    'Dirección:\nAvenida 4 con Calle 96,\nMaracaibo, Venezuela',
-                    style: TextStyle(color: Colors.white, fontSize: 20, fontFamily: 'AlcaldiaFonts'),
-                  ),
-                  SizedBox(height: 5),
-                  InkWell(
-                   onTap: () {
-                   // Aquí se define el enlace de WhatsApp
-                   _launchURL('https://wa.me/584127632888'); // Cambia este número según sea necesario
-                  },
-                  child: Row(
-                    children: [
-                      Icon(FontAwesomeIcons.whatsapp, color: Colors.green),
-                      SizedBox(width: 8),
-                      Text(
-                        'WhatsApp',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20, fontFamily: 'AlcaldiaFonts'),
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'AlcaldiaFonts',
+                        ),
                       ),
                     ],
                   ),
                 ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Síguenos en nuestras redes sociales',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20, fontFamily: 'AlcaldiaFonts'),
-                  ),
-                  SizedBox(height: 10),
-                  Row(
+                // Segunda columna (Contacto)
+                Container(
+                  width: isMobileOrTablet ? screenWidth * 0.9 : screenWidth * 0.28,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      IconButton(
-                        icon: Icon(FontAwesomeIcons.whatsapp),
-                        color: Colors.white,
-                        onPressed: () {
-                          _launchURL("https://wa.me/584127334000");
-                        },
+                      Text(
+                        'Contacto',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          fontFamily: 'AlcaldiaFonts',
+                        ),
                       ),
-                      IconButton(
-                        icon: Icon(FontAwesomeIcons.instagram),
-                        color: Colors.white,
-                        onPressed: () {
-                          _launchURL("https://www.instagram.com/mcboalcaldia/");
-                        },
+                      SizedBox(height: 5),
+                      Text(
+                        'Horario:\nLunes a viernes 8:00 a.m. a 4:00 p.m.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'AlcaldiaFonts',
+                        ),
                       ),
-                      IconButton(
-                        icon: Icon(FontAwesomeIcons.facebook),
-                        color: Colors.white,
-                        onPressed: () {
-                          _launchURL("https://www.facebook.com/mcboalcaldia/");
-                        },
+                      SizedBox(height: 5),
+                      Text(
+                        'Dirección:\nAvenida 4 con Calle 96,\nMaracaibo, Venezuela',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: 'AlcaldiaFonts',
+                        ),
                       ),
-                      IconButton(
-                        icon: Icon(FontAwesomeIcons.twitter),
-                        color: Colors.white,
-                        onPressed: () {
-                          _launchURL("https://www.twitter.com/mcboalcaldia/");
+                      SizedBox(height: 5),
+                      InkWell(
+                        onTap: () {
+                          _launchURL('https://wa.me/584127334000');
                         },
-                      ),
-                      IconButton(
-                        icon: Icon(FontAwesomeIcons.tiktok),
-                        color: Colors.white,
-                        onPressed: () {
-                          _launchURL("https://www.tiktok.com/@mcboalcaldia/");
-                        },
-                      ),
-                      IconButton(
-                        icon: Icon(FontAwesomeIcons.youtube),
-                        color: Colors.white,
-                        onPressed: () {
-                          _launchURL("https://www.youtube.com/@mcboalcaldia/");
-                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(FontAwesomeIcons.whatsapp, color: Colors.green),
+                            SizedBox(width: 8),
+                            Text(
+                              'WhatsApp',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                fontFamily: 'AlcaldiaFonts',
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
-                  )
-                ],
-              ),
-            ],
-          ),
-        ],
+                  ),
+                ),
+                // Tercera columna (Redes Sociales)
+                Container(
+                  width: isMobileOrTablet ? screenWidth * 0.9 : screenWidth * 0.28,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Síguenos en nuestras redes sociales',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          fontFamily: 'AlcaldiaFonts',
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Wrap(
+                        alignment: WrapAlignment.center,
+                        spacing: 10,
+                        runSpacing: 10,
+                        children: [
+                          IconButton(
+                            icon: Icon(FontAwesomeIcons.whatsapp),
+                            color: Colors.white,
+                            onPressed: () {
+                              _launchURL("https://wa.me/584127334000");
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(FontAwesomeIcons.instagram),
+                            color: Colors.white,
+                            onPressed: () {
+                              _launchURL("https://www.instagram.com/mcboalcaldia/");
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(FontAwesomeIcons.facebook),
+                            color: Colors.white,
+                            onPressed: () {
+                              _launchURL("https://www.facebook.com/mcboalcaldia/");
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(FontAwesomeIcons.twitter),
+                            color: Colors.white,
+                            onPressed: () {
+                              _launchURL("https://www.twitter.com/mcboalcaldia/");
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(FontAwesomeIcons.tiktok),
+                            color: Colors.white,
+                            onPressed: () {
+                              _launchURL("https://www.tiktok.com/@mcboalcaldia/");
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(FontAwesomeIcons.youtube),
+                            color: Colors.white,
+                            onPressed: () {
+                              _launchURL("https://www.youtube.com/@mcboalcaldia/");
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
