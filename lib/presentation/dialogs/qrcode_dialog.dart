@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 class QRCodeGenerator extends StatefulWidget {
   final String ruta;

@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,15 +11,16 @@ import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:know_my_city/presentation/core/directions_repository.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
+import 'package:know_my_city/presentation/core/router_core.dart';
 
 class MapsPage extends StatefulWidget {
   const MapsPage({super.key});
-
+  
   @override
   State<MapsPage> createState() => _MapsPageState();
 }
-
 class _MapsPageState extends State<MapsPage> {
+
   List<BitmapDescriptor> _customIcons = [];
   late GoogleMapController _mapController;
   late Marker _tranvia;
@@ -40,20 +42,13 @@ class _MapsPageState extends State<MapsPage> {
   late Future<String> _mapStyle;
 
   final LatLng _center = const LatLng(10.660844651881145, -71.59921476991683);
-  final LatLng _tranviaPosition =
-      const LatLng(10.6564178133895, -71.59488684178918);
-  final LatLng _plazaPosition =
-      const LatLng(10.66623260705817, -71.60581323765165);
-  final LatLng _costaVerdePosition =
-      const LatLng(10.678566872849304, -71.60681026461249);
-  final LatLng _deliciasPlazaPosition =
-      const LatLng(10.685911973418046, -71.62544140660783);
-  final LatLng _casaCapitulacionPosition =
-      const LatLng(10.64231896416391, -71.60783610049393);
-  final LatLng _quintaLuxorPosition =
-      const LatLng(10.666711923974145, -71.6317473478305);
-  final LatLng _hospitalCentralPosition =
-      const LatLng(10.64214695401155, -71.60557377666612);
+  final LatLng _tranviaPosition = const LatLng(10.6564178133895, -71.59488684178918);
+  final LatLng _plazaPosition = const LatLng(10.66623260705817, -71.60581323765165);
+  final LatLng _costaVerdePosition = const LatLng(10.678566872849304, -71.60681026461249);
+  final LatLng _deliciasPlazaPosition = const LatLng(10.685911973418046, -71.62544140660783);
+  final LatLng _casaCapitulacionPosition = const LatLng(10.64231896416391, -71.60783610049393);
+  final LatLng _quintaLuxorPosition = const LatLng(10.666711923974145, -71.6317473478305);
+  final LatLng _hospitalCentralPosition = const LatLng(10.64214695401155, -71.60557377666612);
 
   late SignInBloc _signInBloc;
   @override
@@ -67,12 +62,12 @@ class _MapsPageState extends State<MapsPage> {
     /* _loadDirections(); */
   }
 
-  Future<void> _loadCustomMarkerIcons() async {
+Future<void> _loadCustomMarkerIcons() async {
     List<String> iconPaths = [
       'assets/tranvia.png',
-      'assets/obelisco.png',
+      'assets/plaza.png',
       'assets/casa.png',
-      'assets/hospital.png',
+      'assets/central.png'
     ];
 
     for (String path in iconPaths) {
@@ -89,53 +84,38 @@ class _MapsPageState extends State<MapsPage> {
   void _initializeMarkers() {
     _tranvia = Marker(
       markerId: const MarkerId('tranvia'),
-      position: const LatLng(10.6564178133895,
-          -71.59488684178918), // Ajusta la posición según sea necesario
-      icon: _customIcons.isNotEmpty
-          ? _customIcons[0]
-          : BitmapDescriptor.defaultMarker,
+      position: const LatLng(10.6564178133895, -71.59488684178918), // Ajusta la posición según sea necesario
+      icon: _customIcons.isNotEmpty ? _customIcons[0] : BitmapDescriptor.defaultMarker,
     );
 
     _plaza = Marker(
       markerId: const MarkerId('plaza'),
-      position: const LatLng(10.66623260705817,
-          -71.60581323765165), // Ajusta la posición según sea necesario
-      icon: _customIcons.length > 1
-          ? _customIcons[1]
-          : BitmapDescriptor.defaultMarker,
+      position: const LatLng(10.66623260705817, -71.60581323765165), // Ajusta la posición según sea necesario
+      icon: _customIcons.length > 1 ? _customIcons[1] : BitmapDescriptor.defaultMarker,
     );
 
     _casaCapitulacion = Marker(
       markerId: const MarkerId('casaCapitulacion'),
-      position: const LatLng(10.64231896416391,
-          -71.60783610049393), // Ajusta la posición según sea necesario
-      icon: _customIcons.length > 2
-          ? _customIcons[2]
-          : BitmapDescriptor.defaultMarker,
+      position: const LatLng(10.64231896416391, -71.60783610049393), // Ajusta la posición según sea necesario
+      icon: _customIcons.length > 2 ? _customIcons[2] : BitmapDescriptor.defaultMarker,
     );
 
     _hospitalCentral = Marker(
       markerId: const MarkerId('hospitalCentral'),
-      position: const LatLng(10.64214695401155,
-          -71.60557377666612), // Ajusta la posición según sea necesario
-      icon: _customIcons.length > 3
-          ? _customIcons[3]
-          : BitmapDescriptor.defaultMarker,
+      position: const LatLng(10.64214695401155, -71.60557377666612), // Ajusta la posición según sea necesario
+      icon: _customIcons.length > 3 ? _customIcons[3] : BitmapDescriptor.defaultMarker,
     );
 
     _quintaLuxor = Marker(
       markerId: const MarkerId('quintaLuxor'),
-      position: const LatLng(10.666711923974145,
-          -71.6317473478305), // Ajusta la posición según sea necesario
-      icon: _customIcons.length > 4
-          ? _customIcons[2]
-          : BitmapDescriptor.defaultMarker,
+      position: const LatLng(10.666711923974145, -71.6317473478305), // Ajusta la posición según sea necesario
+      icon: _customIcons.length > 4 ? _customIcons[2] : BitmapDescriptor.defaultMarker,
     );
 
     setState(() {});
   }
 
-  /*  Future<void> _loadDirections() async {
+ /*  Future<void> _loadDirections() async {
     final directions = await DirectionsRepository()
         .getDirections(origin: _tranvia.position, destination: _plaza.position, tranvia: _tranvia.position, plaza: _plaza.position);
     setState(() => _info = directions);
@@ -148,24 +128,26 @@ class _MapsPageState extends State<MapsPage> {
   void _goToLocation(LatLng position) {
     if (_mapController != null) {
       _mapController.animateCamera(
-        CameraUpdate.newCameraPosition(
-          CameraPosition(
-            target: position,
-            zoom: 18.0,
-          ),
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: position,
+          zoom: 18.0,
         ),
-      );
+      ),
+    );
     }
   }
 
   void _goToCenter(LatLng position) {
     if (_mapController != null) {
       _mapController.animateCamera(
-        CameraUpdate.newCameraPosition(CameraPosition(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
           target: position,
-          zoom: 15,
-        )),
-      );
+          zoom: 14,
+        )
+      ),
+    );
     }
   }
 
@@ -192,34 +174,50 @@ class _MapsPageState extends State<MapsPage> {
     });
   }
 
-  void _showCustomInfoWindow(
-      BuildContext context, String title, String snippet) {
-    showDialog(
+  void _showCustomInfoWindow(BuildContext context, String title, String ruta, String snippet, String assetname) {
+    AwesomeDialog(
       context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Text(title, style: const TextStyle(fontSize: 20)),
-                const SizedBox(height: 8),
-                Text(snippet),
-                const SizedBox(height: 8),
-                TextButton(
-                  child: const Text('Cerrar'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
+      dialogType: DialogType.noHeader,
+      animType: AnimType.bottomSlide,
+      customHeader:
+        ClipOval(
+              child: Image.asset(
+                'assets/$assetname.png',
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
+            ),        
+      title: title,    
+      titleTextStyle: const TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        fontFamily: 'alcaldia_fonts',
+      ),
+      descTextStyle: const TextStyle(
+        fontSize: 16,
+        fontFamily: 'alcaldia_fonts',
+      ),
+      desc:
+        ruta.substring(0, 4).toLowerCase() == 'ruta'        
+          ? '$snippet\n\n Visita este lugar en las siguientes rutas: $ruta'
+          : snippet,
+      width: MediaQuery.of(context).size.width * 0.4,
+      padding: const EdgeInsets.all(24),
+      headerAnimationLoop: false,
+      showCloseIcon: true,
+      /* btnCancelText: 'Cerrar',
+      btnCancelOnPress: () {},
+      btnOkText: 'Dibujar Ruta',
+      btnOkOnPress: () {    
+        if (ruta == 'Ruta de la Alegría') {
+          _drawMultiplePolylines();
+        } else if (ruta == 'Ruta del Terror') {
+        _drawTerrorRoute();
+        }        
+      }, */
+   ).show();       
+}
 
   /* Future<void> _drawPolylines() async {
     try {
@@ -247,22 +245,15 @@ class _MapsPageState extends State<MapsPage> {
     }
   } */
 
-  Future<void> _drawTerrorRoute() async {
+ Future<void> _drawTerrorRoute() async {
     try {
       final routes = [
         {'origin': _tranviaPosition, 'destination': _hospitalCentralPosition},
-        {
-          'origin': _hospitalCentralPosition,
-          'destination': _casaCapitulacionPosition
-        },
-        {
-          'origin': _casaCapitulacionPosition,
-          'destination': _quintaLuxorPosition
-        },
+        {'origin': _hospitalCentralPosition, 'destination': _casaCapitulacionPosition},
+        {'origin': _casaCapitulacionPosition, 'destination': _quintaLuxorPosition},
       ];
 
-      final directions =
-          await DirectionsRepository().getMultipleDirections(routes: routes);
+      final directions = await DirectionsRepository().getMultipleDirections(routes: routes);
 
       setState(() {
         _polylines.clear();
@@ -271,8 +262,7 @@ class _MapsPageState extends State<MapsPage> {
             Polyline(
               polylineId: PolylineId('terror_route_$i'),
               points: directions[i],
-              color: const Color.fromARGB(
-                  255, 249, 26, 10), // Color para la ruta del terror
+              color: const Color.fromARGB(255, 249, 26, 10), // Color para la ruta del terror
               width: 5,
             ),
           );
@@ -285,7 +275,7 @@ class _MapsPageState extends State<MapsPage> {
     }
   }
 
-  Future<void> _drawMultiplePolylines() async {
+ Future<void> _drawMultiplePolylines() async {
     try {
       final routes = [
         {'origin': _tranvia.position, 'destination': _plaza.position},
@@ -293,8 +283,7 @@ class _MapsPageState extends State<MapsPage> {
         {'origin': _costaVerdePosition, 'destination': _deliciasPlazaPosition},
       ];
 
-      final directions =
-          await DirectionsRepository().getMultipleDirections(routes: routes);
+      final directions = await DirectionsRepository().getMultipleDirections(routes: routes);
 
       setState(() {
         _polylines.clear();
@@ -316,6 +305,7 @@ class _MapsPageState extends State<MapsPage> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignInBloc, SignInState>(
@@ -333,31 +323,33 @@ class _MapsPageState extends State<MapsPage> {
                 return Center(child: Text('Error loading map style'));
               } else {
                 return MainMaps(
-                    polylines: _polylines,
-                    signInBloc: _signInBloc,
-                    center: _center,
-                    mapStyle: snapshot.data!,
-                    customIcons: _customIcons,
-                    goToLocation: _goToLocation,
-                    goToCenter: _goToCenter,
-                    drawTerrorRoute: _drawTerrorRoute,
-                    drawPolylines: _drawMultiplePolylines,
-                    tranvia: _tranvia,
-                    plaza: _plaza,
-                    hospitalCentral: _hospitalCentral,
-                    casaCapitulacion: _casaCapitulacion,
-                    quintaLuxor: _quintaLuxor,
-                    info: _info,
-                    showCustomInfoWindow: _showCustomInfoWindow,
-                    reservaTranvia: _reservaTranvia,
-                    seleccionarRuta: _seleccionarRuta,
-                    limpiarRuta: _limpiarRuta,
-                    rutaSeleccionada: rutaSeleccionada,
-                    onMapCreated: (controller) {
-                      _mapController = controller;
-                      // ignore: deprecated_member_use
-                      _mapController.setMapStyle(snapshot.data!);
-                    });
+                  polylines: _polylines,
+                  signInBloc: _signInBloc,
+                  center: _center, 
+                  mapStyle: snapshot.data!,
+                  customIcons: _customIcons,
+                  goToLocation: _goToLocation, 
+                  goToCenter: _goToCenter,
+                  drawTerrorRoute: _drawTerrorRoute,
+                  drawPolylines: _drawMultiplePolylines,
+                  tranvia: _tranvia,
+                  plaza: _plaza,
+                  hospitalCentral: _hospitalCentral,
+                  casaCapitulacion: _casaCapitulacion,
+                  quintaLuxor: _quintaLuxor,
+                  info: _info,
+                  showCustomInfoWindow: (context, title, ruta, snippet, assetname) => _showCustomInfoWindow(context, title, ruta, snippet, assetname),
+                  reservaTranvia: _reservaTranvia,
+                  seleccionarRuta: _seleccionarRuta,
+                  limpiarRuta: _limpiarRuta,
+                  rutaSeleccionada: rutaSeleccionada,
+                  
+                  onMapCreated: (controller) {
+                  _mapController = controller;
+                    // ignore: deprecated_member_use
+                  _mapController.setMapStyle(snapshot.data!);
+                  }                  
+                );
               }
             },
           );
@@ -412,15 +404,15 @@ class MainMaps extends StatelessWidget {
   final Function(LatLng) goToLocation;
   final Function(LatLng) goToCenter;
   final Function(GoogleMapController) onMapCreated;
-  final void Function(BuildContext, String, String) showCustomInfoWindow;
+  final void Function(BuildContext, String, String, String, String) showCustomInfoWindow;
   final bool rutaSeleccionada;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-      double width = constraints.maxWidth;
-      return Scaffold(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        double width = constraints.maxWidth;
+        return Scaffold(
           appBar: AppBar(
             leadingWidth: 0.0271 * (width),
             title: Row(
@@ -520,43 +512,43 @@ class MainMaps extends StatelessWidget {
                 ],
               ),
             ],
-          ),
-          drawer: Drawer(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: const <Widget>[
-                DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: ThemeCore.primaryColor,
-                  ),
-                  child: Text(
-                    'Rutas',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
+          ),    
+            drawer: Drawer(
+              child: ListView(          
+                padding: EdgeInsets.zero,
+                children: const <Widget>[            
+                  DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: ThemeCore.primaryColor,
+                    ),
+                    child: Text(
+                      'Rutas',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
                     ),
                   ),
-                ),
-                ExpansionTile(
-                  title: Text('Rutas del Tranvía'),
-                  children: <Widget>[
-                    ListTile(
-                      title: Text('Ruta de la Alegría'),
-                      subtitle: Text('Vive la experiencia de rascarte'),
-                    ),
-                    ListTile(
-                      title: Text('Ruta del Sexo'),
-                      subtitle: Text('Explora las calles de la pasión'),
-                    ),
-                    ListTile(
-                      title: Text('Ruta Gastronómica'),
-                      subtitle: Text('Sabores locales'),
-                    ),
-                  ],
-                ),
-              ],
+                  ExpansionTile(
+                      title: Text('Rutas del Tranvía'),
+                      children: <Widget>[
+                        ListTile(
+                          title: Text('Ruta de la Alegría'),
+                          subtitle: Text('Vive la experiencia de rascarte'),                    	
+                        ),
+                        ListTile(
+                          title: Text('Ruta del Sexo'),
+                          subtitle: Text('Explora las calles de la pasión'),
+                        ),
+                        ListTile(
+                          title: Text('Ruta Gastronómica'),
+                          subtitle: Text('Sabores locales'),
+                        ),          
+                      ],
+                  ),
+                ],
+              ),
             ),
-          ),
           body: Row(
             children: [
               if (MediaQuery.of(context).size.width > 700)
@@ -577,19 +569,18 @@ class MainMaps extends StatelessWidget {
                         ),
                       ),
                       ExpansionTile(
-                        title: const Text(
-                          'Tranvía',
-                          style: TextStyle(fontSize: 18),
+                        title: const Text('Tranvía',
+                        style: TextStyle(
+                          fontSize: 18),
                         ),
                         children: <Widget>[
                           ListTile(
                             title: Text('Ruta de la Alegría'),
-                            subtitle:
-                                Text('Disfruta de rascarte escuchando gaita'),
+                            subtitle: Text('Disfruta de la ciudad por la noche'),
                             onTap: () {
-                              drawPolylines();
-                              seleccionarRuta('Ruta de la Alegría');
-                            },
+                            drawPolylines();
+                            seleccionarRuta('Ruta de la Alegría');                    
+                          },
                           ),
                           ListTile(
                             title: Text('Ruta del Terror'),
@@ -606,18 +597,17 @@ class MainMaps extends StatelessWidget {
                               // Acción para esta ruta
                             },
                           ),
-                        ],
-                      ),
+                    ],
+                  ),
                       ExpansionTile(
-                        title: const Text(
-                          'Fomutur',
-                          style: TextStyle(fontSize: 18),
+                        title: const Text('Fomutur',
+                        style: TextStyle(
+                          fontSize: 18),
                         ),
                         children: <Widget>[
                           ListTile(
                             title: Text('Ruta de la Comida'),
-                            subtitle:
-                                Text('Disfruta de la gastronomía zuliana'),
+                            subtitle: Text('Disfruta de la gastronomía zuliana'),
                             onTap: () {
                               signInBloc.add(const SignInEvent.singInEmail());
                             },
@@ -631,18 +621,17 @@ class MainMaps extends StatelessWidget {
                           ),
                           ListTile(
                             title: Text('Ruta de el centro'),
-                            subtitle:
-                                Text('Disfruta de la arquitectura antigua'),
+                            subtitle: Text('Disfruta de la arquitectura antigua'),
                             onTap: () {
                               // Acción para esta ruta
                             },
                           ),
                         ],
-                      ),
-                      ExpansionTile(
-                        title: const Text(
-                          'Lacustres',
-                          style: TextStyle(fontSize: 18),
+                    ),
+                    ExpansionTile(
+                        title: const Text('Lacustres',
+                        style: TextStyle(
+                          fontSize: 18),
                         ),
                         children: <Widget>[
                           ListTile(
@@ -667,95 +656,84 @@ class MainMaps extends StatelessWidget {
                             },
                           ),
                         ],
-                      ),
-                    ],
-                  ),
+                    ),
+                ],
                 ),
+              ),
               Expanded(
-                  flex: 3, // Ajusta el tamaño del mapa
-                  child: Stack(
+                flex: 3, // Ajusta el tamaño del mapa
+                child: Stack(
+                  children: [
+                  Stack(
+                    alignment: Alignment.center,                
                     children: [
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          GoogleMap(
-                            onMapCreated: onMapCreated,
-                            initialCameraPosition: CameraPosition(
-                              target: center,
-                              zoom: 14,
-                            ),
-                            markers: {
-                              tranvia = Marker(
-                                markerId:
-                                    const MarkerId('Tranvía de Maracaibo'),
-                                position: const LatLng(
-                                    10.6564178133895, -71.59488684178918),
-                                icon: customIcons.isNotEmpty
-                                    ? customIcons[0]
-                                    : BitmapDescriptor.defaultMarker,
-                                onTap: () {
-                                  goToLocation(const LatLng(
-                                      10.6564178133895, -71.59488684178918));
-                                  /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                                },
-                              ),
-                              plaza = Marker(
-                                markerId:
-                                    const MarkerId('Plaza de la Republica'),
-                                position: const LatLng(
-                                    10.66623260705817, -71.60581323765165),
-                                icon: customIcons.isNotEmpty
-                                    ? customIcons[1]
-                                    : BitmapDescriptor.defaultMarker,
-                                onTap: () {
-                                  goToLocation(const LatLng(
-                                      10.665841201331798, -71.60603111374822));
-                                  /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                                },
-                              ),
-                              hospitalCentral = Marker(
-                                markerId: const MarkerId('Hospital Central'),
-                                position: const LatLng(
-                                    10.64214695401155, -71.60557377666612),
-                                icon: customIcons.isNotEmpty
-                                    ? customIcons[3]
-                                    : BitmapDescriptor.defaultMarker,
-                                onTap: () {
-                                  goToLocation(const LatLng(
-                                      10.64214695401155, -71.60557377666612));
-                                  /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                                },
-                              ),
-                              casaCapitulacion = Marker(
-                                markerId:
-                                    const MarkerId('Casa de la Capitulación'),
-                                position: const LatLng(
-                                    10.64231896416391, -71.60783610049393),
-                                icon: customIcons.isNotEmpty
-                                    ? customIcons[2]
-                                    : BitmapDescriptor.defaultMarker,
-                                onTap: () {
-                                  goToLocation(const LatLng(
-                                      10.64231896416391, -71.60783610049393));
-                                  /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                                },
-                              ),
-                              quintaLuxor = Marker(
-                                markerId: const MarkerId('Quinta Luxor'),
-                                position: const LatLng(
-                                    10.666711923974145, -71.6317473478305),
-                                icon: customIcons.isNotEmpty
-                                    ? customIcons[2]
-                                    : BitmapDescriptor.defaultMarker,
-                                onTap: () {
-                                  goToLocation(const LatLng(
-                                      10.666711923974145, -71.6317473478305));
-                                  /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                                },
-                              ),
+                      GoogleMap(
+                        onMapCreated: onMapCreated,            
+                        initialCameraPosition: CameraPosition(
+                          target: center,
+                          zoom: 14,                  
+                        ),
+                        markers: {
+                          tranvia = Marker(
+                            markerId: const MarkerId('Tranvía de Maracaibo'),
+                            position: const LatLng(10.6564178133895, -71.59488684178918),       
+                            icon: customIcons.isNotEmpty ? customIcons[0] : BitmapDescriptor.defaultMarker,  
+                            onTap: () {
+                              /* goToLocation(
+                                const LatLng(10.6564178133895, -71.59488684178918)
+                              ); */
+                              showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede', 'Sede del tranvía de Maracaibo, punto de salida para las rutas del Tranvía, ¡Descubre nuestras rutas en el menú lateral!', 'tranvia'); //MUESTRA EL INFOWINDOW CON CLICK
                             },
-                            polylines: polylines,
-                            /* polylines: {
+                          ),
+                          plaza = Marker(
+                            markerId: const MarkerId('Plaza de la Republica'),
+                            position: const LatLng(10.66623260705817, -71.60581323765165),
+                            icon: customIcons.isNotEmpty ? customIcons[1] : BitmapDescriptor.defaultMarker,
+                            onTap: () {
+                              /* goToLocation(
+                                const LatLng(10.665841201331798, -71.60603111374822)
+                              ); */
+                              showCustomInfoWindow(context, 'Plaza de la República', 'Ruta de la Alegría', 'La plaza de la República es una de las principales plazas de la ciudad de Maracaibo, está ubicada en la calle 5 de Julio, un importante bulevar de Maracaibo, que lleva el nombre de la fecha de la independencia de Venezuela.', 'plaza');
+                              /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
+                            },
+                          ),
+                          hospitalCentral = Marker(
+                            markerId: const MarkerId('Hospital Central'),
+                            position: const LatLng(10.64214695401155, -71.60557377666612),
+                            icon: customIcons.isNotEmpty ? customIcons[3] : BitmapDescriptor.defaultMarker,
+                            onTap: () {
+                              /* goToLocation(
+                                const LatLng(10.64214695401155, -71.60557377666612)
+                              ); */
+                              showCustomInfoWindow(context, 'Hospital Central', 'Ruta del Terror', 'El Hospital Central de Maracaibo es uno de los centros de salud más antiguos de la ciudad de Maracaibo. Fue la sede del primer hospital de la ciudad creado como la "Casa de Beneficencia" pero también recibió el nombre de Hospital de Santa Ana, siendo inaugurado el 26 de julio de 1608.', 'central');
+                              /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
+                            },
+                          ),
+                          casaCapitulacion = Marker(
+                            markerId: const MarkerId('Casa de la Capitulación'),
+                            position: const LatLng(10.64231896416391, -71.60783610049393),
+                            icon: customIcons.isNotEmpty ? customIcons[2] : BitmapDescriptor.defaultMarker,
+                            onTap: () {
+                              goToLocation(
+                                const LatLng(10.64231896416391, -71.60783610049393)
+                              );
+                              /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
+                            },
+                          ),
+                          quintaLuxor = Marker(
+                            markerId: const MarkerId('Quinta Luxor'),
+                            position: const LatLng(10.666711923974145, -71.6317473478305),
+                            icon: customIcons.isNotEmpty ? customIcons[2] : BitmapDescriptor.defaultMarker,
+                            onTap: () {
+                              goToLocation(
+                                const LatLng(10.666711923974145, -71.6317473478305)
+                              );
+                              /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
+                            },
+                          ),
+                        },
+                        polylines: polylines,
+                        /* polylines: {
                           if (info != null)
                             Polyline(
                               polylineId: const PolylineId('overview_polyline'),
@@ -766,85 +744,85 @@ class MainMaps extends StatelessWidget {
                                   .toList(),
                             ),
                         },	 */
-                            style: mapStyle,
-                          ),
-                          if (info != null)
-                            Positioned(
-                              top: 20.0,
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 6.0,
-                                  horizontal: 12.0,
+                        style: mapStyle,
+                      ),
+                      if (info != null)
+                        Positioned(
+                          top: 20.0,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 6.0,
+                              horizontal: 12.0,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.yellowAccent,
+                              borderRadius: BorderRadius.circular(20.0),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 6.0,
                                 ),
-                                decoration: BoxDecoration(
-                                  color: Colors.yellowAccent,
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: Colors.black26,
-                                      offset: Offset(0, 2),
-                                      blurRadius: 6.0,
-                                    ),
-                                  ],
-                                ),
-                                child: Text(
-                                  '${info!.totalDistance}, ${info!.totalDuration}',
-                                  style: const TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
+                              ],
+                            ),
+                            child: Text(
+                              '${info!.totalDistance}, ${info!.totalDuration}',
+                              style: const TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.w600,
                               ),
-                            )
-                        ],
-                      ),
-                      Positioned(
-                        bottom: 20.0,
-                        right: 70.0,
-                        height: 50,
-                        width: 50,
-                        child: FloatingActionButton(
-                            backgroundColor: ThemeCore.primaryColor,
-                            foregroundColor: Colors.white,
-                            onPressed: () {
-                              goToCenter(center);
-                            },
-                            child: const Icon(Icons.my_location)),
-                      ),
-                      Positioned(
-                        bottom: 20.0,
-                        right: 140.0,
-                        height: 50,
-                        width: 50,
-                        child: FloatingActionButton(
-                          backgroundColor: rutaSeleccionada
-                              ? ThemeCore.primaryColor
-                              : Colors.grey,
-                          foregroundColor: Colors.white,
-                          onPressed: rutaSeleccionada
-                              ? () => reservaTranvia('ruta')
-                              : null,
-                          child: const Icon(Icons.bookmark_border),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 20.0,
-                        right: 210.0,
-                        height: 50,
-                        width: 50,
-                        child: FloatingActionButton(
-                          backgroundColor: ThemeCore.primaryColor,
-                          foregroundColor: Colors.white,
-                          onPressed: () {
-                            limpiarRuta(polylines);
-                          },
-                          child: const Icon(Icons.clear_rounded),
-                        ),
-                      )
+                            ),
+                          ),
+                        )
                     ],
-                  )),
+                  ),
+                  Positioned(
+                    bottom: 20.0,
+                    right: 70.0,
+                    height: 50,
+                    width: 50,
+                    child: FloatingActionButton(                  
+                      backgroundColor: ThemeCore.primaryColor,
+                      foregroundColor: Colors.white,
+                      onPressed: () {
+                        goToCenter(center);
+                      },
+                      child: const Icon(Icons.my_location)                  
+                    ),                
+                  ),
+                  Positioned(
+                    bottom: 20.0,
+                    right: 140.0,
+                    height: 50,
+                    width: 50,
+                    child: FloatingActionButton(
+                      backgroundColor: rutaSeleccionada ? ThemeCore.primaryColor : Colors.grey,
+                      foregroundColor: Colors.white,
+                      onPressed: rutaSeleccionada ? () => reservaTranvia('ruta') : null,
+                      child: const Icon(Icons.bookmark_border),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 20.0,
+                    right: 210.0,
+                    height: 50,
+                    width: 50,
+                    child: FloatingActionButton(
+                      backgroundColor: ThemeCore.primaryColor,
+                      foregroundColor: Colors.white,
+                      onPressed: () {
+                        limpiarRuta(polylines);
+                      },
+                      child: const Icon(Icons.clear_rounded),
+                    ),
+                  )              
+                ],                      
+                )            
+              ),
             ],
-          ));
-    });
+          )
+        );
+      }
+    );
   }
 }
