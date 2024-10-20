@@ -1244,6 +1244,7 @@ mixin _$ProfileState {
   String get first_name => throw _privateConstructorUsedError;
   String get citizen_id => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
   Option<Either<UserFailure, Unit>> get userFailureOrUserSuccess =>
       throw _privateConstructorUsedError;
 
@@ -1266,6 +1267,7 @@ abstract class $ProfileStateCopyWith<$Res> {
       String first_name,
       String citizen_id,
       bool isSubmitting,
+      String userId,
       Option<Either<UserFailure, Unit>> userFailureOrUserSuccess});
 }
 
@@ -1289,6 +1291,7 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     Object? first_name = null,
     Object? citizen_id = null,
     Object? isSubmitting = null,
+    Object? userId = null,
     Object? userFailureOrUserSuccess = null,
   }) {
     return _then(_value.copyWith(
@@ -1312,6 +1315,10 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       userFailureOrUserSuccess: null == userFailureOrUserSuccess
           ? _value.userFailureOrUserSuccess
           : userFailureOrUserSuccess // ignore: cast_nullable_to_non_nullable
@@ -1334,6 +1341,7 @@ abstract class _$$ProfileStateImplCopyWith<$Res>
       String first_name,
       String citizen_id,
       bool isSubmitting,
+      String userId,
       Option<Either<UserFailure, Unit>> userFailureOrUserSuccess});
 }
 
@@ -1355,6 +1363,7 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
     Object? first_name = null,
     Object? citizen_id = null,
     Object? isSubmitting = null,
+    Object? userId = null,
     Object? userFailureOrUserSuccess = null,
   }) {
     return _then(_$ProfileStateImpl(
@@ -1378,6 +1387,10 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       userFailureOrUserSuccess: null == userFailureOrUserSuccess
           ? _value.userFailureOrUserSuccess
           : userFailureOrUserSuccess // ignore: cast_nullable_to_non_nullable
@@ -1395,6 +1408,7 @@ class _$ProfileStateImpl implements _ProfileState {
       required this.first_name,
       required this.citizen_id,
       required this.isSubmitting,
+      required this.userId,
       required this.userFailureOrUserSuccess});
 
   @override
@@ -1408,11 +1422,13 @@ class _$ProfileStateImpl implements _ProfileState {
   @override
   final bool isSubmitting;
   @override
+  final String userId;
+  @override
   final Option<Either<UserFailure, Unit>> userFailureOrUserSuccess;
 
   @override
   String toString() {
-    return 'ProfileState(phone_number: $phone_number, first_lastname: $first_lastname, first_name: $first_name, citizen_id: $citizen_id, isSubmitting: $isSubmitting, userFailureOrUserSuccess: $userFailureOrUserSuccess)';
+    return 'ProfileState(phone_number: $phone_number, first_lastname: $first_lastname, first_name: $first_name, citizen_id: $citizen_id, isSubmitting: $isSubmitting, userId: $userId, userFailureOrUserSuccess: $userFailureOrUserSuccess)';
   }
 
   @override
@@ -1430,6 +1446,7 @@ class _$ProfileStateImpl implements _ProfileState {
                 other.citizen_id == citizen_id) &&
             (identical(other.isSubmitting, isSubmitting) ||
                 other.isSubmitting == isSubmitting) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(
                     other.userFailureOrUserSuccess, userFailureOrUserSuccess) ||
                 other.userFailureOrUserSuccess == userFailureOrUserSuccess));
@@ -1437,7 +1454,7 @@ class _$ProfileStateImpl implements _ProfileState {
 
   @override
   int get hashCode => Object.hash(runtimeType, phone_number, first_lastname,
-      first_name, citizen_id, isSubmitting, userFailureOrUserSuccess);
+      first_name, citizen_id, isSubmitting, userId, userFailureOrUserSuccess);
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
@@ -1455,6 +1472,7 @@ abstract class _ProfileState implements ProfileState {
       required final String first_name,
       required final String citizen_id,
       required final bool isSubmitting,
+      required final String userId,
       required final Option<Either<UserFailure, Unit>>
           userFailureOrUserSuccess}) = _$ProfileStateImpl;
 
@@ -1468,6 +1486,8 @@ abstract class _ProfileState implements ProfileState {
   String get citizen_id;
   @override
   bool get isSubmitting;
+  @override
+  String get userId;
   @override
   Option<Either<UserFailure, Unit>> get userFailureOrUserSuccess;
 

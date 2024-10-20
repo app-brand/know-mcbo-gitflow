@@ -8,6 +8,7 @@ class ProfileState with _$ProfileState {
       required String first_name,
       required String citizen_id,
       required bool isSubmitting,
+      required String userId,
       required Option<Either<UserFailure, Unit>>
           userFailureOrUserSuccess}) = _ProfileState;
 
@@ -17,6 +18,7 @@ class ProfileState with _$ProfileState {
         first_lastname: '',
         first_name: '',
         citizen_id: '',
+        userId: ' ',
         userFailureOrUserSuccess: none(),
       );
 }

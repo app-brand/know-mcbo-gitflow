@@ -99,24 +99,28 @@ class FirebaseUserRepository implements InterfaceUserFacade {
     try {
       await _firebaseAuth.verifyPhoneNumber(
         phoneNumber: phone_number.getOrCrash(),
-        timeout: Duration(seconds: 30),
+        timeout: Duration(seconds: 60),
         verificationCompleted: (PhoneAuthCredential credential) async {
-          print('verification - phone number');
+          // Metodo que se activa en caso de que el dispositivo movil
+          // auto - detecte el sms
+          print('automatic verification - phone number');
           await _firebaseAuth.currentUser!.linkWithCredential(credential);
           return completer.complete(right(unit));
         },
         verificationFailed: (FirebaseAuthException e) {
-          print('verification - Falla');
+          print('verification - Falla codigo + ' + e.code);
+          print('verification - Falla  message+ ' + e.message.toString());
           return completer
               .complete(left(UserFailure.serverError(failedValue: '')));
         },
         codeSent: (String userId, int? resendToken) {
           print('code - sent');
-          //_verificationId = userId;
+          print('verificaciontionId: ' + userId);
+          print('verification token:' + resendToken.toString());
           return completer.complete(right(unit));
         },
         codeAutoRetrievalTimeout: (String userId) {
-          //_verificationId = userId;
+          print("codeAutoRetrievalTimeout" + userId);
           return completer.complete(right(unit));
         },
       );

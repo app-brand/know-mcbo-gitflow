@@ -94,6 +94,7 @@ class _PhoneDialogState extends State<PhoneDialog>
                             print(_countryCodePhone);
                             if (formKey.currentState!.validate()) {
                               print(_countryCodePhone);
+                              _profileBloc.add(ProfileEvent.sendOtp());
                             }
                           },
                           child: const Text('Telefono'),
