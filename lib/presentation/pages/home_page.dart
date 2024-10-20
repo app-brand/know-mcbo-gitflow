@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/core/theme_core.dart';
+import 'package:know_my_city/presentation/dialogs/phone_dialog.dart';
 import 'package:know_my_city/presentation/dialogs/sign_in_dialog.dart';
 import 'package:go_router/go_router.dart';
 
@@ -76,7 +77,8 @@ class _HomePageState extends State<HomePage> {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
-                          return SignInDialog();
+                          //return SignInDialog();
+                          return PhoneDialog();
                         },
                       );
                     },

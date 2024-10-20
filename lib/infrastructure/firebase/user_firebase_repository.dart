@@ -52,7 +52,6 @@ class FirebaseUserRepository implements InterfaceUserFacade {
     required Password password,
   }) async {
     print('RegisterInWithMail - Infraestructura');
-    //Future.delayed(const Duration(seconds: 3));
     final userMail = emailAddress.getOrCrash();
     final userPassword = password.getOrCrash();
     try {
@@ -91,10 +90,11 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       return left(const UserFailure.serverError(failedValue: ''));
     }
   }
-  /*
+
   @override
   Future<Either<UserFailure, Unit>> sendOneTimePassword(
       {required PhoneNumber phone_number}) async {
+    print('OneTimePasswordSend - Infraestructura');
     final Completer<Either<UserFailure, Unit>> completer = Completer();
     try {
       await _firebaseAuth.verifyPhoneNumber(
@@ -127,6 +127,8 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       return left(UserFailure.serverError(failedValue: ''));
     }
   }
+  /*
+  
 
   @override
   Future<Either<UserFailure, Unit>> phoneNumberVerification({

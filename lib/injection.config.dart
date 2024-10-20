@@ -13,6 +13,7 @@ import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import 'application/profile/profile_bloc.dart' as _i11;
 import 'application/sign_in/sign_in_bloc.dart' as _i939;
 import 'application/sign_up/sign_up_bloc.dart' as _i1011;
 import 'domain/user/interface_user_facade.dart' as _i746;
@@ -43,6 +44,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1011.SignUpBloc(gh<_i746.InterfaceUserFacade>()));
     gh.lazySingleton<_i939.SignInBloc>(
         () => _i939.SignInBloc(gh<_i746.InterfaceUserFacade>()));
+    gh.lazySingleton<_i11.ProfileBloc>(
+        () => _i11.ProfileBloc(gh<_i746.InterfaceUserFacade>()));
     return this;
   }
 }
