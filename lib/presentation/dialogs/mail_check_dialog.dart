@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/injection.dart';
+import 'package:know_my_city/presentation/dialogs/phone_dialog.dart';
 
 class MailVerificationDialog extends StatelessWidget {
   const MailVerificationDialog({super.key});
@@ -59,21 +60,7 @@ class _TimerScreenState extends State<TimerScreen>
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          title: const Text('Correo validado'),
-          content: const Text('Por favor, prosiga a validar su telefono'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                // TODO: Modificar para continuar con la
-                // Validacion telefonica
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
+        return const PhoneDialog();
       },
     );
   }

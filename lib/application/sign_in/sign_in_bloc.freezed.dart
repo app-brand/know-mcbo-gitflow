@@ -632,7 +632,9 @@ abstract class _PasswordChanged implements SignInEvent {
 /// @nodoc
 mixin _$SignInState {
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
-  Password get password => throw _privateConstructorUsedError;
+  Password get password =>
+      throw _privateConstructorUsedError; // TODO: Reparar esto no se esta usando
+// ShowErrorMessages
   bool get showErrorMessages => throw _privateConstructorUsedError;
   bool get isSubmitting => throw _privateConstructorUsedError;
   Option<Either<UserFailure, Unit>> get userFailureOrUserSuccess =>
@@ -779,6 +781,8 @@ class _$SignInStateImpl implements _SignInState {
   final EmailAddress emailAddress;
   @override
   final Password password;
+// TODO: Reparar esto no se esta usando
+// ShowErrorMessages
   @override
   final bool showErrorMessages;
   @override
@@ -834,7 +838,8 @@ abstract class _SignInState implements SignInState {
   @override
   EmailAddress get emailAddress;
   @override
-  Password get password;
+  Password get password; // TODO: Reparar esto no se esta usando
+// ShowErrorMessages
   @override
   bool get showErrorMessages;
   @override

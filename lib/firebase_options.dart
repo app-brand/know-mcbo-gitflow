@@ -61,5 +61,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'know-my-city-eaa7f.appspot.com',
     measurementId: 'G-MLHZ3RBFLS',
   );
-
 }
