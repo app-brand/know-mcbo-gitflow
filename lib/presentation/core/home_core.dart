@@ -36,7 +36,7 @@ class HomeCore extends StatelessWidget {
         BlocProvider(
           lazy: false,
           create: (context) => sl<SignUpBloc>(),
-          child: const HomePage(),
+          child: const AppHome(),
         ),
         BlocProvider(
           lazy: false,
