@@ -3,6 +3,7 @@ import 'package:know_my_city/domain/user/user_failures.dart';
 import 'package:know_my_city/domain/value_objects/email_address.dart';
 //import 'package:know_my_city/domain/value_objects/one_time_password.dart';
 import 'package:know_my_city/domain/value_objects/password.dart';
+import 'package:know_my_city/domain/value_objects/phone_number.dart';
 //import 'package:know_my_city/domain/value_objects/phone_number.dart';
 
 abstract interface class InterfaceUserFacade {
@@ -16,16 +17,23 @@ abstract interface class InterfaceUserFacade {
     required EmailAddress emailAddress,
     required Password password,
   });
-  // Verificar correo
+  // Verificador de correo electronico
   Future<Either<UserFailure, Unit>> verifyIsMailisActive();
+
+  // Envia el otp al usuario - validar.
+  Future<Either<UserFailure, Unit>> sendOneTimePassword(
+      {required PhoneNumber phone_number});
+
   /*
   Future<Either<UserFailure, Unit>> sendOneTimePassword(
       {required PhoneNumber phone_number});
   // Verificar Phone number and OTP
+  
   Future<Either<UserFailure, Unit>> phoneNumberVerification({
     required String verification_id,
     required OneTimePassword otp,
   });
+  
   //Completar el registro en cloud_store
   Future<Either<UserFailure, Unit>> completeUserRegistration({
     required String uuid,

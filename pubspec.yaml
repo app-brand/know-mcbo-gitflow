@@ -22,6 +22,23 @@ dependencies:
   bloc: ^8.1.4
   injectable_generator: ^2.6.2
   cloud_firestore: ^5.4.2
+  google_maps_flutter: ^2.9.0
+  dio: ^4.0.0
+  flutter_polyline_points: ^2.1.0
+  http: ^1.2.2
+  geolocator: ^13.0.1
+  pretty_qr_code: ^3.3.0
+  custom_info_window: ^1.0.1
+  awesome_dialog: ^3.2.1
+  quickalert: ^1.1.0
+  font_awesome_flutter: ^9.2.0
+  url_launcher: ^6.0.12
+  pdf: ^3.11.1
+  flutter_svg: ^2.0.10+1
+  country_picker: ^2.0.26
+  provider: ^6.1.2
+  google_fonts: ^6.2.1
+  
 
 dev_dependencies:
   flutter_test:
@@ -37,4 +54,33 @@ flutter:
         - asset: fonts/Poppins-Bold.ttf
         - asset: fonts/Poppins-Medium.ttf
         - asset: fonts/Poppins-SemiBold.ttf
+        - asset: fonts/Poppins-Light.ttf
+        - asset: fonts/Poppins-ExtraLight.ttf
+        - asset: fonts/Poppins-ExtraBold.ttf
+        - asset: fonts/Poppins-Black.ttf
+        - asset: fonts/Poppins-Thin.ttf
+        - asset: fonts/Poppins-Italic.ttf
+        - asset: fonts/Poppins-BoldItalic.ttf
+        - asset: fonts/Poppins-MediumItalic.ttf
+        - asset: fonts/Poppins-SemiBoldItalic.ttf
+        - asset: fonts/Poppins-LightItalic.ttf
+        - asset: fonts/Poppins-ExtraLightItalic.ttf
+        - asset: fonts/Poppins-ExtraBoldItalic.ttf
+        - asset: fonts/Poppins-BlackItalic.ttf
+        - asset: fonts/Poppins-ThinItalic.ttf
         
+  assets:
+    - lib/presentation/core/map_style.json
+    - assets/data4iflogo.png
+    - assets/shrek.png
+    - assets/central.png
+    - assets/tranvia.png
+    - assets/plaza.png
+    - assets/casa.png
+    - assets/alcaldia-de-maracaibo.png
+    - assets/images/axis/
+    - assets/images/brand/
+    - assets/images/events_png/
+    - assets/images/main/
+    - assets/images/vector/
+    - assets/json/        

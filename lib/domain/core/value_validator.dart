@@ -30,8 +30,6 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
   return right(input);
 }
 
-//Validador de numeros internacionales
-/*
 Either<ValueFailure<String>, String> validatePhoneNumber(String input) {
   const phoneRegex =
       r'^\+?\d{10,15}$'; // Validamos que sea un número internacional.
@@ -42,7 +40,6 @@ Either<ValueFailure<String>, String> validatePhoneNumber(String input) {
   }
 }
 
-//Validador de OTP
 Either<ValueFailure<String>, String> validateOTP(String input) {
   if (input.length == 6 && RegExp(r'^[0-9]+$').hasMatch(input)) {
     return right(input);
@@ -50,4 +47,3 @@ Either<ValueFailure<String>, String> validateOTP(String input) {
     return left(ValueFailure.invalidOtp(failedValue: input));
   }
 }
-*/
