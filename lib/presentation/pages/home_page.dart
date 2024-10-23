@@ -56,14 +56,15 @@ class _HomePageState extends State<HomePage> {
                 child: Center(
                   child: IconButton(
                     onPressed: () {
-                      print('Email verificado? -' +
+                      context.go('/maps');
+                      /* print('Email verificado? -' +
                           state.isEmailVerified.toString());
                       if (state.isEmailVerified) {
                         context.go('/maps');
                       } else {
                         _showErrorDialog(
                             "Aqui yupi - no puedes pasar - perro malo");
-                      }
+                      } */
                     },
                     color: ThemeCore.primaryColor,
                     icon: const Icon(Icons.map),
