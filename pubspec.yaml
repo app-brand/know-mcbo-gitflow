@@ -36,6 +36,7 @@ dependencies:
   pdf: ^3.11.1
   flutter_svg: ^2.0.10+1
   country_picker: ^2.0.26
+  provider: ^6.1.2
   
 
 dev_dependencies:
