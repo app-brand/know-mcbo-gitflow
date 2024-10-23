@@ -577,17 +577,19 @@ class MainMaps extends StatelessWidget {
                           ListTile(
                             title: Text('Ruta de la Alegría'),
                             subtitle: Text('Disfruta de la ciudad por la noche'),
-                            onTap: () {
+                            onTap: () {                            
                             drawPolylines();
-                            seleccionarRuta('Ruta de la Alegría');                    
+                            seleccionarRuta('Ruta de la Alegría'); 
+                            goToCenter(center);                   
                           },
                           ),
                           ListTile(
                             title: Text('Ruta del Terror'),
                             subtitle: Text('Disfruta de la noche marabina'),
-                            onTap: () {
+                            onTap: () {                              
                               drawTerrorRoute();
                               seleccionarRuta('Ruta del Terror');
+                              goToCenter(center);
                             },
                           ),
                           ListTile(
@@ -596,7 +598,7 @@ class MainMaps extends StatelessWidget {
                             onTap: () {
                               // Acción para esta ruta
                             },
-                          ),
+                          ),                          
                     ],
                   ),
                       ExpansionTile(
@@ -657,6 +659,25 @@ class MainMaps extends StatelessWidget {
                           ),
                         ],
                     ),
+                    Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: ElevatedButton(                              
+                                onPressed: rutaSeleccionada ? () => reservaTranvia('ruta') : null,
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: rutaSeleccionada ? ThemeCore.primaryColor : Colors.grey,  
+                                  foregroundColor: Colors.white,                                                                
+                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                                  textStyle: const TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                              child: const Text('Adquiere tus entradas'),
+                            ),
+                          ),
                 ],
                 ),
               ),
@@ -777,10 +798,10 @@ class MainMaps extends StatelessWidget {
                     ],
                   ),
                   Positioned(
-                    bottom: 20.0,
-                    right: 70.0,
-                    height: 50,
-                    width: 50,
+                    bottom: 120.0,
+                    right: 7.0,
+                    height: 45,
+                    width: 45,
                     child: FloatingActionButton(                  
                       backgroundColor: ThemeCore.primaryColor,
                       foregroundColor: Colors.white,
@@ -790,7 +811,7 @@ class MainMaps extends StatelessWidget {
                       child: const Icon(Icons.my_location)                  
                     ),                
                   ),
-                  Positioned(
+                  /* Positioned(
                     bottom: 20.0,
                     right: 140.0,
                     height: 50,
@@ -801,12 +822,12 @@ class MainMaps extends StatelessWidget {
                       onPressed: rutaSeleccionada ? () => reservaTranvia('ruta') : null,
                       child: const Icon(Icons.bookmark_border),
                     ),
-                  ),
+                  ), */
                   Positioned(
-                    bottom: 20.0,
-                    right: 210.0,
-                    height: 50,
-                    width: 50,
+                    bottom: 180.0,
+                    right: 7.0,
+                    height: 45,
+                    width: 45,
                     child: FloatingActionButton(
                       backgroundColor: ThemeCore.primaryColor,
                       foregroundColor: Colors.white,

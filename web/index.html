@@ -34,8 +34,112 @@
 
   <title>know_my_city</title>
   <link rel="manifest" href="manifest.json">
+  <style>
+    
+    body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+    height: 100%; 
+    background: darkgreen;
+  }
+
+    /* BARRA DE CARGA */
+    .flutter-loader {
+      display: none !important;
+    }
+    /* IMAGEN DE CARGA */
+    #loading{
+      top: 0;
+      left: 0;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: darkgreen;
+      z-index: 1;
+      opacity: 1;
+      background-size: cover;
+      background-position: center;
+      transition: opacity 1.4s ease-out, filter 1.4s ease-out;
+    }
+
+    #loading.fade-out {
+      opacity: 0;
+      filter: blur(10px);
+    }
+
+    /* ANIMACIÓN LOGO CONOCE */
+    @keyframes scaleInOut {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    #loading img {
+      position: relative;
+      z-index: 2;
+      animation: scaleInOut 5s ease-in-out infinite;
+    }
+
+    #overlay{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: darkgreen;
+      z-index: 1;
+      opacity: 0.7;
+    }
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    #loading img {
+      width: 80%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #loading img {
+      width: 70%;
+    }
+  }
+  </style>
 </head>
 <body>
+  <div id="loading">
+    <div id="overlay"></div>
+      <img src="assets/conoce.png" alt="loading" width="600" height="auto">
+</div>
   <script src="flutter_bootstrap.js" async></script>
+  <script>
+    window.addEventListener('flutter-first-frame', function() {
+      // Retardar la imagen de carga
+      setTimeout(function() {
+        const loadingElement = document.getElementById('loading');
+        loadingElement.classList.add('fade-out');
+        // Esperar a que termine la transición antes de ocultar el elemento
+        setTimeout(function() {
+          loadingElement.style.display = 'none';
+        }, 1000); // Duración de la transición en milisegundos
+      }, 3000); 
+    });
+
+       // Lista de URLs de imágenes
+       const imageUrls = [
+      'assets/imagen_carga_1.jpg',
+      'assets/imagen_carga_2.jpg',
+      'assets/imagen_carga_3.jpg'
+    ];
+
+    // Seleccionar una imagen aleatoriamente
+    const randomImageUrl = imageUrls[Math.floor(Math.random() * imageUrls.length)];
+
+    // Aplicar la imagen seleccionada como fondo del contenedor de carga
+    document.getElementById('loading').style.backgroundImage = `url(${randomImageUrl})`;
+
+  </script>
 </body>
 </html>
+
