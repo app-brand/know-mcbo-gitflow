@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:know_my_city/presentation/core/directions_model.dart';
-import 'package:know_my_city/presentation/core/.env.dart';
 
 class DirectionsRepository {
   static const String _baseUrl =
