@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   // Constante de diseno
@@ -7,9 +8,12 @@ class AppTheme {
   static const Color greentColorOpacity = Color.fromRGBO(31, 192, 117, 0.4);
   static const Color greentColorTwoOpacity = Color.fromRGBO(0, 99, 65, 0.7);
   static const Color greentColorNoOpacity = Color.fromRGBO(31, 192, 117, 1);
+  static const Color greenSecondary = Color(0xFF00B451);
+  static const Color greenAlcaldia = Color(0xFF006341);
   // Extendiendo la clase estatica ThemeData
   static ThemeData getThemeData() {
     return ThemeData(
+      textTheme: GoogleFonts.montserratTextTheme(),
       fontFamily: 'alcaldia_fonts',
       colorScheme: ColorScheme.fromSwatch(
         primarySwatch:
