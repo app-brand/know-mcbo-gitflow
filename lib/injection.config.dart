@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:cloud_firestore/cloud_firestore.dart' as _i974;
+import 'package:dio/dio.dart' as _i361;
 import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
@@ -16,9 +17,11 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'application/profile/profile_bloc.dart' as _i11;
 import 'application/sign_in/sign_in_bloc.dart' as _i939;
 import 'application/sign_up/sign_up_bloc.dart' as _i1011;
+import 'domain/map/interface_map_facade.dart' as _i70;
 import 'domain/user/interface_user_facade.dart' as _i746;
 import 'infrastructure/core/core_module.dart' as _i189;
 import 'infrastructure/firebase/user_firebase_repository.dart' as _i191;
+import 'infrastructure/map/google_map_repository.dart' as _i600;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -31,10 +34,12 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    final firebaseCoreModule = _$FirebaseCoreModule();
-    gh.lazySingleton<_i59.FirebaseAuth>(() => firebaseCoreModule.firebaseAuth);
-    gh.lazySingleton<_i974.FirebaseFirestore>(
-        () => firebaseCoreModule.firestore);
+    final coreModule = _$CoreModule();
+    gh.lazySingleton<_i59.FirebaseAuth>(() => coreModule.firebaseAuth);
+    gh.lazySingleton<_i974.FirebaseFirestore>(() => coreModule.firestore);
+    gh.lazySingleton<_i361.Dio>(() => coreModule.dio);
+    gh.lazySingleton<_i70.InterfaceMapFacade>(
+        () => _i600.GoogleMapRepository());
     gh.lazySingleton<_i746.InterfaceUserFacade>(
         () => _i191.FirebaseUserRepository(
               firebaseAuth: gh<_i59.FirebaseAuth>(),
@@ -50,4 +55,4 @@ extension GetItInjectableX on _i174.GetIt {
   }
 }
 
-class _$FirebaseCoreModule extends _i189.FirebaseCoreModule {}
+class _$CoreModule extends _i189.CoreModule {}
