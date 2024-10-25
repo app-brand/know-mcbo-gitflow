@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
 import 'package:know_my_city/presentation/widgets/animate_banner.dart';
 import 'package:know_my_city/presentation/widgets/axis_list.dart';
+import 'package:know_my_city/presentation/widgets/ejes_list.dart';
 import 'package:know_my_city/presentation/widgets/event_list.dart';
 import 'package:know_my_city/presentation/widgets/first_row.dart';
 import 'package:know_my_city/presentation/widgets/header_custom.dart';
@@ -39,6 +40,8 @@ class AppHome extends StatelessWidget {
                         height: 40, // Tamaño fijo del espaciado
                       ),
                       const AxisList(),
+                      const TravelPageContent(),
+                      FooterWidget(),
                     ],
                   ),
                 ),
