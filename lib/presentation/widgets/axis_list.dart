@@ -1,7 +1,7 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:know_my_city/domain/axi.dart';
 import 'package:know_my_city/presentation/widgets/axis_card.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 class AxisList extends StatefulWidget {
@@ -12,9 +12,7 @@ class AxisList extends StatefulWidget {
 }
 
 class _AxisListState extends State<AxisList> {
-  //int currentIndex = 0;
   List<Axi> axiList = [];
-  //final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -25,15 +23,11 @@ class _AxisListState extends State<AxisList> {
   }
 
   Future<void> _loadData() async {
-    final String response =
-        await rootBundle.loadString('assets/json/axis.json');
+    final String response = await rootBundle.loadString('assets/json/axis.json');
     try {
       final List<dynamic> AxiJsonList = json.decode(response);
       setState(() {
         axiList = AxiJsonList.map((json) => Axi.fromJson(json)).toList();
-        if (axiList.isNotEmpty) {
-          print(axiList);
-        }
       });
     } on Exception catch (e) {
       print(e.toString());
@@ -46,39 +40,54 @@ class _AxisListState extends State<AxisList> {
       builder: (BuildContext context, BoxConstraints constraints) {
         var width = constraints.maxWidth;
 
-        return Container(
-          height: (900 / 1512) * width,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-          ),
-          child: Center(
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: (30 / 1512) * (width),
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              // Título con fondo gradiente llamativo
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 24.0),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.green.shade600, Colors.green.shade900],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
                 ),
-                Expanded(
-                  child: axiList.isEmpty
-                      ? const Center(child: CircularProgressIndicator())
-                      : ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          //controller: _scrollController,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: axiList.length,
-                          itemBuilder: (context, index) {
-                            return AxisCard(
-                              axi: axiList[index],
-                              width: width,
-                            );
-                          }),
+                child: const Center(
+                  child: Text(
+                    'IDIOSINCRASIA',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 36, // Título grande
+                      color: Colors.white,
+                      shadows: [
+                        Shadow(
+                          offset: Offset(2, 2),
+                          blurRadius: 5,
+                          color: Colors.black38, // Sombra suave
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                SizedBox(
-                  width: (30 / 1512) * (width),
-                ),
-              ],
-            ),
+              ),
+
+              // Lista de tarjetas
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+                child: axiList.isEmpty
+                    ? const Center(child: CircularProgressIndicator())
+                    : Wrap(
+                        spacing: 20,
+                        runSpacing: 20,
+                        alignment: WrapAlignment.center,
+                        children: axiList.map((axi) {
+                          return AxisCard(axi: axi, width: width);
+                        }).toList(),
+                      ),
+              ),
+            ],
           ),
         );
       },
