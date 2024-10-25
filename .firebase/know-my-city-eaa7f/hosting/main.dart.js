@@ -95754,7 +95754,11 @@ a1=a0.h(0,"destination")
 a1.toString
 j=a1
 p=7
-i="https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?origin="+B.d.k(k.a)+","+B.d.k(k.b)+"&destination="+B.d.k(j.a)+","+B.d.k(j.b)+"&key=AIzaSyA0vsjSJXoisdpB-ouzVZuk0aCiEaievws"
+B.d.k(k.a)
+B.d.k(k.b)
+B.d.k(j.a)
+B.d.k(j.b)
+i="https://us-central1-know-my-city-eaa7f.cloudfunctions.net/get_directions"+("?origin="+B.d.k(k.a)+","+B.d.k(k.b)+"&destination="+B.d.k(j.a)+","+B.d.k(j.b))
 A.MN(A.j(i))
 a2=A.b3F(A.T(["Access-Control-Allow-Origin","*"],c,b))
 a2.a="GET"
