@@ -40,6 +40,8 @@ class AppHome extends StatelessWidget {
                         height: 40, // Tamaño fijo del espaciado
                       ),
                       const AxisList(),
+                      const TravelPageContent(),
+                      FooterWidget(),
                     ],
                   ),
                 ),
