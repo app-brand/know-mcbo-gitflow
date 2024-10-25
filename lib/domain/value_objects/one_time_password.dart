@@ -12,5 +12,6 @@ class OneTimePassword extends ValueObject {
       validateOTP(input),
     );
   }
+  // Fuck y la vida.
   const OneTimePassword._(this.value);
 }
