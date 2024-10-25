@@ -11,6 +11,7 @@ Axi _$AxiFromJson(Map<String, dynamic> json) => Axi(
       axis_name: json['axis_name'] as String,
       axis_description: json['axis_description'] as String,
       axis_image_url: json['axis_image_url'] as String,
+      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$AxiToJson(Axi instance) => <String, dynamic>{
@@ -18,4 +19,5 @@ Map<String, dynamic> _$AxiToJson(Axi instance) => <String, dynamic>{
       'axis_name': instance.axis_name,
       'axis_description': instance.axis_description,
       'axis_image_url': instance.axis_image_url,
+      'url': instance.url,
     };
