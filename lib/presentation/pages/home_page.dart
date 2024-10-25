@@ -1,119 +1,49 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
-import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/presentation/core/theme_core.dart';
-import 'package:know_my_city/presentation/dialogs/phone_dialog.dart';
-import 'package:know_my_city/presentation/dialogs/sign_in_dialog.dart';
 import 'package:go_router/go_router.dart';
+import 'package:know_my_city/presentation/core/app_theme.dart';
+import 'package:know_my_city/presentation/widgets/animate_banner.dart';
+import 'package:know_my_city/presentation/widgets/axis_list.dart';
+import 'package:know_my_city/presentation/widgets/event_list.dart';
+import 'package:know_my_city/presentation/widgets/first_row.dart';
+import 'package:know_my_city/presentation/widgets/header_custom.dart';
+import 'package:know_my_city/presentation/widgets/second_row.dart';
+import 'package:know_my_city/presentation/widgets/navbar_custom.dart';
+import 'package:flutter/material.dart';
+import 'package:know_my_city/presentation/widgets/main_footer.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  late SignUpBloc _signUpBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _signUpBloc = sl<SignUpBloc>();
-  }
-
-  void _showErrorDialog(String message) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Error'),
-          content: Text(message),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
-  }
+class AppHome extends StatelessWidget {
+  const AppHome({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignUpBloc, SignUpState>(
-      bloc: _signUpBloc,
-      listener: (context, state) {
-        // Add your listener logic here if needed
-      },
-      builder: (context, state) {
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        double width = constraints.maxWidth;
+
+        // Definir breakpoints para dispositivos
+        bool isMobile = width < 600;
+
         return Scaffold(
-          appBar: AppBar(
-            actions: <Widget>[
-              SizedBox(
-                child: Center(
-                  child: IconButton(
-                    onPressed: () {
-                      context.go('/maps');
-                      /* print('Email verificado? -' +
-                          state.isEmailVerified.toString());
-                      if (state.isEmailVerified) {
-                        context.go('/maps');
-                      } else {
-                        _showErrorDialog(
-                            "Aqui yupi - no puedes pasar - perro malo");
-                      } */
-                    },
-                    color: ThemeCore.primaryColor,
-                    icon: const Icon(Icons.map),
-                  ),
-                ),
-              ),
-              SizedBox(
-                child: Center(
-                  child: IconButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          //return SignInDialog();
-                          return PhoneDialog();
-                        },
-                      );
-                    },
-                    color: ThemeCore.primaryColor,
-                    icon: const Icon(Icons.person),
+          body: Stack(
+            children: [
+              // Contenido de la página
+              Positioned.fill(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      HeaderCustom(),
+                      const OneRow(),
+                      const SecondRow(),
+                      const EventList(),
+                      const SizedBox(
+                        height: 40, // Tamaño fijo del espaciado
+                      ),
+                      const AxisList(),
+                    ],
                   ),
                 ),
               ),
             ],
-          ),
-          drawer: Drawer(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                ListTile(
-                  title: const Text('Testing - purpose'),
-                  subtitle: const Text('Pagina principal'),
-                  onTap: () {},
-                ),
-                ListTile(
-                  title: const Text('Rutas'),
-                  subtitle: const Text('Turismo a tus gustos'),
-                  onTap: () {}, // Add your routing logic here
-                ),
-                ListTile(
-                  title: const Text('Quienes somos?'),
-                  subtitle: const Text('Conoce mas de la solucion'),
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ),
-          body: Container(
-            color: Colors.pink,
           ),
         );
       },

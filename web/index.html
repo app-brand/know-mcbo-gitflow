@@ -38,10 +38,9 @@
     
     body, html {
     margin: 0;
-    padding: 0;
     overflow: hidden; 
-    height: 100%; 
-    background: darkgreen;
+    height: 100%;
+    box-sizing: border-box; 
   }
 
     /* BARRA DE CARGA */
@@ -57,8 +56,7 @@
       height: 100%;
       display: flex;
       justify-content: center;
-      align-items: center;
-      background-color: darkgreen;
+      align-items: center;      
       z-index: 1;
       opacity: 1;
       background-size: cover;
@@ -89,7 +87,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: darkgreen;
+      background-color: #006341;
       z-index: 1;
       opacity: 0.7;
     }
@@ -110,7 +108,7 @@
 <body>
   <div id="loading">
     <div id="overlay"></div>
-      <img src="assets/conoce.png" alt="loading" width="600" height="auto">
+      <img src="assets/logo-animado_conoce-maracaibo.gif" alt="loading" width="600" height="auto">
 </div>
   <script src="flutter_bootstrap.js" async></script>
   <script>
@@ -122,15 +120,17 @@
         // Esperar a que termine la transición antes de ocultar el elemento
         setTimeout(function() {
           loadingElement.style.display = 'none';
-        }, 1000); // Duración de la transición en milisegundos
+        }, 1400); // Duración de la transición en milisegundos
       }, 3000); 
     });
 
        // Lista de URLs de imágenes
        const imageUrls = [
-      'assets/imagen_carga_1.jpg',
-      'assets/imagen_carga_2.jpg',
-      'assets/imagen_carga_3.jpg'
+      'assets/imagen_carga_1copiabyn.jpg',
+      'assets/imagen_carga_2copiabyn.jpg',
+      'assets/imagen_carga_3copiabyn.jpg',
+      'assets/maracaibo-2copiabyn.jpg',  
+      'assets/maracaibo-7copiabyn.jpg',     
     ];
 
     // Seleccionar una imagen aleatoriamente
