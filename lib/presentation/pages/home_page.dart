@@ -32,15 +32,9 @@ class AppHome extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      HeaderCustom(),
-                      const OneRow(),
-                      const SecondRow(),
-                      const EventList(),
-                      const SizedBox(
-                        height: 40, // Tamaño fijo del espaciado
-                      ),
-                      const AxisList(),
+                      HeaderCustom(),                      
                       const TravelPageContent(),
+                      const EventList(),                      
                       FooterWidget(),
                     ],
                   ),

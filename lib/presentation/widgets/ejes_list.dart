@@ -11,10 +11,25 @@ class TravelPageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(120.0),  // Reducimos el padding para hacer el layout más compacto
+        padding: const EdgeInsets.only(
+          top: 70.0,
+          bottom: 70.0,
+          left: 120.0,
+          right: 120.0),  // Reducimos el padding para hacer el layout más compacto
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              'EJES DE LA CIUDAD',
+              style: GoogleFonts.poppins(
+                textStyle: const TextStyle(
+                fontSize: 20,
+                color: AppTheme.greenSecondary,
+                fontWeight: FontWeight.w300
+                
+              ),                
+              ),              
+            ),
             Text(
               'Explora sobre nuestras tradiciones y costumbres',
               style: GoogleFonts.poppins(
