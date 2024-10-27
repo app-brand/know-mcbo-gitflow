@@ -2,6 +2,8 @@ import 'package:go_router/go_router.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
 import 'package:know_my_city/presentation/widgets/animate_banner.dart';
 import 'package:know_my_city/presentation/widgets/axis_list.dart';
+import 'package:know_my_city/presentation/widgets/ejes2_list.dart';
+import 'package:know_my_city/presentation/widgets/ejes3_list.dart';
 import 'package:know_my_city/presentation/widgets/ejes_list.dart';
 import 'package:know_my_city/presentation/widgets/event_list.dart';
 import 'package:know_my_city/presentation/widgets/first_row.dart';
@@ -34,6 +36,8 @@ class AppHome extends StatelessWidget {
                     children: [
                       HeaderCustom(),                      
                       const TravelPageContent(),
+                      const EspaciosContent(),
+                      const GastronomiaContent(),
                       const EventList(),                      
                       FooterWidget(),
                     ],

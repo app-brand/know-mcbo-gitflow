@@ -154,7 +154,7 @@ class _HeaderCustomState extends State<HeaderCustom> {
             ),
             // Imagen animada centrada a la izquierda con fade-in
             Positioned(
-              top: height / 2 - 80, // Ajusta la posición vertical
+              top: height / 2 - 200, // Ajusta la posición vertical
               left: 20, // Ajusta la posición horizontal
               child: AnimatedOpacity(
                 opacity: _isVisible ? 1.0 : 0.0,
