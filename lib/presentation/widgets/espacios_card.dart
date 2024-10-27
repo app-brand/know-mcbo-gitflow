@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class IdiosincrasiaCard extends StatefulWidget {
+class EspaciosCard extends StatefulWidget {
   final String imagePath;
   final String title;
   final String description;
 
-  const IdiosincrasiaCard({
+  const EspaciosCard({
     Key? key,
     required this.imagePath,
     required this.title,
@@ -14,10 +14,10 @@ class IdiosincrasiaCard extends StatefulWidget {
   }); 
 
   @override
-  _IdiosincrasiaCardState createState() => _IdiosincrasiaCardState();
+  _EspaciosCardState createState() => _EspaciosCardState();
 }
 
-class _IdiosincrasiaCardState extends State<IdiosincrasiaCard> {
+class _EspaciosCardState extends State<EspaciosCard> {
   bool _isHovered = false;
 
   @override
