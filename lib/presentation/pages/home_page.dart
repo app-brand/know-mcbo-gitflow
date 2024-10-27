@@ -1,13 +1,7 @@
-import 'package:go_router/go_router.dart';
-import 'package:know_my_city/presentation/core/app_theme.dart';
-import 'package:know_my_city/presentation/widgets/animate_banner.dart';
-import 'package:know_my_city/presentation/widgets/axis_list.dart';
 import 'package:know_my_city/presentation/widgets/ejes_list.dart';
 import 'package:know_my_city/presentation/widgets/event_list.dart';
-import 'package:know_my_city/presentation/widgets/first_row.dart';
 import 'package:know_my_city/presentation/widgets/header_custom.dart';
-import 'package:know_my_city/presentation/widgets/second_row.dart';
-import 'package:know_my_city/presentation/widgets/navbar_custom.dart';
+import 'package:know_my_city/presentation/widgets/maracaiboAntano.dart';
 import 'package:flutter/material.dart';
 import 'package:know_my_city/presentation/widgets/main_footer.dart';
 
@@ -34,6 +28,7 @@ class AppHome extends StatelessWidget {
                     children: [
                       HeaderCustom(),                      
                       const TravelPageContent(),
+                      /* const MaracaiboAntano(), */
                       const EventList(),                      
                       FooterWidget(),
                     ],
