@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
-import 'idiosincrasia_card.dart';  // Importa este archivo donde tengas el widget TravelOptionCard
+import 'idiosincrasia_card.dart';
 
 class TravelPageContent extends StatelessWidget {
   const TravelPageContent({super.key});
@@ -14,21 +14,30 @@ class TravelPageContent extends StatelessWidget {
         padding: const EdgeInsets.only(
           top: 70.0,
           bottom: 70.0,
-          left: 120.0,
-          right: 120.0),  // Reducimos el padding para hacer el layout más compacto
+          left: 140.0,
+          right: 140.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'EJES DE LA CIUDAD',
-              style: GoogleFonts.poppins(
-                textStyle: const TextStyle(
-                fontSize: 20,
-                color: AppTheme.greenSecondary,
-                fontWeight: FontWeight.w300
-                
-              ),                
-              ),              
+            Row(
+              children: [
+                Image.asset(
+                  'assets/images/banner/SolConoce.png',
+                  width: 32, 
+                  height: 32,                
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'IDIOSINCRASIA',
+                  style: GoogleFonts.poppins(
+                    textStyle: const TextStyle(
+                      fontSize: 20,
+                      color: AppTheme.greenSecondary,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ),
+              ],
             ),
             Text(
               'Explora sobre nuestras tradiciones y costumbres',
@@ -36,7 +45,7 @@ class TravelPageContent extends StatelessWidget {
                 textStyle: const TextStyle(
                 fontSize: 36,
                 color: AppTheme.greenAlcaldia,
-              ),                
+              ),
               ),              
             ),
             const SizedBox(height: 8),
