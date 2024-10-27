@@ -14,11 +14,16 @@ class GastronomiaContent extends StatelessWidget {
         padding: const EdgeInsets.only(
           top: 70.0,
           bottom: 70.0,
-          left: 120.0,
-          right: 120.0),  // Reducimos el padding para hacer el layout más compacto
+          left: 140.0,
+          right: 140.0),  // Reducimos el padding para hacer el layout más compacto
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Image.asset(
+                  'assets/images/banner/SolConoce.png',
+                  width: 32, 
+                  height: 32,                
+                ),
             Text(
               'GASTRONOMÍA',
               style: GoogleFonts.poppins(

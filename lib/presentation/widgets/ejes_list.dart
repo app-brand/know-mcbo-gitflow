@@ -13,7 +13,6 @@ class TravelPageContent extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(
           top: 70.0,
-          bottom: 70.0,
           left: 140.0,
           right: 140.0),
         child: Column(
