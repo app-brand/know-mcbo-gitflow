@@ -29,11 +29,11 @@ class AppHome extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       HeaderCustom(),                      
-                      const TravelPageContent(),
-                      /* const MaracaiboAntano(), */
+                      const TravelPageContent(),                      
                       const EspaciosContent(),
                       const GastronomiaContent(),
-                      const EventList(),                      
+                      const MaracaiboAntano(),
+                      /* const EventList(), */                      
                       FooterWidget(),
                     ],
                   ),

@@ -2,6 +2,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
+import 'package:know_my_city/presentation/core/router_core.dart';
+import 'package:know_my_city/presentation/dialogs/sign_in_dialog.dart';
 
 class HeaderCustom extends StatefulWidget {
   @override
@@ -106,9 +108,11 @@ class _HeaderCustomState extends State<HeaderCustom> {
                         ),
                         SizedBox(width: 12), // Espacio entre los botones
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            routerCore.push('/maps');
+                          },
                           child: Text(
-                            'Acerca de',
+                            'Mapa de Turista',
                             style: GoogleFonts.montserrat(
                               textStyle: const TextStyle(
                               color: Colors.white,      
@@ -122,7 +126,7 @@ class _HeaderCustomState extends State<HeaderCustom> {
                         TextButton(
                           onPressed: () {},
                           child: Text(
-                            'Servicios',
+                            'Nosotros',
                             style: GoogleFonts.montserrat(
                               textStyle: const TextStyle(
                               color: Colors.white,      
@@ -134,9 +138,16 @@ class _HeaderCustomState extends State<HeaderCustom> {
                         ),
                         SizedBox(width: 12), // Espacio entre los botones
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return SignInDialog();
+                              },
+                            );
+                          },
                           child: Text(
-                            'Contacto',
+                            'Perfil',
                             style: GoogleFonts.montserrat(
                               textStyle: const TextStyle(
                               color: Colors.white,      
