@@ -2,6 +2,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
+import 'package:know_my_city/presentation/core/router_core.dart';
+import 'package:know_my_city/presentation/dialogs/sign_in_dialog.dart';
 
 class HeaderCustom extends StatefulWidget {
   @override
@@ -43,7 +45,8 @@ class _HeaderCustomState extends State<HeaderCustom> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         double width = constraints.maxWidth;
-        double height = MediaQuery.of(context).size.height; // Usar la altura de la pantalla
+        double height =
+            MediaQuery.of(context).size.height; // Usar la altura de la pantalla
 
         return Stack(
           children: [
@@ -53,7 +56,8 @@ class _HeaderCustomState extends State<HeaderCustom> {
               height: height, // Ocupa todo el alto disponible
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(_randomImageUrl), // Ruta de la imagen aleatoria
+                  image: AssetImage(
+                      _randomImageUrl), // Ruta de la imagen aleatoria
                   fit: BoxFit.cover,
                   alignment: Alignment.topCenter,
                   colorFilter: ColorFilter.mode(
@@ -97,53 +101,63 @@ class _HeaderCustomState extends State<HeaderCustom> {
                             'Inicio',
                             style: GoogleFonts.montserrat(
                               textStyle: const TextStyle(
-                              color: Colors.white,      
-                              fontSize: 14,
-                              /* fontWeight: FontWeight.w600, */
+                                color: Colors.white,
+                                fontSize: 14,
+                                /* fontWeight: FontWeight.w600, */
                               ),
-                            ),                          
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 12), // Espacio entre los botones
+                        TextButton(
+                          onPressed: () {
+                            routerCore.push('/maps');
+                          },
+                          child: Text(
+                            'Mapa de turismo',
+                            style: GoogleFonts.montserrat(
+                              textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                /* fontWeight: FontWeight.w600, */
+                              ),
+                            ),
                           ),
                         ),
                         SizedBox(width: 12), // Espacio entre los botones
                         TextButton(
                           onPressed: () {},
                           child: Text(
-                            'Acerca de',
+                            'Nosotros',
                             style: GoogleFonts.montserrat(
                               textStyle: const TextStyle(
-                              color: Colors.white,      
-                              fontSize: 14,
-                              /* fontWeight: FontWeight.w600, */
+                                color: Colors.white,
+                                fontSize: 14,
+                                /* fontWeight: FontWeight.w600, */
                               ),
-                            ),  
+                            ),
                           ),
                         ),
                         SizedBox(width: 12), // Espacio entre los botones
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            //routerCore.push(location)
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return SignInDialog();
+                              },
+                            );
+                          },
                           child: Text(
-                            'Servicios',
+                            'Perfil',
                             style: GoogleFonts.montserrat(
                               textStyle: const TextStyle(
-                              color: Colors.white,      
-                              fontSize: 14,
-                              /* fontWeight: FontWeight.w600, */
+                                color: Colors.white,
+                                fontSize: 14,
+                                /* fontWeight: FontWeight.w600, */
                               ),
-                            ),  
-                          ),
-                        ),
-                        SizedBox(width: 12), // Espacio entre los botones
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Contacto',
-                            style: GoogleFonts.montserrat(
-                              textStyle: const TextStyle(
-                              color: Colors.white,      
-                              fontSize: 14,
-                              /* fontWeight: FontWeight.w600, */
-                              ),
-                            ),  
+                            ),
                           ),
                         ),
                       ],
