@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
 
 class MaracaiboAntano extends StatelessWidget {
@@ -63,45 +64,43 @@ class MaracaiboAntano extends StatelessWidget {
                 top: 290,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    /* const Text(
-                      'COMFORT CAMP',
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
+                  children: [                   
+                    const SizedBox(height: 16),
                     RichText(
-                      text: const TextSpan(
+                      text: TextSpan(
                         children: [
                           TextSpan(
-                            text: 'Maracaibo de Antaño,',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 36,
-                              fontWeight: FontWeight.w300,
-                            ),
+                            text: 'La Caminata Maracaibo de Antaño, una iniciativa de ',
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                fontSize: 14,
+                                height: 1.5,
+                                color: Colors.white70
+                              )
+                            )
                           ),
                           TextSpan(
-                            text: ' un viaje al pasado',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 36,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            text: 'FOMUTUR',
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                height: 1.5,
+                                color: Colors.white70
+                              )
+                            )
+                          ),
+                          TextSpan(
+                            text: ', ofrece un recorrido\n único por el corazón de Maracaibo, guiado por expertos\n que narran historias y leyendas de la ciudad.',
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                fontSize: 14,
+                                height: 1.5,
+                                color: Colors.white70
+                              )
+                            )
                           ),
                         ],
-                      ),
-                    ), */
-                    const SizedBox(height: 16),
-                    const Text(
-                      'La Caminata Maracaibo de Antaño, una iniciativa de FOMUTUR, ofrece un recorrido\n único por el corazón de Maracaibo, guiado por expertos\n que narran historias y leyendas de la ciudad.',
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 14,
-                        height: 1.5,
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -116,7 +115,15 @@ class MaracaiboAntano extends StatelessWidget {
                         padding:
                             const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                       ),
-                      child: const Text('Descargar PDF'),
+                      child: Text('Descargar PDF',
+                      style: GoogleFonts.poppins(
+                        textStyle: const TextStyle(
+                          fontSize: 14,
+                          height: 1.5,
+                          fontWeight: FontWeight.bold,
+                          color: AppTheme.greenAlcaldia
+                        )
+                      )),
                     ),
                   ],
                 ),

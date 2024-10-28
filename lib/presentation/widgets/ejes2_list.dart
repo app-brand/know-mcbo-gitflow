@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
-import 'idiosincrasia_card.dart';
+import 'espacios_card.dart';  // Importa este archivo donde tengas el widget TravelOptionCard
 
-class TravelPageContent extends StatelessWidget {
-  const TravelPageContent({super.key});
+class EspaciosContent extends StatelessWidget {
+  const EspaciosContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,42 +14,38 @@ class TravelPageContent extends StatelessWidget {
         padding: const EdgeInsets.only(
           top: 70.0,
           left: 140.0,
-          right: 140.0),
+          right: 140.0),  // Reducimos el padding para hacer el layout más compacto
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Image.asset(
+            Image.asset(
                   'assets/images/banner/SolConoce.png',
                   width: 32, 
                   height: 32,                
                 ),
-                const SizedBox(width: 8),
-                Text(
-                  'IDIOSINCRASIA',
-                  style: GoogleFonts.poppins(
-                    textStyle: const TextStyle(
-                      fontSize: 20,
-                      color: AppTheme.greenSecondary,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                ),
-              ],
+            Text(
+              'ESPACIOS',
+              style: GoogleFonts.poppins(
+                textStyle: const TextStyle(
+                fontSize: 20,
+                color: AppTheme.greenSecondary,
+                fontWeight: FontWeight.w300
+                
+              ),                
+              ),              
             ),
             Text(
-              'Explora sobre nuestras tradiciones y costumbres',
+              'Disfruta de las maravillosas vistas que regala la ciudad',
               style: GoogleFonts.poppins(
                 textStyle: const TextStyle(
                 fontSize: 36,
                 color: AppTheme.greenAlcaldia,
-              ),
+              ),                
               ),              
             ),
             const SizedBox(height: 8),
-            Text(
-              'Conoce más sobre la idiosincrasia de nuestra ciudad y sus habitantes.',
+            Text( 
+              'Conoce más sobre los espacios emblemáticos de la ciudad y sus alrededores.',
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
                 fontSize: 18,
@@ -65,31 +61,31 @@ class TravelPageContent extends StatelessWidget {
               children: const [
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,  // Ocupa 1 columna
-                  mainAxisCellCount: 0.40,  // Ocupa 0.75 de una fila
-                  child: IdiosincrasiaCard(
-                    imagePath: 'assets/images/banner/tranvia.jpeg',
-                    title: 'Tranvía de Maracaibo',
+                  mainAxisCellCount: 0.80,  // Ocupa 0.75 de una fila
+                  child: EspaciosCard(
+                    imagePath: 'assets/images/axis/basilica.jpg',
+                    title: 'Basilica de Chiquinquirá',
                     description:
-                        'Conoce la historia de este medio de transporte emblemático.',
+                        'Conoce la historia de la patrona de los zulianos.',
                   ),
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,  // Ocupa 1 columna
-                  mainAxisCellCount: 0.80,  // Ocupa 1.5 filas
-                  child: IdiosincrasiaCard(
-                    imagePath: 'assets/images/axis/gaita.jpeg',
-                    title: 'Gaitas',
-                    description: 'Descubre más sobre este género musical típico de la región.',
+                  mainAxisCellCount: 0.40,  // Ocupa 1.5 filas
+                  child: EspaciosCard(
+                    imagePath: 'assets/images/axis/vereda.png',
+                    title: 'Vereda del Lago',
+                    description: 'Descubre el sitio más visitado por los marabinos.',
                   ),
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,  // Ocupa 1 columna
                   mainAxisCellCount: 0.40,  // Ocupa 0.75 de una fila
-                  child: IdiosincrasiaCard(
-                    imagePath: 'assets/images/axis/artesania.JPG',
-                    title: 'Artesanía',
+                  child: EspaciosCard(
+                    imagePath: 'assets/images/banner/carabobocalle.jpg',
+                    title: 'Calle Carabobo',
                     description:
-                        'Conoce más sobre la artesanía zuliana y sus tradiciones.',
+                        'Descubre la historia de la calle más antigua de la ciudad.',
                   ),
                 ),
               ],

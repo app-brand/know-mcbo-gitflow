@@ -114,7 +114,7 @@ class _HeaderCustomState extends State<HeaderCustom> {
                             routerCore.push('/maps');
                           },
                           child: Text(
-                            'Mapa de turismo',
+                            'Mapa de Turista',
                             style: GoogleFonts.montserrat(
                               textStyle: const TextStyle(
                                 color: Colors.white,
@@ -141,7 +141,6 @@ class _HeaderCustomState extends State<HeaderCustom> {
                         SizedBox(width: 12), // Espacio entre los botones
                         TextButton(
                           onPressed: () {
-                            //routerCore.push(location)
                             showDialog(
                               context: context,
                               builder: (context) {
@@ -168,7 +167,7 @@ class _HeaderCustomState extends State<HeaderCustom> {
             ),
             // Imagen animada centrada a la izquierda con fade-in
             Positioned(
-              top: height / 2 - 80, // Ajusta la posición vertical
+              top: height / 2 - 200, // Ajusta la posición vertical
               left: 20, // Ajusta la posición horizontal
               child: AnimatedOpacity(
                 opacity: _isVisible ? 1.0 : 0.0,
