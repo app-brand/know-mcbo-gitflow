@@ -3,7 +3,7 @@ import 'package:know_my_city/presentation/widgets/ejes3_list.dart';
 import 'package:know_my_city/presentation/widgets/ejes_list.dart';
 import 'package:know_my_city/presentation/widgets/event_list.dart';
 import 'package:know_my_city/presentation/widgets/header_custom.dart';
-import 'package:know_my_city/presentation/widgets/maracaiboAntano.dart';
+import 'package:know_my_city/presentation/widgets/maracaiboantano.dart';
 import 'package:flutter/material.dart';
 import 'package:know_my_city/presentation/widgets/main_footer.dart';
 
@@ -28,12 +28,12 @@ class AppHome extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      HeaderCustom(),                      
-                      const TravelPageContent(),                      
+                      HeaderCustom(),
+                      const TravelPageContent(),
                       const EspaciosContent(),
                       const GastronomiaContent(),
                       const MaracaiboAntano(),
-                      /* const EventList(), */                      
+                      /* const EventList(), */
                       FooterWidget(),
                     ],
                   ),

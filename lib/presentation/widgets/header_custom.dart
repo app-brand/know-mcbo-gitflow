@@ -45,7 +45,8 @@ class _HeaderCustomState extends State<HeaderCustom> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         double width = constraints.maxWidth;
-        double height = MediaQuery.of(context).size.height; // Usar la altura de la pantalla
+        double height =
+            MediaQuery.of(context).size.height; // Usar la altura de la pantalla
 
         return Stack(
           children: [
@@ -55,7 +56,8 @@ class _HeaderCustomState extends State<HeaderCustom> {
               height: height, // Ocupa todo el alto disponible
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(_randomImageUrl), // Ruta de la imagen aleatoria
+                  image: AssetImage(
+                      _randomImageUrl), // Ruta de la imagen aleatoria
                   fit: BoxFit.cover,
                   alignment: Alignment.topCenter,
                   colorFilter: ColorFilter.mode(
@@ -99,11 +101,11 @@ class _HeaderCustomState extends State<HeaderCustom> {
                             'Inicio',
                             style: GoogleFonts.montserrat(
                               textStyle: const TextStyle(
-                              color: Colors.white,      
-                              fontSize: 14,
-                              /* fontWeight: FontWeight.w600, */
+                                color: Colors.white,
+                                fontSize: 14,
+                                /* fontWeight: FontWeight.w600, */
                               ),
-                            ),                          
+                            ),
                           ),
                         ),
                         SizedBox(width: 12), // Espacio entre los botones
@@ -115,11 +117,11 @@ class _HeaderCustomState extends State<HeaderCustom> {
                             'Mapa de Turista',
                             style: GoogleFonts.montserrat(
                               textStyle: const TextStyle(
-                              color: Colors.white,      
-                              fontSize: 14,
-                              /* fontWeight: FontWeight.w600, */
+                                color: Colors.white,
+                                fontSize: 14,
+                                /* fontWeight: FontWeight.w600, */
                               ),
-                            ),  
+                            ),
                           ),
                         ),
                         SizedBox(width: 12), // Espacio entre los botones
@@ -129,11 +131,11 @@ class _HeaderCustomState extends State<HeaderCustom> {
                             'Nosotros',
                             style: GoogleFonts.montserrat(
                               textStyle: const TextStyle(
-                              color: Colors.white,      
-                              fontSize: 14,
-                              /* fontWeight: FontWeight.w600, */
+                                color: Colors.white,
+                                fontSize: 14,
+                                /* fontWeight: FontWeight.w600, */
                               ),
-                            ),  
+                            ),
                           ),
                         ),
                         SizedBox(width: 12), // Espacio entre los botones
@@ -150,11 +152,11 @@ class _HeaderCustomState extends State<HeaderCustom> {
                             'Perfil',
                             style: GoogleFonts.montserrat(
                               textStyle: const TextStyle(
-                              color: Colors.white,      
-                              fontSize: 14,
-                              /* fontWeight: FontWeight.w600, */
+                                color: Colors.white,
+                                fontSize: 14,
+                                /* fontWeight: FontWeight.w600, */
                               ),
-                            ),  
+                            ),
                           ),
                         ),
                       ],
