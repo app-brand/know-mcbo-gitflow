@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:know_my_city/application/sign_in/sign_in_bloc.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/core/directions_model.dart';
+import 'package:know_my_city/presentation/core/markers_list.dart';
 import 'package:know_my_city/presentation/core/theme_core.dart';
 import 'package:know_my_city/presentation/dialogs/qrcode_dialog.dart';
 import 'package:go_router/go_router.dart';
@@ -70,21 +71,13 @@ class _MapsPageState extends State<MapsPage> {
   }
 
   Future<void> _loadCustomMarkerIcons() async {
-    List<String> iconPaths = [
-      'assets/tranvia.png',
-      'assets/plaza.png',
-      'assets/casa.png',
-      'assets/central.png'
-    ];
-
-    for (String path in iconPaths) {
+    for (String path in markerIconPaths) {
       BitmapDescriptor icon = await BitmapDescriptor.asset(
-        const ImageConfiguration(size: Size(40, 40)),
+        const ImageConfiguration(size: Size(40, 45)),
         path,
       );
       _customIcons.add(icon);
     }
-
     setState(() {});
   }
 

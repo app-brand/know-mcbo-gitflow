@@ -19,22 +19,25 @@ class GastronomiaContent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
+            Row(
+              children: [
+                Image.asset(
                   'assets/images/banner/SolConoce.png',
                   width: 32, 
                   height: 32,                
                 ),
             Text(
               'GASTRONOMÍA',
-              style: GoogleFonts.poppins(
-                textStyle: const TextStyle(
-                fontSize: 20,
-                color: AppTheme.greenSecondary,
-                fontWeight: FontWeight.w300
-                
-              ),                
-              ),              
-            ),
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                    color: AppTheme.greenSecondary,
+                    fontWeight: FontWeight.w300              
+                    ),                
+                  ),              
+                ),
+              ],
+            ),          
             Text(
               'Disfruta de los sabores y aromas de la ciudad',
               style: GoogleFonts.poppins(
