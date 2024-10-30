@@ -14,26 +14,30 @@ class EspaciosContent extends StatelessWidget {
         padding: const EdgeInsets.only(
           top: 70.0,
           left: 140.0,
-          right: 140.0),  // Reducimos el padding para hacer el layout más compacto
+          right: 140.0
+        ),  // Reducimos el padding para hacer el layout más compacto
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
+            Row(
+              children: [
+                Image.asset(
                   'assets/images/banner/SolConoce.png',
                   width: 32, 
                   height: 32,                
                 ),
             Text(
               'ESPACIOS',
-              style: GoogleFonts.poppins(
-                textStyle: const TextStyle(
-                fontSize: 20,
-                color: AppTheme.greenSecondary,
-                fontWeight: FontWeight.w300
-                
-              ),                
-              ),              
-            ),
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                    color: AppTheme.greenSecondary,
+                    fontWeight: FontWeight.w300              
+                    ),                
+                  ),              
+                ),
+              ],          
+            ),            
             Text(
               'Disfruta de las maravillosas vistas que regala la ciudad',
               style: GoogleFonts.poppins(

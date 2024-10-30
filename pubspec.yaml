@@ -84,28 +84,6 @@ flutter:
     - assets/images/events_png/
     - assets/images/main/
     - assets/images/vector/
-    - assets/json/  
-    - assets/images/banner/Rafael_Urdaneta_Bridge_in_Maracaibo.jpg 
-    - assets/images/banner/529.jpg
-    - assets/images/banner/maracaibo-2.jpeg
-    - assets/images/banner/maracaibo-7.jpeg
-    - assets/images/banner/Puente_de_Maracaibo.jpg
-    - assets/images/banner/Teatro_Baralt.jpg
-    - assets/images/banner/tranvia.jpeg
-    - assets/images/banner/puente4k.png
-    - assets/images/banner/puente4k2.jpg
-    - assets/images/banner/callecarabobo.jpg
-    - assets/images/banner/monumentochinita.jpg
-    - assets/images/banner/SolConoce.png
-    - assets/images/banner/logoconoce.png
-    - assets/images/banner/carabobocalle.jpg
-    - assets/images/banner/LOGOFOMUTURBLANCO.png
-    - assets/images/axis/gaita.jpeg
-    - assets/images/axis/artesania.JPG
-    - assets/images/axis/basilica.jpg
-    - assets/images/axis/vereda.png
-    - assets/images/banner/maracaiboAntano.png
-    - assets/images/banner/maracaiboAntano1.jpg
-    - assets/images/banner/maracaiboAntano2.jpg
-    - assets/images/banner/maracaiboAntano3.jpg
-    - assets/images/banner/maracaiboAntanoEnhanced.jpeg
+    - assets/json/      
+    - assets/images/markers/
+    - assets/images/banner/
