@@ -11,6 +11,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart' as _i974;
 import 'package:dio/dio.dart' as _i361;
 import 'package:firebase_auth/firebase_auth.dart' as _i59;
+import 'package:firebase_core/firebase_core.dart' as _i982;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -25,19 +26,23 @@ import 'infrastructure/map/google_map_repository.dart' as _i600;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
-  _i174.GetIt init({
+  Future<_i174.GetIt> init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
-  }) {
+  }) async {
     final gh = _i526.GetItHelper(
       this,
       environment,
       environmentFilter,
     );
     final coreModule = _$CoreModule();
-    gh.lazySingleton<_i59.FirebaseAuth>(() => coreModule.firebaseAuth);
-    gh.lazySingleton<_i974.FirebaseFirestore>(() => coreModule.firestore);
-    gh.lazySingleton<_i361.Dio>(() => coreModule.dio);
+    await gh.factoryAsync<_i982.FirebaseApp>(
+      () => coreModule.firebaseApp,
+      preResolve: true,
+    );
+    gh.singleton<_i59.FirebaseAuth>(() => coreModule.firebaseAuth);
+    gh.singleton<_i974.FirebaseFirestore>(() => coreModule.firestore);
+    gh.singleton<_i361.Dio>(() => coreModule.dio);
     gh.lazySingleton<_i70.InterfaceMapFacade>(
         () => _i600.GoogleMapRepository());
     gh.lazySingleton<_i746.InterfaceUserFacade>(

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:know_my_city/domain/axi.dart';
+import 'package:know_my_city/domain/axi/axi.dart';
 import 'package:know_my_city/presentation/widgets/axis_card.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
@@ -23,7 +23,8 @@ class _AxisListState extends State<AxisList> {
   }
 
   Future<void> _loadData() async {
-    final String response = await rootBundle.loadString('assets/json/axis.json');
+    final String response =
+        await rootBundle.loadString('assets/json/axis.json');
     try {
       final List<dynamic> AxiJsonList = json.decode(response);
       setState(() {
@@ -75,7 +76,8 @@ class _AxisListState extends State<AxisList> {
 
               // Lista de tarjetas
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0, vertical: 20.0),
                 child: axiList.isEmpty
                     ? const Center(child: CircularProgressIndicator())
                     : Wrap(

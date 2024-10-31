@@ -5,10 +5,10 @@ import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/core/home_core.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
+/*   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  );
-  configureDependencies();
+  ); */
+  WidgetsFlutterBinding.ensureInitialized();
+  await serviceLocator();
   runApp(const HomeCore());
 }

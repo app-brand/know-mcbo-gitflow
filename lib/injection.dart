@@ -4,9 +4,7 @@ import 'injection.config.dart';
 
 final sl = GetIt.instance;
 
-@InjectableInit(
-  initializerName: 'init', // default
-  preferRelativeImports: true, // default
-  asExtension: true, // default
-)
-void configureDependencies() => sl.init();
+@InjectableInit(preferRelativeImports: true)
+Future<void> serviceLocator() async {
+  await sl.init();
+}
