@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,6 +36,7 @@ class _MapsPageState extends State<MapsPage> {
   Set<Polyline> _polylines = {};
   bool rutaSeleccionada = false;
   String rutaQR = '';
+  String rutaActiva = '';
 
 /*   @override
   void dispose() {
@@ -355,11 +357,6 @@ class _MapsPageState extends State<MapsPage> {
                     goToCenter: _goToCenter,
                     drawTerrorRoute: _drawTerrorRoute,
                     drawPolylines: _drawMultiplePolylines,
-                    tranvia: _tranvia,
-                    plaza: _plaza,
-                    hospitalCentral: _hospitalCentral,
-                    casaCapitulacion: _casaCapitulacion,
-                    quintaLuxor: _quintaLuxor,
                     info: _info,
                     showCustomInfoWindow:
                         (context, title, ruta, snippet, assetname) =>
@@ -383,14 +380,9 @@ class _MapsPageState extends State<MapsPage> {
   }
 }
 
-class MainMaps extends StatelessWidget {
+class MainMaps extends StatefulWidget {
   MainMaps({
     super.key,
-    required this.quintaLuxor,
-    required this.casaCapitulacion,
-    required this.hospitalCentral,
-    required this.tranvia,
-    required this.plaza,
     required this.info,
     required this.signInBloc,
     required this.center,
@@ -414,11 +406,6 @@ class MainMaps extends StatelessWidget {
   final LatLng center;
   final String mapStyle;
   final Directions? info; // Make the info parameter nullable
-  Marker casaCapitulacion;
-  Marker quintaLuxor;
-  Marker hospitalCentral;
-  Marker tranvia;
-  Marker plaza;
   final List<BitmapDescriptor> customIcons;
   final Function drawTerrorRoute;
   final Function drawPolylines;
@@ -430,7 +417,65 @@ class MainMaps extends StatelessWidget {
   final Function(GoogleMapController) onMapCreated;
   final void Function(BuildContext, String, String, String, String)
       showCustomInfoWindow;
-  final bool rutaSeleccionada;
+  final bool rutaSeleccionada;  
+
+  @override
+  State<MainMaps> createState() => _MainMapsState();
+}
+
+class _MainMapsState extends State<MainMaps> {
+  late Marker casaCapitulacion;
+  late Marker quintaLuxor;
+  late Marker hospitalCentral;
+  late Marker tranvia;
+  late Marker plaza;
+  late String rutaActiva = '';
+  _mapaMessage(BuildContext context) {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Container(
+          padding: const EdgeInsets.all(8.0),
+          height: 60,         
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(children: [
+            const Icon(Icons.info, color: Colors.white, size: 24),
+            const SizedBox(width: 20),
+            Expanded(child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Ruta ya seleccionada',
+                  style: GoogleFonts.poppins(
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  )
+                ),
+                const Spacer(),
+                Text(
+                  'Ya has seleccionado esta ruta, si deseas cambiar de ruta, por favor, limpia la ruta actual',
+                  style: GoogleFonts.poppins(
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  )
+                ),
+              ],
+            ))
+          ],),
+        ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        duration: const Duration(seconds: 4),
+      )
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -441,9 +486,9 @@ class MainMaps extends StatelessWidget {
         body: Stack(
           children: [
             GoogleMap(
-              onMapCreated: onMapCreated,
+              onMapCreated: widget.onMapCreated,
               initialCameraPosition: CameraPosition(
-                target: center,
+                target: widget.center,
                 zoom: 14,
               ),
               markers: {
@@ -452,12 +497,12 @@ class MainMaps extends StatelessWidget {
                       const MarkerId('Tranvía de Maracaibo'),
                   position: const LatLng(
                       10.6564178133895, -71.59488684178918),
-                  icon: customIcons[0],
+                  icon: widget.customIcons[0],
                   onTap: () {
                     /* goToLocation(
                   const LatLng(10.6564178133895, -71.59488684178918)
                 ); */
-                    showCustomInfoWindow(
+                    widget.showCustomInfoWindow(
                         context,
                         'Tranvía de Maracaibo',
                         'Sede',
@@ -470,12 +515,12 @@ class MainMaps extends StatelessWidget {
                       const MarkerId('Plaza de la Republica'),
                   position: const LatLng(
                       10.66623260705817, -71.60581323765165),
-                  icon: customIcons[1],
+                  icon: widget.customIcons[1],
                   onTap: () {
                     /* goToLocation(
                   const LatLng(10.665841201331798, -71.60603111374822)
                 ); */
-                    showCustomInfoWindow(
+                    widget.showCustomInfoWindow(
                         context,
                         'Plaza de la República',
                         'Ruta de la Alegría',
@@ -488,12 +533,12 @@ class MainMaps extends StatelessWidget {
                   markerId: const MarkerId('Hospital Central'),
                   position: const LatLng(
                       10.64214695401155, -71.60557377666612),
-                  icon: customIcons[3],
+                  icon: widget.customIcons[3],
                   onTap: () {
                     /* goToLocation(
                   const LatLng(10.64214695401155, -71.60557377666612)
                 ); */
-                    showCustomInfoWindow(
+                    widget.showCustomInfoWindow(
                         context,
                         'Hospital Central',
                         'Ruta del Terror',
@@ -507,9 +552,9 @@ class MainMaps extends StatelessWidget {
                       const MarkerId('Casa de la Capitulación'),
                   position: const LatLng(
                       10.64231896416391, -71.60783610049393),
-                  icon: customIcons[2],
+                  icon: widget.customIcons[2],
                   onTap: () {
-                    goToLocation(const LatLng(
+                    widget.goToLocation(const LatLng(
                         10.64231896416391, -71.60783610049393));
                     /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
                   },
@@ -518,19 +563,17 @@ class MainMaps extends StatelessWidget {
                   markerId: const MarkerId('Quinta Luxor'),
                   position: const LatLng(
                       10.666711923974145, -71.6317473478305),
-                  icon: customIcons[2],
+                  icon: widget.customIcons[2],
                   onTap: () {
-                    goToLocation(const LatLng(
+                    widget.goToLocation(const LatLng(
                         10.666711923974145, -71.6317473478305));
                     /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
                   },
                 ),
               },
-              polylines: polylines,
-              style: mapStyle,              
-              minMaxZoomPreference: const MinMaxZoomPreference(14, 16),
-              scrollGesturesEnabled: true,
-              zoomGesturesEnabled: false,
+              polylines: widget.polylines,
+              style: widget.mapStyle,              
+              minMaxZoomPreference: const MinMaxZoomPreference(14, 16),              
             ),
             Positioned(
               top: 0,
@@ -572,15 +615,13 @@ class MainMaps extends StatelessWidget {
                         ),
                         const SizedBox(width: 12),
                         TextButton(
-                          onPressed: () {
-                            routerCore.push('/maps');
-                          },
+                          onPressed: () {},
                           child: Text(
                             'Mapa de Turista',
                             style: GoogleFonts.montserrat(
                               textStyle: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 14,
+                                fontSize: 14,                                                           
                               ),
                             ),
                           ),
@@ -703,12 +744,19 @@ class MainMaps extends StatelessWidget {
                                 fontWeight: FontWeight.w300,
                                 ), 
                               ),
-                            ),
+                            ),                            
                             onTap: () {
-                              drawPolylines();
-                              seleccionarRuta('Ruta de la Alegría');
-                              goToCenter(center);
-                            },
+                              if (rutaActiva == '1') {
+                                _mapaMessage(context);
+                              } else {
+                                widget.drawPolylines();
+                                widget.seleccionarRuta('Ruta de la Alegría');
+                                widget.goToCenter(widget.center);     
+                                setState(() {
+                                rutaActiva = '1';
+                              });                        
+                              }                              
+                            }
                           ),
                           ListTile(
                             title: Text(
@@ -732,9 +780,9 @@ class MainMaps extends StatelessWidget {
                               ),
                             ),
                             onTap: () {
-                              drawTerrorRoute();
-                              seleccionarRuta('Ruta del Terror');
-                              goToCenter(center);
+                              widget.drawTerrorRoute();
+                              widget.seleccionarRuta('Ruta del Terror');
+                              widget.goToCenter(widget.center);
                             },
                           ),
                           ListTile(
@@ -798,9 +846,9 @@ class MainMaps extends StatelessWidget {
                               ),
                             ),
                             onTap: () {
-                              drawPolylines();
-                              seleccionarRuta('Ruta de la Alegría');
-                              goToCenter(center);
+                              widget.drawPolylines();
+                              widget.seleccionarRuta('Ruta de la Alegría');
+                              widget.goToCenter(widget.center);
                             },
                           ),
                           ListTile(
@@ -825,9 +873,9 @@ class MainMaps extends StatelessWidget {
                               ),
                             ),
                             onTap: () {
-                              drawTerrorRoute();
-                              seleccionarRuta('Ruta del Terror');
-                              goToCenter(center);
+                              widget.drawTerrorRoute();
+                              widget.seleccionarRuta('Ruta del Terror');
+                              widget.goToCenter(widget.center);
                             },
                           ),
                           /* ListTile(
@@ -873,7 +921,7 @@ class MainMaps extends StatelessWidget {
                 backgroundColor: ThemeCore.primaryColor,
                 foregroundColor: Colors.white,
                 onPressed: () {
-                  goToCenter(center);
+                  widget.goToCenter(widget.center);
                 },
                 child: const Icon(Icons.my_location),
               ),
@@ -887,7 +935,7 @@ class MainMaps extends StatelessWidget {
                 backgroundColor: ThemeCore.primaryColor,
                 foregroundColor: Colors.white,
                 onPressed: () {
-                  limpiarRuta(polylines);
+                  widget.limpiarRuta(widget.polylines);
                 },
                 child: const Icon(Icons.clear_rounded),
               ),
