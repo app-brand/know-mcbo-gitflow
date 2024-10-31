@@ -23,6 +23,7 @@ import 'domain/user/interface_user_facade.dart' as _i746;
 import 'infrastructure/core/core_module.dart' as _i189;
 import 'infrastructure/firebase/user_firebase_repository.dart' as _i191;
 import 'infrastructure/map/google_map_repository.dart' as _i600;
+import 'presentation/core/state_core.dart' as _i607;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -50,6 +51,10 @@ extension GetItInjectableX on _i174.GetIt {
               firebaseAuth: gh<_i59.FirebaseAuth>(),
               firebaseFirestore: gh<_i974.FirebaseFirestore>(),
             ));
+    gh.lazySingleton<_i607.StateCore>(() => _i607.StateCore(
+          auth: gh<_i59.FirebaseAuth>(),
+          firebaseFirestore: gh<_i974.FirebaseFirestore>(),
+        ));
     gh.lazySingleton<_i1011.SignUpBloc>(
         () => _i1011.SignUpBloc(gh<_i746.InterfaceUserFacade>()));
     gh.lazySingleton<_i939.SignInBloc>(
