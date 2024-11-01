@@ -22,6 +22,10 @@ class _AppHomeState extends State<AppHome> {
   @override
   void initState() {
     super.initState();
+    /* WidgetsBinding.instance.addPostFrameCallback((_) {
+      stateCore = Provider.of<StateCore>(context, listen: false);
+      stateCore.checkFirestoreConnection();
+    }); */
   }
 
   @override
@@ -29,9 +33,9 @@ class _AppHomeState extends State<AppHome> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         double width = constraints.maxWidth;
-        stateCore = Provider.of<StateCore>(context, listen: false);
-        stateCore.checkFirestoreConnection();
         bool isMobile = width < 600;
+        /* stateCore = Provider.of<StateCore>(context, listen: false);
+        stateCore.checkFirestoreConnection(); */
         return Scaffold(
           body: Stack(
             children: [

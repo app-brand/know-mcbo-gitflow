@@ -8,9 +8,10 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await serviceLocator();
   runApp(ChangeNotifierProvider(
     create: (_) => sl<StateCore>(),
-    child: HomeCore(),
+    child: const HomeCore(),
   ));
 }
