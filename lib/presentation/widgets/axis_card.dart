@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
-import 'package:know_my_city/domain/axi.dart';
+import 'package:know_my_city/domain/axi/axi.dart';
 
 class AxisCard extends StatefulWidget {
   final Axi axi;
@@ -22,8 +22,12 @@ class _AxisCardState extends State<AxisCard> {
   @override
   Widget build(BuildContext context) {
     // Definimos el tamaño fijo de las tarjetas y ajustamos la altura
-    double cardWidth = widget.width < 600 ? widget.width * 0.9 : 300; // Ancho fijo para pantallas grandes y pequeñas
-    double cardHeight = widget.width < 600 ? 500 : 550; // Altura más larga para que el contenido se vea bien
+    double cardWidth = widget.width < 600
+        ? widget.width * 0.9
+        : 300; // Ancho fijo para pantallas grandes y pequeñas
+    double cardHeight = widget.width < 600
+        ? 500
+        : 550; // Altura más larga para que el contenido se vea bien
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -57,7 +61,8 @@ class _AxisCardState extends State<AxisCard> {
             children: [
               // Imagen de la tarjeta
               ClipRRect(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(20)),
                 child: Image.asset(
                   widget.axi.axis_image_url,
                   width: double.infinity,
@@ -77,7 +82,8 @@ class _AxisCardState extends State<AxisCard> {
                       style: TextStyle(
                         color: AppTheme.primaryColor,
                         fontWeight: FontWeight.bold,
-                        fontSize: widget.width < 600 ? 18 : 22, // Tamaño responsivo
+                        fontSize:
+                            widget.width < 600 ? 18 : 22, // Tamaño responsivo
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -101,8 +107,10 @@ class _AxisCardState extends State<AxisCard> {
                         fontSize: widget.width < 600 ? 14 : 16,
                         height: 1.5,
                       ),
-                      maxLines: 5, // Permitimos hasta 5 líneas para mayor contenido
-                      overflow: TextOverflow.ellipsis, // Puntos suspensivos si el texto es largo
+                      maxLines:
+                          5, // Permitimos hasta 5 líneas para mayor contenido
+                      overflow: TextOverflow
+                          .ellipsis, // Puntos suspensivos si el texto es largo
                     ),
                     const SizedBox(height: 12),
                     // Botón "Ver más"

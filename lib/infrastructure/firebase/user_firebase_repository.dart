@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
-import 'package:know_my_city/domain/user/interface_user_facade.dart';
+import 'package:know_my_city/application/facade/auth_facade.dart';
 import 'package:know_my_city/domain/user/user_failures.dart';
 import 'package:know_my_city/domain/value_objects/email_address.dart';
 import 'package:know_my_city/domain/value_objects/one_time_password.dart';

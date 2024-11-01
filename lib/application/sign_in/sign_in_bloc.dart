@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:know_my_city/domain/user/interface_user_facade.dart';
+import 'package:know_my_city/application/facade/auth_facade.dart';
 import 'package:know_my_city/domain/user/user_failures.dart';
 import 'package:know_my_city/domain/value_objects/email_address.dart';
 import 'package:know_my_city/domain/value_objects/password.dart';
@@ -11,7 +11,7 @@ part 'sign_in_event.dart';
 part 'sign_in_state.dart';
 part 'sign_in_bloc.freezed.dart';
 
-@lazySingleton
+@singleton
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   final InterfaceUserFacade _interfaceUserFacade;
 
