@@ -451,6 +451,7 @@ class _MainMapsState extends State<MainMaps> {
       showInfoContainer = true;
     });
   }
+  
   _mapaMessage(BuildContext context) {
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -779,6 +780,7 @@ class _MainMapsState extends State<MainMaps> {
                                 '\$15 por persona', 
                                 '7:00 PM', 
                                 'Parada fija A Que Luis, demás paradas fijas varían dependiendo disponibilidad');
+
                                 widget.drawPolylines();
                                 widget.seleccionarRuta('Ruta de la Alegría');
                                 widget.goToCenter(widget.center);     
