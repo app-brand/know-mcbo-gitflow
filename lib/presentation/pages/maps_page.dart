@@ -773,7 +773,7 @@ class _MainMapsState extends State<MainMaps> {
                               if (rutaActiva == '1') {
                                 _mapaMessage(context);
                               } else {
-                                _showInfoContainer('Ruta de la Alegría', 'La Ruta de la Alegría sale de la estación central del Tranvía, en la Vereda del Lago, los viernes y/o sábados, recorrido fiestero y cervecero que visita 3 establecimientos que varían en cada salida, su duración es entre 2 horas y media y 3 aproximadamente.', 
+                                _showInfoContainer('Ruta de la Alegría', 'La Ruta de la Alegría sale de la estación central del Tranvía, en la Vereda del Lago, recorrido fiestero y cervecero que visita 3 establecimientos que varían en cada salida, su duración es entre 2 horas y media y 3 aproximadamente.', 
                                 'ruta_alegria', 
                                 'Viernes y Sábados', 
                                 '\$15 por persona', 
@@ -1072,12 +1072,17 @@ class _MainMapsState extends State<MainMaps> {
                               title: 'Paradas Principales',
                               content: selectedRoutePoints,
                             ),
+                            const SizedBox(height: 8),
+                            if (selectedRouteTitle == 'Ruta de la Alegría')                            
+                              const _InfoRow(
+                                icon: Icons.info,
+                                title: 'Advertencia',
+                                content: 'Esta ruta es para mayores de 18 años',
+                            ),
                           ],
                         ),
-                      ),
-
-                      // Botón para cerrar
-                      const Spacer(),
+                      ),                      
+                    const Spacer(),
                       Align(
                         alignment: Alignment.bottomRight,
                         child: Padding(
@@ -1133,7 +1138,7 @@ class _InfoRow extends StatelessWidget {
                 title,
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
-                    fontSize: 14,
+                    fontSize: 12,
                     fontWeight: FontWeight.w600,
                     color: Colors.black87,
                   ),
