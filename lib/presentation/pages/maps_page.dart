@@ -46,7 +46,7 @@ class _MapsPageState extends State<MapsPage> {
 
   late Future<String> _mapStyle;
 
-  final LatLng _center = const LatLng(10.660844651881145, -71.59921476991683);
+  final LatLng _center = const LatLng(10.681102549093303, -71.62227169480072);
   final LatLng _tranviaPosition =
       const LatLng(10.6564178133895, -71.59488684178918);
   final LatLng _plazaPosition =
@@ -161,8 +161,8 @@ class _MapsPageState extends State<MapsPage> {
     if (_mapController != null) {
       _mapController.animateCamera(
         CameraUpdate.newCameraPosition(CameraPosition(
-          target: position,
-          zoom: 14,
+          target: _center,
+          zoom: 13,
         )),
       );
     }
@@ -430,6 +430,28 @@ class _MainMapsState extends State<MainMaps> {
   late Marker tranvia;
   late Marker plaza;
   late String rutaActiva = '';
+  bool showInfoContainer = false;
+  String selectedRouteTitle = '';
+  String selectedRouteDescription = '';
+  String selectedRouteImage = '';	
+  String selectedRouteSchedule = '';
+  String selectedRoutePrice = '';
+  String selectedRouteDeparture = '';
+  String selectedRoutePoints = '';
+
+  void _showInfoContainer(String title, String description, String image, String schedule, String price, String departure, String points) {
+    setState(() {
+      selectedRouteTitle = title;
+      selectedRouteDescription = description;
+      selectedRouteImage = image;
+      selectedRouteSchedule = schedule;
+      selectedRoutePrice = price;
+      selectedRouteDeparture = departure;
+      selectedRoutePoints = points;
+      showInfoContainer = true;
+    });
+  }
+  
   _mapaMessage(BuildContext context) {
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -489,7 +511,7 @@ class _MainMapsState extends State<MainMaps> {
               onMapCreated: widget.onMapCreated,
               initialCameraPosition: CameraPosition(
                 target: widget.center,
-                zoom: 14,
+                zoom: 13,
               ),
               markers: {
                 tranvia = Marker(
@@ -573,7 +595,8 @@ class _MainMapsState extends State<MainMaps> {
               },
               polylines: widget.polylines,
               style: widget.mapStyle,              
-              minMaxZoomPreference: const MinMaxZoomPreference(14, 16),              
+              minMaxZoomPreference: const MinMaxZoomPreference(13, 17),  
+              zoomGesturesEnabled: false,                          
             ),
             Positioned(
               top: 0,
@@ -666,8 +689,10 @@ class _MainMapsState extends State<MainMaps> {
               )
             ),
             // ListView flotante sobre el mapa
-            Positioned(
-              top: 70,
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.fastOutSlowIn,
+              top: MediaQuery.of(context).size.height * 0.30,
               left: 15,
               right: MediaQuery.of(context).size.width * 0.20,
               height: MediaQuery.of(context).size.height * 0.5,
@@ -677,9 +702,9 @@ class _MainMapsState extends State<MainMaps> {
             ),
             Positioned(
               top: MediaQuery.of(context).size.height * 0.25,
-              left: 15.0,
               width: MediaQuery.of(context).size.width * 0.20,
               height: MediaQuery.of(context).size.height * 0.5,
+              left: showInfoContainer ? -400.0 : 15,              
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -749,6 +774,13 @@ class _MainMapsState extends State<MainMaps> {
                               if (rutaActiva == '1') {
                                 _mapaMessage(context);
                               } else {
+                                _showInfoContainer('Ruta de la Alegría', 'La Ruta de la Alegría sale de la estación central del Tranvía, en la Vereda del Lago, recorrido fiestero y cervecero que visita 3 establecimientos que varían en cada salida, su duración es entre 2 horas y media y 3 aproximadamente.', 
+                                'ruta_alegria', 
+                                'Viernes y Sábados', 
+                                '\$15 por persona', 
+                                '7:00 PM', 
+                                'Parada fija A Que Luis, demás paradas fijas varían dependiendo disponibilidad');
+
                                 widget.drawPolylines();
                                 widget.seleccionarRuta('Ruta de la Alegría');
                                 widget.goToCenter(widget.center);     
@@ -913,8 +945,8 @@ class _MainMapsState extends State<MainMaps> {
               ),  
             // Otros Positioned (botones, etc.)
             Positioned(
-              bottom: 120.0,
-              right: 7.0,
+              bottom: 30.0,
+              right: 70.0,
               height: 45,
               width: 45,
               child: FloatingActionButton(
@@ -927,8 +959,8 @@ class _MainMapsState extends State<MainMaps> {
               ),
             ),
             Positioned(
-              bottom: 180.0,
-              right: 7.0,
+              bottom: 30.0,
+              right: 140.0,
               height: 45,
               width: 45,
               child: FloatingActionButton(
@@ -936,14 +968,198 @@ class _MainMapsState extends State<MainMaps> {
                 foregroundColor: Colors.white,
                 onPressed: () {
                   widget.limpiarRuta(widget.polylines);
+                  setState(() {
+                    rutaActiva = '';
+                    showInfoContainer = false;
+                  });
                 },
                 child: const Icon(Icons.clear_rounded),
               ),
             ),
-          ],
-        ),
-      );
-    },
-  );
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.fastOutSlowIn,
+              top: MediaQuery.of(context).size.height * 0.15,
+              left: showInfoContainer ? 15.0 : -525.0,
+              width: 475.0,
+              height: MediaQuery.of(context).size.height * 0.80,
+              child: Material(
+                elevation: 6,
+                borderRadius: BorderRadius.circular(20.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20.0),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 6.0,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Imagen de cabecera
+                      Container(
+                        height: 150,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/banner/tranvia.jpeg'), // Ajusta la imagen aquí
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+
+                      // Título de la ruta
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          selectedRouteTitle,
+                          style: GoogleFonts.poppins(
+                            textStyle: const TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+
+                      // Descripción breve
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          selectedRouteDescription,
+                          style: GoogleFonts.poppins(
+                            textStyle: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black54,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+
+                      // Información de días y horarios
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _InfoRow(
+                              icon: Icons.calendar_today,
+                              title: 'Días Disponibles',
+                              content: selectedRouteSchedule // Aquí va la información dinámica
+                            ),
+                           const SizedBox(height: 8),
+                            _InfoRow(
+                              icon: Icons.access_time,
+                              title: 'Hora de salida',
+                              content: selectedRouteDeparture,
+                            ),
+                           const SizedBox(height: 8),
+                            _InfoRow(
+                              icon: Icons.attach_money,
+                              title: 'Costo',
+                              content: selectedRoutePrice,
+                            ),
+                           const SizedBox(height: 8),
+                            _InfoRow(
+                              icon: Icons.location_on,
+                              title: 'Paradas Principales',
+                              content: selectedRoutePoints,
+                            ),
+                            const SizedBox(height: 8),
+                            if (selectedRouteTitle == 'Ruta de la Alegría')                            
+                              const _InfoRow(
+                                icon: Icons.info,
+                                title: 'Advertencia',
+                                content: 'Esta ruta es para mayores de 18 años',
+                            ),
+                          ],
+                        ),
+                      ),                      
+                    const Spacer(),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8.0, bottom: 8.0),
+                          child: IconButton(
+                            icon: const Icon(Icons.close, color: Colors.grey),
+                            onPressed: () {
+                              setState(() {
+                                showInfoContainer = false;
+                                widget.limpiarRuta(widget.polylines);
+                                rutaActiva = '';
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 }
+
+class _InfoRow extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String content;
+
+  const _InfoRow({
+    required this.icon,
+    required this.title,
+    required this.content,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(icon, size: 20, color: Colors.grey[700]),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                content,
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                    fontSize: 13,
+                    color: Colors.black54,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 }
