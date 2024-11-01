@@ -2,7 +2,6 @@ import 'package:know_my_city/presentation/core/state_core.dart';
 import 'package:know_my_city/presentation/widgets/ejes2_list.dart';
 import 'package:know_my_city/presentation/widgets/ejes3_list.dart';
 import 'package:know_my_city/presentation/widgets/ejes_list.dart';
-import 'package:know_my_city/presentation/widgets/event_list.dart';
 import 'package:know_my_city/presentation/widgets/header_custom.dart';
 import 'package:know_my_city/presentation/widgets/maracaiboantano.dart';
 import 'package:flutter/material.dart';
@@ -34,8 +33,10 @@ class _AppHomeState extends State<AppHome> {
       builder: (BuildContext context, BoxConstraints constraints) {
         double width = constraints.maxWidth;
         bool isMobile = width < 600;
-        /* stateCore = Provider.of<StateCore>(context, listen: false);
-        stateCore.checkFirestoreConnection(); */
+        final stateCore = Provider.of<StateCore>(context);
+        stateCore.incrementCounter();
+        print('home - contador de saltos o creaciones ${stateCore.counter}');
+        print('Usuario registrado es: ${stateCore.isLoading}');
         return Scaffold(
           body: Stack(
             children: [

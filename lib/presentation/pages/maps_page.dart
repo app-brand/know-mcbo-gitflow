@@ -8,6 +8,7 @@ import 'package:know_my_city/application/sign_in/sign_in_bloc.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/core/directions_model.dart';
 import 'package:know_my_city/presentation/core/markers_list.dart';
+import 'package:know_my_city/presentation/core/state_core.dart';
 import 'package:know_my_city/presentation/core/theme_core.dart';
 import 'package:know_my_city/presentation/dialogs/qrcode_dialog.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +17,7 @@ import 'package:know_my_city/presentation/core/directions_repository.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
 import 'package:know_my_city/presentation/core/router_core.dart';
 import 'package:know_my_city/presentation/dialogs/sign_in_dialog.dart';
+import 'package:provider/provider.dart';
 
 class MapsPage extends StatefulWidget {
   const MapsPage({super.key});
@@ -37,6 +39,7 @@ class _MapsPageState extends State<MapsPage> {
   bool rutaSeleccionada = false;
   String rutaQR = '';
   String rutaActiva = '';
+  late StateCore stateCore;
 
 /*   @override
   void dispose() {
@@ -63,6 +66,7 @@ class _MapsPageState extends State<MapsPage> {
       const LatLng(10.64214695401155, -71.60557377666612);
 
   late SignInBloc _signInBloc;
+
   @override
   void initState() {
     super.initState();
@@ -333,6 +337,10 @@ class _MapsPageState extends State<MapsPage> {
 
   @override
   Widget build(BuildContext context) {
+    stateCore = Provider.of<StateCore>(context);
+    stateCore.incrementCounter();
+    print('map - contador de saltos o creaciones ${stateCore.counter}');
+    print('Usuario registrado es: ${stateCore.isLoading}');
     return BlocBuilder<SignInBloc, SignInState>(
       bloc: _signInBloc,
       builder: (context, state) {
@@ -417,7 +425,7 @@ class MainMaps extends StatefulWidget {
   final Function(GoogleMapController) onMapCreated;
   final void Function(BuildContext, String, String, String, String)
       showCustomInfoWindow;
-  final bool rutaSeleccionada;  
+  final bool rutaSeleccionada;
 
   @override
   State<MainMaps> createState() => _MainMapsState();
@@ -431,454 +439,447 @@ class _MainMapsState extends State<MainMaps> {
   late Marker plaza;
   late String rutaActiva = '';
   _mapaMessage(BuildContext context) {
-    return ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Container(
-          padding: const EdgeInsets.all(8.0),
-          height: 60,         
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Row(children: [
+    return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Container(
+        padding: const EdgeInsets.all(8.0),
+        height: 60,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(
+          children: [
             const Icon(Icons.info, color: Colors.white, size: 24),
             const SizedBox(width: 20),
-            Expanded(child: Column(
+            Expanded(
+                child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Ruta ya seleccionada',
-                  style: GoogleFonts.poppins(
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  )
-                ),
+                Text('Ruta ya seleccionada',
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    )),
                 const Spacer(),
                 Text(
-                  'Ya has seleccionado esta ruta, si deseas cambiar de ruta, por favor, limpia la ruta actual',
-                  style: GoogleFonts.poppins(
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  )
-                ),
+                    'Ya has seleccionado esta ruta, si deseas cambiar de ruta, por favor, limpia la ruta actual',
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    )),
               ],
             ))
-          ],),
+          ],
         ),
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: Colors.transparent,
-        duration: const Duration(seconds: 4),
-      )
-    );
+      ),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      duration: const Duration(seconds: 4),
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
-  return LayoutBuilder(
-    builder: (BuildContext context, BoxConstraints constraints) {
-      double width = constraints.maxWidth;
-      return Scaffold(        
-        body: Stack(
-          children: [
-            GoogleMap(
-              onMapCreated: widget.onMapCreated,
-              initialCameraPosition: CameraPosition(
-                target: widget.center,
-                zoom: 14,
-              ),
-              markers: {
-                tranvia = Marker(
-                  markerId:
-                      const MarkerId('Tranvía de Maracaibo'),
-                  position: const LatLng(
-                      10.6564178133895, -71.59488684178918),
-                  icon: widget.customIcons[0],
-                  onTap: () {
-                    /* goToLocation(
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        double width = constraints.maxWidth;
+        return Scaffold(
+          body: Stack(
+            children: [
+              GoogleMap(
+                onMapCreated: widget.onMapCreated,
+                initialCameraPosition: CameraPosition(
+                  target: widget.center,
+                  zoom: 14,
+                ),
+                markers: {
+                  tranvia = Marker(
+                    markerId: const MarkerId('Tranvía de Maracaibo'),
+                    position:
+                        const LatLng(10.6564178133895, -71.59488684178918),
+                    icon: widget.customIcons[0],
+                    onTap: () {
+                      /* goToLocation(
                   const LatLng(10.6564178133895, -71.59488684178918)
                 ); */
-                    widget.showCustomInfoWindow(
-                        context,
-                        'Tranvía de Maracaibo',
-                        'Sede',
-                        'Sede del tranvía de Maracaibo, punto de salida para las rutas del Tranvía, ¡Descubre nuestras rutas en el menú lateral!',
-                        'tranvia'); //MUESTRA EL INFOWINDOW CON CLICK
-                  },
-                ),
-                plaza = Marker(
-                  markerId:
-                      const MarkerId('Plaza de la Republica'),
-                  position: const LatLng(
-                      10.66623260705817, -71.60581323765165),
-                  icon: widget.customIcons[1],
-                  onTap: () {
-                    /* goToLocation(
+                      widget.showCustomInfoWindow(
+                          context,
+                          'Tranvía de Maracaibo',
+                          'Sede',
+                          'Sede del tranvía de Maracaibo, punto de salida para las rutas del Tranvía, ¡Descubre nuestras rutas en el menú lateral!',
+                          'tranvia'); //MUESTRA EL INFOWINDOW CON CLICK
+                    },
+                  ),
+                  plaza = Marker(
+                    markerId: const MarkerId('Plaza de la Republica'),
+                    position:
+                        const LatLng(10.66623260705817, -71.60581323765165),
+                    icon: widget.customIcons[1],
+                    onTap: () {
+                      /* goToLocation(
                   const LatLng(10.665841201331798, -71.60603111374822)
                 ); */
-                    widget.showCustomInfoWindow(
-                        context,
-                        'Plaza de la República',
-                        'Ruta de la Alegría',
-                        'La plaza de la República es una de las principales plazas de la ciudad de Maracaibo, está ubicada en la calle 5 de Julio, un importante bulevar de Maracaibo, que lleva el nombre de la fecha de la independencia de Venezuela.',
-                        'plaza');
-                    /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                  },
-                ),
-                hospitalCentral = Marker(
-                  markerId: const MarkerId('Hospital Central'),
-                  position: const LatLng(
-                      10.64214695401155, -71.60557377666612),
-                  icon: widget.customIcons[3],
-                  onTap: () {
-                    /* goToLocation(
+                      widget.showCustomInfoWindow(
+                          context,
+                          'Plaza de la República',
+                          'Ruta de la Alegría',
+                          'La plaza de la República es una de las principales plazas de la ciudad de Maracaibo, está ubicada en la calle 5 de Julio, un importante bulevar de Maracaibo, que lleva el nombre de la fecha de la independencia de Venezuela.',
+                          'plaza');
+                      /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
+                    },
+                  ),
+                  hospitalCentral = Marker(
+                    markerId: const MarkerId('Hospital Central'),
+                    position:
+                        const LatLng(10.64214695401155, -71.60557377666612),
+                    icon: widget.customIcons[3],
+                    onTap: () {
+                      /* goToLocation(
                   const LatLng(10.64214695401155, -71.60557377666612)
                 ); */
-                    widget.showCustomInfoWindow(
-                        context,
-                        'Hospital Central',
-                        'Ruta del Terror',
-                        'El Hospital Central de Maracaibo es uno de los centros de salud más antiguos de la ciudad de Maracaibo. Fue la sede del primer hospital de la ciudad creado como la "Casa de Beneficencia" pero también recibió el nombre de Hospital de Santa Ana, siendo inaugurado el 26 de julio de 1608.',
-                        'central');
-                    /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                  },
-                ),
-                casaCapitulacion = Marker(
-                  markerId:
-                      const MarkerId('Casa de la Capitulación'),
-                  position: const LatLng(
-                      10.64231896416391, -71.60783610049393),
-                  icon: widget.customIcons[2],
-                  onTap: () {
-                    widget.goToLocation(const LatLng(
-                        10.64231896416391, -71.60783610049393));
-                    /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                  },
-                ),
-                quintaLuxor = Marker(
-                  markerId: const MarkerId('Quinta Luxor'),
-                  position: const LatLng(
-                      10.666711923974145, -71.6317473478305),
-                  icon: widget.customIcons[2],
-                  onTap: () {
-                    widget.goToLocation(const LatLng(
-                        10.666711923974145, -71.6317473478305));
-                    /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                  },
-                ),
-              },
-              polylines: widget.polylines,
-              style: widget.mapStyle,              
-              minMaxZoomPreference: const MinMaxZoomPreference(14, 16),              
-            ),
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.black.withOpacity(0.8),
-                      Colors.transparent,
-                    ],
+                      widget.showCustomInfoWindow(
+                          context,
+                          'Hospital Central',
+                          'Ruta del Terror',
+                          'El Hospital Central de Maracaibo es uno de los centros de salud más antiguos de la ciudad de Maracaibo. Fue la sede del primer hospital de la ciudad creado como la "Casa de Beneficencia" pero también recibió el nombre de Hospital de Santa Ana, siendo inaugurado el 26 de julio de 1608.',
+                          'central');
+                      /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
+                    },
                   ),
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(
-                      "images/banner/LOGOFOMUTURBLANCO.png",
-                      width: 200,
-                      height: 100,
+                  casaCapitulacion = Marker(
+                    markerId: const MarkerId('Casa de la Capitulación'),
+                    position:
+                        const LatLng(10.64231896416391, -71.60783610049393),
+                    icon: widget.customIcons[2],
+                    onTap: () {
+                      widget.goToLocation(
+                          const LatLng(10.64231896416391, -71.60783610049393));
+                      /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
+                    },
+                  ),
+                  quintaLuxor = Marker(
+                    markerId: const MarkerId('Quinta Luxor'),
+                    position:
+                        const LatLng(10.666711923974145, -71.6317473478305),
+                    icon: widget.customIcons[2],
+                    onTap: () {
+                      widget.goToLocation(
+                          const LatLng(10.666711923974145, -71.6317473478305));
+                      /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
+                    },
+                  ),
+                },
+                polylines: widget.polylines,
+                style: widget.mapStyle,
+                minMaxZoomPreference: const MinMaxZoomPreference(14, 16),
+              ),
+              Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.black.withOpacity(0.8),
+                          Colors.transparent,
+                        ],
+                      ),
                     ),
-                    Row(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Inicio',
-                            style: GoogleFonts.montserrat(
-                              textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
+                        Image.asset(
+                          "images/banner/LOGOFOMUTURBLANCO.png",
+                          width: 200,
+                          height: 100,
+                        ),
+                        Row(
+                          children: [
+                            TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                'Inicio',
+                                style: GoogleFonts.montserrat(
+                                  textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Mapa de Turista',
-                            style: GoogleFonts.montserrat(
-                              textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,                                                           
+                            const SizedBox(width: 12),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                'Mapa de Turista',
+                                style: GoogleFonts.montserrat(
+                                  textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Nosotros',
-                            style: GoogleFonts.montserrat(
-                              textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
+                            const SizedBox(width: 12),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                'Nosotros',
+                                style: GoogleFonts.montserrat(
+                                  textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        TextButton(
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return const SignInDialog();
+                            const SizedBox(width: 12),
+                            TextButton(
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return const SignInDialog();
+                                  },
+                                );
                               },
-                            );
-                          },
-                          child: Text(
-                            'Perfil',
-                            style: GoogleFonts.montserrat(
-                              textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 14,
+                              child: Text(
+                                'Perfil',
+                                style: GoogleFonts.montserrat(
+                                  textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
-                ),
-              )
-            ),
-            // ListView flotante sobre el mapa
-            Positioned(
-              top: 70,
-              left: 15,
-              right: MediaQuery.of(context).size.width * 0.20,
-              height: MediaQuery.of(context).size.height * 0.5,
-              child: Container(
-                color: Colors.transparent,
-              )              
-            ),
-            Positioned(
-              top: MediaQuery.of(context).size.height * 0.25,
-              left: 15.0,
-              width: MediaQuery.of(context).size.width * 0.20,
-              height: MediaQuery.of(context).size.height * 0.5,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.0),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 6.0,
-                      offset: Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20.0), // Aplica bordes al contenido
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.all(16.0),
-                        color: ThemeCore.primaryColor,
-                        child: Text(
-                          'RUTAS',
-                          style: GoogleFonts.poppins(
-                            textStyle: const TextStyle(
-                            color: Colors.white,                            
-                            fontSize: 24,
-                            letterSpacing: 1.5,
-                            ), 
-                          ) 
-                        ),
+                  )),
+              // ListView flotante sobre el mapa
+              Positioned(
+                  top: 70,
+                  left: 15,
+                  right: MediaQuery.of(context).size.width * 0.20,
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: Container(
+                    color: Colors.transparent,
+                  )),
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.25,
+                left: 15.0,
+                width: MediaQuery.of(context).size.width * 0.20,
+                height: MediaQuery.of(context).size.height * 0.5,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20.0),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 6.0,
+                        offset: Offset(0, 4),
                       ),
-                      ExpansionTile(
-                        title: Text(
-                          'Tranvía',
-                          style: GoogleFonts.poppins(
-                            textStyle: const TextStyle(
-                            color: Colors.black,                            
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            ), 
-                          ) ,
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(
+                        20.0), // Aplica bordes al contenido
+                    child: ListView(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.all(16.0),
+                          color: ThemeCore.primaryColor,
+                          child: Text('RUTAS',
+                              style: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  letterSpacing: 1.5,
+                                ),
+                              )),
                         ),
-                        children: <Widget>[
-                          ListTile(
-                            title: Text(
-                              'Ruta de la Alegría',
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                color: Colors.black,                            
-                                fontSize: 16,
+                        ExpansionTile(
+                          title: Text(
+                            'Tranvía',
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w400,
-                                ), 
-                              ) ,
-                            ),
-                            subtitle: Text(
-                              'Disfruta de la ciudad por la noche',
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                color: Colors.grey[600],                            
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300,
-                                ), 
                               ),
-                            ),                            
-                            onTap: () {
-                              if (rutaActiva == '1') {
-                                _mapaMessage(context);
-                              } else {
-                                widget.drawPolylines();
-                                widget.seleccionarRuta('Ruta de la Alegría');
-                                widget.goToCenter(widget.center);     
-                                setState(() {
-                                rutaActiva = '1';
-                              });                        
-                              }                              
-                            }
+                            ),
                           ),
-                          ListTile(
-                            title: Text(
-                              'Ruta Colonial',
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                color: Colors.black,                            
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                ), 
+                          children: <Widget>[
+                            ListTile(
+                                title: Text(
+                                  'Ruta de la Alegría',
+                                  style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  'Disfruta de la ciudad por la noche',
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                ),
+                                onTap: () {
+                                  if (rutaActiva == '1') {
+                                    _mapaMessage(context);
+                                  } else {
+                                    widget.drawPolylines();
+                                    widget
+                                        .seleccionarRuta('Ruta de la Alegría');
+                                    widget.goToCenter(widget.center);
+                                    setState(() {
+                                      rutaActiva = '1';
+                                    });
+                                  }
+                                }),
+                            ListTile(
+                              title: Text(
+                                'Ruta Colonial',
+                                style: GoogleFonts.poppins(
+                                  textStyle: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
                               ),
-                            ),
-                            subtitle: Text(
-                              'Recorrido por el centro histórico',
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                color: Colors.grey[600],                            
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300,
-                                ), 
+                              subtitle: Text(
+                                'Recorrido por el centro histórico',
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                    color: Colors.grey[600],
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
                               ),
-                            ),
-                            onTap: () {
-                              widget.drawTerrorRoute();
-                              widget.seleccionarRuta('Ruta del Terror');
-                              widget.goToCenter(widget.center);
-                            },
-                          ),
-                          ListTile(
-                            title: Text(
-                              'Ruta Gastronómica',
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                color: Colors.black,                            
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                ), 
-                              ),
-                            ),
-                            subtitle: Text(
-                              'Tequeyoyos, empanadas, arepas',
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                color: Colors.grey[600],                            
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300,
-                                ), 
-                              ),
-                            ),
                               onTap: () {
-                              // Acción para esta ruta
+                                widget.drawTerrorRoute();
+                                widget.seleccionarRuta('Ruta del Terror');
+                                widget.goToCenter(widget.center);
+                              },
+                            ),
+                            ListTile(
+                              title: Text(
+                                'Ruta Gastronómica',
+                                style: GoogleFonts.poppins(
+                                  textStyle: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                              subtitle: Text(
+                                'Tequeyoyos, empanadas, arepas',
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                    color: Colors.grey[600],
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                              ),
+                              onTap: () {
+                                // Acción para esta ruta
                               },
                             ),
                           ],
                         ),
                         ExpansionTile(
-                        title: Text(
-                          'Fomutur',
-                          style: GoogleFonts.poppins(
-                            textStyle: const TextStyle(
-                            color: Colors.black,                            
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            ), 
-                          ) ,
-                        ),
-                        children: <Widget>[
-                          ListTile(
-                            title: Text(
-                              'Vivelo Maracaibo',
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                color: Colors.black,                            
-                                fontSize: 16,
+                          title: Text(
+                            'Fomutur',
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w400,
-                                ), 
-                              ) ,
-                            ),
-                            subtitle: Text(
-                              'Paquetes turísticos para disfrutar la ciudad',
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                color: Colors.grey[600],                            
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300,
-                                ), 
                               ),
                             ),
-                            onTap: () {
-                              widget.drawPolylines();
-                              widget.seleccionarRuta('Ruta de la Alegría');
-                              widget.goToCenter(widget.center);
-                            },
                           ),
-                          ListTile(
-                            title: Text(
-                              'Caminata de Antaño',
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                color: Colors.black,                            
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                ), 
+                          children: <Widget>[
+                            ListTile(
+                              title: Text(
+                                'Vivelo Maracaibo',
+                                style: GoogleFonts.poppins(
+                                  textStyle: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
                               ),
-                            ),
-                            subtitle: Text(
-                              'Recorrido por el centro histórico',
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                color: Colors.grey[600],                            
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300,
-                                ), 
+                              subtitle: Text(
+                                'Paquetes turísticos para disfrutar la ciudad',
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                    color: Colors.grey[600],
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
                               ),
+                              onTap: () {
+                                widget.drawPolylines();
+                                widget.seleccionarRuta('Ruta de la Alegría');
+                                widget.goToCenter(widget.center);
+                              },
                             ),
-                            onTap: () {
-                              widget.drawTerrorRoute();
-                              widget.seleccionarRuta('Ruta del Terror');
-                              widget.goToCenter(widget.center);
-                            },
-                          ),
-                          /* ListTile(
+                            ListTile(
+                              title: Text(
+                                'Caminata de Antaño',
+                                style: GoogleFonts.poppins(
+                                  textStyle: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                              subtitle: Text(
+                                'Recorrido por el centro histórico',
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                    color: Colors.grey[600],
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                              ),
+                              onTap: () {
+                                widget.drawTerrorRoute();
+                                widget.seleccionarRuta('Ruta del Terror');
+                                widget.goToCenter(widget.center);
+                              },
+                            ),
+                            /* ListTile(
                             title: Text(
                               'Ruta Lacustre',
                               style: GoogleFonts.poppins(
@@ -910,40 +911,40 @@ class _MainMapsState extends State<MainMaps> {
                     ),
                   ),
                 ),
-              ),  
-            // Otros Positioned (botones, etc.)
-            Positioned(
-              bottom: 120.0,
-              right: 7.0,
-              height: 45,
-              width: 45,
-              child: FloatingActionButton(
-                backgroundColor: ThemeCore.primaryColor,
-                foregroundColor: Colors.white,
-                onPressed: () {
-                  widget.goToCenter(widget.center);
-                },
-                child: const Icon(Icons.my_location),
               ),
-            ),
-            Positioned(
-              bottom: 180.0,
-              right: 7.0,
-              height: 45,
-              width: 45,
-              child: FloatingActionButton(
-                backgroundColor: ThemeCore.primaryColor,
-                foregroundColor: Colors.white,
-                onPressed: () {
-                  widget.limpiarRuta(widget.polylines);
-                },
-                child: const Icon(Icons.clear_rounded),
+              // Otros Positioned (botones, etc.)
+              Positioned(
+                bottom: 120.0,
+                right: 7.0,
+                height: 45,
+                width: 45,
+                child: FloatingActionButton(
+                  backgroundColor: ThemeCore.primaryColor,
+                  foregroundColor: Colors.white,
+                  onPressed: () {
+                    widget.goToCenter(widget.center);
+                  },
+                  child: const Icon(Icons.my_location),
+                ),
               ),
-            ),
-          ],
-        ),
-      );
-    },
-  );
-}
+              Positioned(
+                bottom: 180.0,
+                right: 7.0,
+                height: 45,
+                width: 45,
+                child: FloatingActionButton(
+                  backgroundColor: ThemeCore.primaryColor,
+                  foregroundColor: Colors.white,
+                  onPressed: () {
+                    widget.limpiarRuta(widget.polylines);
+                  },
+                  child: const Icon(Icons.clear_rounded),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 }
