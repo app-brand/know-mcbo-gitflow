@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -7,8 +9,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:know_my_city/application/sign_in/sign_in_bloc.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/core/directions_model.dart';
+import 'package:know_my_city/presentation/core/marker_model.dart';
 import 'package:know_my_city/presentation/core/markers_list.dart';
 import 'package:know_my_city/presentation/core/state_core.dart';
+import 'package:know_my_city/presentation/core/tab_core.dart';
 import 'package:know_my_city/presentation/core/theme_core.dart';
 import 'package:know_my_city/presentation/dialogs/qrcode_dialog.dart';
 import 'package:go_router/go_router.dart';
@@ -40,6 +44,7 @@ class _MapsPageState extends State<MapsPage> {
   String rutaQR = '';
   String rutaActiva = '';
   late StateCore stateCore;
+  Set<Marker> _markers = {};
 
 /*   @override
   void dispose() {
@@ -77,6 +82,7 @@ class _MapsPageState extends State<MapsPage> {
     _initializeMarkers();
     _info = null; // This line can be removed as _info is now nullable
     /* _loadDirections(); */
+    _loadMarkersFromJson();
   }
 
   @override
@@ -103,6 +109,27 @@ class _MapsPageState extends State<MapsPage> {
       _customIcons.add(icon);
     }
     setState(() {});
+  }
+
+  Future<void> _loadMarkersFromJson() async {
+    final String response = await rootBundle.loadString('assets/json/markers.json');
+    final List<dynamic> data = json.decode(response);
+
+    Set<Marker> markers = data.map((item) {
+      final markerData = MarkerData.fromJson(item);
+      return Marker(
+        markerId: MarkerId(markerData.id),
+        position: LatLng(markerData.latitude, markerData.longitude),
+        icon: _customIcons.length > markerData.iconIndex
+            ? _customIcons[markerData.iconIndex]
+            : BitmapDescriptor.defaultMarker,
+        infoWindow: InfoWindow(title: markerData.name),
+      );
+    }).toSet();
+
+    setState(() {
+      _markers = markers;
+    });
   }
 
   void _initializeMarkers() {
@@ -382,7 +409,8 @@ class _MapsPageState extends State<MapsPage> {
                     drawTerrorRoute: _drawTerrorRoute,
                     drawPolylines: _drawMultiplePolylines,
                     info: _info,
-                    showCustomInfoWindow:
+                    markers: _markers,
+                    showCustomInfoWindow:                    
                         (context, title, ruta, snippet, assetname) =>
                             _showCustomInfoWindow(
                                 context, title, ruta, snippet, assetname),
@@ -423,6 +451,7 @@ class MainMaps extends StatefulWidget {
     required this.seleccionarRuta,
     required this.limpiarRuta,
     required this.rutaSeleccionada,
+    required this.markers,
   });
 
   final SignInBloc signInBloc;
@@ -442,6 +471,7 @@ class MainMaps extends StatefulWidget {
   final void Function(BuildContext, String, String, String, String)
       showCustomInfoWindow;
   final bool rutaSeleccionada;
+  final Set<Marker> markers;
 
   @override
   State<MainMaps> createState() => _MainMapsState();
@@ -529,14 +559,14 @@ class _MainMapsState extends State<MainMaps> {
         double width = constraints.maxWidth;
         return Scaffold(
           body: Stack(
-            children: [
+            children: [              
               GoogleMap(
                 onMapCreated: widget.onMapCreated,
                 initialCameraPosition: CameraPosition(
                   target: widget.center,
                   zoom: 13,
                 ),
-                markers: {
+                markers: widget.markers,/* {
                   tranvia = Marker(
                     markerId: const MarkerId('Tranvía de Maracaibo'),
                     position:
@@ -612,7 +642,7 @@ class _MainMapsState extends State<MainMaps> {
                       /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
                     },
                   ),
-                },
+                }, */
                 polylines: widget.polylines,
                 style: widget.mapStyle,
                 minMaxZoomPreference: const MinMaxZoomPreference(13, 17),

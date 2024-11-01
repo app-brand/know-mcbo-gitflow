@@ -6,7 +6,7 @@ final routerCore = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const AppHome(),
+      builder: (context, state) => const MapsPage(),
     ),
     GoRoute(
       path: '/maps',
