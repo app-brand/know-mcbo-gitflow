@@ -71,7 +71,6 @@ class _MapsPageState extends State<MapsPage> {
       const LatLng(10.64214695401155, -71.60557377666612);
 
   late SignInBloc _signInBloc;
-  //bool _initialized = false;
 
   @override
   void initState() {
@@ -98,6 +97,14 @@ class _MapsPageState extends State<MapsPage> {
         print('Usuario registrado es: ${stateCore.isLoading}');
       });
       _initialized = true; // Evita ejecutar este bloque múltiples veces }*/
+    _info = null;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      stateCore = Provider.of<StateCore>(context, listen: false);
+      stateCore.incrementCounter();
+      stateCore.checkUserState();
+      //coreState.checkAxi();
+      print('home - contador de saltos o creaciones ${stateCore.counter}');
+    });
   }
 
   Future<void> _loadCustomMarkerIcons() async {
