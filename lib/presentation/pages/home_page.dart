@@ -17,48 +17,61 @@ class AppHome extends StatefulWidget {
 
 class _AppHomeState extends State<AppHome> {
   late StateCore stateCore;
+  bool _initialized = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    /*    if (!_initialized) {
+      // Accede a Provider después de que se hayan configurado las dependencias
+      // y el arbol de widget de go_router este instanciado.
+      Future.delayed(Duration.zero, () {
+        final stateCore = Provider.of<StateCore>(context, listen: false);
+        stateCore.incrementCounter();
+        print('home - contador de saltos o creaciones ${stateCore.counter}');
+        print('Usuario registrado es: ${stateCore.isLoading}');
+      });
+      _initialized = true; // Evita ejecutar este bloque múltiples veces
+    } */
+  }
 
   @override
   void initState() {
     super.initState();
-    /* WidgetsBinding.instance.addPostFrameCallback((_) {
-      stateCore = Provider.of<StateCore>(context, listen: false);
-      stateCore.checkFirestoreConnection();
-    }); */
   }
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        double width = constraints.maxWidth;
-        bool isMobile = width < 600;
-        final stateCore = Provider.of<StateCore>(context);
+    return Consumer<StateCore>(
+      builder: (context, coreState, child) {
+        stateCore = coreState;
         stateCore.incrementCounter();
         print('home - contador de saltos o creaciones ${stateCore.counter}');
         print('Usuario registrado es: ${stateCore.isLoading}');
-        return Scaffold(
-          body: Stack(
-            children: [
-              // Contenido de la página
-              Positioned.fill(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      HeaderCustom(),
-                      const TravelPageContent(),
-                      const EspaciosContent(),
-                      const GastronomiaContent(),
-                      const MaracaiboAntano(),
-                      /* const EventList(), */
-                      FooterWidget(),
-                    ],
+        return LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            return Scaffold(
+              body: Stack(
+                children: [
+                  Positioned.fill(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          HeaderCustom(),
+                          const TravelPageContent(),
+                          const EspaciosContent(),
+                          const GastronomiaContent(),
+                          const MaracaiboAntano(),
+                          FooterWidget(),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            );
+          },
         );
       },
     );

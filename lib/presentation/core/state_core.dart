@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:injectable/injectable.dart';
 import 'package:know_my_city/domain/axi/axi.dart';
 
@@ -19,8 +20,10 @@ class StateCore extends ChangeNotifier {
     required FirebaseFirestore firebaseFirestore,
   })  : _auth = auth,
         _firebaseFirestore = firebaseFirestore {
-    checkUserState();
-    axiCollection();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      checkUserState();
+      // axiCollection();
+    });
   }
 
   int get counter => _counter;
@@ -50,16 +53,12 @@ class StateCore extends ChangeNotifier {
         print(_loggedIn);
       } else {
         print('no hay session activa');
-        _loggedIn = false;
       }
-      // Asegúrate de que notifyListeners se llame después del primer build
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        notifyListeners();
-      });
+      notifyListeners();
     });
   }
 
-  // Verificar lectura de gastronomia
+  /* // Verificar lectura de gastronomia
   StreamSubscription<QuerySnapshot>? _axiSubscription;
   List<Axi> _axiArray = [];
   List<Axi> get axiArray => _axiArray;
@@ -74,13 +73,15 @@ class StateCore extends ChangeNotifier {
           print(doc.data());
         }
       });
-    } on FirebaseException catch (e) {
-      print(e.code);
-      print(e.message);
+    } catch (e) {
+      print('Error al conectarse a firestore ${e}');
     }
-    // Asegúrate de que notifyListeners se llame después del primer build
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      notifyListeners();
-    });
+    notifyListeners();
+  } */
+
+  @override
+  void dispose() {
+    /* _axiSubscription?.cancel(); */
+    super.dispose();
   }
 }
