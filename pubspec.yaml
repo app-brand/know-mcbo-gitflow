@@ -87,3 +87,10 @@ flutter:
     - assets/json/      
     - assets/images/markers/
     - assets/images/banner/
+    - assets/json/ejes_informacion.json
+    - assets/images/ejes/
+    - assets/images/ejes/tranvia_maracaibo_imagen1.jpg
+    - assets/images/ejes/tranvia_maracaibo_imagen2.jpg
+    - assets/images/ejes/gaitas_principal.png
+    - assets/images/ejes/gaitas1.jpg
+    - assets/images/ejes/gaitas2.jpg
