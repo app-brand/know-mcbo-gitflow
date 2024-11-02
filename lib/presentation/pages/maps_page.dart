@@ -76,10 +76,13 @@ class _MapsPageState extends State<MapsPage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showWelcomeDialog();
+    });
     _signInBloc = sl<SignInBloc>();
     _mapStyle = _loadMapStyle();
     _loadCustomMarkerIcons();
-    _initializeMarkers();
+    /* _initializeMarkers(); */
     _info = null; // This line can be removed as _info is now nullable
     /* _loadDirections(); */
     _loadMarkersFromJson();
@@ -106,6 +109,122 @@ class _MapsPageState extends State<MapsPage> {
       //coreState.checkAxi();
       print('home - contador de saltos o creaciones ${stateCore.counter}');
     });
+  }
+
+  void _showWelcomeDialog() {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    barrierColor: Colors.black.withOpacity(0.95), // Fondo oscuro
+    builder: (context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          height: 600,
+          width: MediaQuery.of(context).size.width * 0.5,
+          child: Column(
+            children: [
+              // Header image
+              Container(
+                height: MediaQuery.of(context).size.height * 0.30,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  image: const DecorationImage(
+                    image: AssetImage('assets/images/banner/maracaibo.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15),
+              // Title
+              Text(
+                'Bienvenido al Módulo de Geolocalización',
+                style: GoogleFonts.montserrat(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              // Instruction text with icons
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildInstructionRow(
+                        Icons.location_pin,
+                        'Ubica tu posición en el mapa y descubre lugares cercanos.',
+                      ),
+                      const SizedBox(height: 8),
+                      _buildInstructionRow(
+                        Icons.search,
+                        'Busca puntos de interés utilizando la barra de búsqueda.',
+                      ),
+                      const SizedBox(height: 8),
+                      _buildInstructionRow(
+                        Icons.zoom_in,
+                        'Acércate para ver detalles y explora más zonas.',
+                      ),
+                      const SizedBox(height: 8),
+                      _buildInstructionRow(
+                        Icons.zoom_out,
+                        'Aléjate para obtener una vista más amplia del mapa.',
+                      ),
+                      const SizedBox(height: 8),
+                      _buildInstructionRow(
+                        Icons.navigation,
+                        'Utiliza la función de navegación para obtener direcciones.',
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15),
+              // "Entendido" button
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    'Entendido',
+                    style: GoogleFonts.montserrat(
+                      color: Colors.blue,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
+  Widget _buildInstructionRow(IconData icon, String text) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(icon, color: Colors.blueAccent, size: 24),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Text(
+            text,
+            style: GoogleFonts.montserrat(
+              fontSize: 14,
+              color: Colors.black87,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   Future<void> _loadCustomMarkerIcons() async {
@@ -140,7 +259,7 @@ class _MapsPageState extends State<MapsPage> {
     });
   }
 
-  void _initializeMarkers() {
+  /* void _initializeMarkers() {
     _tranvia = Marker(
       markerId: const MarkerId('tranvia'),
       position: const LatLng(10.6564178133895,
@@ -187,7 +306,7 @@ class _MapsPageState extends State<MapsPage> {
     );
 
     setState(() {});
-  }
+  } */
 
   /*  Future<void> _loadDirections() async {
     final directions = await DirectionsRepository()
@@ -567,90 +686,14 @@ class _MainMapsState extends State<MainMaps> {
         double width = constraints.maxWidth;
         return Scaffold(
           body: Stack(
-            children: [              
+            children: [                           
               GoogleMap(
                 onMapCreated: widget.onMapCreated,
                 initialCameraPosition: CameraPosition(
                   target: widget.center,
                   zoom: 13,
                 ),
-                markers: widget.markers,/* {
-                  tranvia = Marker(
-                    markerId: const MarkerId('Tranvía de Maracaibo'),
-                    position:
-                        const LatLng(10.6564178133895, -71.59488684178918),
-                    icon: widget.customIcons[0],
-                    onTap: () {
-                      /* goToLocation(
-                  const LatLng(10.6564178133895, -71.59488684178918)
-                ); */
-                      widget.showCustomInfoWindow(
-                          context,
-                          'Tranvía de Maracaibo',
-                          'Sede',
-                          'Sede del tranvía de Maracaibo, punto de salida para las rutas del Tranvía, ¡Descubre nuestras rutas en el menú lateral!',
-                          'tranvia'); //MUESTRA EL INFOWINDOW CON CLICK
-                    },
-                  ),
-                  plaza = Marker(
-                    markerId: const MarkerId('Plaza de la Republica'),
-                    position:
-                        const LatLng(10.66623260705817, -71.60581323765165),
-                    icon: widget.customIcons[1],
-                    onTap: () {
-                      /* goToLocation(
-                  const LatLng(10.665841201331798, -71.60603111374822)
-                ); */
-                      widget.showCustomInfoWindow(
-                          context,
-                          'Plaza de la República',
-                          'Ruta de la Alegría',
-                          'La plaza de la República es una de las principales plazas de la ciudad de Maracaibo, está ubicada en la calle 5 de Julio, un importante bulevar de Maracaibo, que lleva el nombre de la fecha de la independencia de Venezuela.',
-                          'plaza');
-                      /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                    },
-                  ),
-                  hospitalCentral = Marker(
-                    markerId: const MarkerId('Hospital Central'),
-                    position:
-                        const LatLng(10.64214695401155, -71.60557377666612),
-                    icon: widget.customIcons[3],
-                    onTap: () {
-                      /* goToLocation(
-                  const LatLng(10.64214695401155, -71.60557377666612)
-                ); */
-                      widget.showCustomInfoWindow(
-                          context,
-                          'Hospital Central',
-                          'Ruta del Terror',
-                          'El Hospital Central de Maracaibo es uno de los centros de salud más antiguos de la ciudad de Maracaibo. Fue la sede del primer hospital de la ciudad creado como la "Casa de Beneficencia" pero también recibió el nombre de Hospital de Santa Ana, siendo inaugurado el 26 de julio de 1608.',
-                          'central');
-                      /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                    },
-                  ),
-                  casaCapitulacion = Marker(
-                    markerId: const MarkerId('Casa de la Capitulación'),
-                    position:
-                        const LatLng(10.64231896416391, -71.60783610049393),
-                    icon: widget.customIcons[2],
-                    onTap: () {
-                      widget.goToLocation(
-                          const LatLng(10.64231896416391, -71.60783610049393));
-                      /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                    },
-                  ),
-                  quintaLuxor = Marker(
-                    markerId: const MarkerId('Quinta Luxor'),
-                    position:
-                        const LatLng(10.666711923974145, -71.6317473478305),
-                    icon: widget.customIcons[2],
-                    onTap: () {
-                      widget.goToLocation(
-                          const LatLng(10.666711923974145, -71.6317473478305));
-                      /* showCustomInfoWindow(context, 'Tranvía de Maracaibo', 'Sede del tranvía de Maracaibo'); */ //MUESTRA EL INFOWINDOW CON CLICK
-                    },
-                  ),
-                }, */
+                markers: widget.markers,
                 polylines: widget.polylines,
                 style: widget.mapStyle,
                 minMaxZoomPreference: const MinMaxZoomPreference(13, 17),
@@ -1061,96 +1104,98 @@ class _MainMapsState extends State<MainMaps> {
                               ),
                             ],
                           ),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Imagen de cabecera
-                                Container(
-                                  height: 150,
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                                    image: DecorationImage(
-                                      image: AssetImage('assets/images/banner/tranvia.jpeg'),
-                                      fit: BoxFit.cover,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Imagen de cabecera fija
+                              Container(
+                                height: 150,
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                                  image: DecorationImage(
+                                    image: AssetImage('assets/images/banner/tranvia.jpeg'),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              
+                              // Título de la ruta
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                child: Text(
+                                  selectedRouteTitle,
+                                  style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87,
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 10),
-
-                                // Título de la ruta
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                  child: Text(
-                                    selectedRouteTitle,
-                                    style: GoogleFonts.poppins(
-                                      textStyle: const TextStyle(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black87,
-                                      ),
+                              ),
+                              const SizedBox(height: 8),
+                              
+                              // Descripción breve fija
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                child: Text(
+                                  selectedRouteDescription,
+                                  style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black54,
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 8),
-
-                                // Descripción breve
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                  child: Text(
-                                    selectedRouteDescription,
-                                    style: GoogleFonts.poppins(
-                                      textStyle: const TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.black54,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 12),
-
-                                // Información de días y horarios
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      _InfoRow(
-                                        icon: Icons.calendar_today,
-                                        title: 'Días Disponibles',
-                                        content: selectedRouteSchedule,
-                                      ),
-                                      const SizedBox(height: 8),
-                                      _InfoRow(
-                                        icon: Icons.access_time,
-                                        title: 'Hora de salida',
-                                        content: selectedRouteDeparture,
-                                      ),
-                                      const SizedBox(height: 8),
-                                      _InfoRow(
-                                        icon: Icons.attach_money,
-                                        title: 'Costo',
-                                        content: selectedRoutePrice,
-                                      ),
-                                      const SizedBox(height: 8),
-                                      _InfoRow(
-                                        icon: Icons.location_on,
-                                        title: 'Paradas Principales',
-                                        content: selectedRoutePoints,
-                                      ),
-                                      const SizedBox(height: 8),
-                                      if (selectedRouteTitle == 'Ruta de la Alegría')
-                                        const _InfoRow(
-                                          icon: Icons.info,
-                                          title: 'Advertencia',
-                                          content: 'Esta ruta es para mayores de 18 años',
+                              ),
+                              const SizedBox(height: 12),
+                              
+                              // Contenido desplazable
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        _InfoRow(
+                                          icon: Icons.calendar_today,
+                                          title: 'Días Disponibles',
+                                          content: selectedRouteSchedule,
                                         ),
-                                    ],
+                                        const SizedBox(height: 8),
+                                        _InfoRow(
+                                          icon: Icons.access_time,
+                                          title: 'Hora de salida',
+                                          content: selectedRouteDeparture,
+                                        ),
+                                        const SizedBox(height: 8),
+                                        _InfoRow(
+                                          icon: Icons.attach_money,
+                                          title: 'Costo',
+                                          content: selectedRoutePrice,
+                                        ),
+                                        const SizedBox(height: 8),
+                                        _InfoRow(
+                                          icon: Icons.location_on,
+                                          title: 'Paradas Principales',
+                                          content: selectedRoutePoints,
+                                        ),
+                                        const SizedBox(height: 8),
+                                        if (selectedRouteTitle == 'Ruta de la Alegría')
+                                          const _InfoRow(
+                                            icon: Icons.info,
+                                            title: 'Advertencia',
+                                            content: 'Esta ruta es para mayores de 18 años',
+                                          ),
+                                        const SizedBox(height: 12),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                                const SizedBox(height: 12),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -1173,7 +1218,6 @@ class _MainMapsState extends State<MainMaps> {
                   ),
                 ),
               ),
-
               if (rutaActiva.isNotEmpty)
               Positioned(
                 bottom: 20,
