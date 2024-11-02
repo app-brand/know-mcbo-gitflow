@@ -63,56 +63,34 @@ class TravelPageContent extends StatelessWidget {
               crossAxisCount: 2,  // 2 columnas
               crossAxisSpacing: 18,  // Espaciado más pequeño entre columnas
               mainAxisSpacing: 18,   // Espaciado más pequeño entre filas
-              children: [
+              children: const [
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,  // Ocupa 1 columna
                   mainAxisCellCount: 0.40,  // Ocupa 0.75 de una fila
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => EjesPage(boxId: 'tranvia_de_maracaibo',)),
-                      );
-                    },
-                    child: const IdiosincrasiaCard(
-                      imagePath: 'assets/images/banner/tranvia.jpeg',
-                      title: 'Tranvía de Maracaibo',
-                      description: 'Conoce la historia de este medio de transporte emblemático.',
-                    ),
+                  child: IdiosincrasiaCard(
+                    imagePath: 'assets/images/banner/tranvia.jpeg',
+                    title: 'Tranvía de Maracaibo',
+                    description:
+                        'Conoce la historia de este medio de transporte emblemático.',
                   ),
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,  // Ocupa 1 columna
                   mainAxisCellCount: 0.80,  // Ocupa 1.5 filas
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => EjesPage(boxId: 'gaitas',)),
-                      );
-                    },
-                    child: const IdiosincrasiaCard(
-                      imagePath: 'assets/images/axis/gaita.jpeg',
-                      title: 'Gaitas',
-                      description: 'Descubre más sobre este género musical típico de la región.',
-                    ),
+                  child: IdiosincrasiaCard(
+                    imagePath: 'assets/images/axis/gaita.jpeg',
+                    title: 'Gaitas',
+                    description: 'Descubre más sobre este género musical típico de la región.',
                   ),
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,  // Ocupa 1 columna
                   mainAxisCellCount: 0.40,  // Ocupa 0.75 de una fila
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => EjesPage(boxId: 'artesania')),
-                      );
-                    },
-                    child: const IdiosincrasiaCard(
-                      imagePath: 'assets/images/axis/artesania.JPG',
-                      title: 'Artesanía',
-                      description: 'Conoce más sobre la artesanía zuliana y sus tradiciones.',
-                    ),
+                  child: IdiosincrasiaCard(
+                    imagePath: 'assets/images/axis/artesania.JPG',
+                    title: 'Artesanía',
+                    description:
+                        'Conoce más sobre la artesanía zuliana y sus tradiciones.',
                   ),
                 ),
               ],

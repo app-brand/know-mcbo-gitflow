@@ -15,7 +15,7 @@ class EmailFormField extends StatelessWidget {
     return TextFormField(
       decoration: InputDecoration(
         prefixIcon: const Icon(Icons.email),
-        labelText: 'Correo electronico',
+        labelText: 'Correo electrónico',
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
         ),
