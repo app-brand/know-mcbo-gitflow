@@ -1,4 +1,5 @@
 import 'package:know_my_city/presentation/core/state_core.dart';
+import 'package:know_my_city/presentation/core/tab_core.dart';
 import 'package:know_my_city/presentation/widgets/ejes2_list.dart';
 import 'package:know_my_city/presentation/widgets/ejes3_list.dart';
 import 'package:know_my_city/presentation/widgets/ejes_list.dart';
@@ -41,39 +42,28 @@ class _AppHomeState extends State<AppHome> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Consumer<StateCore>(
-      builder: (context, coreState, child) {
-        stateCore = coreState;
-        stateCore.incrementCounter();
-        print('home - contador de saltos o creaciones ${stateCore.counter}');
-        print('Usuario registrado es: ${stateCore.isLoading}');
-        return LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-            return Scaffold(
-              body: Stack(
-                children: [
-                  Positioned.fill(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          HeaderCustom(),
-                          const TravelPageContent(),
-                          const EspaciosContent(),
-                          const GastronomiaContent(),
-                          const MaracaiboAntano(),
-                          FooterWidget(),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        );
-      },
-    );
-  }
+Widget build(BuildContext context) {
+  return Consumer<StateCore>(
+    builder: (context, coreState, child) {
+      stateCore = coreState;
+      print('home - contador de saltos o creaciones ${stateCore.counter}');
+      print('Usuario registrado es: ${stateCore.isLoading}');
+      return Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              HeaderCustom(),
+              const TravelPageContent(),
+              const EspaciosContent(),
+              const GastronomiaContent(),
+              const MaracaiboAntano(),
+              FooterWidget(),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
 }
