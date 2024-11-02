@@ -58,7 +58,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '226065988319',
     projectId: 'know-my-city-eaa7f',
     authDomain: 'know-my-city-eaa7f.firebaseapp.com',
-    storageBucket: 'know-my-city-eaa7f.appspot.com',
+    databaseURL: 'https://know-my-city-eaa7f-default-rtdb.firebaseio.com',
+    storageBucket: 'know-my-city-eaa7f.firebasestorage.app',
     measurementId: 'G-MLHZ3RBFLS',
   );
+
 }

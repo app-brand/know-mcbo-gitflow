@@ -66,7 +66,6 @@ class _MapsPageState extends State<MapsPage> {
       const LatLng(10.64214695401155, -71.60557377666612);
 
   late SignInBloc _signInBloc;
-  //bool _initialized = false;
 
   @override
   void initState() {
@@ -75,23 +74,14 @@ class _MapsPageState extends State<MapsPage> {
     _mapStyle = _loadMapStyle();
     _loadCustomMarkerIcons();
     _initializeMarkers();
-    _info = null; // This line can be removed as _info is now nullable
-    /* _loadDirections(); */
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    /* if (!_initialized) {
-      // Accede a Provider después de que se hayan configurado las dependencias
-      // y el arbol de widget de go_router este instanciado.
-      Future.delayed(Duration.zero, () {
-        final stateCore = Provider.of<StateCore>(context, listen: false);
-        stateCore.incrementCounter();
-        print('map - contador de saltos o creaciones ${stateCore.counter}');
-        print('Usuario registrado es: ${stateCore.isLoading}');
-      });
-      _initialized = true; // Evita ejecutar este bloque múltiples veces }*/
+    _info = null;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      stateCore = Provider.of<StateCore>(context, listen: false);
+      stateCore.incrementCounter();
+      stateCore.checkUserState();
+      //coreState.checkAxi();
+      print('home - contador de saltos o creaciones ${stateCore.counter}');
+    });
   }
 
   Future<void> _loadCustomMarkerIcons() async {

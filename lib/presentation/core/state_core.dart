@@ -1,87 +1,91 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:injectable/injectable.dart';
-//import 'package:know_my_city/domain/axi/axi.dart';
+import 'package:know_my_city/domain/axi/axi.dart';
 
 @injectable
 class StateCore extends ChangeNotifier {
   final FirebaseAuth _auth;
   final FirebaseFirestore _firebaseFirestore;
-  //Controles
+  StreamSubscription<User?>? _authSubscription;
+  // Suscripciones de ejes - por coleccion
+  StreamSubscription<QuerySnapshot>? _axiSubscription;
+  List<Axi> _axiList = [];
+  List<Axi> get axiList => _axiList;
+  // Controles
   int _counter = 0;
   bool _isLoading = false;
+  bool _loggedIn = false;
 
   StateCore({
     required FirebaseAuth auth,
     required FirebaseFirestore firebaseFirestore,
   })  : _auth = auth,
         _firebaseFirestore = firebaseFirestore {
-    SchedulerBinding.instance.addPostFrameCallback((_) {
+    // Ejecuta la verificación del estado del usuario después del primer build
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       checkUserState();
-      // axiCollection();
     });
   }
 
   int get counter => _counter;
-  // Page counter
+
+  // Método para incrementar el contador y notificar a los listeners
   void incrementCounter() {
     _counter++;
-    print('Contando los cambios de pagina ${counter}');
+    print('Contando los cambios de página: $counter');
     notifyListeners();
   }
 
-  // Getter y Setter para _isLoading
+  // Getter y setter para _isLoading
   bool get isLoading => _isLoading;
+
   void setLoading(bool loading) {
     _isLoading = loading;
     notifyListeners();
   }
 
-  // Verificar sesion!
-  bool _loggedIn = false;
+  // Getter para _loggedIn
   bool get loggedIn => _loggedIn;
 
+  // Verificar el estado del usuario
   Future<void> checkUserState() async {
-    _auth.userChanges().listen((user) {
-      if (user != null) {
-        print('sesion reconocida');
-        _loggedIn = true;
-        print(_loggedIn);
-      } else {
-        print('no hay session activa');
+    _authSubscription = _auth.userChanges().listen((user) {
+      final wasLoggedIn = _loggedIn;
+      _loggedIn = user != null;
+      // Solo notifica a los listeners si hay un cambio en el estado de login
+      if (wasLoggedIn != _loggedIn) {
+        print(_loggedIn ? 'Sesión reconocida' : 'No hay sesión activa');
+        notifyListeners();
       }
-      notifyListeners();
     });
   }
 
-  /* // Verificar lectura de gastronomia
-  StreamSubscription<QuerySnapshot>? _axiSubscription;
-  List<Axi> _axiArray = [];
-  List<Axi> get axiArray => _axiArray;
-  Future<void> axiCollection() async {
+  Future<void> checkAxi() async {
+    print('Ejecutando comando a firestore');
     try {
       _axiSubscription = _firebaseFirestore
           .collection('gastronomia')
           .snapshots()
-          .listen((documents) {
-        for (final doc in documents.docs) {
-          print('lectura de gastronomia - firestore');
-          print(doc.data());
+          .listen((snapshot) {
+        print('Estoy en un snapshot');
+        _axiList = [];
+        for (var document in snapshot.docs) {
+          print(document.data());
         }
+        notifyListeners();
       });
-    } catch (e) {
-      print('Error al conectarse a firestore ${e}');
+    } on Exception catch (e) {
+      print('Error al acceder a Firestore: $e');
     }
-    notifyListeners();
-  } */
+  }
 
   @override
   void dispose() {
-    /* _axiSubscription?.cancel(); */
+    _authSubscription?.cancel();
+    _axiSubscription?.cancel();
     super.dispose();
   }
 }
