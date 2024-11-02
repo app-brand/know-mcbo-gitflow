@@ -10,13 +10,42 @@ class EspaciosContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Usamos MediaQuery para determinar el ancho de la pantalla
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    // Configuración responsive según el ancho de pantalla
+    int crossAxisCount;
+    double horizontalPadding;
+    double titleFontSize;
+    double subtitleFontSize;
+    double descriptionFontSize;
+
+    if (screenWidth >= 1024) {
+      // Vista de escritorio
+      crossAxisCount = 2;
+      horizontalPadding = 140.0;
+      titleFontSize = 36.0;
+      subtitleFontSize = 20.0;
+      descriptionFontSize = 18.0;
+    } else if (screenWidth >= 600) {
+      // Vista de tablet
+      crossAxisCount = 2;
+      horizontalPadding = 80.0;
+      titleFontSize = 28.0;
+      subtitleFontSize = 18.0;
+      descriptionFontSize = 16.0;
+    } else {
+      // Vista móvil
+      crossAxisCount = 1;
+      horizontalPadding = 16.0;
+      titleFontSize = 24.0;
+      subtitleFontSize = 16.0;
+      descriptionFontSize = 14.0;
+    }
+
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.only(
-          top: 70.0,
-          left: 140.0,
-          right: 140.0
-        ),
+        padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -24,95 +53,73 @@ class EspaciosContent extends StatelessWidget {
               children: [
                 Image.asset(
                   'assets/images/banner/SolConoce.png',
-                  width: 32, 
-                  height: 32,                
+                  width: 32,
+                  height: 32,
                 ),
+                const SizedBox(width: 8),
                 Text(
                   'ESPACIOS',
                   style: GoogleFonts.poppins(
-                    textStyle: const TextStyle(
-                      fontSize: 20,
+                    textStyle: TextStyle(
+                      fontSize: subtitleFontSize,
                       color: AppTheme.greenSecondary,
-                      fontWeight: FontWeight.w300              
-                    ),                
-                  ),              
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
                 ),
-              ],          
-            ),            
+              ],
+            ),
+            const SizedBox(height: 8),
             Text(
               'Disfruta de las maravillosas vistas que regala la ciudad',
               style: GoogleFonts.poppins(
-                textStyle: const TextStyle(
-                  fontSize: 36,
+                textStyle: TextStyle(
+                  fontSize: titleFontSize,
                   color: AppTheme.greenAlcaldia,
-                ),                
-              ),              
+                ),
+              ),
             ),
             const SizedBox(height: 8),
-            Text( 
+            Text(
               'Conoce más sobre los espacios emblemáticos de la ciudad y sus alrededores.',
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
-                  fontSize: 18,
+                  fontSize: descriptionFontSize,
                   color: Colors.grey[600],
-                ),                
-              ),   
+                ),
+              ),
             ),
             const SizedBox(height: 16),
             StaggeredGrid.count(
-              crossAxisCount: 2,
+              crossAxisCount: crossAxisCount,
               crossAxisSpacing: 18,
               mainAxisSpacing: 18,
-              children: [
+              children: const [
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
                   mainAxisCellCount: 0.80,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => EjesPage(boxId: 'basilica')),
-                      );
-                    },
-                    child: const EspaciosCard(
-                      imagePath: 'assets/images/axis/basilica.jpg',
-                      title: 'Basilica de Chiquinquirá',
-                      description: 'Conoce la historia de la patrona de los zulianos.',
-                    ),
+                  child: EspaciosCard(
+                    imagePath: 'assets/images/axis/basilica.jpg',
+                    title: 'Basílica de Chiquinquirá',
+                    description: 'Conoce la historia de la patrona de los zulianos.',
                   ),
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
                   mainAxisCellCount: 0.40,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => EjesPage(boxId: 'vereda')),
-                      );
-                    },
-                    child: const EspaciosCard(
-                      imagePath: 'assets/images/axis/vereda.png',
-                      title: 'Vereda del Lago',
-                      description: 'Descubre el sitio más visitado por los marabinos.',
-                    ),
+                  child: EspaciosCard(
+                    imagePath: 'assets/images/axis/vereda.png',
+                    title: 'Vereda del Lago',
+                    description: 'Descubre el sitio más visitado por los marabinos.',
                   ),
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
                   mainAxisCellCount: 0.40,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => EjesPage(boxId: 'calle_carabobo')),
-                      );
-                    },
-                    child: const EspaciosCard(
-                      imagePath: 'assets/images/banner/carabobocalle.jpg',
-                      title: 'Calle Carabobo',
-                      description: 'Descubre la historia de la calle más antigua de la ciudad.',
-                    ),
+                  child: EspaciosCard(
+                    imagePath: 'assets/images/banner/carabobocalle.jpg',
+                    title: 'Calle Carabobo',
+                    description: 'Descubre la historia de la calle más antigua de la ciudad.',
                   ),
                 ),
               ],
