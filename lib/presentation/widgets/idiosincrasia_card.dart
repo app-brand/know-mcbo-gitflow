@@ -24,7 +24,8 @@ class _IdiosincrasiaCardState extends State<IdiosincrasiaCard> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        bool isMobile = constraints.maxWidth < 600;
+        // Oculta la descripción si la tarjeta es pequeña (altura y ancho menores a 150)
+        bool showDescription = constraints.maxHeight > 150 && constraints.maxWidth > 150;
 
         return MouseRegion(
           onEnter: (_) => setState(() => _isHovered = true),
@@ -38,7 +39,7 @@ class _IdiosincrasiaCardState extends State<IdiosincrasiaCard> {
                   BoxShadow(
                     color: Colors.black.withOpacity(0.15),
                     blurRadius: 10,
-                    offset: Offset(0, 5),
+                    offset: const Offset(0, 5),
                   ),
               ],
             ),
@@ -60,7 +61,7 @@ class _IdiosincrasiaCardState extends State<IdiosincrasiaCard> {
                       ),
                     ),
                   ),
-                  // Gradiente para mejorar legibilidad
+                  // Gradiente para mejorar la legibilidad del texto
                   Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -75,37 +76,39 @@ class _IdiosincrasiaCardState extends State<IdiosincrasiaCard> {
                     ),
                   ),
                   // Texto en la parte inferior de la tarjeta
-                  Padding(
-                    padding: EdgeInsets.all(isMobile ? 12.0 : 22.0),
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.title,
-                            style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                color: Colors.white,
-                                fontSize: isMobile ? 16 : 18,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
+                  Positioned(
+                    bottom: 12,
+                    left: 12,
+                    right: 12,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Título siempre visible
+                        Text(
+                          widget.title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
                           ),
-                          const SizedBox(height: 4),
+                        ),
+                        const SizedBox(height: 4),
+                        // Mostrar descripción solo si `showDescription` es verdadero
+                        if (showDescription)
                           Text(
                             widget.description,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
                             style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                color: Colors.white,
-                                fontSize: isMobile ? 12 : 14,
-                                fontWeight: FontWeight.w300,
-                              ),
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w300,
                             ),
                           ),
-                        ],
-                      ),
+                      ],
                     ),
                   ),
                 ],
