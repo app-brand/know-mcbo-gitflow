@@ -96,7 +96,7 @@ class TravelPageContent extends StatelessWidget {
               crossAxisCount: crossAxisCount,
               crossAxisSpacing: 18,
               mainAxisSpacing: 18,
-              children: const [
+              children: [
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
                   mainAxisCellCount: 0.40,
