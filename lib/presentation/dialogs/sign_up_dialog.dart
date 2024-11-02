@@ -72,7 +72,7 @@ class _SignUpDialog extends State<SignUpDialog>
     showDialog(
       context: context,
       builder: (context) {
-        return MailVerificationDialog();
+        return const MailVerificationDialog();
       },
     );
   }
@@ -83,29 +83,31 @@ class _SignUpDialog extends State<SignUpDialog>
       bloc: _signUpBloc,
       listener: (context, state) {
         state.userFailureOrUserSuccess.fold(
-            () => {},
-            (ifSome) => {
-                  ifSome.fold((failure) {
-                    _showErrorDialog(failure.message);
-                  }, (ifRight) {
-                    _showSuccessDialog();
-                  })
-                });
+          () => {},
+          (ifSome) => ifSome.fold(
+            (failure) {
+              _showErrorDialog(failure.message);
+            },
+            (success) {
+              _showSuccessDialog();
+            },
+          ),
+        );
       },
       builder: (context, state) => Builder(
         builder: (context) {
           if (state.isSubmitting) {
             return LoadingDialog(
-              text: 'Ingresando el correo y contrasena a la base de datos',
+              text: 'Ingresando el correo y contraseña a la base de datos',
               content:
-                  'Recuerde debe validar el correo en el tiempo marcado o repetir el proceso desde el principio',
+                  'Recuerde validar el correo en el tiempo marcado o repetir el proceso desde el principio',
               onConfirm: () {},
               onCancel: () {},
             );
           } else {
             return SlideTransition(
               position: Tween<Offset>(
-                begin: const Offset(0, 1), // Comienza fuera de la pantalla
+                begin: const Offset(0, 1),
                 end: Offset.zero,
               ).animate(CurvedAnimation(
                 parent: _animationController,
@@ -113,103 +115,149 @@ class _SignUpDialog extends State<SignUpDialog>
               )),
               child: Dialog(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16)),
-                child: SingleChildScrollView(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.95,
-                    height: MediaQuery.of(context).size.height * 0.95,
-                    padding: const EdgeInsets.all(20),
-                    child: Container(
-                        padding: const EdgeInsets.all(20),
-                        child: Form(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.85,
+                  height: MediaQuery.of(context).size.height * 0.7,
+                  child: Row(
+                    children: [
+                      // Sección del formulario (lado izquierdo)
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                                color: Colors.grey[100],
+                                borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(16),
+                                bottomLeft: Radius.circular(16),                                  
+                                ),
+                                ),
+                          child: Form(
                             key: formKey,
-                            child: SingleChildScrollView(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  // TODO: tarea uno crear los diseno W,T,M.
-                                  // Crear widget - Diseno X3
-                                  const Text('Registro de correo - paso #1',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      )),
-                                  const SizedBox(height: 10.0),
-                                  EmailFormField(
-                                    mailController: _emailController,
-                                    onChanged: (email) {
-                                      _signUpBloc.add(
-                                        SignUpEvent.emailChanged(
-                                          email,
-                                        ),
-                                      );
-                                    },
-                                    validator: (email) {
-                                      return _signUpBloc
-                                          .state.emailAddress.value
-                                          .fold(
-                                        (failure) {
-                                          print('failed: ${failure.message}');
-                                          return failure.message;
-                                        },
-                                        (email) {
-                                          print('success: ${email}}');
-                                          return null;
-                                        },
-                                      );
-                                    },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  'Registro de Correo - Paso #1',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black87,
                                   ),
-                                  const SizedBox(height: 10.0),
-                                  PasswordFormField(
-                                      passwordController: _passwordController,
-                                      validator: (password) {
-                                        return _signUpBloc.state.password.value
-                                            .fold(
-                                          (failure) {
-                                            print('failed: ${failure.message}');
-                                            return failure.message;
-                                          },
-                                          (password) {
-                                            print('success: ${password}');
-                                          },
-                                        );
-                                      },
-                                      onChanged: (password) => _signUpBloc.add(
-                                            SignUpEvent.passwordChanged(
-                                              password,
-                                            ),
-                                          )),
-                                  const SizedBox(height: 10.0),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              _closeWithReverseDialog();
-                                            },
-                                            child: const Text('Cancelar'),
-                                          ),
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              if (formKey.currentState!
-                                                  .validate()) {
-                                                _signUpBloc.add(
-                                                    const SignUpEvent
-                                                        .signUpMail());
-                                              }
-                                            },
-                                            child: const Text('Registrarse'),
-                                          ),
-                                        ],
+                                ),
+                                const SizedBox(height: 10.0),
+                                EmailFormField(
+                                  mailController: _emailController,
+                                  onChanged: (email) {
+                                    _signUpBloc.add(
+                                      SignUpEvent.emailChanged(email),
+                                    );
+                                  },
+                                  validator: (email) {
+                                    return _signUpBloc
+                                        .state.emailAddress.value
+                                        .fold(
+                                      (failure) => failure.message,
+                                      (_) => null,
+                                    );
+                                  },
+                                ),
+                                const SizedBox(height: 10.0),
+                                PasswordFormField(
+                                  passwordController: _passwordController,
+                                  validator: (password) {
+                                    return _signUpBloc.state.password.value
+                                        .fold(
+                                      (failure) => failure.message,
+                                      (_) => null,
+                                    );
+                                  },
+                                  onChanged: (password) =>
+                                      _signUpBloc.add(
+                                    SignUpEvent.passwordChanged(password),
+                                  ),
+                                ),
+                                const SizedBox(height: 20.0),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 12),
+                                        backgroundColor: Colors.grey[700],
+                                        foregroundColor: Colors.white,
+                                        elevation: 4,
+                                        shadowColor:
+                                            Colors.grey.withOpacity(0.5),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
                                       ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ))),
+                                      onPressed: _closeWithReverseDialog,
+                                      child: const Text(
+                                        'Cancelar',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 12),
+                                        backgroundColor: Colors.teal[600],
+                                        foregroundColor: Colors.white,
+                                        elevation: 4,
+                                        shadowColor:
+                                            Colors.teal.withOpacity(0.5),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        if (formKey.currentState!.validate()) {
+                                          _signUpBloc.add(
+                                              const SignUpEvent.signUpMail());
+                                        }
+                                      },
+                                      child: const Text(
+                                        'Registrarse',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      // Sección de imagen (lado derecho)
+                      Expanded(
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  'assets/images/banner/Puente_de_Maracaibo.jpg'), // Asegúrate de que esta imagen existe
+                              fit: BoxFit.cover,
+                            ),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(16),
+                              bottomRight: Radius.circular(16),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:know_my_city/presentation/core/state_core.dart';
+import 'package:know_my_city/presentation/core/tab_core.dart';
 import 'package:know_my_city/presentation/widgets/ejes2_list.dart';
 import 'package:know_my_city/presentation/widgets/ejes3_list.dart';
 import 'package:know_my_city/presentation/widgets/ejes_list.dart';
