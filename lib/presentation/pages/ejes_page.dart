@@ -26,7 +26,8 @@ class _EjesPageState extends State<EjesPage> {
 
   Future<void> _loadBoxData() async {
     try {
-      final String response = await rootBundle.loadString('assets/json/ejes_informacion.json');
+      final String response =
+          await rootBundle.loadString('assets/json/ejes_informacion.json');
       final data = json.decode(response);
       setState(() {
         boxData = data[widget.boxId];
@@ -52,7 +53,8 @@ class _EjesPageState extends State<EjesPage> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(boxData!['imagen_principal'] ?? ''),
+                            image:
+                                AssetImage(boxData!['imagen_principal'] ?? ''),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -64,7 +66,8 @@ class _EjesPageState extends State<EjesPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Image.asset(
                                       "images/banner/LOGOFOMUTURBLANCO.png",
@@ -76,38 +79,46 @@ class _EjesPageState extends State<EjesPage> {
                                           onPressed: () {},
                                           child: Text(
                                             'Inicio',
-                                            style: GoogleFonts.montserrat(color: Colors.white),
+                                            style: GoogleFonts.montserrat(
+                                                color: Colors.white),
                                           ),
                                         ),
                                         TextButton(
-                                          onPressed: () => routerCore.push('/maps'),
+                                          onPressed: () =>
+                                              routerCore.push('/maps'),
                                           child: Text(
                                             'Mapa de Turista',
-                                            style: GoogleFonts.montserrat(color: Colors.white),
+                                            style: GoogleFonts.montserrat(
+                                                color: Colors.white),
                                           ),
                                         ),
                                         TextButton(
                                           onPressed: () {},
                                           child: Text(
                                             'Nosotros',
-                                            style: GoogleFonts.montserrat(color: Colors.white),
+                                            style: GoogleFonts.montserrat(
+                                                color: Colors.white),
                                           ),
                                         ),
                                         TextButton(
                                           onPressed: () => showDialog(
                                             context: context,
-                                            builder: (context) => SignInDialog(),
+                                            builder: (context) =>
+                                                SignInDialog(),
                                           ),
                                           child: Text(
                                             'Perfil',
-                                            style: GoogleFonts.montserrat(color: Colors.white),
+                                            style: GoogleFonts.montserrat(
+                                                color: Colors.white),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: MediaQuery.of(context).size.height * 0.70),
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.70),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 80.0),
                                   child: Text(
@@ -128,7 +139,8 @@ class _EjesPageState extends State<EjesPage> {
                   ),
                   // Sección de introducción con línea vertical al lado
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 20.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 120, vertical: 20.0),
                     child: Row(
                       children: [
                         Container(
@@ -160,7 +172,8 @@ class _EjesPageState extends State<EjesPage> {
                   ),
                   // Contenedor de parrafo1 sin fondo ni sombra
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 10.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 120, vertical: 10.0),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -209,7 +222,8 @@ class _EjesPageState extends State<EjesPage> {
                   SizedBox(height: 50),
                   // Contenedor de parrafo2 sin fondo ni sombra
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 10.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 120, vertical: 10.0),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

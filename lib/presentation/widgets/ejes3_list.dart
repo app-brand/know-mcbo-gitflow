@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
+import 'package:know_my_city/presentation/core/router_core.dart';
 import 'package:know_my_city/presentation/pages/ejes_page.dart';
 import 'idiosincrasia_card.dart';
 
@@ -13,10 +14,7 @@ class GastronomiaContent extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.only(
-          top: 70.0,
-          bottom: 70.0,
-          left: 140.0,
-          right: 140.0),
+            top: 70.0, bottom: 70.0, left: 140.0, right: 140.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -24,29 +22,28 @@ class GastronomiaContent extends StatelessWidget {
               children: [
                 Image.asset(
                   'assets/images/banner/SolConoce.png',
-                  width: 32, 
-                  height: 32,                
+                  width: 32,
+                  height: 32,
                 ),
                 Text(
                   'GASTRONOMÍA',
                   style: GoogleFonts.poppins(
                     textStyle: const TextStyle(
-                      fontSize: 20,
-                      color: AppTheme.greenSecondary,
-                      fontWeight: FontWeight.w300              
-                    ),                
-                  ),              
+                        fontSize: 20,
+                        color: AppTheme.greenSecondary,
+                        fontWeight: FontWeight.w300),
+                  ),
                 ),
               ],
-            ),          
+            ),
             Text(
               'Disfruta de los sabores y aromas de la ciudad',
               style: GoogleFonts.poppins(
                 textStyle: const TextStyle(
                   fontSize: 36,
                   color: AppTheme.greenAlcaldia,
-                ),                
-              ),              
+                ),
+              ),
             ),
             const SizedBox(height: 8),
             Text(
@@ -55,8 +52,8 @@ class GastronomiaContent extends StatelessWidget {
                 textStyle: TextStyle(
                   fontSize: 18,
                   color: Colors.grey[600],
-                ),                
-              ),   
+                ),
+              ),
             ),
             const SizedBox(height: 16),
             StaggeredGrid.count(
@@ -69,15 +66,17 @@ class GastronomiaContent extends StatelessWidget {
                   mainAxisCellCount: 0.40,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
+                      /* Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => EjesPage(boxId: 'patacones')),
-                      );
+                      ); */
+                      routerCore.go('/ejes/patacones');
                     },
                     child: const IdiosincrasiaCard(
                       imagePath: 'assets/images/axis/patacones.jpeg',
                       title: 'Patacones',
-                      description: 'Descubre más sobre este plato típico de la región.',
+                      description:
+                          'Descubre más sobre este plato típico de la región.',
                     ),
                   ),
                 ),
@@ -86,15 +85,17 @@ class GastronomiaContent extends StatelessWidget {
                   mainAxisCellCount: 0.80,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
+/*                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => EjesPage(boxId: 'mandocas')),
-                      );
+                      ); */
+                      routerCore.go('/ejes/mandocas');
                     },
                     child: const IdiosincrasiaCard(
                       imagePath: 'assets/images/axis/mandocas.jpg',
                       title: 'Mandocas',
-                      description: 'Conoce más sobre este plato típico de la región.',
+                      description:
+                          'Conoce más sobre este plato típico de la región.',
                     ),
                   ),
                 ),
@@ -103,15 +104,19 @@ class GastronomiaContent extends StatelessWidget {
                   mainAxisCellCount: 0.40,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
+                      /* Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => EjesPage(boxId: 'bollos_pelones')),
-                      );
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                EjesPage(boxId: 'bollos_pelones')),
+                      ); */
+                      routerCore.go('/ejes/bollo_pelones');
                     },
                     child: const IdiosincrasiaCard(
                       imagePath: 'assets/images/axis/bollospelones.webp',
                       title: 'Bollos pelones',
-                      description: 'Descubre más sobre este plato típico de la región.',
+                      description:
+                          'Descubre más sobre este plato típico de la región.',
                     ),
                   ),
                 ),

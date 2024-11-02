@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
+import 'package:know_my_city/presentation/core/router_core.dart';
 import 'package:know_my_city/presentation/pages/ejes_page.dart'; // Asegúrate de que esta ruta sea correcta
 import 'espacios_card.dart';
 
@@ -12,11 +13,7 @@ class EspaciosContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.only(
-          top: 70.0,
-          left: 140.0,
-          right: 140.0
-        ),
+        padding: const EdgeInsets.only(top: 70.0, left: 140.0, right: 140.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -24,39 +21,38 @@ class EspaciosContent extends StatelessWidget {
               children: [
                 Image.asset(
                   'assets/images/banner/SolConoce.png',
-                  width: 32, 
-                  height: 32,                
+                  width: 32,
+                  height: 32,
                 ),
                 Text(
                   'ESPACIOS',
                   style: GoogleFonts.poppins(
                     textStyle: const TextStyle(
-                      fontSize: 20,
-                      color: AppTheme.greenSecondary,
-                      fontWeight: FontWeight.w300              
-                    ),                
-                  ),              
+                        fontSize: 20,
+                        color: AppTheme.greenSecondary,
+                        fontWeight: FontWeight.w300),
+                  ),
                 ),
-              ],          
-            ),            
+              ],
+            ),
             Text(
               'Disfruta de las maravillosas vistas que regala la ciudad',
               style: GoogleFonts.poppins(
                 textStyle: const TextStyle(
                   fontSize: 36,
                   color: AppTheme.greenAlcaldia,
-                ),                
-              ),              
+                ),
+              ),
             ),
             const SizedBox(height: 8),
-            Text( 
+            Text(
               'Conoce más sobre los espacios emblemáticos de la ciudad y sus alrededores.',
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
                   fontSize: 18,
                   color: Colors.grey[600],
-                ),                
-              ),   
+                ),
+              ),
             ),
             const SizedBox(height: 16),
             StaggeredGrid.count(
@@ -69,15 +65,17 @@ class EspaciosContent extends StatelessWidget {
                   mainAxisCellCount: 0.80,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
+                      /* Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => EjesPage(boxId: 'basilica')),
-                      );
+                      ); */
+                      routerCore.go('/ejes/basilica');
                     },
                     child: const EspaciosCard(
                       imagePath: 'assets/images/axis/basilica.jpg',
                       title: 'Basilica de Chiquinquirá',
-                      description: 'Conoce la historia de la patrona de los zulianos.',
+                      description:
+                          'Conoce la historia de la patrona de los zulianos.',
                     ),
                   ),
                 ),
@@ -86,15 +84,13 @@ class EspaciosContent extends StatelessWidget {
                   mainAxisCellCount: 0.40,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => EjesPage(boxId: 'vereda')),
-                      );
+                      routerCore.go('/ejes/vereda');
                     },
                     child: const EspaciosCard(
                       imagePath: 'assets/images/axis/vereda.png',
                       title: 'Vereda del Lago',
-                      description: 'Descubre el sitio más visitado por los marabinos.',
+                      description:
+                          'Descubre el sitio más visitado por los marabinos.',
                     ),
                   ),
                 ),
@@ -103,15 +99,14 @@ class EspaciosContent extends StatelessWidget {
                   mainAxisCellCount: 0.40,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => EjesPage(boxId: 'calle_carabobo')),
-                      );
+                      //calle_carabobo
+                      routerCore.go('/ejes/calle_carabobo');
                     },
                     child: const EspaciosCard(
                       imagePath: 'assets/images/banner/carabobocalle.jpg',
                       title: 'Calle Carabobo',
-                      description: 'Descubre la historia de la calle más antigua de la ciudad.',
+                      description:
+                          'Descubre la historia de la calle más antigua de la ciudad.',
                     ),
                   ),
                 ),
