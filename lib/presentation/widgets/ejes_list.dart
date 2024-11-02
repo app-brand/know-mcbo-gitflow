@@ -11,9 +11,43 @@ class TravelPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Usamos MediaQuery para obtener el ancho de la pantalla
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    // Definimos los valores según el tipo de dispositivo
+    int crossAxisCount;
+    double horizontalPadding;
+    double titleFontSize;
+    double subtitleFontSize;
+    double descriptionFontSize;
+
+    if (screenWidth >= 1024) {
+      // Vista para Web (Escritorio)
+      crossAxisCount = 2;
+      horizontalPadding = 140.0;
+      titleFontSize = 36.0;
+      subtitleFontSize = 20.0;
+      descriptionFontSize = 18.0;
+    } else if (screenWidth >= 600) {
+      // Vista para Tablet
+      crossAxisCount = 2;
+      horizontalPadding = 80.0;
+      titleFontSize = 28.0;
+      subtitleFontSize = 18.0;
+      descriptionFontSize = 16.0;
+    } else {
+      // Vista para Móvil
+      crossAxisCount = 1;
+      horizontalPadding = 16.0;
+      titleFontSize = 24.0;
+      subtitleFontSize = 16.0;
+      descriptionFontSize = 14.0;
+    }
+
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.only(top: 70.0, left: 140.0, right: 140.0),
+        padding:
+            EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -28,8 +62,8 @@ class TravelPageContent extends StatelessWidget {
                 Text(
                   'IDIOSINCRASIA',
                   style: GoogleFonts.poppins(
-                    textStyle: const TextStyle(
-                      fontSize: 20,
+                    textStyle: TextStyle(
+                      fontSize: subtitleFontSize,
                       color: AppTheme.greenSecondary,
                       fontWeight: FontWeight.w300,
                     ),
@@ -37,11 +71,12 @@ class TravelPageContent extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(height: 8),
             Text(
               'Explora sobre nuestras tradiciones y costumbres',
               style: GoogleFonts.poppins(
-                textStyle: const TextStyle(
-                  fontSize: 36,
+                textStyle: TextStyle(
+                  fontSize: titleFontSize,
                   color: AppTheme.greenAlcaldia,
                 ),
               ),
@@ -51,61 +86,45 @@ class TravelPageContent extends StatelessWidget {
               'Conoce más sobre la idiosincrasia de nuestra ciudad y sus habitantes.',
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
-                  fontSize: 18,
+                  fontSize: descriptionFontSize,
                   color: Colors.grey[600],
                 ),
               ),
             ),
             const SizedBox(height: 16),
             StaggeredGrid.count(
-              crossAxisCount: 2, // 2 columnas
-              crossAxisSpacing: 18, // Espaciado más pequeño entre columnas
-              mainAxisSpacing: 18, // Espaciado más pequeño entre filas
-              children: [
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: 18,
+              mainAxisSpacing: 18,
+              children: const [
                 StaggeredGridTile.count(
-                  crossAxisCellCount: 1, // Ocupa 1 columna
+                  crossAxisCellCount: 1,
                   mainAxisCellCount: 0.40,
-                  child: GestureDetector(
-                    onTap: () {
-                      routerCore.go('/ejes/tranvia_de_maracaibo');
-                    },
-                    child: IdiosincrasiaCard(
-                      imagePath: 'assets/images/banner/tranvia.jpeg',
-                      title: 'Tranvía de Maracaibo',
-                      description:
-                          'Conoce la historia de este medio de transporte emblemático.',
-                    ),
+                  child: IdiosincrasiaCard(
+                    imagePath: 'assets/images/banner/tranvia.jpeg',
+                    title: 'Tranvía de Maracaibo',
+                    description:
+                        'Conoce la historia de este medio de transporte emblemático.',
                   ),
                 ),
                 StaggeredGridTile.count(
-                  crossAxisCellCount: 1, // Ocupa 1 columna
-                  mainAxisCellCount: 0.80, // Ocupa 1.5 filas
-                  child: GestureDetector(
-                    onTap: () {
-                      routerCore.go('/ejes/gaitas');
-                    },
-                    child: IdiosincrasiaCard(
-                      imagePath: 'assets/images/axis/gaita.jpeg',
-                      title: 'Gaitas',
-                      description:
-                          'Descubre más sobre este género musical típico de la región.',
-                    ),
+                  crossAxisCellCount: 1,
+                  mainAxisCellCount: 0.80,
+                  child: IdiosincrasiaCard(
+                    imagePath: 'assets/images/axis/gaita.jpeg',
+                    title: 'Gaitas',
+                    description:
+                        'Descubre más sobre este género musical típico de la región.',
                   ),
                 ),
                 StaggeredGridTile.count(
-                  crossAxisCellCount: 1, // Ocupa 1 columna
+                  crossAxisCellCount: 1,
                   mainAxisCellCount: 0.40,
-                  child: GestureDetector(
-                    onTap: () {
-                      //calle_carabobo
-                      routerCore.go('/ejes/artesania');
-                    },
-                    child: IdiosincrasiaCard(
-                      imagePath: 'assets/images/axis/artesania.JPG',
-                      title: 'Artesanía',
-                      description:
-                          'Conoce más sobre la artesanía zuliana y sus tradiciones.',
-                    ),
+                  child: IdiosincrasiaCard(
+                    imagePath: 'assets/images/axis/artesania.JPG',
+                    title: 'Artesanía',
+                    description:
+                        'Conoce más sobre la artesanía zuliana y sus tradiciones.',
                   ),
                 ),
               ],
