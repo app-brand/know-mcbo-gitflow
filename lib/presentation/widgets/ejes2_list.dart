@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
+import 'package:know_my_city/presentation/pages/ejes_page.dart'; // Asegúrate de que esta ruta sea correcta
 import 'espacios_card.dart';
 
 class EspaciosContent extends StatelessWidget {

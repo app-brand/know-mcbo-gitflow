@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:know_my_city/presentation/widgets/main_footer.dart';
 import 'package:provider/provider.dart';
 
+
 class AppHome extends StatefulWidget {
   const AppHome({super.key});
 
@@ -64,3 +65,4 @@ class _AppHomeState extends State<AppHome> {
     );
   }
 }
+
