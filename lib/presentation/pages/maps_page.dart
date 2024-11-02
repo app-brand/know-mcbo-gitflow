@@ -85,7 +85,8 @@ class _MapsPageState extends State<MapsPage> {
     /* _initializeMarkers(); */
     _info = null; // This line can be removed as _info is now nullable
     /* _loadDirections(); */
-    _loadMarkersFromJson();
+    _initializeMarkers();
+    _loadMarkersFromJson();   
   }
 
   @override
@@ -111,11 +112,42 @@ class _MapsPageState extends State<MapsPage> {
     });
   }
 
+  Future<void> _initializeMarkers() async {
+    // Carga el archivo JSON
+    final String jsonString = await rootBundle.loadString('assets/json/markers.json');
+    final List<dynamic> jsonData = json.decode(jsonString);
+
+    // Limpia el Set de marcadores para evitar duplicados
+    _markers.clear();
+
+    // Itera a través de cada entrada en el JSON y crea un marcador
+    for (var item in jsonData) {
+      final String markerId = item['markerId'];
+      final double latitude = item['latitude'];
+      final double longitude = item['longitude'];
+      final int iconIndex = item['iconIndex'];
+
+      final marker = Marker(
+        markerId: MarkerId(markerId),
+        position: LatLng(latitude, longitude),
+        icon: _customIcons.length > iconIndex
+            ? _customIcons[iconIndex]
+            : BitmapDescriptor.defaultMarker,
+      );
+
+      // Agrega el marcador al Set
+      _markers.add(marker);
+    }
+
+    // Actualiza el estado para reflejar los cambios en la UI
+    setState(() {});
+  }
+
   void _showWelcomeDialog() {
   showDialog(
     context: context,
     barrierDismissible: false,
-    barrierColor: Colors.black.withOpacity(0.95), // Fondo oscuro
+    barrierColor: Colors.black.withOpacity(0.8), // Fondo oscuro
     builder: (context) {
       return Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -139,16 +171,35 @@ class _MapsPageState extends State<MapsPage> {
               ),
               const SizedBox(height: 15),
               // Title
-              Text(
-                'Bienvenido al Módulo de Geolocalización',
-                style: GoogleFonts.montserrat(
+              RichText(
+                text: TextSpan(
+                  text: 'Bienvenido, ¿Estás listo para conocer',
+                  style: GoogleFonts.montserrat(
                   fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
-                ),
-                textAlign: TextAlign.center,
+                  fontWeight: FontWeight.w500,
+                  color: AppTheme.greenSecondary,
+                ),      
+                children: [
+                  TextSpan(
+                    text: ' Maracaibo',
+                    style: GoogleFonts.montserrat(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18,
+                      color: AppTheme.accentColor,
+                    ),
+                  ),
+                  TextSpan(
+                    text: '?',
+                    style: GoogleFonts.montserrat(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18,
+                      color: AppTheme.greenSecondary,
+                    ),
+                  ),
+                ],          
+                )                
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 15),
               // Instruction text with icons
               Expanded(
                 child: SingleChildScrollView(
@@ -156,28 +207,28 @@ class _MapsPageState extends State<MapsPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _buildInstructionRow(
-                        Icons.location_pin,
-                        'Ubica tu posición en el mapa y descubre lugares cercanos.',
+                        Icons.house,
+                        'Cada marcador en el mapa representa una parada de alguna ruta, al hacer click en ellos consigues mas información.',
                       ),
                       const SizedBox(height: 8),
                       _buildInstructionRow(
-                        Icons.search,
-                        'Busca puntos de interés utilizando la barra de búsqueda.',
+                        Icons.list_alt,
+                        'La lista de rutas a la izquierda te permite seleccionar una ruta y ver su recorrido.',
                       ),
                       const SizedBox(height: 8),
                       _buildInstructionRow(
-                        Icons.zoom_in,
-                        'Acércate para ver detalles y explora más zonas.',
+                        Icons.my_location,
+                        'Te permite centrar el mapa al punto inicial.',
                       ),
                       const SizedBox(height: 8),
                       _buildInstructionRow(
-                        Icons.zoom_out,
-                        'Aléjate para obtener una vista más amplia del mapa.',
+                        Icons.clear_rounded,
+                        'Te permite limpiar la ruta que esta dibujada.',
                       ),
                       const SizedBox(height: 8),
                       _buildInstructionRow(
-                        Icons.navigation,
-                        'Utiliza la función de navegación para obtener direcciones.',
+                        Icons.book_online,
+                        'Utiliza este botón para reservar luego de seleccionar una ruta.',
                       ),
                     ],
                   ),
@@ -194,7 +245,7 @@ class _MapsPageState extends State<MapsPage> {
                   child: Text(
                     'Entendido',
                     style: GoogleFonts.montserrat(
-                      color: Colors.blue,
+                      color: AppTheme.greenAlcaldia,
                       fontSize: 16,
                     ),
                   ),
@@ -212,7 +263,7 @@ class _MapsPageState extends State<MapsPage> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, color: Colors.blueAccent, size: 24),
+        Icon(icon, color: AppTheme.greenAlcaldia, size: 24),
         const SizedBox(width: 10),
         Expanded(
           child: Text(
@@ -475,35 +526,43 @@ class _MapsPageState extends State<MapsPage> {
   }
 
   Future<void> _drawMultiplePolylines() async {
-    try {
-      final routes = [
-        {'origin': _tranvia.position, 'destination': _plaza.position},
-        {'origin': _plazaPosition, 'destination': _costaVerdePosition},
-        {'origin': _costaVerdePosition, 'destination': _deliciasPlazaPosition},
-      ];
+  try {
+    // Cargar el archivo JSON
+    final String jsonString = await rootBundle.loadString('assets/json/routes.json');
+    final List<dynamic> jsonData = json.decode(jsonString);
 
-      final directions =
-          await DirectionsRepository().getDirections(routes: routes);
+    // Construir la lista de rutas desde el JSON
+    final List<Map<String, LatLng>> routes = jsonData.map((item) {
+      final originLatLng = LatLng(item['origin']['latitude'], item['origin']['longitude']);
+      final destinationLatLng = LatLng(item['destination']['latitude'], item['destination']['longitude']);
+      return {
+        'origin': originLatLng,
+        'destination': destinationLatLng,
+      };
+    }).toList();
 
-      setState(() {
-        _polylines.clear();
-        for (int i = 0; i < directions.length; i++) {
-          _polylines.add(
-            Polyline(
-              polylineId: PolylineId('route_$i'),
-              points: directions[i],
-              color: Colors.green,
-              width: 5,
-            ),
-          );
-        }
-      });
+    // Obtener direcciones para cada ruta
+    final directions = await DirectionsRepository().getDirections(routes: routes);
 
-      /* print('Polylines drawn: $_polylines'); */ // Agrega este print para verificar las polylines dibujadas
-    } catch (e) {
-      print('Error drawing polylines: $e');
-    }
+    // Actualizar las polilíneas en el mapa
+    setState(() {
+      _polylines.clear();
+      for (int i = 0; i < directions.length; i++) {
+        _polylines.add(
+          Polyline(
+            polylineId: PolylineId('route_$i'),
+            points: directions[i],
+            color: Colors.green,
+            width: 5,
+          ),
+        );
+      }
+    });
+
+  } catch (e) {
+    print('Error drawing polylines: $e');
   }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -611,6 +670,8 @@ class _MainMapsState extends State<MainMaps> {
   late Marker tranvia;
   late Marker plaza;
   late String rutaActiva = '';
+  bool showRouteList = false;
+  String selectedRoute = "RUTAS";
   bool showInfoContainer = false;
   String selectedRouteTitle = '';
   String selectedRouteDescription = '';
@@ -619,6 +680,70 @@ class _MainMapsState extends State<MainMaps> {
   String selectedRoutePrice = '';
   String selectedRouteDeparture = '';
   String selectedRoutePoints = '';
+
+  List<Widget> _buildRouteList(String routeType) {
+    if (routeType == 'Tranvía') {
+      return [
+        _buildRouteTile('Ruta de la Alegría', 'Disfruta de la ciudad por la noche', '1'),
+        _buildRouteTile('Ruta Colonial', 'Recorrido por el centro histórico', '2'),
+        _buildRouteTile('Ruta Gastronómica', 'Tequeyoyos, empanadas, arepas', '3'),
+      ];
+    } else if (routeType == 'Fomutur') {
+      return [
+        _buildRouteTile('Vivelo Maracaibo', 'Paquetes turísticos para disfrutar la ciudad', '4'),
+        _buildRouteTile('Caminata de Antaño', 'Recorrido por el centro histórico', '5'),
+      ];
+    }
+    return [];
+  }
+
+  // Método para construir cada elemento de la lista de sub-rutas
+  Widget _buildRouteTile(String title, String subtitle, String routeId) {
+    return ListTile(
+      title: Text(
+        title,
+        style: GoogleFonts.poppins(
+          textStyle: const TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: GoogleFonts.poppins(
+          textStyle: TextStyle(
+            color: Colors.grey[600],
+            fontSize: 14,
+            fontWeight: FontWeight.w300,
+          ),
+        ),
+      ),
+      onTap: () {
+        if (rutaActiva == '1') {
+          _mapaMessage(context);
+        } else {
+          _showInfoContainer(
+              'Ruta de la Alegría',
+              'La Ruta de la Alegría sale de la estación central del Tranvía, en la Vereda del Lago, recorrido fiestero y cervecero que visita 3 establecimientos que varían en cada salida, su duración es entre 2 horas y media y 3 aproximadamente.',
+              'ruta_alegria',
+              'Viernes y Sábados',
+              '\$15 por persona',
+              '7:00 PM',
+              'Parada fija A Que Luis, demás paradas fijas varían dependiendo disponibilidad');
+
+          widget.drawPolylines();
+          widget
+              .seleccionarRuta('Ruta de la Alegría');
+          widget.goToCenter(widget.center);
+          setState(() {
+            rutaActiva = '1';
+          });
+        }
+      },
+    );
+  }
 
   void _showInfoContainer(String title, String description, String image,
       String schedule, String price, String departure, String points) {
@@ -790,7 +915,7 @@ class _MainMapsState extends State<MainMaps> {
                     ),
                   )),
               // ListView flotante sobre el mapa
-              AnimatedPositioned(
+              /* AnimatedPositioned(
                   duration: const Duration(milliseconds: 500),
                   curve: Curves.fastOutSlowIn,
                   top: MediaQuery.of(context).size.height * 0.30,
@@ -1043,7 +1168,168 @@ class _MainMapsState extends State<MainMaps> {
                     ),
                   ),
                 ),
+              ), */
+              AnimatedPositioned(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.fastOutSlowIn,
+                top: MediaQuery.of(context).size.height * 0.25,
+                left: showRouteList ? -400.0 : 15,
+                width: MediaQuery.of(context).size.width * 0.20,
+                height: MediaQuery.of(context).size.height * 0.5,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20.0),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 6.0,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      // Encabezado principal que cubre todo el ancho con bordes redondeados en la parte superior
+                      ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                        child: Container(
+                          width: double.infinity,
+                          height: 50, // Altura más pequeña para el encabezado
+                          color: AppTheme.greenAlcaldia,
+                          alignment: Alignment.center,
+                          child: Text(
+                            'RUTAS',
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 20, // Tamaño de texto reducido
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 1.5,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      // Botón Tranvía
+                      ListTile(
+                        title: Text(
+                          'Tranvía',
+                          style: GoogleFonts.poppins(
+                            textStyle: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                        onTap: () {
+                          setState(() {
+                            selectedRoute = 'Tranvía';
+                            showRouteList = true; // Muestra la lista de rutas de Tranvía
+                          });
+                        },
+                      ),
+                      // Botón Fomutur
+                      ListTile(
+                        title: Text(
+                          'Fomutur',
+                          style: GoogleFonts.poppins(
+                            textStyle: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                        onTap: () {
+                          setState(() {
+                            selectedRoute = 'Fomutur';
+                            showRouteList = true; // Muestra la lista de rutas de Fomutur
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ),
+              
+              // Segundo AnimatedPositioned: Lista de rutas específicas de la selección
+              AnimatedPositioned(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.fastOutSlowIn,
+                top: MediaQuery.of(context).size.height * 0.25,
+                left: showRouteList ? 15 : -400.0,
+                width: MediaQuery.of(context).size.width * 0.20,
+                height: MediaQuery.of(context).size.height * 0.5,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20.0),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 6.0,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      // Encabezado con el nombre de la ruta seleccionada y botón de regreso con bordes redondeados en la parte superior
+                      ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                        child: Container(
+                          width: double.infinity,
+                          height: 50, // Altura más pequeña para el encabezado
+                          color: AppTheme.greenAlcaldia,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 16.0),
+                                child: Text(
+                                  selectedRoute,
+                                  style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                      letterSpacing: 1.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.arrow_back, color: Colors.white),
+                                onPressed: () {
+                                  setState(() {
+                                    showRouteList = false; // Regresa al menú principal
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: ListView(
+                          padding: EdgeInsets.zero,
+                          children: _buildRouteList(selectedRoute),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),              
               // Otros Positioned (botones, etc.)
               Positioned(
                 bottom: 30.0,
@@ -1267,7 +1553,6 @@ class _MainMapsState extends State<MainMaps> {
     );
   }
 }
-
 class _InfoRow extends StatelessWidget {
   final IconData icon;
   final String title;
