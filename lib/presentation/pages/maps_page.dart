@@ -22,6 +22,7 @@ import 'package:know_my_city/presentation/core/app_theme.dart';
 import 'package:know_my_city/presentation/core/router_core.dart';
 import 'package:know_my_city/presentation/dialogs/sign_in_dialog.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MapsPage extends StatefulWidget {
   const MapsPage({super.key});
@@ -1036,136 +1037,183 @@ class _MainMapsState extends State<MainMaps> {
               AnimatedPositioned(
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.fastOutSlowIn,
-                top: MediaQuery.of(context).size.height * 0.15,
+                top: MediaQuery.of(context).size.height * 0.20,
                 left: showInfoContainer ? 15.0 : -525.0,
                 width: 475.0,
-                height: MediaQuery.of(context).size.height * 0.80,
+                height: MediaQuery.of(context).size.height * 0.70,
                 child: Material(
                   elevation: 6,
                   borderRadius: BorderRadius.circular(20.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20.0),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 6.0,
-                          offset: Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Imagen de cabecera
-                        Container(
-                          height: 150,
-                          decoration: const BoxDecoration(
-                            borderRadius:
-                                BorderRadius.vertical(top: Radius.circular(20)),
-                            image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/images/banner/tranvia.jpeg'), // Ajusta la imagen aquí
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-
-                        // Título de la ruta
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Text(
-                            selectedRouteTitle,
-                            style: GoogleFonts.poppins(
-                              textStyle: const TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black87,
+                  child: Stack(
+                    children: [
+                      // Contenedor principal con el contenido
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20.0),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 6.0,
+                                offset: Offset(0, 4),
                               ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-
-                        // Descripción breve
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Text(
-                            selectedRouteDescription,
-                            style: GoogleFonts.poppins(
-                              textStyle: const TextStyle(
-                                fontSize: 14,
-                                color: Colors.black54,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-
-                        // Información de días y horarios
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _InfoRow(
-                                  icon: Icons.calendar_today,
-                                  title: 'Días Disponibles',
-                                  content:
-                                      selectedRouteSchedule // Aquí va la información dinámica
-                                  ),
-                              const SizedBox(height: 8),
-                              _InfoRow(
-                                icon: Icons.access_time,
-                                title: 'Hora de salida',
-                                content: selectedRouteDeparture,
-                              ),
-                              const SizedBox(height: 8),
-                              _InfoRow(
-                                icon: Icons.attach_money,
-                                title: 'Costo',
-                                content: selectedRoutePrice,
-                              ),
-                              const SizedBox(height: 8),
-                              _InfoRow(
-                                icon: Icons.location_on,
-                                title: 'Paradas Principales',
-                                content: selectedRoutePoints,
-                              ),
-                              const SizedBox(height: 8),
-                              if (selectedRouteTitle == 'Ruta de la Alegría')
-                                const _InfoRow(
-                                  icon: Icons.info,
-                                  title: 'Advertencia',
-                                  content:
-                                      'Esta ruta es para mayores de 18 años',
-                                ),
                             ],
                           ),
-                        ),
-                        const Spacer(),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.only(right: 8.0, bottom: 8.0),
-                            child: IconButton(
-                              icon: const Icon(Icons.close, color: Colors.grey),
-                              onPressed: () {
-                                setState(() {
-                                  showInfoContainer = false;
-                                  widget.limpiarRuta(widget.polylines);
-                                  rutaActiva = '';
-                                });
-                              },
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Imagen de cabecera
+                                Container(
+                                  height: 150,
+                                  decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                                    image: DecorationImage(
+                                      image: AssetImage('assets/images/banner/tranvia.jpeg'),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+
+                                // Título de la ruta
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                  child: Text(
+                                    selectedRouteTitle,
+                                    style: GoogleFonts.poppins(
+                                      textStyle: const TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+
+                                // Descripción breve
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                  child: Text(
+                                    selectedRouteDescription,
+                                    style: GoogleFonts.poppins(
+                                      textStyle: const TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.black54,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+
+                                // Información de días y horarios
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      _InfoRow(
+                                        icon: Icons.calendar_today,
+                                        title: 'Días Disponibles',
+                                        content: selectedRouteSchedule,
+                                      ),
+                                      const SizedBox(height: 8),
+                                      _InfoRow(
+                                        icon: Icons.access_time,
+                                        title: 'Hora de salida',
+                                        content: selectedRouteDeparture,
+                                      ),
+                                      const SizedBox(height: 8),
+                                      _InfoRow(
+                                        icon: Icons.attach_money,
+                                        title: 'Costo',
+                                        content: selectedRoutePrice,
+                                      ),
+                                      const SizedBox(height: 8),
+                                      _InfoRow(
+                                        icon: Icons.location_on,
+                                        title: 'Paradas Principales',
+                                        content: selectedRoutePoints,
+                                      ),
+                                      const SizedBox(height: 8),
+                                      if (selectedRouteTitle == 'Ruta de la Alegría')
+                                        const _InfoRow(
+                                          icon: Icons.info,
+                                          title: 'Advertencia',
+                                          content: 'Esta ruta es para mayores de 18 años',
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                              ],
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                      // Botón de cerrar en la esquina superior derecha
+                      Positioned(
+                        top: 8.0,
+                        right: 8.0,
+                        child: IconButton(
+                          icon: const Icon(Icons.close, color: Colors.white),
+                          onPressed: () {
+                            setState(() {
+                              showInfoContainer = false;
+                              widget.limpiarRuta(widget.polylines);
+                              rutaActiva = '';
+                            });
+                          },
+                        ),
+                      ),
+                    ],
                   ),
+                ),
+              ),
+
+              if (rutaActiva.isNotEmpty)
+              Positioned(
+                bottom: 20,
+                left: MediaQuery.of(context).size.width / 2 - 50, // Centrar el botón
+                child: FloatingActionButton.extended(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text("Confirmación de Reserva"),
+                          content: Text("¿Deseas reservar la $selectedRouteTitle?\nSe le redirigira a un formulario de registro."),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop(); // Cierra el diálogo
+                              },
+                              child: const Text("Cancelar"),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                final url = Uri.parse('https://alcaldiademaracaibo.org');
+                                if (await canLaunchUrl(url)) {
+                                  await launchUrl(url);
+                                } else {
+                                  throw 'No se pudo abrir la URL: $url';
+                                }
+                                // Lógica de reserva
+                                Navigator.of(context).pop(); // Cierra el diálogo
+                              },
+                              child: const Text("Reservar"),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  label: const Text('Reservar'),
+                  icon: const Icon(Icons.book_online),
+                  backgroundColor: ThemeCore.primaryColor,
                 ),
               ),
             ],
