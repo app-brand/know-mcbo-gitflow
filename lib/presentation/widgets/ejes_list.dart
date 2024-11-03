@@ -100,31 +100,46 @@ class TravelPageContent extends StatelessWidget {
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
                   mainAxisCellCount: 0.40,
-                  child: IdiosincrasiaCard(
-                    imagePath: 'assets/images/banner/tranvia.jpeg',
-                    title: 'Tranvía de Maracaibo',
-                    description:
-                        'Conoce la historia de este medio de transporte emblemático.',
+                  child: GestureDetector(
+                    onTap: () {
+                      routerCore.go('/ejes/tranvia');
+                    },
+                    child: IdiosincrasiaCard(
+                      imagePath: 'assets/images/banner/tranvia.jpeg',
+                      title: 'Tranvía de Maracaibo',
+                      description:
+                          'Conoce la historia de este medio de transporte emblemático.',
+                    ),
                   ),
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
                   mainAxisCellCount: 0.80,
-                  child: IdiosincrasiaCard(
-                    imagePath: 'assets/images/axis/gaita.jpeg',
-                    title: 'Gaitas',
-                    description:
-                        'Descubre más sobre este género musical típico de la región.',
+                  child: GestureDetector(
+                    onTap: () {
+                      routerCore.go('/ejes/gaitas');
+                    },
+                    child: IdiosincrasiaCard(
+                      imagePath: 'assets/images/axis/gaita.jpeg',
+                      title: 'Gaitas',
+                      description:
+                          'Descubre más sobre este género musical típico de la región.',
+                    ),
                   ),
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
                   mainAxisCellCount: 0.40,
-                  child: IdiosincrasiaCard(
-                    imagePath: 'assets/images/axis/artesania.JPG',
-                    title: 'Artesanía',
-                    description:
-                        'Conoce más sobre la artesanía zuliana y sus tradiciones.',
+                  child: GestureDetector(
+                    onTap: () {
+                      routerCore.go('/ejes/artesania');
+                    },
+                    child: IdiosincrasiaCard(
+                      imagePath: 'assets/images/axis/artesania.JPG',
+                      title: 'Artesanía',
+                      description:
+                          'Conoce más sobre la artesanía zuliana y sus tradiciones.',
+                    ),
                   ),
                 ),
               ],

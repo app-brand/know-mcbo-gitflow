@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
+import 'package:know_my_city/presentation/core/router_core.dart';
 import 'espacios_card.dart';
 
 class EspaciosContent extends StatelessWidget {
@@ -54,8 +55,6 @@ class EspaciosContent extends StatelessWidget {
                   'assets/images/banner/SolConoce.png',
                   width: 32,
                   height: 32,
-                  width: 32,
-                  height: 32,
                 ),
                 const SizedBox(width: 8),
                 Text(
@@ -81,7 +80,6 @@ class EspaciosContent extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            Text(
             Text(
               'Conoce más sobre los espacios emblemáticos de la ciudad y sus alrededores.',
               style: GoogleFonts.poppins(
