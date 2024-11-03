@@ -1,0 +1,84 @@
+{
+    "tranvia_de_maracaibo": {
+        "titulo": "Tranvía de Maracaibo",
+        "introduccion": "Recorre Maracaibo y sus tesoros a bordo del tranvía",
+        "parrafo1": "El tranvía de Maracaibo es una atracción histórica que recorre las zonas principales de la ciudad, conectando a turistas y locales con la riqueza cultural zuliana. Este transporte permite explorar lugares icónicos como la Basílica de Chiquinquirá y el casco central, donde se preservan edificios y monumentos patrimoniales. Durante el recorrido, los guías destacan el legado arquitectónico y cultural de Maracaibo, resaltando la importancia de preservar estos sitios para futuras generaciones. El tranvía, decorado pintorescamente, invita a los visitantes a sumergirse en la esencia de la ciudad.",
+        "parrafo2": "Cada parada en el tranvía de Maracaibo ofrece una experiencia única con actividades y eventos culturales para quienes desean conocer más del folclore zuliano. Los pasajeros disfrutan de música típica, degustación de dulces regionales y una muestra de artesanías que reflejan la identidad local. El trayecto se enriquece con narraciones de los guías sobre personajes históricos y anécdotas del lugar. Así, el tranvía es más que un transporte turístico: es una ventana al pasado y al presente de Maracaibo, brindando una experiencia inmersiva que conecta a los visitantes con el alma de esta vibrante ciudad.",
+        "imagen_principal": "assets/images/ejes/tranvia-maracaibo-2.jpeg",
+        "imagen1": "assets/images/ejes/tranvia_maracaibo_imagen1.jpg",
+        "imagen2": "assets/images/ejes/tranvia_maracaibo_imagen2.jpg"
+    },
+    "gaitas": {
+        "titulo": "Gaitas Zulianas",
+        "introduccion": "Descubre el ritmo y la alegría de las gaitas zulianas",
+        "parrafo1": "Las gaitas zulianas son un género musical tradicional que representa la esencia del Zulia y se originan en la época colonial. Este estilo musical, caracterizado por el uso de instrumentos como el furro, la tambora, el cuatro y las maracas, transmite temas de devoción, crítica social y alegría, conectando profundamente con la identidad del pueblo zuliano. Las gaitas no solo se escuchan en el Zulia, sino que han alcanzado popularidad en toda Venezuela, especialmente durante la época navideña. Esta tradición musical reúne a familiares y amigos para celebrar, bailar y honrar las raíces culturales de la región con gran entusiasmo.",
+        "parrafo2": "Cada año, durante la temporada decembrina, la gaita zuliana se convierte en el corazón de las festividades. Diversos festivales y concursos de gaitas permiten que jóvenes y adultos se reúnan para interpretar y escuchar canciones que exaltan la herencia zuliana. Las letras, a menudo inspiradas en la vida cotidiana y en eventos históricos, reflejan el orgullo zuliano y se convierten en himnos regionales. La gaita, con sus ritmos vibrantes y contagiosos, ha sido reconocida como Patrimonio Cultural de Venezuela, consolidándose como símbolo de identidad y unión para el pueblo zuliano y venezolano en general.",
+        "imagen_principal": "assets/images/axis/gaita.jpeg",
+        "imagen1": "assets/images/ejes/gaitas1.jpg",
+        "imagen2": "assets/images/ejes/gaitas2.jpg"
+    },
+    "artesania": { 
+      "titulo": "Artesanía Zuliana",
+      "introduccion": "Descubre la rica tradición artesanal de la región",
+      "parrafo1": "La artesanía del Zulia es una expresión auténtica de la identidad y creatividad del pueblo zuliano. Los artesanos de la región trabajan con una gran variedad de materiales, como barro, madera, cuero y tejidos, para producir piezas únicas que representan las tradiciones y costumbres de la cultura zuliana. Estas creaciones van desde figuras religiosas y decorativas hasta utensilios prácticos y productos textiles. La artesanía zuliana no solo es un oficio, sino una forma de preservar y transmitir el legado cultural de generación en generación, manteniendo vivas las raíces de esta región tan rica en historia y tradiciones.",
+      "parrafo2": "En cada rincón del Zulia, la artesanía local refleja la esencia del pueblo zuliano y su conexión con la tierra. Los mercados de artesanía y ferias locales ofrecen una gran variedad de productos que permiten a los visitantes llevarse un pedazo de la cultura zuliana a casa. Cada pieza cuenta una historia y lleva consigo el esfuerzo y la dedicación de los artesanos. Estos productos no solo representan la identidad cultural del Zulia, sino que también contribuyen a la economía local, ya que el turismo y el comercio artesanal son pilares fundamentales para las familias zulianas.",
+      "imagen_principal": "assets/images/axis/artesania.JPG",
+      "imagen1": "assets/images/ejes/artesania1.jpeg",
+      "imagen2": "assets/images/ejes/artesania2.jpg"
+    },
+    "basilica": {
+        "titulo": "Basílica de Nuestra Señora de Chiquinquirá",
+        "introduccion": "La devoción por nuestra Chinita es un símbolo de fe y unidad",
+        "parrafo1": "La Basílica de Nuestra Señora de Chiquinquirá, ubicada en Maracaibo, es uno de los templos religiosos más venerados de Venezuela. Este santuario, también conocido como “La Chinita,” es un sitio de peregrinación que atrae a miles de fieles cada año, especialmente durante la Feria de la Chinita en noviembre. La basílica, con su arquitectura imponente y su fachada neoclásica, alberga la imagen sagrada de la Virgen de Chiquinquirá, patrona del Zulia. Para los zulianos, la devoción a la Chinita es símbolo de fe y unidad, consolidando el papel de la basílica como corazón espiritual de la región",
+        "parrafo2": "Cada año, la celebración en honor a la Virgen de Chiquinquirá es un evento de gran importancia cultural y religiosa para Maracaibo y toda Venezuela. La festividad incluye una procesión solemne, música, danzas tradicionales y muestras de fe que fortalecen la identidad zuliana. Los devotos participan con fervor en las misas y rituales, agradeciendo y pidiendo favores a su patrona. La basílica no solo es un lugar de oración, sino también un símbolo de esperanza y resiliencia, convirtiéndose en un emblema cultural que une a todos los marabinos en su devoción a la Virgen.",
+        "imagen_principal": "assets/images/axis/basilica.jpg",
+        "imagen1": "assets/images/ejes/basilica1.jpg",
+        "imagen2": "assets/images/ejes/basilica2.jpg"
+    },
+    "vereda": {
+        "titulo": "Vereda del Lago",
+        "introduccion": "Disfruta de un paseo por la Vereda del Lago",
+        "parrafo1": "La Vereda del Lago es el parque recreativo más grande de Maracaibo y un lugar muy querido por los habitantes de la ciudad. Ubicado a orillas del imponente Lago de Maracaibo, este parque ofrece un espacio para el esparcimiento, el deporte y el contacto con la naturaleza. Con extensas áreas verdes, zonas de juegos, canchas deportivas y caminos para caminar o andar en bicicleta, la Vereda del Lago es el lugar ideal para pasar un día al aire libre en familia o con amigos, disfrutando del clima y el paisaje que ofrece la región.",
+        "parrafo2": "Además de sus áreas recreativas, la Vereda del Lago alberga eventos culturales y deportivos que fomentan la convivencia y el bienestar de la comunidad. Cada fin de semana, el parque se llena de actividades como conciertos, exhibiciones de arte y ferias de productos locales. Este espacio, que también cuenta con una impresionante vista del Puente General Rafael Urdaneta, se ha convertido en un símbolo de vida urbana y un refugio natural dentro de la ciudad. La Vereda del Lago no solo es un parque, sino un punto de encuentro para todos los marabinos.",
+        "imagen_principal": "assets/images/axis/vereda.png",
+        "imagen1": "assets/images/ejes/vereda1.png",
+        "imagen2": "assets/images/ejes/vereda2.jpg"
+    },
+    "callecarabobo": {
+        "titulo": "Calle Carabobo",
+        "introduccion": "Adentrate en la historia de esta iconica calle marabina",
+        "parrafo1": "La Calle Carabobo, situada en el centro histórico de Maracaibo, es un tesoro arquitectónico y cultural que refleja la historia y tradición de la ciudad. Sus fachadas coloridas y detalladas, de estilo colonial, transportan a los visitantes a tiempos pasados, recordando la importancia de preservar el patrimonio cultural zuliano. Esta calle es un lugar de interés tanto para turistas como para locales, ya que alberga galerías de arte, tiendas de artesanía y espacios donde se celebran eventos culturales, destacando la riqueza artística y la creatividad del pueblo marabino.",
+        "parrafo2": "Además de su valor histórico, la Calle Carabobo es un símbolo de identidad para Maracaibo y un punto de encuentro para expresiones culturales. Los visitantes pueden recorrer la calle y disfrutar de muestras de música en vivo, exposiciones y murales que narran historias de la región. Esta calle, con sus casas coloridas y su atmósfera vibrante, es también escenario de ferias y festivales. La Calle Carabobo representa un puente entre el pasado y el presente, mostrando la esencia y el orgullo de la ciudad.",
+        "imagen_principal": "assets/images/ejes/calle_carabobo.jpeg",
+        "imagen1": "assets/images/ejes/calle_carabobo1.jpg",
+        "imagen2": "assets/images/ejes/calle_carabobo2.jpg"
+    },
+    "patacones": {
+        "titulo": "Patacones",
+        "introduccion": "Un vistazo al paladar zuliano a través de los patacones",
+        "parrafo1": "Los patacones son un plato icónico de la gastronomía zuliana, hecho a base de plátano verde frito y relleno de ingredientes como carne, queso, pollo o camarones. Este delicioso manjar, que se sirve en forma de sándwich, es una muestra de la creatividad culinaria del Zulia y es muy popular en la región y en toda Venezuela. Los patacones suelen servirse acompañados de salsas y ensaladas, y su sabor único refleja la riqueza de los ingredientes locales. Este plato es una opción ideal para aquellos que buscan experimentar los sabores de la cocina zuliana.",
+        "parrafo2": "El patacón es más que un simple platillo; es una representación de la cultura y el gusto zuliano por los sabores intensos y variados. En Maracaibo, se pueden encontrar patacones en muchos restaurantes y locales de comida rápida, y su popularidad ha crecido tanto que también se celebra el Festival del Patacón. Esta delicia se ha convertido en un símbolo de identidad para los zulianos y en una muestra de la influencia de la cocina caribeña en la gastronomía venezolana.",
+        "imagen_principal": "assets/images/axis/patacones.jpeg",
+        "imagen1": "assets/images/ejes/patacones1.jpeg",
+        "imagen2": "assets/images/ejes/patacones2.jpeg"
+    },
+    "mandocas": {
+        "titulo": "Mandocas",
+        "introduccion": "Las mandocas como icono gastronómico del Zulia",
+        "parrafo1": "Las mandocas son una merienda típica del Zulia, elaborada con una mezcla de maíz, papelón y queso, que se fríe hasta lograr una textura crujiente por fuera y suave por dentro. Este alimento es muy apreciado en la región y se suele acompañar con café o queso fresco, especialmente durante el desayuno o la merienda. Las mandocas tienen una forma característica de aro o lazo, y su sabor dulce y salado es una combinación perfecta que refleja la riqueza de los ingredientes locales y el ingenio culinario del Zulia.",
+        "parrafo2": "Las mandocas no solo son una delicia gastronómica, sino también un emblema de la tradición zuliana. Preparadas en muchos hogares y vendidas en mercados y ferias, representan una parte importante de la cultura alimentaria de la región. Este plato, que se disfruta tanto en casa como en la calle, ha pasado de generación en generación, preservando así las costumbres culinarias del Zulia. Las mandocas son, sin duda, una muestra de la calidez y hospitalidad zuliana que se transmite en cada bocado.",
+        "imagen_principal": "assets/images/axis/mandocas.jpg",
+        "imagen1": "assets/images/ejes/mandocas1.webp",
+        "imagen2": "assets/images/ejes/mandocas2.webp"
+    },
+    "bollos_pelones": {
+        "titulo": "Bollos Pelones",
+        "introduccion": "Una explosión al paladar con historia y tradición",
+        "parrafo1": "Los bollos pelones son un plato tradicional de la gastronomía venezolana, particularmente popular en el Zulia. Se elaboran a partir de una masa de maíz que se rellena con carne guisada y luego se cocina en salsa de tomate, logrando una textura suave y un sabor intenso. Este platillo, que se sirve caliente, es ideal para compartir en familia y se acompaña con arroz o ensalada. Los bollos pelones son una expresión de la cocina criolla zuliana y su preparación es una tradición en muchos hogares de la región.",
+        "parrafo2": "La receta de los bollos pelones ha sido transmitida de generación en generación, y cada familia le da un toque especial que la hace única. Este platillo refleja la influencia indígena y española en la gastronomía venezolana y es una muestra de la diversidad culinaria de la región. Los bollos pelones son valorados por su sabor reconfortante y la dedicación que implica su preparación. Este plato es un orgullo de la cocina zuliana y un símbolo de la tradición familiar en el Zulia.",
+        "imagen_principal": "assets/images/axis/bollospelones.webp",
+        "imagen1": "assets/images/ejes/bollos_pelones1.webp",
+        "imagen2": "assets/images/ejes/bollos_pelones2.jpg"
+    }
+}
+

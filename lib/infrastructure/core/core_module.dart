@@ -6,12 +6,12 @@ import 'package:injectable/injectable.dart';
 @module
 abstract class CoreModule {
   //Solo se usa durante la autenticacion o registro
-  @LazySingleton()
+  @lazySingleton
   FirebaseAuth get firebaseAuth => FirebaseAuth.instance;
   // Solo se utiliza para lectura de datos inicialmente.
-  @LazySingleton()
+  @lazySingleton
   FirebaseFirestore get firestore => FirebaseFirestore.instance;
   // Http request and response
-  @LazySingleton()
+  @lazySingleton
   Dio get dio => Dio();
 }

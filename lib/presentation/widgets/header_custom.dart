@@ -2,6 +2,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
+import 'package:know_my_city/presentation/core/router_core.dart';
+import 'package:know_my_city/presentation/dialogs/sign_in_dialog.dart';
 
 class HeaderCustom extends StatefulWidget {
   @override
@@ -28,9 +30,14 @@ class _HeaderCustomState extends State<HeaderCustom> {
     // Lista de URLs de imágenes
     const imageUrls = [
       'assets/images/banner/Teatro_Baralt.jpg',
-      'assets/images/banner/maracaibo-2.jpeg',
-      'assets/images/banner/maracaibo-7.jpeg',
+      /* 'assets/images/banner/maracaibo-2.jpeg',
+      'assets/images/banner/maracaibo-7.jpeg', */
       'assets/images/banner/puente4k.png',
+      /* 'assets/images/banner/BOHG9813.jpg',
+      'assets/images/banner/BOHG9821.jpg',
+      'assets/images/banner/BOHG9920.jpg',
+      'assets/images/banner/IMG_5062.JPG',
+      'assets/images/banner/IMG_5193.JPG', */
     ];
 
     // Seleccionar una imagen aleatoriamente
@@ -42,7 +49,7 @@ class _HeaderCustomState extends State<HeaderCustom> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        double width = constraints.maxWidth;
+        double width = MediaQuery.of(context).size.width; // Usar el ancho de la pantalla
         double height = MediaQuery.of(context).size.height; // Usar la altura de la pantalla
 
         return Stack(
@@ -53,12 +60,13 @@ class _HeaderCustomState extends State<HeaderCustom> {
               height: height, // Ocupa todo el alto disponible
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(_randomImageUrl), // Ruta de la imagen aleatoria
+                  image: AssetImage(
+                      _randomImageUrl), // Ruta de la imagen aleatoria
                   fit: BoxFit.cover,
                   alignment: Alignment.topCenter,
                   colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.25),
-                    BlendMode.darken,
+                    Colors.black.withOpacity(0.15),
+                    BlendMode.hardLight,                                      
                   ),
                 ),
               ),
@@ -79,7 +87,7 @@ class _HeaderCustomState extends State<HeaderCustom> {
                     ],
                   ),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -97,53 +105,62 @@ class _HeaderCustomState extends State<HeaderCustom> {
                             'Inicio',
                             style: GoogleFonts.montserrat(
                               textStyle: const TextStyle(
-                              color: Colors.white,      
-                              fontSize: 14,
-                              /* fontWeight: FontWeight.w600, */
+                                color: Colors.white,
+                                fontSize: 14,
+                                /* fontWeight: FontWeight.w600, */
                               ),
-                            ),                          
+                            ),
                           ),
                         ),
-                        SizedBox(width: 12), // Espacio entre los botones
+                        const SizedBox(width: 12), // Espacio entre los botones
+                        TextButton(
+                          onPressed: () {
+                            routerCore.push('/maps');
+                          },
+                          child: Text(
+                            'Mapa de Turista',
+                            style: GoogleFonts.montserrat(
+                              textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                /* fontWeight: FontWeight.w600, */
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 12), // Espacio entre los botones
                         TextButton(
                           onPressed: () {},
                           child: Text(
-                            'Acerca de',
+                            'Nosotros',
                             style: GoogleFonts.montserrat(
                               textStyle: const TextStyle(
-                              color: Colors.white,      
-                              fontSize: 14,
-                              /* fontWeight: FontWeight.w600, */
+                                color: Colors.white,
+                                fontSize: 14,
+                                /* fontWeight: FontWeight.w600, */
                               ),
-                            ),  
+                            ),
                           ),
                         ),
-                        SizedBox(width: 12), // Espacio entre los botones
+                        const SizedBox(width: 12), // Espacio entre los botones
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return SignInDialog();
+                              },
+                            );
+                          },
                           child: Text(
-                            'Servicios',
+                            'Perfil',
                             style: GoogleFonts.montserrat(
                               textStyle: const TextStyle(
-                              color: Colors.white,      
-                              fontSize: 14,
-                              /* fontWeight: FontWeight.w600, */
+                                color: Colors.white,
+                                fontSize: 14,
+                                /* fontWeight: FontWeight.w600, */
                               ),
-                            ),  
-                          ),
-                        ),
-                        SizedBox(width: 12), // Espacio entre los botones
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Contacto',
-                            style: GoogleFonts.montserrat(
-                              textStyle: const TextStyle(
-                              color: Colors.white,      
-                              fontSize: 14,
-                              /* fontWeight: FontWeight.w600, */
-                              ),
-                            ),  
+                            ),
                           ),
                         ),
                       ],
@@ -154,11 +171,11 @@ class _HeaderCustomState extends State<HeaderCustom> {
             ),
             // Imagen animada centrada a la izquierda con fade-in
             Positioned(
-              top: height / 2 - 80, // Ajusta la posición vertical
+              top: height/2.5, // Ajusta la posición vertical
               left: 20, // Ajusta la posición horizontal
               child: AnimatedOpacity(
                 opacity: _isVisible ? 1.0 : 0.0,
-                duration: Duration(seconds: 1),
+                duration: const Duration(seconds: 1),
                 child: Image.asset(
                   'assets/images/banner/logoconoce.png', // Ruta de la imagen
                   width: 600, // Tamaño fijo para la imagen

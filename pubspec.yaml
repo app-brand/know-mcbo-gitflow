@@ -39,6 +39,8 @@ dependencies:
   provider: ^6.1.2
   google_fonts: ^6.2.1
   flutter_staggered_grid_view: ^0.6.2
+  json_serializable: ^6.8.0
+  json_annotation: ^4.9.0
  
 
 dev_dependencies:
@@ -84,19 +86,13 @@ flutter:
     - assets/images/events_png/
     - assets/images/main/
     - assets/images/vector/
-    - assets/json/  
-    - assets/images/banner/Rafael_Urdaneta_Bridge_in_Maracaibo.jpg 
-    - assets/images/banner/529.jpg
-    - assets/images/banner/maracaibo-2.jpeg
-    - assets/images/banner/maracaibo-7.jpeg
-    - assets/images/banner/Puente_de_Maracaibo.jpg
-    - assets/images/banner/Teatro_Baralt.jpg
-    - assets/images/banner/tranvia.jpeg
-    - assets/images/banner/puente4k.png
-    - assets/images/banner/puente4k2.jpg
-    - assets/images/banner/callecarabobo.jpg
-    - assets/images/banner/monumentochinita.jpg
-    - assets/images/banner/SolConoce.png
-    - assets/images/banner/logoconoce.png
-    - assets/images/banner/carabobocalle.jpg
-    - assets/images/banner/LOGOFOMUTURBLANCO.png
+    - assets/json/      
+    - assets/images/markers/
+    - assets/images/banner/
+    - assets/json/ejes_informacion.json
+    - assets/images/ejes/
+    - assets/images/ejes/tranvia_maracaibo_imagen1.jpg
+    - assets/images/ejes/tranvia_maracaibo_imagen2.jpg
+    - assets/images/ejes/gaitas_principal.png
+    - assets/images/ejes/gaitas1.jpg
+    - assets/images/ejes/gaitas2.jpg

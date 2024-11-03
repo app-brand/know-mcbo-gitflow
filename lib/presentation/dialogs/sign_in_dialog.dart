@@ -27,7 +27,7 @@ class _SignInDialog extends State<SignInDialog>
     _signInBloc = sl<SignInBloc>();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 500),
     );
     _animationController.addStatusListener((listener) {
       if (listener == AnimationStatus.dismissed) {
@@ -97,13 +97,10 @@ class _SignInDialog extends State<SignInDialog>
     return BlocConsumer<SignInBloc, SignInState>(
         bloc: _signInBloc,
         listener: (context, state) {
-          ///_loadingDialog(state.isSubmitting);
           state.userFailureOrUserSuccess.fold(() => {}, (ifSome) {
             ifSome.fold((failure) {
-              print('failure - ui - sign_in');
               _showErrorDialog(failure.message);
             }, (success) {
-              print('exitoso - ui - sign_in');
               _successSignInDialog();
             });
           });
@@ -112,15 +109,15 @@ class _SignInDialog extends State<SignInDialog>
               if (state.isSubmitting) {
                 return LoadingDialog(
                   text:
-                      'Ingresando mediante el sistema cerrada de autenticacion',
-                  content: 'Validando la combinacion de correo de usuario',
+                      'Ingresando mediante el sistema cerrado de autenticación',
+                  content: 'Validando la combinación de correo de usuario',
                   onConfirm: () {},
                   onCancel: () {},
                 );
               } else {
                 return SlideTransition(
                   position: Tween<Offset>(
-                    begin: const Offset(0, 1), // Comienza fuera de la pantalla
+                    begin: const Offset(0, 1),
                     end: Offset.zero,
                   ).animate(CurvedAnimation(
                     parent: _animationController,
@@ -129,129 +126,180 @@ class _SignInDialog extends State<SignInDialog>
                   child: Dialog(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16)),
-                    child: SingleChildScrollView(
-                      child: Center(
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.95,
-                          height: MediaQuery.of(context).size.height * 0.95,
-                          padding: const EdgeInsets.all(20),
-                          child: Container(
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.85,
+                      height: MediaQuery.of(context).size.height * 0.7,
+                      child: Row(
+                        children: [
+                          // Sección de imagen
+                          Expanded(
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      'assets/images/banner/Teatro_Baralt.jpg'),
+                                  fit: BoxFit.cover,
+                                ),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(16),
+                                  bottomLeft: Radius.circular(16),
+                                ),
+                              ),
+                            ),
+                          ),
+                          // Sección del formulario
+                          Expanded(
+                            child: Container(                              
                               padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                color: Colors.grey[100],
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(16),
+                                  bottomRight: Radius.circular(16),                                  
+                                ),
+                              ),                              
                               child: Form(
                                   key: formKey,
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        /*TODO: #1 tarea uno crear los diseno W,T,M.
-                                         Crear tres propuestas graficas*/
-                                        const Text('Iniciar sesion',
-                                            style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                            )),
-                                        const SizedBox(height: 10.0),
-                                        EmailFormField(
-                                          mailController: _emailController,
-                                          onChanged: (email) {
-                                            _signInBloc.add(
-                                              SignInEvent.emailChanged(
-                                                email,
-                                              ),
-                                            );
-                                          },
-                                          validator: (email) {
-                                            return _signInBloc
-                                                .state.emailAddress.value
-                                                .fold(
-                                              (failure) {
-                                                print(
-                                                    'failed: ${failure.message}');
-                                                return failure.message;
-                                              },
-                                              (email) {
-                                                print('success: ${email}}');
-                                                return null;
-                                              },
-                                            );
-                                          },
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Text(
+                                        'Iniciar Sesión',
+                                        style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black87,
                                         ),
-                                        const SizedBox(height: 10.0),
-                                        PasswordFormField(
-                                            passwordController:
-                                                _passwordController,
-                                            validator: (password) {
-                                              return state.password.value.fold(
-                                                (failure) {
-                                                  print(
-                                                      'failed: ${failure.message}');
-                                                  return failure.message;
-                                                },
-                                                (password) {
-                                                  print('success: ${password}');
-                                                },
-                                              );
-                                            },
-                                            onChanged: (password) =>
+                                      ),
+                                      const SizedBox(height: 10.0),
+                                      EmailFormField(
+                                        mailController: _emailController,
+                                        onChanged: (email) {
+                                          _signInBloc.add(
+                                            SignInEvent.emailChanged(email),
+                                          );
+                                        },
+                                        validator: (email) {
+                                          return _signInBloc
+                                              .state.emailAddress.value
+                                              .fold(
+                                            (failure) => failure.message,
+                                            (_) => null,
+                                          );
+                                        },
+                                      ),
+                                      const SizedBox(height: 10.0),
+                                      PasswordFormField(
+                                          passwordController:
+                                              _passwordController,
+                                          validator: (password) {
+                                            return state.password.value.fold(
+                                              (failure) => failure.message,
+                                              (_) => null,
+                                            );
+                                          },
+                                          onChanged: (password) =>
+                                              _signInBloc.add(
+                                                SignInEvent.passwordChanged(
+                                                    password),
+                                              )),
+                                      const SizedBox(height: 20.0),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 20, vertical: 12),
+                                              backgroundColor: Colors.grey[700],
+                                              foregroundColor: Colors.white,
+                                              elevation: 4,
+                                              shadowColor: Colors.grey.withOpacity(0.5),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                            ),
+                                            onPressed: _closeWithReverseDialog,
+                                            child: const Text(
+                                              'Cancelar',
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              padding: const EdgeInsets.symmetric(
+                                                  horizontal: 20, vertical: 12),
+                                              backgroundColor: Colors.teal[600],
+                                              foregroundColor: Colors.white,
+                                              elevation: 4,
+                                              shadowColor: Colors.teal.withOpacity(0.5),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                            ),
+                                            onPressed: () {
+                                              if (formKey.currentState!
+                                                  .validate()) {
                                                 _signInBloc.add(
-                                                  SignInEvent.passwordChanged(
-                                                    password,
-                                                  ),
-                                                )),
-                                        const SizedBox(height: 10.0),
-                                        Column(
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                ElevatedButton(
-                                                  onPressed: () {
-                                                    _closeWithReverseDialog();
-                                                  },
-                                                  child: const Text('Cancelar'),
-                                                ),
-                                                ElevatedButton(
-                                                  onPressed: () {
-                                                    if (formKey.currentState!
-                                                        .validate()) {
-                                                      _signInBloc.add(
-                                                          const SignInEvent
-                                                              .singInEmail());
-                                                    }
-                                                  },
-                                                  child: const Text(
-                                                      'Iniciar sesion'),
-                                                ),
-                                              ],
+                                                    const SignInEvent
+                                                        .singInEmail());
+                                              }
+                                            },
+                                            child: const Text(
+                                              'Iniciar sesión',
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
-                                            const SizedBox(height: 10.0),
-                                            TextButton(
-                                              onPressed: () {},
-                                              child: const Text(
-                                                  'Recuperar Contraseña'),
-                                            ),
-                                            const SizedBox(height: 10.0),
-                                            TextButton(
-                                              onPressed: () {
-                                                showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) {
-                                                    return SignUpDialog();
-                                                  },
-                                                );
-                                              },
-                                              child: const Text('Registrarse'),
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ))),
-                        ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 15.0),
+                                      TextButton(
+                                        onPressed: () {},
+                                        child: const Text(
+                                          '¿Olvidaste tu contraseña?',
+                                          style: TextStyle(
+                                            color: Colors.teal,
+                                            fontSize: 14,
+                                            decoration:
+                                                TextDecoration.underline,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 15.0),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return const SignUpDialog();
+                                            },
+                                          );
+                                        },
+                                        child: const Text(
+                                          '¿No tienes una cuenta? Regístrate',
+                                          style: TextStyle(
+                                            color: Colors.teal,
+                                            fontSize: 14,
+                                            decoration:
+                                                TextDecoration.underline,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -260,3 +308,4 @@ class _SignInDialog extends State<SignInDialog>
             }));
   }
 }
+

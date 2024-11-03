@@ -1,5 +1,5 @@
 import 'package:know_my_city/presentation/core/app_theme.dart';
-import 'package:know_my_city/domain/event.dart';
+import 'package:know_my_city/domain/event/event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
