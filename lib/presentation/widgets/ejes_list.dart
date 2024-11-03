@@ -6,8 +6,8 @@ import 'package:know_my_city/presentation/core/router_core.dart';
 import 'package:know_my_city/presentation/pages/axi_page.dart';
 import 'idiosincrasia_card.dart';
 
-class TravelPageContent extends StatelessWidget {
-  const TravelPageContent({super.key});
+class IdeosincraciaContent extends StatelessWidget {
+  const IdeosincraciaContent({super.key});
 
   @override
   Widget build(BuildContext context) {

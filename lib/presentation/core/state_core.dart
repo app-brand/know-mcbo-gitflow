@@ -63,11 +63,11 @@ class StateCore extends ChangeNotifier {
     });
   }
 
-  Future<void> checkAxi() async {
+  Future<void> checkAxiIdeosincracia() async {
     print('Ejecutando comando a firestore');
     try {
       _axiSubscription = _firebaseFirestore
-          .collection('gastronomia')
+          .collection('ideosincracia')
           .snapshots()
           .listen((snapshot) {
         print('Estoy en un snapshot');

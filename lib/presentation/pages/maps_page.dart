@@ -79,7 +79,6 @@ class _MapsPageState extends State<MapsPage> {
       stateCore = Provider.of<StateCore>(context, listen: false);
       stateCore.incrementCounter();
       stateCore.checkUserState();
-      stateCore.checkAxi();
       print('home - contador de saltos o creaciones ${stateCore.counter}');
     });
   }

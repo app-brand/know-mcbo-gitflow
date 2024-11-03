@@ -64,7 +64,7 @@ class _AxisCardState extends State<AxisCard> {
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(20)),
                 child: Image.asset(
-                  widget.axi.axis_image_url,
+                  widget.axi.imagen_principal,
                   width: double.infinity,
                   height: 220, // Altura mayor para la imagen
                   fit: BoxFit.cover,
@@ -77,7 +77,7 @@ class _AxisCardState extends State<AxisCard> {
                   children: [
                     // Título de la tarjeta
                     Text(
-                      widget.axi.title,
+                      widget.axi.titulo,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: AppTheme.primaryColor,
