@@ -11,9 +11,9 @@ class StateCore extends ChangeNotifier {
   final FirebaseFirestore _firebaseFirestore;
   StreamSubscription<User?>? _authSubscription;
   // Suscripciones de ejes - por coleccion
-  StreamSubscription<QuerySnapshot>? _axiSubscription;
-  List<Axi> _axiList = [];
-  List<Axi> get axiList => _axiList;
+  StreamSubscription<QuerySnapshot>? _axiSubscriptionIdeosincracia;
+  List<Axi> _axiIdeosincrasiaList = [];
+  List<Axi> get axiIdeosincrasiaList => _axiIdeosincrasiaList;
   // Controles
   int _counter = 0;
   bool _isLoading = false;
@@ -63,17 +63,30 @@ class StateCore extends ChangeNotifier {
     });
   }
 
-  Future<void> checkAxiIdeosincracia() async {
-    print('Ejecutando comando a firestore');
+  Axi findAxiByTitle(int title_id) {
     try {
-      _axiSubscription = _firebaseFirestore
+      return _axiIdeosincrasiaList.firstWhere(
+        (axi) => axi.title_id == title_id,
+        orElse: () => Axi.defaultInstance(),
+      );
+    } catch (e) {
+      print('Error al buscar Axi por título: $e');
+      return Axi.defaultInstance();
+    }
+  }
+
+  Future<void> checkAxiIdeosincracia() async {
+    print('Ideosincrasia - Firestore');
+    try {
+      _axiSubscriptionIdeosincracia = _firebaseFirestore
           .collection('ideosincracia')
           .snapshots()
           .listen((snapshot) {
-        print('Estoy en un snapshot');
-        _axiList = [];
+        _axiIdeosincrasiaList = [];
         for (var document in snapshot.docs) {
-          print(document.data());
+          Axi axi = Axi.fromFirestore(document.data());
+          //print(axi.toJson());
+          _axiIdeosincrasiaList.add(axi);
         }
         notifyListeners();
       });
@@ -85,7 +98,7 @@ class StateCore extends ChangeNotifier {
   @override
   void dispose() {
     _authSubscription?.cancel();
-    _axiSubscription?.cancel();
+    _axiSubscriptionIdeosincracia?.cancel();
     super.dispose();
   }
 }
