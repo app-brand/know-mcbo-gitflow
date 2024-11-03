@@ -3,7 +3,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
 import 'package:know_my_city/presentation/core/router_core.dart';
-import 'package:know_my_city/presentation/pages/ejes_page.dart';
+import 'package:know_my_city/presentation/pages/axi_page.dart';
 import 'idiosincrasia_card.dart';
 
 class TravelPageContent extends StatelessWidget {
@@ -102,7 +102,7 @@ class TravelPageContent extends StatelessWidget {
                   mainAxisCellCount: 0.40,
                   child: GestureDetector(
                     onTap: () {
-                      routerCore.go('/ejes/tranvia');
+                      routerCore.go('/ejes/tranvia_de_maracaibo');
                     },
                     child: IdiosincrasiaCard(
                       imagePath: 'assets/images/banner/tranvia.jpeg',

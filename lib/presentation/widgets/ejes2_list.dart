@@ -97,7 +97,7 @@ class EspaciosContent extends StatelessWidget {
               children: [
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
-                  mainAxisCellCount: 1, // Cambiado a un valor entero
+                  mainAxisCellCount: 0.40, // Cambiado a un valor entero
                   child: GestureDetector(
                     onTap: () {
                       routerCore.go('/ejes/basilica');
@@ -112,7 +112,7 @@ class EspaciosContent extends StatelessWidget {
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
-                  mainAxisCellCount: 1, // Cambiado a un valor entero
+                  mainAxisCellCount: 0.80, // Cambiado a un valor entero
                   child: GestureDetector(
                     onTap: () {
                       routerCore.go('/ejes/vereda');
@@ -127,7 +127,7 @@ class EspaciosContent extends StatelessWidget {
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
-                  mainAxisCellCount: 1, // Cambiado a un valor entero
+                  mainAxisCellCount: 0.40, // Cambiado a un valor entero
                   child: GestureDetector(
                     onTap: () {
                       routerCore.go('/ejes/calle_carabobo');
