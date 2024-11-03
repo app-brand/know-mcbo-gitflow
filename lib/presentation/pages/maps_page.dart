@@ -794,6 +794,233 @@ class _MainMapsState extends State<MainMaps> {
     });
   }
 
+  void _showRatingDialog(BuildContext context) {
+  String? selectedRoute;
+  String comment = '';
+  int rating = 0;
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("¿Has visitado alguna de nuestras rutas?"),
+        content: Container(
+          width: 300.0,  // Ancho fijo para el diálogo
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                "Si ya visitaste una de nuestras rutas, ¡nos encantaría que la califiques y dejes un comentario!",
+                style: TextStyle(fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+
+              // Selector de ruta (Dropdown)
+              DropdownButtonFormField<String>(
+                decoration: const InputDecoration(labelText: "Selecciona una ruta"),
+                items: const [
+                  DropdownMenuItem(value: "Ruta de la Alegría", child: Text("Ruta de la Alegría")),
+                  DropdownMenuItem(value: "Ruta Cultural", child: Text("Ruta Cultural")),
+                ],
+                onChanged: (value) {
+                  selectedRoute = value;
+                },
+                value: selectedRoute,
+              ),
+              const SizedBox(height: 16),
+
+              // Cuadro de texto para el comentario
+              TextFormField(
+                decoration: const InputDecoration(labelText: "Deja un comentario"),
+                maxLines: 3,
+                onChanged: (value) {
+                  comment = value;
+                },
+              ),
+              const SizedBox(height: 16),
+
+              // Control de calificación en estrellas
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(5, (index) {
+                  return IconButton(
+                    icon: Icon(
+                      Icons.star,
+                      color: index < rating ? Colors.amber : Colors.grey,
+                    ),
+                    onPressed: () {
+                      rating = index + 1;
+                      (context as Element).markNeedsBuild();  // Actualizar el diálogo
+                    },
+                  );
+                }),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text("Cancelar"),
+          ),
+          TextButton(
+            onPressed: () {
+              // Validación de entrada antes de enviar
+              if (selectedRoute != null && rating > 0) {
+                print("Ruta seleccionada: $selectedRoute");
+                print("Comentario: $comment");
+                print("Calificación: $rating estrellas");
+
+                // Cerrar el diálogo de calificación
+                Navigator.of(context).pop();
+
+                // Mostrar el diálogo de éxito con `AwesomeDialog`
+                AwesomeDialog(
+                  context: context,
+                  dialogType: DialogType.success,
+                  animType: AnimType.scale,
+                  title: '¡Gracias!',
+                  desc: 'Tu calificación ha sido enviada exitosamente.',
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  showCloseIcon: true,
+                ).show();
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Selecciona una ruta y una calificación")),
+                );
+              }
+            },
+            child: const Text("Enviar"),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void _showFAQDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text(
+          "Preguntas Frecuentes",
+          textAlign: TextAlign.center,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        content: Container(
+          width: MediaQuery.of(context).size.width * 0.4,
+          height: MediaQuery.of(context).size.height * 0.4,  // Ancho fijo para mantener el diseño minimalista
+          child: const SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Pregunta 1
+                ExpansionTile(
+                  title: const Text(
+                    "¿Cómo puedo reservar una ruta turística?",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text(
+                        "Puedes reservar una ruta directamente a través de nuestra aplicación o página web, seleccionando la ruta de tu preferencia y el horario disponible.",
+                        style: TextStyle(color: Colors.black54),
+                      ),
+                    ),
+                  ],
+                ),
+                
+                // Pregunta 2
+                ExpansionTile(
+                  title: const Text(
+                    "¿Puedo cancelar una reserva?",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text(
+                        "Sí, puedes cancelar una reserva con al menos 24 horas de antelación para recibir un reembolso completo. Las cancelaciones tardías pueden no ser reembolsables.",
+                        style: TextStyle(color: Colors.black54),
+                      ),
+                    ),
+                  ],
+                ),
+                
+                // Pregunta 3
+                ExpansionTile(
+                  title: const Text(
+                    "¿Qué rutas están disponibles actualmente?",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text(
+                        "Actualmente ofrecemos rutas culturales, gastronómicas y de naturaleza. Puedes ver la lista completa en la sección de rutas en nuestra aplicación.",
+                        style: TextStyle(color: Colors.black54),
+                      ),
+                    ),
+                  ],
+                ),
+                
+                // Pregunta 4
+                ExpansionTile(
+                  title: const Text(
+                    "¿Las rutas son guiadas?",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text(
+                        "Sí, todas nuestras rutas cuentan con guías certificados que te brindarán información interesante y asegurarán una experiencia completa.",
+                        style: TextStyle(color: Colors.black54),
+                      ),
+                    ),
+                  ],
+                ),
+                
+                // Pregunta 5
+                ExpansionTile(
+                  title: const Text(
+                    "¿Qué necesito llevar para una ruta?",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text(
+                        "Te recomendamos llevar ropa cómoda, agua, protector solar y cualquier otro artículo que consideres necesario dependiendo del clima.",
+                        style: TextStyle(color: Colors.black54),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text("Cerrar", style: TextStyle(color: Colors.blue)),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+
+
   _mapaMessage(BuildContext context) {
     return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Container(
@@ -1140,6 +1367,34 @@ class _MainMapsState extends State<MainMaps> {
                     });
                   },
                   child: const Icon(Icons.clear_rounded),
+                ),
+              ),
+              Positioned(
+                bottom: 30.0,
+                right: 210.0,
+                height: 45,
+                width: 45,
+                child: FloatingActionButton(
+                  backgroundColor: ThemeCore.primaryColor,
+                  foregroundColor: Colors.white,
+                  onPressed: () {
+                    _showRatingDialog(context);  // Llama al diálogo de calificación
+                  },
+                  child: const Icon(Icons.rate_review),
+                ),
+              ),
+              Positioned(
+                bottom: 30.0,
+                right: 280.0, // Ajusta la posición para que no se sobreponga con otros botones
+                height: 45,
+                width: 45,
+                child: FloatingActionButton(
+                  backgroundColor: ThemeCore.primaryColor,
+                  foregroundColor: Colors.white,
+                  onPressed: () {
+                    _showFAQDialog(context);  // Llama al diálogo de preguntas frecuentes
+                  },
+                  child: const Icon(Icons.help_outline),
                 ),
               ),
               AnimatedPositioned(
