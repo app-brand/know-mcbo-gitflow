@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
-import 'package:know_my_city/presentation/pages/ejes_page.dart';
+import 'package:know_my_city/presentation/core/router_core.dart';
+import 'package:know_my_city/presentation/pages/axi_page.dart';
 import 'idiosincrasia_card.dart';
 
-class TravelPageContent extends StatelessWidget {
-  const TravelPageContent({super.key});
+class IdeosincraciaContent extends StatelessWidget {
+  const IdeosincraciaContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,8 @@ class TravelPageContent extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 24.0),
+        padding:
+            EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -94,32 +96,50 @@ class TravelPageContent extends StatelessWidget {
               crossAxisCount: crossAxisCount,
               crossAxisSpacing: 18,
               mainAxisSpacing: 18,
-              children: const [
+              children: [
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
                   mainAxisCellCount: 0.40,
-                  child: IdiosincrasiaCard(
-                    imagePath: 'assets/images/banner/tranvia.jpeg',
-                    title: 'Tranvía de Maracaibo',
-                    description: 'Conoce la historia de este medio de transporte emblemático.',
+                  child: GestureDetector(
+                    onTap: () {
+                      routerCore.go('/ejes/tranvia_de_maracaibo');
+                    },
+                    child: IdiosincrasiaCard(
+                      imagePath: 'assets/images/banner/tranvia.jpeg',
+                      title: 'Tranvía de Maracaibo',
+                      description:
+                          'Conoce la historia de este medio de transporte emblemático.',
+                    ),
                   ),
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
                   mainAxisCellCount: 0.80,
-                  child: IdiosincrasiaCard(
-                    imagePath: 'assets/images/axis/gaita.jpeg',
-                    title: 'Gaitas',
-                    description: 'Descubre más sobre este género musical típico de la región.',
+                  child: GestureDetector(
+                    onTap: () {
+                      routerCore.go('/ejes/gaitas');
+                    },
+                    child: IdiosincrasiaCard(
+                      imagePath: 'assets/images/axis/gaita.jpeg',
+                      title: 'Gaitas',
+                      description:
+                          'Descubre más sobre este género musical típico de la región.',
+                    ),
                   ),
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
                   mainAxisCellCount: 0.40,
-                  child: IdiosincrasiaCard(
-                    imagePath: 'assets/images/axis/artesania.JPG',
-                    title: 'Artesanía',
-                    description: 'Conoce más sobre la artesanía zuliana y sus tradiciones.',
+                  child: GestureDetector(
+                    onTap: () {
+                      routerCore.go('/ejes/artesania');
+                    },
+                    child: IdiosincrasiaCard(
+                      imagePath: 'assets/images/axis/artesania.JPG',
+                      title: 'Artesanía',
+                      description:
+                          'Conoce más sobre la artesanía zuliana y sus tradiciones.',
+                    ),
                   ),
                 ),
               ],

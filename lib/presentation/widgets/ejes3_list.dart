@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
-import 'package:know_my_city/presentation/pages/ejes_page.dart';
+import 'package:know_my_city/presentation/core/router_core.dart';
 import 'idiosincrasia_card.dart';
 
 class GastronomiaContent extends StatelessWidget {
@@ -45,7 +45,8 @@ class GastronomiaContent extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 24.0),
+        padding:
+            EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -94,32 +95,50 @@ class GastronomiaContent extends StatelessWidget {
               crossAxisCount: crossAxisCount,
               crossAxisSpacing: 18,
               mainAxisSpacing: 18,
-              children: const [
+              children: [
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
                   mainAxisCellCount: 0.40,
-                  child: IdiosincrasiaCard(
-                    imagePath: 'assets/images/axis/patacones.jpeg',
-                    title: 'Patacones',
-                    description: 'Descubre más sobre este plato típico de la región.',
+                  child: GestureDetector(
+                    onTap: () {
+                      routerCore.go('/ejes/patacones');
+                    },
+                    child: IdiosincrasiaCard(
+                      imagePath: 'assets/images/axis/patacones.jpeg',
+                      title: 'Patacones',
+                      description:
+                          'Descubre más sobre este plato típico de la región.',
+                    ),
                   ),
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
                   mainAxisCellCount: 0.80,
-                  child: IdiosincrasiaCard(
-                    imagePath: 'assets/images/axis/mandocas.jpg',
-                    title: 'Mandocas',
-                    description: 'Conoce más sobre este plato típico de la región.',
+                  child: GestureDetector(
+                    onTap: () {
+                      routerCore.go('/ejes/mandocas');
+                    },
+                    child: IdiosincrasiaCard(
+                      imagePath: 'assets/images/axis/mandocas.jpg',
+                      title: 'Mandocas',
+                      description:
+                          'Conoce más sobre este plato típico de la región.',
+                    ),
                   ),
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
                   mainAxisCellCount: 0.40,
-                  child: IdiosincrasiaCard(
-                    imagePath: 'assets/images/axis/bollospelones.webp',
-                    title: 'Bollos pelones',
-                    description: 'Descubre más sobre este plato típico de la región.',
+                  child: GestureDetector(
+                    onTap: () {
+                      routerCore.go('/ejes/bollospelones');
+                    },
+                    child: IdiosincrasiaCard(
+                      imagePath: 'assets/images/axis/bollospelones.webp',
+                      title: 'Bollos pelones',
+                      description:
+                          'Descubre más sobre este plato típico de la región.',
+                    ),
                   ),
                 ),
               ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
-import 'package:know_my_city/presentation/pages/ejes_page.dart'; // Asegúrate de que esta ruta sea correcta
+import 'package:know_my_city/presentation/core/router_core.dart';
 import 'espacios_card.dart';
 
 class EspaciosContent extends StatelessWidget {
@@ -12,7 +12,6 @@ class EspaciosContent extends StatelessWidget {
   Widget build(BuildContext context) {
     // Usamos MediaQuery para determinar el ancho de la pantalla
     double screenWidth = MediaQuery.of(context).size.width;
-
     // Configuración responsive según el ancho de pantalla
     int crossAxisCount;
     double horizontalPadding;
@@ -45,7 +44,8 @@ class EspaciosContent extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 24.0),
+        padding:
+            EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -94,32 +94,50 @@ class EspaciosContent extends StatelessWidget {
               crossAxisCount: crossAxisCount,
               crossAxisSpacing: 18,
               mainAxisSpacing: 18,
-              children: const [
+              children: [
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
-                  mainAxisCellCount: 0.80,
-                  child: EspaciosCard(
-                    imagePath: 'assets/images/axis/basilica.jpg',
-                    title: 'Basílica de Chiquinquirá',
-                    description: 'Conoce la historia de la patrona de los zulianos.',
+                  mainAxisCellCount: 0.40, // Cambiado a un valor entero
+                  child: GestureDetector(
+                    onTap: () {
+                      routerCore.go('/ejes/basilica');
+                    },
+                    child: EspaciosCard(
+                      imagePath: 'assets/images/axis/basilica.jpg',
+                      title: 'Basílica de Chiquinquirá',
+                      description:
+                          'Conoce la historia de la patrona de los zulianos.',
+                    ),
                   ),
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
-                  mainAxisCellCount: 0.40,
-                  child: EspaciosCard(
-                    imagePath: 'assets/images/axis/vereda.png',
-                    title: 'Vereda del Lago',
-                    description: 'Descubre el sitio más visitado por los marabinos.',
+                  mainAxisCellCount: 0.80, // Cambiado a un valor entero
+                  child: GestureDetector(
+                    onTap: () {
+                      routerCore.go('/ejes/vereda');
+                    },
+                    child: EspaciosCard(
+                      imagePath: 'assets/images/axis/vereda.png',
+                      title: 'Vereda del Lago',
+                      description:
+                          'Descubre el sitio más visitado por los marabinos.',
+                    ),
                   ),
                 ),
                 StaggeredGridTile.count(
                   crossAxisCellCount: 1,
-                  mainAxisCellCount: 0.40,
-                  child: EspaciosCard(
-                    imagePath: 'assets/images/banner/carabobocalle.jpg',
-                    title: 'Calle Carabobo',
-                    description: 'Descubre la historia de la calle más antigua de la ciudad.',
+                  mainAxisCellCount: 0.40, // Cambiado a un valor entero
+                  child: GestureDetector(
+                    onTap: () {
+                      routerCore.go('/ejes/calle_carabobo');
+                    },
+                    child: EspaciosCard(
+                      imagePath: 'assets/images/banner/carabobocalle.jpg',
+                      title: 'Calle Carabobo',
+                      description:
+                          'Descubre la historia de la calle más antigua de la ciudad.',
+                    ),
                   ),
                 ),
               ],
