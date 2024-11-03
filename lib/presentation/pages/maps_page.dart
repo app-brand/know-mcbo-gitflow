@@ -301,7 +301,9 @@ class _MapsPageState extends State<MapsPage> {
         icon: _customIcons.length > markerData.iconIndex
             ? _customIcons[markerData.iconIndex]
             : BitmapDescriptor.defaultMarker,
-        infoWindow: InfoWindow(title: markerData.name),
+        onTap: () {
+          _showCustomInfoWindow(context, markerData.id, markerData.id, markerData.name, markerData.name);
+        }            
       );
     }).toSet();
 
@@ -424,7 +426,7 @@ class _MapsPageState extends State<MapsPage> {
       animType: AnimType.bottomSlide,
       customHeader: ClipOval(
         child: Image.asset(
-          'assets/$assetname.png',
+          'assets/images/banner/$assetname.jpeg',
           width: 100,
           height: 100,
           fit: BoxFit.cover,
@@ -721,28 +723,61 @@ class _MainMapsState extends State<MainMaps> {
         ),
       ),
       onTap: () {
-        if (rutaActiva == '1') {
+        if (rutaActiva == routeId) {
           _mapaMessage(context);
         } else {
-          _showInfoContainer(
+          /* _showInfoContainer(
               'Ruta de la Alegría',
               'La Ruta de la Alegría sale de la estación central del Tranvía, en la Vereda del Lago, recorrido fiestero y cervecero que visita 3 establecimientos que varían en cada salida, su duración es entre 2 horas y media y 3 aproximadamente.',
               'ruta_alegria',
               'Viernes y Sábados',
               '\$15 por persona',
               '7:00 PM',
-              'Parada fija A Que Luis, demás paradas fijas varían dependiendo disponibilidad');
-
-          widget.drawPolylines();
-          widget
-              .seleccionarRuta('Ruta de la Alegría');
-          widget.goToCenter(widget.center);
-          setState(() {
-            rutaActiva = '1';
-          });
+              'Parada fija A Que Luis, demás paradas fijas varían dependiendo disponibilidad'); */
+            displayRouteInfoCard(int.parse(routeId));
+            widget.drawPolylines();
+            widget.goToCenter(widget.center);
+            setState(() {
+              rutaActiva = routeId;
+            });
         }
       },
     );
+  }
+
+  void displayRouteInfoCard(int routeId) async {
+    try {
+      // Cargar y decodificar el JSON
+      final String response = await rootBundle.loadString('assets/json/routes_info.json');
+      final List<dynamic> routesData = json.decode(response);
+
+      // Convertir a una lista de mapas para trabajar con ellos
+      final List<Map<String, dynamic>> routes = List<Map<String, dynamic>>.from(routesData);
+
+      // Buscar la ruta por `routeId`
+      final routeData = routes.firstWhere(
+        (route) => route["id"] == routeId,
+        orElse: () => {},
+      );
+
+      // Verificar si la ruta existe y actualizar la UI
+      if (routeData != null) {
+        setState(() {
+          selectedRouteTitle = routeData["title"] ?? "";
+          selectedRouteDescription = routeData["description"] ?? "";
+          selectedRouteImage = routeData["image"] ?? "";
+          selectedRouteSchedule = routeData["schedule"] ?? "";
+          selectedRoutePrice = routeData["price"] ?? "";
+          selectedRouteDeparture = routeData["departure"] ?? "";
+          selectedRoutePoints = routeData["points"] ?? "";
+          showInfoContainer = true;
+        });
+      } else {
+        print("Ruta con ID $routeId no encontrada.");
+      }
+    } catch (e) {
+      print("Error al cargar la información de la ruta: $e");
+    }
   }
 
   void _showInfoContainer(String title, String description, String image,
@@ -822,7 +857,6 @@ class _MainMapsState extends State<MainMaps> {
                 polylines: widget.polylines,
                 style: widget.mapStyle,
                 minMaxZoomPreference: const MinMaxZoomPreference(13, 17),
-                zoomGesturesEnabled: false,
               ),
               Positioned(
                   top: 0,
@@ -913,262 +947,7 @@ class _MainMapsState extends State<MainMaps> {
                         ),
                       ],
                     ),
-                  )),
-              // ListView flotante sobre el mapa
-              /* AnimatedPositioned(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.fastOutSlowIn,
-                  top: MediaQuery.of(context).size.height * 0.30,
-                  left: 15,
-                  right: MediaQuery.of(context).size.width * 0.20,
-                  height: MediaQuery.of(context).size.height * 0.5,
-                  child: Container(
-                    color: Colors.transparent,
-                  )),
-              Positioned(
-                top: MediaQuery.of(context).size.height * 0.25,
-                width: MediaQuery.of(context).size.width * 0.20,
-                height: MediaQuery.of(context).size.height * 0.5,
-                left: showInfoContainer ? -400.0 : 15,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20.0),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 6.0,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(
-                        20.0), // Aplica bordes al contenido
-                    child: ListView(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.all(16.0),
-                          color: ThemeCore.primaryColor,
-                          child: Text('RUTAS',
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 24,
-                                  letterSpacing: 1.5,
-                                ),
-                              )),
-                        ),
-                        ExpansionTile(
-                          title: Text(
-                            'Tranvía',
-                            style: GoogleFonts.poppins(
-                              textStyle: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                          children: <Widget>[
-                            ListTile(
-                                title: Text(
-                                  'Ruta de la Alegría',
-                                  style: GoogleFonts.poppins(
-                                    textStyle: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ),
-                                subtitle: Text(
-                                  'Disfruta de la ciudad por la noche',
-                                  style: GoogleFonts.poppins(
-                                    textStyle: TextStyle(
-                                      color: Colors.grey[600],
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                                  ),
-                                ),
-                                onTap: () {
-                                  if (rutaActiva == '1') {
-                                    _mapaMessage(context);
-                                  } else {
-                                    _showInfoContainer(
-                                        'Ruta de la Alegría',
-                                        'La Ruta de la Alegría sale de la estación central del Tranvía, en la Vereda del Lago, recorrido fiestero y cervecero que visita 3 establecimientos que varían en cada salida, su duración es entre 2 horas y media y 3 aproximadamente.',
-                                        'ruta_alegria',
-                                        'Viernes y Sábados',
-                                        '\$15 por persona',
-                                        '7:00 PM',
-                                        'Parada fija A Que Luis, demás paradas fijas varían dependiendo disponibilidad');
-
-                                    widget.drawPolylines();
-                                    widget
-                                        .seleccionarRuta('Ruta de la Alegría');
-                                    widget.goToCenter(widget.center);
-                                    setState(() {
-                                      rutaActiva = '1';
-                                    });
-                                  }
-                                }),
-                            ListTile(
-                              title: Text(
-                                'Ruta Colonial',
-                                style: GoogleFonts.poppins(
-                                  textStyle: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                              subtitle: Text(
-                                'Recorrido por el centro histórico',
-                                style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(
-                                    color: Colors.grey[600],
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ),
-                              onTap: () {
-                                widget.drawTerrorRoute();
-                                widget.seleccionarRuta('Ruta del Terror');
-                                widget.goToCenter(widget.center);
-                              },
-                            ),
-                            ListTile(
-                              title: Text(
-                                'Ruta Gastronómica',
-                                style: GoogleFonts.poppins(
-                                  textStyle: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                              subtitle: Text(
-                                'Tequeyoyos, empanadas, arepas',
-                                style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(
-                                    color: Colors.grey[600],
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ),
-                              onTap: () {
-                                // Acción para esta ruta
-                              },
-                            ),
-                          ],
-                        ),
-                        ExpansionTile(
-                          title: Text(
-                            'Fomutur',
-                            style: GoogleFonts.poppins(
-                              textStyle: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                          children: <Widget>[
-                            ListTile(
-                              title: Text(
-                                'Vivelo Maracaibo',
-                                style: GoogleFonts.poppins(
-                                  textStyle: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                              subtitle: Text(
-                                'Paquetes turísticos para disfrutar la ciudad',
-                                style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(
-                                    color: Colors.grey[600],
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ),
-                              onTap: () {
-                                widget.drawPolylines();
-                                widget.seleccionarRuta('Ruta de la Alegría');
-                                widget.goToCenter(widget.center);
-                              },
-                            ),
-                            ListTile(
-                              title: Text(
-                                'Caminata de Antaño',
-                                style: GoogleFonts.poppins(
-                                  textStyle: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                              subtitle: Text(
-                                'Recorrido por el centro histórico',
-                                style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(
-                                    color: Colors.grey[600],
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ),
-                              onTap: () {
-                                widget.drawTerrorRoute();
-                                widget.seleccionarRuta('Ruta del Terror');
-                                widget.goToCenter(widget.center);
-                              },
-                            ),
-                            /* ListTile(
-                            title: Text(
-                              'Ruta Lacustre',
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(
-                                color: Colors.black,                            
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                ), 
-                              ),
-                            ),
-                            subtitle: Text(
-                              '',
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                color: Colors.grey[600],                            
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300,
-                                ), 
-                              ),
-                            ),
-                              onTap: () {
-                              // Acción para esta ruta
-                              },
-                            ), */
-                          ],
-                        ),
-                        // Más rutas y botones
-                      ],
-                    ),
-                  ),
-                ),
-              ), */
+                  )),              
               AnimatedPositioned(
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.fastOutSlowIn,
@@ -1515,7 +1294,7 @@ class _MainMapsState extends State<MainMaps> {
                       builder: (BuildContext context) {
                         return AlertDialog(
                           title: const Text("Confirmación de Reserva"),
-                          content: Text("¿Deseas reservar la $selectedRouteTitle?\nSe le redirigira a un formulario de registro."),
+                          content: Text("¿Deseas reservar para la $selectedRouteTitle?\nSe le redirigira a un formulario de registro."),
                           actions: [
                             TextButton(
                               onPressed: () {
