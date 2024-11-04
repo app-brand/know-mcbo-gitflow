@@ -669,6 +669,21 @@ class _MainMapsState extends State<MainMaps> {
         _buildRouteTile('Vivelo Maracaibo', 'Paquetes turísticos para disfrutar la ciudad', '4'),
         _buildRouteTile('Caminata de Antaño', 'Recorrido a pie por el centro histórico', '5'),
       ];
+    } else if (routeType == 'Maracaibo') {
+      return [
+        _buildMarkerTile('Tranvía de Maracaibo', '6'),
+        _buildMarkerTile('A que Luis', '7'),
+        _buildMarkerTile('FOMUTUR', '8'),
+        _buildMarkerTile('Hospital Central', '9'),
+        _buildMarkerTile('Mercado San Sebastián', '10'),
+        _buildMarkerTile('Mirador del Sol', '11'),
+        _buildMarkerTile('Monumento a la Chinita', '12'),
+        _buildMarkerTile('Palacio Legislativo', '13'),
+        _buildMarkerTile('Plaza de la República', '14'),
+        _buildMarkerTile('Santa Rosa de Aguas', '15'),
+        _buildMarkerTile('La Vereda del Lago', '16'),
+        _buildMarkerTile('Teatro Baralt', '17'),
+      ];
     }
     return [];
   }
@@ -699,17 +714,148 @@ class _MainMapsState extends State<MainMaps> {
       onTap: () {
         if (rutaActiva == routeId) {
           _mapaMessage(context);
-        } else {
-            displayRouteInfoCard(int.parse(routeId));
-            widget.drawPolylines(routeId);            
-            widget.goToCenter(widget.center);
-            setState(() {
-              rutaActiva = routeId;
-            });
-        }
+        } else if (routeId == '6' || routeId == '7' || routeId == '8' || routeId == '9' || routeId == '10' || routeId == '11' || routeId == '12' || routeId == '13' || routeId == '14' || routeId == '15' || routeId == '16' || routeId == '17') {
+          displayMarkerInfoDialog(int.parse(routeId));
+        } else if(routeId == '4') {
+          _showViveloMaracaiboDialog();
+        }          
+         else {
+          displayRouteInfoCard(int.parse(routeId));
+          widget.drawPolylines(routeId);            
+          widget.goToCenter(widget.center);
+          setState(() {
+            rutaActiva = routeId;
+          });
+        };
       },
     );
   }
+
+  Widget _buildMarkerTile(String title, String routeId) {
+    return ListTile(
+      title: Text(
+        title,
+        style: GoogleFonts.poppins(
+          textStyle: const TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ),
+      onTap: () { 
+        displayMarkerInfoDialog(int.parse(routeId));
+      },
+    );
+  }
+
+  void displayMarkerInfoDialog(int routeId) async {
+  try {
+    // Cargar y decodificar el JSON
+    final String response = await rootBundle.loadString('assets/json/markers_info.json');
+    final List<dynamic> markersData = json.decode(response);
+
+    // Convertir a una lista de mapas para trabajar con ellos
+    final List<Map<String, dynamic>> markers = List<Map<String, dynamic>>.from(markersData);
+
+    // Buscar el marcador por `id`
+    final markerData = markers.firstWhere(
+      (marker) => marker["id"] == routeId,
+      orElse: () => {},
+    );
+
+    // Verificar si el marcador existe y mostrar el diálogo
+    if (markerData.isNotEmpty) {
+      showDialog(
+        context: context,
+        barrierDismissible: false, // Evita que el diálogo se cierre al hacer clic fuera
+        builder: (context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: 500, // Limita el ancho del diálogo
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Título del lugar
+                    Text(
+                      markerData["name"] ?? "Nombre no disponible",
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 16),
+                    // Descripción del lugar
+                    Text(
+                      markerData["description"] ?? "Descripción no disponible",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    // Disponibilidad
+                    Text(
+                      markerData["available"] == true
+                          ? "Disponible para visitas"
+                          : "No disponible para visitas",
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: markerData["available"] == true ? Colors.green : Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    // Ruta (solo si está disponible)
+                    if (markerData["available"] == true && markerData["route"] != null)
+                      Text(
+                        "Ruta: ${markerData["route"]}",
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.blueGrey,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    const SizedBox(height: 24),
+                    // Botón de cierre
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(); // Cierra el diálogo
+                      },
+                      child: const Text(
+                        'Cerrar',
+                        style: TextStyle(
+                          color: Colors.blueAccent,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      );
+
+
+    } else {
+      print("Marcador con ID $routeId no encontrado.");
+    }
+  } catch (e) {
+    print("Error al cargar la información del marcador: $e");
+  }
+}
 
   void displayRouteInfoCard(int routeId) async {
     try {
@@ -881,6 +1027,146 @@ class _MainMapsState extends State<MainMaps> {
     },
   );
 }
+
+void _showViveloMaracaiboDialog() {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    barrierColor: Colors.black.withOpacity(0.8), // Fondo oscuro
+    builder: (context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          height: 600,
+          width: MediaQuery.of(context).size.width * 0.5,
+          child: Column(
+            children: [
+              // Header image
+              Container(
+                height: MediaQuery.of(context).size.height * 0.25,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  image: const DecorationImage(
+                    image: AssetImage('assets/images/banner/maracaibo.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              // Title
+              RichText(
+                text: TextSpan(
+                  text: 'Vívelo Maracaibo',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: AppTheme.accentColor,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: ' - Paquete Turístico',
+                      style: GoogleFonts.montserrat(
+                        fontWeight: FontWeight.w300,
+                        fontSize: 18,
+                        color: AppTheme.greenSecondary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Disfruta de una experiencia única en Maracaibo con este itinerario de 3 días, diseñado para que explores la ciudad y sus alrededores.',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.montserrat(
+                  fontSize: 14,
+                  color: Colors.grey[700],
+                ),
+              ),
+              const SizedBox(height: 16),
+              // Itinerary description
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildDayRow(Icons.calendar_today, 'Día 1: Llegada y Recorrido',
+                          'Llegada al Aeropuerto o Terminal - Check-in en Hotel Oceanía. '
+                          'Recorrido por Parque la Marina, Villa Carmen, Plaza de la República y Santa Lucía. '
+                          'Almuerzo en el Restaurante Culpa - Regreso al Hotel.'),
+                      const SizedBox(height: 10),
+                      _buildDayRow(Icons.calendar_today, 'Día 2: Ruta Lacustre y Patrimonial',
+                          'Visita a Santa Rosa y ruta lacustre - Regreso al Hotel Oceanía. '
+                          'Recorrido por la Sede del Tranvía y Ruta Patrimonial en el casco central. '
+                          'Visita a la Vereda del Lago y al restaurante Dystopia - Cena en Mi Ternerita.'),
+                      const SizedBox(height: 10),
+                      _buildDayRow(Icons.calendar_today, 'Día 3: Despedida',
+                          'Desayuno en el Hotel Oceanía - Traslado de regreso al Terminal o Aeropuerto.'),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              // "Entendido" button
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    'Entendido',
+                    style: GoogleFonts.montserrat(
+                      color: AppTheme.greenAlcaldia,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
+// Helper function to build each day row
+Widget _buildDayRow(IconData icon, String title, String description) {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Icon(icon, color: AppTheme.accentColor, size: 20),
+      const SizedBox(width: 8),
+      Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: GoogleFonts.montserrat(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: AppTheme.greenAlcaldia,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              description,
+              style: GoogleFonts.montserrat(
+                fontSize: 14,
+                color: Colors.grey[700],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
 
 void _showFAQDialog(BuildContext context) {
   showDialog(
@@ -1070,6 +1356,8 @@ void _showFAQDialog(BuildContext context) {
                     polylines: widget.polylines,
                     style: widget.mapStyle,
                     minMaxZoomPreference: const MinMaxZoomPreference(13, 17),
+                    mapToolbarEnabled: false,
+
                   ),
                   Positioned(
                       top: 0,
@@ -1099,7 +1387,9 @@ void _showFAQDialog(BuildContext context) {
                             Row(
                               children: [
                                 TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    routerCore.push('/');
+                                  },
                                   child: Text(
                                     'Inicio',
                                     style: GoogleFonts.montserrat(
@@ -1244,6 +1534,25 @@ void _showFAQDialog(BuildContext context) {
                             onTap: () {
                               setState(() {
                                 selectedRoute = 'Fomutur';
+                                showRouteList = true; // Muestra la lista de rutas de Fomutur
+                              });
+                            },
+                          ),
+                          ListTile(
+                            title: Text(
+                              'Conoce los sitios turísticos de Maracaibo',
+                              style: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                            trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                            onTap: () {
+                              setState(() {
+                                selectedRoute = 'Maracaibo';
                                 showRouteList = true; // Muestra la lista de rutas de Fomutur
                               });
                             },
@@ -1559,7 +1868,7 @@ void _showFAQDialog(BuildContext context) {
                                 ),
                                 TextButton(
                                   onPressed: () async {
-                                    final url = Uri.parse('https://alcaldiademaracaibo.org');
+                                    final url = Uri.parse('https://docs.google.com/forms/d/e/1FAIpQLScrm0-3QN4SOuvP0FotDTqAJ83Xf1eKUqK9AQ9D4wEbKdoQcA/viewform?usp=sf_link');
                                     if (await canLaunchUrl(url)) {
                                       await launchUrl(url);
                                     } else {

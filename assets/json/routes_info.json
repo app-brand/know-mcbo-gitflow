@@ -31,16 +31,6 @@
     },
     {
       "id": 4,
-      "title": "Caminata de la Ruta de Antaño",
-      "description": "Recorre los espacios originarios de nuestra amada Maracaibo",
-      "image": "ruta_gastronomica",
-      "schedule": "Miércoles y Viernes",
-      "price": "$15 por adulto, $5 niños y adultos de la tercera edad",
-      "departure": "05:00 PM",
-      "points": "Sitios de interés históricos para Maracaibo como son el Teatro Baralt, Casa de la Capitulación, Hospital Central, Casa de la Cultura, Alcaldía de Maracaibo, Plaza de Maracaibo."
-    },
-    {
-      "id": 5,
       "title": "Ruta de Vívelo Maracaibo",
       "description": "Disfruta de las maravillas de Nuestra Casa Grande con la ruta del paquete Vívelo en Maracaibo.",
       "image": "ruta_gastronomica",
@@ -48,6 +38,16 @@
       "price": "$40 por persona, $25 niños y adultos de la tercera edad",
       "departure": "02:00 PM",
       "points": "Recorrido a través del Parque la Marina, Plaza de la República, La barriada de Santa Lucía, Santa Rosa de Agua, Vereda del Lago, Sede del Tranvía."
-    }
+    },
+    {
+      "id": 5,
+      "title": "Caminata de la Ruta de Antaño",
+      "description": "Recorre los espacios originarios de nuestra amada Maracaibo",
+      "image": "ruta_gastronomica",
+      "schedule": "Miércoles y Viernes",
+      "price": "$15 por adulto, $5 niños y adultos de la tercera edad",
+      "departure": "05:00 PM",
+      "points": "Sitios de interés históricos para Maracaibo como son el Teatro Baralt, Casa de la Capitulación, Hospital Central, Casa de la Cultura, Alcaldía de Maracaibo, Plaza de Maracaibo."
+    }   
   ]
   

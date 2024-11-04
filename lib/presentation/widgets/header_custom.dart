@@ -124,7 +124,7 @@ class _HeaderCustomState extends State<HeaderCustom> {
                                     builder: (BuildContext context) {
                                       return AlertDialog(
                                         title: const Text('Acceso Denegado'),
-                                        content: const Text('Debes estar logueado para acceder a esta página.'),
+                                        content: const Text('Registrate o inicia sesión para disfrutar del mapa y empezar a conocer Maracaibo.'),
                                         actions: [
                                           TextButton(
                                             onPressed: () {
@@ -136,7 +136,7 @@ class _HeaderCustomState extends State<HeaderCustom> {
                                       );
                                     },
                                   );
-                                }                                                                    
+                                }                                                                     
                               }, 
                               child: Text(
                                 'Mapa de Turista',

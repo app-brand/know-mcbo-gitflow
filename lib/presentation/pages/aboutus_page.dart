@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:know_my_city/presentation/core/state_core.dart';
 import 'package:know_my_city/presentation/widgets/main_footer.dart';
 import 'package:know_my_city/presentation/dialogs/sign_in_dialog.dart';
 import 'package:know_my_city/presentation/core/router_core.dart';
+import 'package:provider/provider.dart';
 
-class AboutUsPage extends StatelessWidget {
+class AboutUsPage extends StatefulWidget {
   const AboutUsPage({super.key});
 
   @override
+  State<AboutUsPage> createState() => _AboutUsPageState();
+}
+
+class _AboutUsPageState extends State<AboutUsPage> {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final stateCore = Provider.of<StateCore>(context, listen: false);
+      stateCore.checkUserState();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final stateCore = Provider.of<StateCore>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -66,7 +84,9 @@ class AboutUsPage extends StatelessWidget {
                         Row(
                           children: [
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                routerCore.push('/');
+                              },
                               child: Text(
                                 'Inicio',
                                 style: GoogleFonts.montserrat(
@@ -80,7 +100,27 @@ class AboutUsPage extends StatelessWidget {
                             const SizedBox(width: 12),
                             TextButton(
                               onPressed: () {
-                                routerCore.push('/maps');
+                                if(stateCore.loggedIn){
+                                  routerCore.push('/maps');
+                                } else {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text('Acceso Denegado'),
+                                        content: const Text('Registrate o inicia sesión para disfrutar del mapa y empezar a conocer Maracaibo.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: const Text('Cerrar'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }                                                                     
                               },
                               child: Text(
                                 'Mapa de Turista',
