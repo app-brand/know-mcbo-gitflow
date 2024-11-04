@@ -28,6 +28,7 @@ class _AppHomeState extends State<AppHome> {
       stateCore.incrementCounter();
       stateCore.checkUserState();
       stateCore.checkAxiIdeosincracia();
+      stateCore.checkMarker();
       print('home - contador de saltos o creaciones ${stateCore.counter}');
     });
   }

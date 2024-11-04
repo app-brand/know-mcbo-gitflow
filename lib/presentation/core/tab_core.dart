@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:know_my_city/presentation/widgets/ejes_list.dart';
 import 'package:know_my_city/presentation/widgets/ejes2_list.dart';
 import 'package:know_my_city/presentation/widgets/ejes3_list.dart';
 import 'package:know_my_city/presentation/widgets/maracaiboantano.dart';
@@ -31,7 +30,6 @@ class _TabCoreState extends State<TabCore> {
         ),
         body: const TabBarView(
           children: [
-            TravelPageContent(),
             EspaciosContent(),
             GastronomiaContent(),
             MaracaiboAntano(),

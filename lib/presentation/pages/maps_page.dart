@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -32,6 +31,9 @@ class MapsPage extends StatefulWidget {
 }
 
 class _MapsPageState extends State<MapsPage> {
+  late StateCore stateCore;
+  late Set<Marker> markersFirestore;
+  late Marker marker;
   List<BitmapDescriptor> _customIcons = [];
   late GoogleMapController _mapController;
   late Marker _tranvia;
@@ -44,7 +46,6 @@ class _MapsPageState extends State<MapsPage> {
   bool rutaSeleccionada = false;
   String rutaQR = '';
   String rutaActiva = '';
-  late StateCore stateCore;
   Set<Marker> _markers = {};
 
 /*   @override
@@ -78,6 +79,8 @@ class _MapsPageState extends State<MapsPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _showWelcomeDialog();
+      stateCore = Provider.of<StateCore>(context, listen: false);
+      stateCore.checkMarker();
     });
     _signInBloc = sl<SignInBloc>();
     _mapStyle = _loadMapStyle();
@@ -86,7 +89,7 @@ class _MapsPageState extends State<MapsPage> {
     _info = null; // This line can be removed as _info is now nullable
     /* _loadDirections(); */
     _initializeMarkers();
-    _loadMarkersFromJson();   
+    _loadMarkersFromJson();       
   }
 
   @override
@@ -107,6 +110,7 @@ class _MapsPageState extends State<MapsPage> {
       stateCore = Provider.of<StateCore>(context, listen: false);
       stateCore.incrementCounter();
       stateCore.checkUserState();
+      stateCore.checkMarker();
       print('home - contador de saltos o creaciones ${stateCore.counter}');
     });
   }
@@ -163,7 +167,7 @@ class _MapsPageState extends State<MapsPage> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   image: const DecorationImage(
-                    image: AssetImage('assets/images/banner/maracaibo.jpg'),
+                    image: AssetImage('assets/images/banner/529.jpg'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -285,7 +289,7 @@ class _MapsPageState extends State<MapsPage> {
       );
       _customIcons.add(icon);
     }
-    setState(() {});
+    setState(() {});    
   }
 
   Future<void> _loadMarkersFromJson() async {
@@ -310,61 +314,6 @@ class _MapsPageState extends State<MapsPage> {
       _markers = markers;
     });
   }
-
-  /* void _initializeMarkers() {
-    _tranvia = Marker(
-      markerId: const MarkerId('tranvia'),
-      position: const LatLng(10.6564178133895,
-          -71.59488684178918), // Ajusta la posición según sea necesario
-      icon: _customIcons.isNotEmpty
-          ? _customIcons[0]
-          : BitmapDescriptor.defaultMarker,
-    );
-
-    _plaza = Marker(
-      markerId: const MarkerId('plaza'),
-      position: const LatLng(10.66623260705817,
-          -71.60581323765165), // Ajusta la posición según sea necesario
-      icon: _customIcons.length > 1
-          ? _customIcons[1]
-          : BitmapDescriptor.defaultMarker,
-    );
-
-    _casaCapitulacion = Marker(
-      markerId: const MarkerId('casaCapitulacion'),
-      position: const LatLng(10.64231896416391,
-          -71.60783610049393), // Ajusta la posición según sea necesario
-      icon: _customIcons.length > 2
-          ? _customIcons[2]
-          : BitmapDescriptor.defaultMarker,
-    );
-
-    _hospitalCentral = Marker(
-      markerId: const MarkerId('hospitalCentral'),
-      position: const LatLng(10.64214695401155,
-          -71.60557377666612), // Ajusta la posición según sea necesario
-      icon: _customIcons.length > 3
-          ? _customIcons[3]
-          : BitmapDescriptor.defaultMarker,
-    );
-
-    _quintaLuxor = Marker(
-      markerId: const MarkerId('quintaLuxor'),
-      position: const LatLng(10.666711923974145,
-          -71.6317473478305), // Ajusta la posición según sea necesario
-      icon: _customIcons.length > 4
-          ? _customIcons[2]
-          : BitmapDescriptor.defaultMarker,
-    );
-
-    setState(() {});
-  } */
-
-  /*  Future<void> _loadDirections() async {
-    final directions = await DirectionsRepository()
-        .getDirections(origin: _tranvia.position, destination: _plaza.position, tranvia: _tranvia.position, plaza: _plaza.position);
-    setState(() => _info = directions);
-  } */
 
   Future<String> _loadMapStyle() async {
     return await rootBundle.loadString('lib/presentation/core/map_style.json');
@@ -526,10 +475,13 @@ class _MapsPageState extends State<MapsPage> {
     }
   }
 
-  Future<void> _drawMultiplePolylines() async {
+  Future<void> _drawMultiplePolylines(int routeNumber) async {
   try {
+    // Construir la ruta del archivo JSON basado en el número de ruta
+    final String jsonFilePath = 'assets/json/route$routeNumber.json';
+    
     // Cargar el archivo JSON
-    final String jsonString = await rootBundle.loadString('assets/json/routes.json');
+    final String jsonString = await rootBundle.loadString(jsonFilePath);
     final List<dynamic> jsonData = json.decode(jsonString);
 
     // Construir la lista de rutas desde el JSON
@@ -551,7 +503,7 @@ class _MapsPageState extends State<MapsPage> {
       for (int i = 0; i < directions.length; i++) {
         _polylines.add(
           Polyline(
-            polylineId: PolylineId('route_$i'),
+            polylineId: PolylineId('route_${routeNumber}_$i'),
             points: directions[i],
             color: Colors.green,
             width: 5,
@@ -564,6 +516,7 @@ class _MapsPageState extends State<MapsPage> {
     print('Error drawing polylines: $e');
   }
 }
+
 
   @override
   Widget build(BuildContext context) {
@@ -586,7 +539,7 @@ class _MapsPageState extends State<MapsPage> {
                 return Center(child: Text('Error loading map style'));
               } else {
                 return MainMaps(
-                    polylines: _polylines,
+                    polylines: _polylines,                    
                     signInBloc: _signInBloc,
                     center: _center,
                     mapStyle: snapshot.data!,
@@ -659,6 +612,7 @@ class MainMaps extends StatefulWidget {
       showCustomInfoWindow;
   final bool rutaSeleccionada;
   final Set<Marker> markers;
+  late StateCore stateCore;
 
   @override
   State<MainMaps> createState() => _MainMapsState();
@@ -681,18 +635,29 @@ class _MainMapsState extends State<MainMaps> {
   String selectedRoutePrice = '';
   String selectedRouteDeparture = '';
   String selectedRoutePoints = '';
+  late StateCore stateCore;
+  late Set<Marker> markersFirestore;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      stateCore = Provider.of<StateCore>(context, listen: false);
+      stateCore.checkMarker();
+    });
+  }
 
   List<Widget> _buildRouteList(String routeType) {
     if (routeType == 'Tranvía') {
       return [
         _buildRouteTile('Ruta de la Alegría', 'Disfruta de la ciudad por la noche', '1'),
-        _buildRouteTile('Ruta Colonial', 'Recorrido por el centro histórico', '2'),
-        _buildRouteTile('Ruta Gastronómica', 'Tequeyoyos, empanadas, arepas', '3'),
+        _buildRouteTile('Ruta Patrimonial', 'Recorrido por el centro histórico', '2'),
+        _buildRouteTile('Ruta Palafitos', 'Visita Santa Rosa de Agua, el mirador y un paseo lacustre', '3'),
       ];
     } else if (routeType == 'Fomutur') {
       return [
         _buildRouteTile('Vivelo Maracaibo', 'Paquetes turísticos para disfrutar la ciudad', '4'),
-        _buildRouteTile('Caminata de Antaño', 'Recorrido por el centro histórico', '5'),
+        _buildRouteTile('Caminata de Antaño', 'Recorrido a pie por el centro histórico', '5'),
       ];
     }
     return [];
@@ -725,16 +690,9 @@ class _MainMapsState extends State<MainMaps> {
         if (rutaActiva == routeId) {
           _mapaMessage(context);
         } else {
-          /* _showInfoContainer(
-              'Ruta de la Alegría',
-              'La Ruta de la Alegría sale de la estación central del Tranvía, en la Vereda del Lago, recorrido fiestero y cervecero que visita 3 establecimientos que varían en cada salida, su duración es entre 2 horas y media y 3 aproximadamente.',
-              'ruta_alegria',
-              'Viernes y Sábados',
-              '\$15 por persona',
-              '7:00 PM',
-              'Parada fija A Que Luis, demás paradas fijas varían dependiendo disponibilidad'); */
             displayRouteInfoCard(int.parse(routeId));
-            widget.drawPolylines();
+            widget.drawPolylines(routeId);
+            
             widget.goToCenter(widget.center);
             setState(() {
               rutaActiva = routeId;
@@ -820,7 +778,10 @@ class _MainMapsState extends State<MainMaps> {
                 decoration: const InputDecoration(labelText: "Selecciona una ruta"),
                 items: const [
                   DropdownMenuItem(value: "Ruta de la Alegría", child: Text("Ruta de la Alegría")),
-                  DropdownMenuItem(value: "Ruta Cultural", child: Text("Ruta Cultural")),
+                  DropdownMenuItem(value: "Ruta Patrimonial", child: Text("Ruta Patrimonial")),
+                  DropdownMenuItem(value: "Ruta Palafitos", child: Text("Ruta Palafitos")),
+                  DropdownMenuItem(value: "Vivelo Maracaibo", child: Text("Vivelo Maracaibo")),
+                  DropdownMenuItem(value: "Caminata de Antaño", child: Text("Caminata de Antaño")),
                 ],
                 onChanged: (value) {
                   selectedRoute = value;
@@ -927,7 +888,7 @@ void _showFAQDialog(BuildContext context) {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
-                        "Puedes reservar una ruta directamente a través de nuestra aplicación o página web, seleccionando la ruta de tu preferencia y el horario disponible.",
+                        "Puedes reservar una ruta directamente a través de nuestra aplicación o página web, seleccionando la ruta de tu preferencia y posteriormente llenando el formulario.",
                         style: TextStyle(color: Colors.black54),
                       ),
                     ),
@@ -1066,523 +1027,544 @@ void _showFAQDialog(BuildContext context) {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        double width = constraints.maxWidth;
-        return Scaffold(
-          body: Stack(
-            children: [                           
-              GoogleMap(
-                onMapCreated: widget.onMapCreated,
-                initialCameraPosition: CameraPosition(
-                  target: widget.center,
-                  zoom: 13,
-                ),
-                markers: widget.markers,
-                polylines: widget.polylines,
-                style: widget.mapStyle,
-                minMaxZoomPreference: const MinMaxZoomPreference(13, 17),
-              ),
-              Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.black.withOpacity(0.8),
-                          Colors.transparent,
+  Widget build(BuildContext context) {    
+    stateCore = Provider.of<StateCore>(context);
+    markersFirestore = stateCore.markerList.cast<Marker>();
+    print('markersFirestore: $markersFirestore');
+    return Consumer<StateCore>(
+      builder: (context, coreState, child) {
+        return LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            double width = constraints.maxWidth;
+            return Scaffold(
+              body: Stack(
+                children: [                           
+                  GoogleMap(
+                    onMapCreated: widget.onMapCreated,
+                    initialCameraPosition: CameraPosition(
+                      target: widget.center,
+                      zoom: 13,
+                    ),
+                    markers: markersFirestore,
+                    polylines: widget.polylines,
+                    style: widget.mapStyle,
+                    minMaxZoomPreference: const MinMaxZoomPreference(13, 17),
+                  ),
+                  Positioned(
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.black.withOpacity(0.8),
+                              Colors.transparent,
+                            ],
+                          ),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              "images/banner/LOGOFOMUTURBLANCO.png",
+                              width: 200,
+                              height: 100,
+                            ),
+                            Row(
+                              children: [
+                                TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    'Inicio',
+                                    style: GoogleFonts.montserrat(
+                                      textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    'Mapa de Turista',
+                                    style: GoogleFonts.montserrat(
+                                      textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                TextButton(
+                                  onPressed: () {
+                                    routerCore.push('/aboutus');
+                                  },
+                                  child: Text(
+                                    'Nosotros',
+                                    style: GoogleFonts.montserrat(
+                                      textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                TextButton(
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return const SignInDialog();
+                                      },
+                                    );
+                                  },
+                                  child: Text(
+                                    'Perfil',
+                                    style: GoogleFonts.montserrat(
+                                      textStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      )),              
+                  AnimatedPositioned(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.fastOutSlowIn,
+                    top: MediaQuery.of(context).size.height * 0.25,
+                    left: showRouteList ? -400.0 : 15,
+                    width: MediaQuery.of(context).size.width * 0.20,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20.0),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 6.0,
+                            offset: Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          // Encabezado principal que cubre todo el ancho con bordes redondeados en la parte superior
+                          ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            ),
+                            child: Container(
+                              width: double.infinity,
+                              height: 50, // Altura más pequeña para el encabezado
+                              color: AppTheme.greenAlcaldia,
+                              alignment: Alignment.center,
+                              child: Text(
+                                'RUTAS',
+                                style: GoogleFonts.poppins(
+                                  textStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20, // Tamaño de texto reducido
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: 1.5,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          // Botón Tranvía
+                          ListTile(
+                            title: Text(
+                              'Tranvía',
+                              style: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                            trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                            onTap: () {
+                              setState(() {
+                                selectedRoute = 'Tranvía';
+                                showRouteList = true; // Muestra la lista de rutas de Tranvía
+                              });
+                            },
+                          ),
+                          // Botón Fomutur
+                          ListTile(
+                            title: Text(
+                              'Fomutur',
+                              style: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                            trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                            onTap: () {
+                              setState(() {
+                                selectedRoute = 'Fomutur';
+                                showRouteList = true; // Muestra la lista de rutas de Fomutur
+                              });
+                            },
+                          ),
                         ],
                       ),
                     ),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image.asset(
-                          "images/banner/LOGOFOMUTURBLANCO.png",
-                          width: 200,
-                          height: 100,
-                        ),
-                        Row(
-                          children: [
-                            TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                'Inicio',
-                                style: GoogleFonts.montserrat(
-                                  textStyle: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                'Mapa de Turista',
-                                style: GoogleFonts.montserrat(
-                                  textStyle: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                'Nosotros',
-                                style: GoogleFonts.montserrat(
-                                  textStyle: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            TextButton(
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return const SignInDialog();
-                                  },
-                                );
-                              },
-                              child: Text(
-                                'Perfil',
-                                style: GoogleFonts.montserrat(
-                                  textStyle: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )),              
-              AnimatedPositioned(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.fastOutSlowIn,
-                top: MediaQuery.of(context).size.height * 0.25,
-                left: showRouteList ? -400.0 : 15,
-                width: MediaQuery.of(context).size.width * 0.20,
-                height: MediaQuery.of(context).size.height * 0.5,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20.0),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 6.0,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
                   ),
-                  child: Column(
-                    children: [
-                      // Encabezado principal que cubre todo el ancho con bordes redondeados en la parte superior
-                      ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
-                        ),
-                        child: Container(
-                          width: double.infinity,
-                          height: 50, // Altura más pequeña para el encabezado
-                          color: AppTheme.greenAlcaldia,
-                          alignment: Alignment.center,
-                          child: Text(
-                            'RUTAS',
-                            style: GoogleFonts.poppins(
-                              textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 20, // Tamaño de texto reducido
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: 1.5,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      // Botón Tranvía
-                      ListTile(
-                        title: Text(
-                          'Tranvía',
-                          style: GoogleFonts.poppins(
-                            textStyle: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
-                        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-                        onTap: () {
-                          setState(() {
-                            selectedRoute = 'Tranvía';
-                            showRouteList = true; // Muestra la lista de rutas de Tranvía
-                          });
-                        },
-                      ),
-                      // Botón Fomutur
-                      ListTile(
-                        title: Text(
-                          'Fomutur',
-                          style: GoogleFonts.poppins(
-                            textStyle: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
-                        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-                        onTap: () {
-                          setState(() {
-                            selectedRoute = 'Fomutur';
-                            showRouteList = true; // Muestra la lista de rutas de Fomutur
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              
-              // Segundo AnimatedPositioned: Lista de rutas específicas de la selección
-              AnimatedPositioned(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.fastOutSlowIn,
-                top: MediaQuery.of(context).size.height * 0.25,
-                left: showRouteList ? 15 : -400.0,
-                width: MediaQuery.of(context).size.width * 0.20,
-                height: MediaQuery.of(context).size.height * 0.5,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20.0),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 6.0,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      // Encabezado con el nombre de la ruta seleccionada y botón de regreso con bordes redondeados en la parte superior
-                      ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
-                        ),
-                        child: Container(
-                          width: double.infinity,
-                          height: 50, // Altura más pequeña para el encabezado
-                          color: AppTheme.greenAlcaldia,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 16.0),
-                                child: Text(
-                                  selectedRoute,
-                                  style: GoogleFonts.poppins(
-                                    textStyle: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600,
-                                      letterSpacing: 1.5,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              IconButton(
-                                icon: const Icon(Icons.arrow_back, color: Colors.white),
-                                onPressed: () {
-                                  setState(() {
-                                    showRouteList = false; // Regresa al menú principal
-                                  });
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: ListView(
-                          padding: EdgeInsets.zero,
-                          children: _buildRouteList(selectedRoute),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),              
-              // Otros Positioned (botones, etc.)
-              Positioned(
-                bottom: 30.0,
-                right: 70.0,
-                height: 45,
-                width: 45,
-                child: FloatingActionButton(
-                  backgroundColor: ThemeCore.primaryColor,
-                  foregroundColor: Colors.white,
-                  onPressed: () {
-                    widget.goToCenter(widget.center);
-                  },
-                  child: const Icon(Icons.my_location),
-                ),
-              ),
-              Positioned(
-                bottom: 30.0,
-                right: 140.0,
-                height: 45,
-                width: 45,
-                child: FloatingActionButton(
-                  backgroundColor: ThemeCore.primaryColor,
-                  foregroundColor: Colors.white,
-                  onPressed: () {
-                    widget.limpiarRuta(widget.polylines);
-                    setState(() {
-                      rutaActiva = '';
-                      showInfoContainer = false;
-                    });
-                  },
-                  child: const Icon(Icons.clear_rounded),
-                ),
-              ),
-              Positioned(
-                bottom: 30.0,
-                right: 210.0,
-                height: 45,
-                width: 45,
-                child: FloatingActionButton(
-                  backgroundColor: ThemeCore.primaryColor,
-                  foregroundColor: Colors.white,
-                  onPressed: () {
-                    _showRatingDialog(context);  // Llama al diálogo de calificación
-                  },
-                  child: const Icon(Icons.rate_review),
-                ),
-              ),
-              Positioned(
-                bottom: 30.0,
-                right: 280.0, // Ajusta la posición para que no se sobreponga con otros botones
-                height: 45,
-                width: 45,
-                child: FloatingActionButton(
-                  backgroundColor: ThemeCore.primaryColor,
-                  foregroundColor: Colors.white,
-                  onPressed: () {
-                    _showFAQDialog(context);  // Llama al diálogo de preguntas frecuentes
-                  },
-                  child: const Icon(Icons.help_outline),
-                ),
-              ),
-              AnimatedPositioned(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.fastOutSlowIn,
-                top: MediaQuery.of(context).size.height * 0.20,
-                left: showInfoContainer ? 15.0 : -525.0,
-                width: 475.0,
-                height: MediaQuery.of(context).size.height * 0.70,
-                child: Material(
-                  elevation: 6,
-                  borderRadius: BorderRadius.circular(20.0),
-                  child: Stack(
-                    children: [
-                      // Contenedor principal con el contenido
-                      ClipRRect(
+                  
+                  // Segundo AnimatedPositioned: Lista de rutas específicas de la selección
+                  AnimatedPositioned(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.fastOutSlowIn,
+                    top: MediaQuery.of(context).size.height * 0.25,
+                    left: showRouteList ? 15 : -400.0,
+                    width: MediaQuery.of(context).size.width * 0.20,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(20.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20.0),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.black26,
-                                blurRadius: 6.0,
-                                offset: Offset(0, 4),
-                              ),
-                            ],
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 6.0,
+                            offset: Offset(0, 4),
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Imagen de cabecera fija
-                              Container(
-                                height: 150,
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                                  image: DecorationImage(
-                                    image: AssetImage('assets/images/banner/tranvia.jpeg'),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              
-                              // Título de la ruta
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                child: Text(
-                                  selectedRouteTitle,
-                                  style: GoogleFonts.poppins(
-                                    textStyle: const TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black87,
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          // Encabezado con el nombre de la ruta seleccionada y botón de regreso con bordes redondeados en la parte superior
+                          ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            ),
+                            child: Container(
+                              width: double.infinity,
+                              height: 50, // Altura más pequeña para el encabezado
+                              color: AppTheme.greenAlcaldia,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 16.0),
+                                    child: Text(
+                                      selectedRoute,
+                                      style: GoogleFonts.poppins(
+                                        textStyle: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                          letterSpacing: 1.5,
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              
-                              // Descripción breve fija
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                child: Text(
-                                  selectedRouteDescription,
-                                  style: GoogleFonts.poppins(
-                                    textStyle: const TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.black54,
-                                    ),
+                                  IconButton(
+                                    icon: const Icon(Icons.arrow_back, color: Colors.white),
+                                    onPressed: () {
+                                      setState(() {
+                                        showRouteList = false; // Regresa al menú principal
+                                      });
+                                    },
                                   ),
-                                ),
+                                ],
                               ),
-                              const SizedBox(height: 12),
-                              
-                              // Contenido desplazable
-                              Expanded(
-                                child: SingleChildScrollView(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        _InfoRow(
-                                          icon: Icons.calendar_today,
-                                          title: 'Días Disponibles',
-                                          content: selectedRouteSchedule,
-                                        ),
-                                        const SizedBox(height: 8),
-                                        _InfoRow(
-                                          icon: Icons.access_time,
-                                          title: 'Hora de salida',
-                                          content: selectedRouteDeparture,
-                                        ),
-                                        const SizedBox(height: 8),
-                                        _InfoRow(
-                                          icon: Icons.attach_money,
-                                          title: 'Costo',
-                                          content: selectedRoutePrice,
-                                        ),
-                                        const SizedBox(height: 8),
-                                        _InfoRow(
-                                          icon: Icons.location_on,
-                                          title: 'Paradas Principales',
-                                          content: selectedRoutePoints,
-                                        ),
-                                        const SizedBox(height: 8),
-                                        if (selectedRouteTitle == 'Ruta de la Alegría')
-                                          const _InfoRow(
-                                            icon: Icons.info,
-                                            title: 'Advertencia',
-                                            content: 'Esta ruta es para mayores de 18 años',
-                                          ),
-                                        const SizedBox(height: 12),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
-                        ),
+                          Expanded(
+                            child: ListView(
+                              padding: EdgeInsets.zero,
+                              children: _buildRouteList(selectedRoute),
+                            ),
+                          ),
+                        ],
                       ),
-                      // Botón de cerrar en la esquina superior derecha
-                      Positioned(
-                        top: 8.0,
-                        right: 8.0,
-                        child: IconButton(
-                          icon: const Icon(Icons.close, color: Colors.white),
-                          onPressed: () {
-                            setState(() {
-                              showInfoContainer = false;
-                              widget.limpiarRuta(widget.polylines);
-                              rutaActiva = '';
-                            });
-                          },
-                        ),
-                      ),
-                    ],
+                    ),
+                  ),              
+                  // Otros Positioned (botones, etc.)
+                  Positioned(
+                    bottom: 30.0,
+                    right: 70.0,
+                    height: 45,
+                    width: 45,
+                    child: FloatingActionButton(
+                      backgroundColor: ThemeCore.primaryColor,
+                      foregroundColor: Colors.white,
+                      onPressed: () {
+                        widget.goToCenter(widget.center);
+                      },
+                      child: const Icon(Icons.my_location),
+                    ),
                   ),
-                ),
-              ),
-              if (rutaActiva.isNotEmpty)
-              Positioned(
-                bottom: 20,
-                left: MediaQuery.of(context).size.width / 2 - 50, // Centrar el botón
-                child: FloatingActionButton.extended(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text("Confirmación de Reserva"),
-                          content: Text("¿Deseas reservar para la $selectedRouteTitle?\nSe le redirigira a un formulario de registro."),
-                          actions: [
-                            TextButton(
+                  Positioned(
+                    bottom: 30.0,
+                    right: 140.0,
+                    height: 45,
+                    width: 45,
+                    child: FloatingActionButton(
+                      backgroundColor: ThemeCore.primaryColor,
+                      foregroundColor: Colors.white,
+                      onPressed: () {
+                        widget.limpiarRuta(widget.polylines);
+                        setState(() {
+                          rutaActiva = '';
+                          showInfoContainer = false;
+                        });
+                      },
+                      child: const Icon(Icons.clear_rounded),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 30.0,
+                    right: 210.0,
+                    height: 45,
+                    width: 45,
+                    child: FloatingActionButton(
+                      backgroundColor: ThemeCore.primaryColor,
+                      foregroundColor: Colors.white,
+                      onPressed: () {
+                        _showRatingDialog(context);  // Llama al diálogo de calificación
+                      },
+                      child: const Icon(Icons.rate_review),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 30.0,
+                    right: 280.0, // Ajusta la posición para que no se sobreponga con otros botones
+                    height: 45,
+                    width: 45,
+                    child: FloatingActionButton(
+                      backgroundColor: ThemeCore.primaryColor,
+                      foregroundColor: Colors.white,
+                      onPressed: () {
+                        _showFAQDialog(context);  // Llama al diálogo de preguntas frecuentes
+                      },
+                      child: const Icon(Icons.help_outline),
+                    ),
+                  ),
+                  AnimatedPositioned(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.fastOutSlowIn,
+                    top: MediaQuery.of(context).size.height * 0.20,
+                    left: showInfoContainer ? 15.0 : -525.0,
+                    width: 475.0,
+                    height: MediaQuery.of(context).size.height * 0.70,
+                    child: Material(
+                      elevation: 6,
+                      borderRadius: BorderRadius.circular(20.0),
+                      child: Stack(
+                        children: [
+                          // Contenedor principal con el contenido
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20.0),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black26,
+                                    blurRadius: 6.0,
+                                    offset: Offset(0, 4),
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // Imagen de cabecera fija
+                                  if(selectedRoute == 'Fomutur')
+                                  Container(
+                                    height: 150,
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),                                      
+                                      image: DecorationImage(
+                                        image: AssetImage('assets/images/banner/puente4k2.jpg'),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  if(selectedRoute == 'Tranvía') 
+                                  Container(
+                                    height: 150,
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),                                      
+                                      image: DecorationImage(
+                                        image: AssetImage('assets/images/banner/tranvia.jpeg'),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  
+                                  // Título de la ruta
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                    child: Text(
+                                      selectedRouteTitle,
+                                      style: GoogleFonts.poppins(
+                                        textStyle: const TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black87,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  
+                                  // Descripción breve fija
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                    child: Text(
+                                      selectedRouteDescription,
+                                      style: GoogleFonts.poppins(
+                                        textStyle: const TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black54,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 12),
+                                  
+                                  // Contenido desplazable
+                                  Expanded(
+                                    child: SingleChildScrollView(
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            _InfoRow(
+                                              icon: Icons.calendar_today,
+                                              title: 'Días Disponibles',
+                                              content: selectedRouteSchedule,
+                                            ),
+                                            const SizedBox(height: 8),
+                                            _InfoRow(
+                                              icon: Icons.access_time,
+                                              title: 'Hora de salida',
+                                              content: selectedRouteDeparture,
+                                            ),
+                                            const SizedBox(height: 8),
+                                            _InfoRow(
+                                              icon: Icons.attach_money,
+                                              title: 'Costo',
+                                              content: selectedRoutePrice,
+                                            ),
+                                            const SizedBox(height: 8),
+                                            _InfoRow(
+                                              icon: Icons.location_on,
+                                              title: 'Paradas Principales',
+                                              content: selectedRoutePoints,
+                                            ),
+                                            const SizedBox(height: 8),
+                                            if (selectedRouteTitle == 'Ruta de la Alegría')
+                                              const _InfoRow(
+                                                icon: Icons.info,
+                                                title: 'Advertencia',
+                                                content: 'Esta ruta es para mayores de 18 años',
+                                              ),
+                                            const SizedBox(height: 12),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          // Botón de cerrar en la esquina superior derecha
+                          Positioned(
+                            top: 8.0,
+                            right: 8.0,
+                            child: IconButton(
+                              icon: const Icon(Icons.close, color: Colors.white),
                               onPressed: () {
-                                Navigator.of(context).pop(); // Cierra el diálogo
+                                setState(() {
+                                  showInfoContainer = false;
+                                  widget.limpiarRuta(widget.polylines);
+                                  rutaActiva = '';
+                                });
                               },
-                              child: const Text("Cancelar"),
                             ),
-                            TextButton(
-                              onPressed: () async {
-                                final url = Uri.parse('https://alcaldiademaracaibo.org');
-                                if (await canLaunchUrl(url)) {
-                                  await launchUrl(url);
-                                } else {
-                                  throw 'No se pudo abrir la URL: $url';
-                                }
-                                // Lógica de reserva
-                                Navigator.of(context).pop(); // Cierra el diálogo
-                              },
-                              child: const Text("Reservar"),
-                            ),
-                          ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  if (rutaActiva.isNotEmpty)
+                  Positioned(
+                    bottom: 20,
+                    left: MediaQuery.of(context).size.width / 2 - 50, // Centrar el botón
+                    child: FloatingActionButton.extended(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text("Confirmación de Reserva"),
+                              content: Text("¿Deseas reservar para la $selectedRouteTitle?\nSe le redirigira a un formulario de registro."),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(); // Cierra el diálogo
+                                  },
+                                  child: const Text("Cancelar"),
+                                ),
+                                TextButton(
+                                  onPressed: () async {
+                                    final url = Uri.parse('https://alcaldiademaracaibo.org');
+                                    if (await canLaunchUrl(url)) {
+                                      await launchUrl(url);
+                                    } else {
+                                      throw 'No se pudo abrir la URL: $url';
+                                    }
+                                    // Lógica de reserva
+                                    Navigator.of(context).pop(); // Cierra el diálogo
+                                  },
+                                  child: const Text("Reservar"),
+                                ),
+                              ],
+                            );
+                          },
                         );
                       },
-                    );
-                  },
-                  label: const Text('Reservar'),
-                  icon: const Icon(Icons.book_online),
-                  backgroundColor: ThemeCore.primaryColor,
-                ),
+                      label: const Text('Reservar'),
+                      icon: const Icon(Icons.book_online),
+                      backgroundColor: ThemeCore.primaryColor,
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            );
+          },
         );
-      },
+      }
     );
   }
 }

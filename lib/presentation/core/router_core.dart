@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:know_my_city/presentation/pages/aboutus_page.dart';
 import 'package:know_my_city/presentation/pages/axi_page.dart';
 import 'package:know_my_city/presentation/pages/home_page.dart';
 import 'package:know_my_city/presentation/pages/maps_page.dart';
@@ -27,6 +28,10 @@ final routerCore = GoRouter(
           boxId: getIndexFromList(ideosincraciaAux, id),
         ); // Navega al widget con el parámetro
       },
+    ),
+    GoRoute(
+      path: '/aboutus',
+      builder: (context, state) => const AboutUsPage(),
     ),
   ],
 );
