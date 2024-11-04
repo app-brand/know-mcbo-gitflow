@@ -233,6 +233,16 @@ class _MapsPageState extends State<MapsPage> {
                         Icons.book_online,
                         'Utiliza este botón para reservar luego de seleccionar una ruta.',
                       ),
+                      const SizedBox(height: 8),
+                      _buildInstructionRow(
+                        Icons.rate_review,
+                        'Si ya visitaste una de nuestras rutas, ¡nos encantaría que la califiques y dejes un comentario!',
+                      ),
+                      const SizedBox(height: 8),
+                      _buildInstructionRow(
+                        Icons.help_outline,
+                        'Lee las preguntas frecuentes para aclarar tus dudas.',
+                      ),
                     ],
                   ),
                 ),
@@ -475,10 +485,10 @@ class _MapsPageState extends State<MapsPage> {
     }
   }
 
-  Future<void> _drawMultiplePolylines(int routeNumber) async {
+  Future<void> _drawMultiplePolylines(String routeNumber) async {
   try {
     // Construir la ruta del archivo JSON basado en el número de ruta
-    final String jsonFilePath = 'assets/json/route$routeNumber.json';
+    final String jsonFilePath = 'assets/json/routes$routeNumber.json';
     
     // Cargar el archivo JSON
     final String jsonString = await rootBundle.loadString(jsonFilePath);
@@ -691,8 +701,7 @@ class _MainMapsState extends State<MainMaps> {
           _mapaMessage(context);
         } else {
             displayRouteInfoCard(int.parse(routeId));
-            widget.drawPolylines(routeId);
-            
+            widget.drawPolylines(routeId);            
             widget.goToCenter(widget.center);
             setState(() {
               rutaActiva = routeId;
@@ -838,15 +847,27 @@ class _MainMapsState extends State<MainMaps> {
                 Navigator.of(context).pop();
 
                 // Mostrar el diálogo de éxito con `AwesomeDialog`
-                AwesomeDialog(
+                showDialog(
                   context: context,
-                  dialogType: DialogType.success,
-                  animType: AnimType.scale,
-                  title: '¡Gracias!',
-                  desc: 'Tu calificación ha sido enviada exitosamente.',
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  showCloseIcon: true,
-                ).show();
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('¡Gracias!'),
+                      content: const Text('Tu calificación ha sido enviada exitosamente.'),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Cerrar'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Selecciona una ruta y una calificación")),

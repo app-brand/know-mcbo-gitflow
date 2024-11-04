@@ -1,0 +1,14 @@
+[
+    {
+      "origin": {"latitude": 10.6564178133895, "longitude": -71.59488684178918},
+      "destination": {"latitude": 10.642771506425895, "longitude": -71.61264886667708}
+    },
+    {
+      "origin": {"latitude": 10.642771506425895, "longitude": -71.61264886667708},
+      "destination": {"latitude": 10.64959659418263, "longitude": -71.60337029701472}
+    },
+    {
+      "origin": {"latitude": 10.64959659418263, "longitude": -71.60337029701472},
+      "destination": {"latitude": 10.665742984435253, "longitude": -71.60600941962404}
+    }
+]
