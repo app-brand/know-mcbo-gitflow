@@ -1,0 +1,38 @@
+[
+    {
+      "id": "tranvia",
+      "name": "Tranvía de Maracaibo",
+      "latitude": 10.6564178133895,
+      "longitude": -71.59488684178918,
+      "iconIndex": 0
+    },
+    {
+      "id": "plaza",
+      "name": "Plaza de la República",
+      "latitude": 10.66623260705817,
+      "longitude": -71.60581323765165,
+      "iconIndex": 1
+    },
+    {
+      "id": "casaCapitulacion",
+      "name": "Casa de la Capitulación",
+      "latitude": 10.64231896416391,
+      "longitude": -71.60783610049393,
+      "iconIndex": 2
+    },
+    {
+      "id": "hospitalCentral",
+      "name": "Hospital Central",
+      "latitude": 10.64214695401155,
+      "longitude": -71.60557377666612,
+      "iconIndex": 3
+    },
+    {
+      "id": "quintaLuxor",
+      "name": "Quinta Luxor",
+      "latitude": 10.666711923974145,
+      "longitude": -71.6317473478305,
+      "iconIndex": 2
+    }
+]
+  

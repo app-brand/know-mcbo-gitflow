@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "title": "Ruta de la Alegría",
+      "description": "Un recorrido lleno de diversión que visita varios puntos de interés.",
+      "image": "ruta_alegria",
+      "schedule": "Viernes y Sábados",
+      "price": "$15 por persona",
+      "departure": "7:00 PM",
+      "points": "Parada en puntos seleccionados"
+    },
+    {
+      "id": 2,
+      "title": "Ruta Patrimonial",
+      "description": "Un recorrido cultural que destaca los principales monumentos y museos.",
+      "image": "ruta_cultural",
+      "schedule": "Sábados y Domingos",
+      "price": "$20 por persona",
+      "departure": "10:00 AM",
+      "points": "Paradas en monumentos y museos importantes"
+    }
+  ]
+  

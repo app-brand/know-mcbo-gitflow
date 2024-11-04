@@ -2,8 +2,10 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:know_my_city/domain/axi/axi.dart';
+import 'package:know_my_city/domain/marker/custom_marker.dart';
 
 @injectable
 class StateCore extends ChangeNotifier {
@@ -14,6 +16,8 @@ class StateCore extends ChangeNotifier {
   StreamSubscription<QuerySnapshot>? _axiSubscriptionIdeosincracia;
   List<Axi> _axiIdeosincrasiaList = [];
   List<Axi> get axiIdeosincrasiaList => _axiIdeosincrasiaList;
+  Set<Marker> _markerList = {};
+  Set<Marker> get markerList => _markerList;
   // Controles
   int _counter = 0;
   bool _isLoading = false;
@@ -94,6 +98,27 @@ class StateCore extends ChangeNotifier {
       print('Error al acceder a Firestore: $e');
     }
   }
+
+  Future<void> checkMarker() async {
+  try {
+    _axiSubscriptionIdeosincracia = _firebaseFirestore
+        .collection('markers')
+        .snapshots()
+        .listen((snapshot) {
+      _markerList = <Marker>{};  // Asegúrate de que _markerList es un Set<Marker> de google_maps_flutter
+      for (var document in snapshot.docs) {
+        CustomMarker customMarker = CustomMarker.fromFirestore(document.data());
+        Marker googleMapMarker = customMarker.toGoogleMapMarker();
+        _markerList.add(googleMapMarker);
+      }
+      notifyListeners();
+    });      
+  } on Exception catch (e) {
+    print('Error al acceder a Firestore: $e');
+  }
+}
+
+
 
   @override
   void dispose() {

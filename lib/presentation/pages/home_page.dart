@@ -8,6 +8,7 @@ import 'package:know_my_city/presentation/widgets/maracaiboantano.dart';
 import 'package:flutter/material.dart';
 import 'package:know_my_city/presentation/widgets/main_footer.dart';
 import 'package:provider/provider.dart';
+import 'package:know_my_city/presentation/core/tab_core.dart';
 
 class AppHome extends StatefulWidget {
   const AppHome({super.key});
@@ -27,6 +28,7 @@ class _AppHomeState extends State<AppHome> {
       stateCore.incrementCounter();
       stateCore.checkUserState();
       stateCore.checkAxiIdeosincracia();
+      stateCore.checkMarker();
       print('home - contador de saltos o creaciones ${stateCore.counter}');
     });
   }

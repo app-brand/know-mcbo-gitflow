@@ -29,15 +29,7 @@ class _HeaderCustomState extends State<HeaderCustom> {
   String _getRandomImageUrl() {
     // Lista de URLs de imágenes
     const imageUrls = [
-      'assets/images/banner/Teatro_Baralt.jpg',
-      /* 'assets/images/banner/maracaibo-2.jpeg',
-      'assets/images/banner/maracaibo-7.jpeg', */
       'assets/images/banner/puente4k.png',
-      /* 'assets/images/banner/BOHG9813.jpg',
-      'assets/images/banner/BOHG9821.jpg',
-      'assets/images/banner/BOHG9920.jpg',
-      'assets/images/banner/IMG_5062.JPG',
-      'assets/images/banner/IMG_5193.JPG', */
     ];
 
     // Seleccionar una imagen aleatoriamente
@@ -130,7 +122,9 @@ class _HeaderCustomState extends State<HeaderCustom> {
                         ),
                         const SizedBox(width: 12), // Espacio entre los botones
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            routerCore.push('/aboutus');
+                          },
                           child: Text(
                             'Nosotros',
                             style: GoogleFonts.montserrat(
