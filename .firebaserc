@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "know-my-city-eaa7f",
+    "develop": "know-my-city-eaa7f"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

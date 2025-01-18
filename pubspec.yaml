@@ -1,0 +1,120 @@
+name: know_my_city
+description: "Proyecto para promover el turismo en la capital"
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.5.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_core: ^3.4.1
+  go_router: ^14.2.7 # Enrutador de pantallas
+  dartz: ^0.10.1 # Either, una nueva forma de manejar respuesta
+  get_it: ^7.7.0 # Localizador de instancias creadas
+  flutter_bloc: ^8.1.6 # Libreria para aplicar el patron bloc
+  freezed: ^2.5.7 # Autogenerador de codigo usado, para crear propiedades elementales que debe tener una clase
+  build_runner: ^2.4.12 # Motor de los autogeneradores de codigos, como freezed y injection
+  freezed_annotation: ^2.4.4 # Anotaciones para utilizar el modulo de freezed
+  injectable: ^2.4.4 # Paquete de anotaciones para utilizar el patron de inyeccion de dependencias
+  firebase_auth: ^5.3.0
+  bloc: ^8.1.4
+  injectable_generator: ^2.6.2
+  cloud_firestore: ^5.4.2
+  google_maps_flutter: ^2.9.0
+  dio: ^4.0.0
+  flutter_polyline_points: ^2.1.0
+  http: ^1.2.2
+  geolocator: ^13.0.1
+  pretty_qr_code: ^3.3.0
+  custom_info_window: ^1.0.1
+  awesome_dialog: ^3.2.1
+  quickalert: ^1.1.0
+  font_awesome_flutter: ^9.2.0
+<<<<<<< HEAD
+  url_launcher: ^6.0.12
+=======
+  url_launcher: ^6.3.1
+>>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
+  pdf: ^3.11.1
+  flutter_svg: ^2.0.10+1
+  country_picker: ^2.0.26
+  provider: ^6.1.2
+  google_fonts: ^6.2.1
+  flutter_staggered_grid_view: ^0.6.2
+  json_serializable: ^6.8.0
+  json_annotation: ^4.9.0
+<<<<<<< HEAD
+=======
+  flutter_dotenv: ^5.2.1
+>>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
+ 
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: AlcaldiaFonts
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf
+        - asset: fonts/Poppins-Bold.ttf
+        - asset: fonts/Poppins-Medium.ttf
+        - asset: fonts/Poppins-SemiBold.ttf
+        - asset: fonts/Poppins-Light.ttf
+        - asset: fonts/Poppins-ExtraLight.ttf
+        - asset: fonts/Poppins-ExtraBold.ttf
+        - asset: fonts/Poppins-Black.ttf
+        - asset: fonts/Poppins-Thin.ttf
+        - asset: fonts/Poppins-Italic.ttf
+        - asset: fonts/Poppins-BoldItalic.ttf
+        - asset: fonts/Poppins-MediumItalic.ttf
+        - asset: fonts/Poppins-SemiBoldItalic.ttf
+        - asset: fonts/Poppins-LightItalic.ttf
+        - asset: fonts/Poppins-ExtraLightItalic.ttf
+        - asset: fonts/Poppins-ExtraBoldItalic.ttf
+        - asset: fonts/Poppins-BlackItalic.ttf
+        - asset: fonts/Poppins-ThinItalic.ttf
+        
+  assets:
+<<<<<<< HEAD
+=======
+    - assets/.env
+>>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
+    - lib/presentation/core/map_style.json
+    - assets/data4iflogo.png
+    - assets/shrek.png
+    - assets/central.png
+    - assets/tranvia.png
+    - assets/plaza.png
+    - assets/casa.png
+    - assets/alcaldia-de-maracaibo.png
+    - assets/images/axis/
+    - assets/images/brand/
+    - assets/images/events_png/
+    - assets/images/main/
+    - assets/images/vector/
+    - assets/json/      
+    - assets/images/markers/
+    - assets/images/banner/
+<<<<<<< HEAD
+=======
+    - assets/images/aboutus/
+>>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
+    - assets/json/ejes_informacion.json
+    - assets/images/ejes/
+    - assets/images/ejes/tranvia_maracaibo_imagen1.jpg
+    - assets/images/ejes/tranvia_maracaibo_imagen2.jpg
+    - assets/images/ejes/gaitas_principal.png
+    - assets/images/ejes/gaitas1.jpg
+<<<<<<< HEAD
+    - assets/images/ejes/gaitas2.jpg
+=======
+    - assets/images/ejes/gaitas2.jpg
+    - assets/images/aboutus/I.jpg
+    - assets/images/aboutus/fomutur1.jpeg
+>>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)

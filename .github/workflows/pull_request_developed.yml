@@ -1,0 +1,36 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Dart
+on:
+  # push:
+  # branches: [ "master" ]
+  pull_request:
+    branches: [ "develop" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Instalar flutter en la vm de github la version especifica
+      - name: setup flutter
+        uses: subosito/flutter-action@v2
+        with: 
+          flutter-version: '3.24.3'
+      # Note: Crear un repositorio y lo clona dentro del la vm de github
+      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+      - name: Install dependencies
+        run: flutter pub get
+      # Uncomment this step to verify the use of 'dart format' on each commit.
+      # - name: Verify formatting
+      #   run: dart format --output=none --set-exit-if-changed .
+
+      # Analyze - basicamente verifica si existen errores de compilacion
+      #- name: Analyze project source
+      #  run: flutter analyze
+        
+      # Correr pruebas automatizadas
+      - name: Run tests
+        run: flutter test

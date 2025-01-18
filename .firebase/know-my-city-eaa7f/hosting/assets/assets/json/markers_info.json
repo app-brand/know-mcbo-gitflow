@@ -1,0 +1,86 @@
+[
+    {
+        "id": 6,
+        "name": "Tranvía de Maracaibo",
+        "description": "El Tranvía de Maracaibo fue el primer medio de transporte masivo en la ciudad, operando a finales del siglo XIX. Permitió el crecimiento de la ciudad conectando los barrios principales. Hoy en día, es un símbolo de la historia del transporte en la región.",
+        "available": true,
+        "route": "Punto de Partida para las rutas del Tranvía"
+    },
+    {
+        "id": 7,
+        "name": "A que Luis",
+        "description": "A que Luis es un restaurante tradicional, famoso por su ambiente familiar y gastronomía local. Su historia se remonta a los años 80, cuando se convirtió en un lugar de encuentro para los maracuchos. Es conocido por sus platos autóctonos y su acogedora atmósfera.",
+        "available": true,
+        "route": "Ruta Patrimonial y Ruta de la Alegría"
+    },
+    {
+        "id": 8,
+        "name": "FOMUTUR",
+        "description": "La Fundación Museo de Transporte Urbano (FOMUTUR) preserva la historia del transporte en Maracaibo. Aquí se exponen vehículos antiguos y material ferroviario, resaltando la evolución del transporte en la región. Un lugar para aprender sobre la historia del transporte urbano.",
+        "available": true,
+        "route": "Sede de FOMUTUR, punto de partida para la Caminata de Antaño"
+    },
+    {
+        "id": 9,
+        "name": "Hospital Central",
+        "description": "El Hospital Central de Maracaibo es uno de los centros de salud más importantes de la ciudad, inaugurado en 1958. Durante años ha sido testigo de la evolución de la medicina en la región. Este hospital es un ícono en la atención sanitaria de la población marabina.",
+        "available": false,
+        "route": ""
+    },
+    {
+        "id": 10,
+        "name": "Mercado San Sebastián",
+        "description": "El Mercado San Sebastián es un lugar vibrante y colorido donde los habitantes compran productos frescos y locales. Fundado en el siglo XX, es uno de los mercados más tradicionales. Aquí puedes encontrar desde alimentos hasta artesanías típicas de la región.",
+        "available": true,
+        "route": "Maracaibo de Antaño"
+    },
+    {
+        "id": 11,
+        "name": "Mirador del Sol",
+        "description": "El Mirador del Sol ofrece vistas panorámicas de Maracaibo y el Lago. Es un lugar popular para contemplar atardeceres y la belleza natural de la región. Este sitio es ideal para relajarse y disfrutar de un momento de tranquilidad con una vista incomparable.",
+        "available": true,
+        "route": "Ruta Palafitos"
+    },
+    {
+        "id": 12,
+        "name": "Monumento a la Chinita",
+        "description": "Este monumento honra a la Virgen de Chiquinquirá, conocida como 'La Chinita', la santa patrona de Maracaibo. Construido en su honor, el monumento se ha convertido en un centro de peregrinación para los fieles. Es un símbolo de devoción y cultura marabina.",
+        "available": true,
+        "route": "Ruta Patrimonial, "
+    },
+    {
+        "id": 13,
+        "name": "Palacio Legislativo",
+        "description": "El Palacio Legislativo es el centro de la política regional y un edificio de gran valor histórico. Su arquitectura colonial lo convierte en una de las estructuras más emblemáticas de Maracaibo. En sus paredes se han tomado decisiones importantes para la región.",
+        "available": false,
+        "route": ""
+    },
+    {
+        "id": 14,
+        "name": "Plaza de la República",
+        "description": "La Plaza de la República es uno de los espacios públicos más antiguos de la ciudad. Es un lugar de encuentro para eventos culturales y celebraciones patrióticas. La plaza también está rodeada de monumentos que representan la historia de Maracaibo.",
+        "available": true,
+        "route": "Ruta Patrimonial"
+    },
+    {
+        "id": 15,
+        "name": "Santa Rosa de Aguas",
+        "description": "Santa Rosa de Aguas es una pintoresca zona conocida por sus casas de colores y sus paisajes naturales. Originalmente fue un área de pescadores y hoy es un atractivo turístico por su autenticidad y belleza. Un rincón que conserva el espíritu de Maracaibo.",
+        "available": true,
+        "route": "Ruta Palafitos"
+    },
+    {
+        "id": 16,
+        "name": "La Vereda del Lago",
+        "description": "La Vereda del Lago es el parque urbano más grande de Maracaibo, situado a orillas del lago. Es ideal para actividades recreativas y deportes al aire libre. Este parque es un oasis en medio de la ciudad y un punto de encuentro para sus habitantes.",
+        "available": true,
+        "route": "Ruta Natural"
+    },
+    {
+        "id": 17,
+        "name": "Teatro Baralt",
+        "description": "Inaugurado en 1883, el Teatro Baralt es el teatro más antiguo de Maracaibo y uno de los más prestigiosos de Venezuela. Ha sido sede de importantes eventos culturales y espectáculos. Es un símbolo del arte y la cultura en la ciudad de Maracaibo.",
+        "available": true,
+        "route": "Maracaibo de Antaño"
+    }
+]
