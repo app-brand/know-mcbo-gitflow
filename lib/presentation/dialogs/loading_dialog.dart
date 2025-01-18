@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 
 class LoadingDialog extends StatelessWidget {
-<<<<<<< HEAD
-  //TODO: Esta clase se puede mejorar, para dar
-  // la opcion al usuario de que puede cancelar
-  // una peticion asincrona en el progreso.
-=======
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
   final String text;
   final String content;
   final VoidCallback onConfirm;
@@ -23,31 +17,6 @@ class LoadingDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-<<<<<<< HEAD
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.95,
-        height: MediaQuery.of(context).size.height * 0.95,
-        padding: const EdgeInsets.all(20),
-        child: Center(
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(text),
-                SizedBox(
-                  height: 10,
-                ),
-                CircularProgressIndicator(),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(content),
-              ],
-            ),
-          ),
-=======
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -79,9 +48,8 @@ class LoadingDialog extends StatelessWidget {
                 color: Colors.grey,
               ),
             ),
-            const SizedBox(height: 20),            
+            const SizedBox(height: 20),
           ],
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
         ),
       ),
     );

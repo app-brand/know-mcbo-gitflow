@@ -1,22 +1,13 @@
 import 'package:know_my_city/presentation/core/state_core.dart';
 import 'package:know_my_city/presentation/core/tab_core.dart';
-<<<<<<< HEAD
 import 'package:know_my_city/presentation/widgets/ejes2_list.dart';
 import 'package:know_my_city/presentation/widgets/ejes3_list.dart';
-=======
-import 'package:know_my_city/presentation/widgets/espacios_burn.dart';
-import 'package:know_my_city/presentation/widgets/gastronomia_burn.dart';
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
 import 'package:know_my_city/presentation/widgets/ideosincracia_burn.dart';
 import 'package:know_my_city/presentation/widgets/header_custom.dart';
 import 'package:know_my_city/presentation/widgets/maracaiboantano.dart';
 import 'package:flutter/material.dart';
 import 'package:know_my_city/presentation/widgets/main_footer.dart';
 import 'package:provider/provider.dart';
-<<<<<<< HEAD
-=======
-import 'package:know_my_city/presentation/core/tab_core.dart';
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
 
 class AppHome extends StatefulWidget {
   const AppHome({super.key});
@@ -36,12 +27,6 @@ class _AppHomeState extends State<AppHome> {
       stateCore.incrementCounter();
       stateCore.checkUserState();
       stateCore.checkAxiIdeosincracia();
-<<<<<<< HEAD
-=======
-      stateCore.checkAxiGastronomia();
-      stateCore.checkAxiEspacios();
-      stateCore.checkMarker();
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
       print('home - contador de saltos o creaciones ${stateCore.counter}');
     });
   }
@@ -62,13 +47,8 @@ class _AppHomeState extends State<AppHome> {
                         children: [
                           HeaderCustom(),
                           const IdeosincraciaContent(),
-<<<<<<< HEAD
                           //const EspaciosContent(),
                           //const GastronomiaContent(),
-=======
-                          const EspaciosContent(),
-                          const GastronomiaContent(),
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
                           //const MaracaiboAntano(),
                           FooterWidget(),
                         ],
