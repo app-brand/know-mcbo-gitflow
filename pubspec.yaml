@@ -32,11 +32,7 @@ dependencies:
   awesome_dialog: ^3.2.1
   quickalert: ^1.1.0
   font_awesome_flutter: ^9.2.0
-<<<<<<< HEAD
   url_launcher: ^6.0.12
-=======
-  url_launcher: ^6.3.1
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
   pdf: ^3.11.1
   flutter_svg: ^2.0.10+1
   country_picker: ^2.0.26
@@ -45,10 +41,6 @@ dependencies:
   flutter_staggered_grid_view: ^0.6.2
   json_serializable: ^6.8.0
   json_annotation: ^4.9.0
-<<<<<<< HEAD
-=======
-  flutter_dotenv: ^5.2.1
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
  
 
 dev_dependencies:
@@ -81,10 +73,6 @@ flutter:
         - asset: fonts/Poppins-ThinItalic.ttf
         
   assets:
-<<<<<<< HEAD
-=======
-    - assets/.env
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
     - lib/presentation/core/map_style.json
     - assets/data4iflogo.png
     - assets/shrek.png
@@ -101,20 +89,10 @@ flutter:
     - assets/json/      
     - assets/images/markers/
     - assets/images/banner/
-<<<<<<< HEAD
-=======
-    - assets/images/aboutus/
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
     - assets/json/ejes_informacion.json
     - assets/images/ejes/
     - assets/images/ejes/tranvia_maracaibo_imagen1.jpg
     - assets/images/ejes/tranvia_maracaibo_imagen2.jpg
     - assets/images/ejes/gaitas_principal.png
     - assets/images/ejes/gaitas1.jpg
-<<<<<<< HEAD
     - assets/images/ejes/gaitas2.jpg
-=======
-    - assets/images/ejes/gaitas2.jpg
-    - assets/images/aboutus/I.jpg
-    - assets/images/aboutus/fomutur1.jpeg
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
