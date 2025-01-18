@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:know_my_city/application/sign_in/sign_in_bloc.dart';
 import 'package:know_my_city/injection.dart';
@@ -435,40 +433,42 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     final bool mobileView = isMobile(context);
     return BlocConsumer<SignInBloc, SignInState>(
-      bloc: _signInBloc,
-      listener: (context, state) {},
-      builder: (context, state) {
-        if (state.isSubmitting) {
-          return LoadingDialog(
-            text: 'Ingresando mediante el sistema cerrado de autenticación',
-            content: 'Validando la combinación de correo de usuario',
-            onConfirm: () {},
-            onCancel: () {},
-          );
-        } else {
-          return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(0, 1),
-                end: Offset.zero,
-              ).animate(CurvedAnimation(
-                parent: _animationController,
-                curve: Curves.easeInOut,
-              )),
-              child: Dialog(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16)),
-                child: SizedBox(
-                  width: mobileView
-                      ? MediaQuery.of(context).size.width * 0.9
-                      : MediaQuery.of(context).size.width * 0.85,
-                  height: MediaQuery.of(context).size.height * 0.7,
-                  child: mobileView
-                      ? _buildMobileLayout(context)
-                      : _buildDesktopLayout(context),
-                ),
-              ));
-        }
-      },
-    );
+        bloc: _signInBloc,
+        listener: (context, state) {},
+        builder: (context, state) => Builder(
+              builder: (context) {
+                if (state.isSubmitting) {
+                  return LoadingDialog(
+                    text:
+                        'Ingresando mediante el sistema cerrado de autenticación',
+                    content: 'Validando la combinación de correo de usuario',
+                    onConfirm: () {},
+                    onCancel: () {},
+                  );
+                } else {
+                  return SlideTransition(
+                      position: Tween<Offset>(
+                        begin: const Offset(0, 1),
+                        end: Offset.zero,
+                      ).animate(CurvedAnimation(
+                        parent: _animationController,
+                        curve: Curves.easeInOut,
+                      )),
+                      child: Dialog(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16)),
+                        child: SizedBox(
+                          width: mobileView
+                              ? MediaQuery.of(context).size.width * 0.9
+                              : MediaQuery.of(context).size.width * 0.85,
+                          height: MediaQuery.of(context).size.height * 0.7,
+                          child: mobileView
+                              ? _buildMobileLayout(context)
+                              : _buildDesktopLayout(context),
+                        ),
+                      ));
+                }
+              },
+            ));
   }
 }
