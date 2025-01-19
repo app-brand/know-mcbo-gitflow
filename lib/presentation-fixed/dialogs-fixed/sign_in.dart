@@ -8,7 +8,9 @@ import 'package:know_my_city/presentation/widgets/email_form_field.dart';
 import 'package:know_my_city/presentation/widgets/password_form_field.dart';
 
 bool isMobile(BuildContext context) {
-  return MediaQuery.of(context).size.width < 750;
+  var size = MediaQuery.of(context).size.width;
+  print(size);
+  return size < 600;
 }
 
 class SignIn extends StatefulWidget {
