@@ -9,7 +9,7 @@ import 'package:know_my_city/presentation/widgets/password_form_field.dart';
 
 bool isMobile(BuildContext context) {
   var size = MediaQuery.of(context).size.width;
-  print(size);
+  debugPrint('size $size');
   return size < 600;
 }
 
