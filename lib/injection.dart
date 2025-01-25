@@ -6,5 +6,5 @@ final sl = GetIt.instance;
 
 @InjectableInit(preferRelativeImports: true)
 Future<void> serviceLocator() async {
-  await sl.init();
+  sl.init();
 }

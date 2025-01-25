@@ -7,7 +7,6 @@ class OneTimePassword extends ValueObject {
   @override
   final Either<ValueFailure<String>, String> value;
   factory OneTimePassword(String input) {
-    assert(input != null);
     return OneTimePassword._(
       validateOTP(input),
     );

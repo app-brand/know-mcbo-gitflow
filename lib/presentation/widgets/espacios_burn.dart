@@ -102,7 +102,7 @@ class EspaciosContent extends StatelessWidget {
                     onTap: () {
                       routerCore.go('/ejes/basilica');
                     },
-                    child: EspaciosCard(
+                    child: const EspaciosCard(
                       imagePath: 'assets/images/axis/basilica.jpg',
                       title: 'Basílica de Chiquinquirá',
                       description:
@@ -117,7 +117,7 @@ class EspaciosContent extends StatelessWidget {
                     onTap: () {
                       routerCore.go('/ejes/vereda');
                     },
-                    child: EspaciosCard(
+                    child: const EspaciosCard(
                       imagePath: 'assets/images/axis/vereda.png',
                       title: 'Vereda del Lago',
                       description:
@@ -132,7 +132,7 @@ class EspaciosContent extends StatelessWidget {
                     onTap: () {
                       routerCore.go('/ejes/calle_carabobo');
                     },
-                    child: EspaciosCard(
+                    child: const EspaciosCard(
                       imagePath: 'assets/images/banner/carabobocalle.jpg',
                       title: 'Calle Carabobo',
                       description:

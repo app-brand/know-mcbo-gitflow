@@ -31,7 +31,7 @@ class NavbarCustom extends StatelessWidget {
           ? [
               // Cuando es vista móvil, se muestra un PopupMenuButton en lugar de las opciones
               PopupMenuButton<int>(
-                icon: Icon(Icons.more_vert, color: AppTheme.primaryColor),
+                icon: const Icon(Icons.more_vert, color: AppTheme.primaryColor),
                 onSelected: (int value) {
                   switch (value) {
                     case 0:
@@ -66,7 +66,7 @@ class NavbarCustom extends StatelessWidget {
                       child: Row(
                         children: [
                           Icon(Icons.person, color: AppTheme.primaryColor),
-                          const SizedBox(width: 8),
+                          SizedBox(width: 8),
                           Text('Perfil'),
                         ],
                       ),
@@ -76,7 +76,7 @@ class NavbarCustom extends StatelessWidget {
                       child: Row(
                         children: [
                           Icon(Icons.location_on, color: AppTheme.primaryColor),
-                          const SizedBox(width: 8),
+                          SizedBox(width: 8),
                           Text('Ubicación'),
                         ],
                       ),
@@ -86,7 +86,7 @@ class NavbarCustom extends StatelessWidget {
                       child: Row(
                         children: [
                           Icon(Icons.help, color: AppTheme.primaryColor),
-                          const SizedBox(width: 8),
+                          SizedBox(width: 8),
                           Text('Ayuda'),
                         ],
                       ),

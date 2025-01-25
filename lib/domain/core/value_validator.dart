@@ -20,11 +20,11 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
     return left(ValueFailure.shortPassword(failedValue: input));
   }
   // Check for at least one uppercase letter
-  if (!input.contains(new RegExp(r'[A-Z]'))) {
+  if (!input.contains(RegExp(r'[A-Z]'))) {
     return left(ValueFailure.missingUppercase(failedValue: input));
   }
   // Check for at least one special keyboard symbol
-  if (!input.contains(new RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+  if (!input.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
     return left(ValueFailure.missingSpecialSymbol(failedValue: input));
   }
   return right(input);

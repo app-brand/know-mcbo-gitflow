@@ -7,6 +7,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,9 +18,9 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Alcaldía de Maracaibo'),
+          title: const Text('Alcaldía de Maracaibo'),
         ),
-        body: Center(
+        body: const Center(
           child: Text('Contenido principal de la página'),
         ),
         bottomNavigationBar: FooterWidget(),
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
 }
 
 class FooterWidget extends StatelessWidget {
+  const FooterWidget({super.key});
+
   // Función para abrir un enlace
   Future<void> _launchURL(String url) async {
     if (!await launchUrl(Uri.parse(url))) {
@@ -43,7 +47,7 @@ class FooterWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: Colors.grey[850],
-      padding: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -56,7 +60,7 @@ class FooterWidget extends StatelessWidget {
               alignment: WrapAlignment.spaceAround,
               children: [
                 // Primera columna (Logo + FOMUTUR)
-                Container(
+                SizedBox(
                   width:
                       isMobileOrTablet ? screenWidth * 0.9 : screenWidth * 0.28,
                   child: Column(
@@ -73,8 +77,8 @@ class FooterWidget extends StatelessWidget {
                             height: 80,
                             fit: BoxFit.contain,
                           ),
-                          SizedBox(width: 10),
-                          Flexible(
+                          const SizedBox(width: 10),
+                          const Flexible(
                             child: Text(
                               'FOMUTUR',
                               style: TextStyle(
@@ -90,8 +94,8 @@ class FooterWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
-                      Text(
+                      const SizedBox(height: 10),
+                      const Text(
                         'En nuestra alcaldía, la transparencia es\nnuestra prioridad. Accede a la información\npública de manera clara y accesible.',
                         textAlign:
                             TextAlign.center, // Centrado para móviles y tablets
@@ -105,13 +109,13 @@ class FooterWidget extends StatelessWidget {
                   ),
                 ),
                 // Segunda columna (Contacto)
-                Container(
+                SizedBox(
                   width:
                       isMobileOrTablet ? screenWidth * 0.9 : screenWidth * 0.28,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Contacto',
                         style: TextStyle(
                           color: Colors.white,
@@ -120,8 +124,8 @@ class FooterWidget extends StatelessWidget {
                           fontFamily: 'AlcaldiaFonts',
                         ),
                       ),
-                      SizedBox(height: 5),
-                      Text(
+                      const SizedBox(height: 5),
+                      const Text(
                         'Horario:\nLunes a viernes 8:00 a.m. a 4:00 p.m.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -130,8 +134,8 @@ class FooterWidget extends StatelessWidget {
                           fontFamily: 'AlcaldiaFonts',
                         ),
                       ),
-                      SizedBox(height: 5),
-                      Text(
+                      const SizedBox(height: 5),
+                      const Text(
                         'Dirección:\nAvenida 4 con Calle 96,\nMaracaibo, Venezuela',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -140,12 +144,12 @@ class FooterWidget extends StatelessWidget {
                           fontFamily: 'AlcaldiaFonts',
                         ),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       InkWell(
                         onTap: () {
                           _launchURL('https://wa.me/584127334000');
                         },
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(FontAwesomeIcons.whatsapp,
@@ -167,13 +171,13 @@ class FooterWidget extends StatelessWidget {
                   ),
                 ),
                 // Tercera columna (Redes Sociales)
-                Container(
+                SizedBox(
                   width:
                       isMobileOrTablet ? screenWidth * 0.9 : screenWidth * 0.28,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Síguenos en nuestras redes sociales',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -183,21 +187,21 @@ class FooterWidget extends StatelessWidget {
                           fontFamily: 'AlcaldiaFonts',
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Wrap(
                         alignment: WrapAlignment.center,
                         spacing: 10,
                         runSpacing: 10,
                         children: [
                           IconButton(
-                            icon: Icon(FontAwesomeIcons.whatsapp),
+                            icon: const Icon(FontAwesomeIcons.whatsapp),
                             color: Colors.white,
                             onPressed: () {
                               _launchURL("https://wa.me/584127334000");
                             },
                           ),
                           IconButton(
-                            icon: Icon(FontAwesomeIcons.instagram),
+                            icon: const Icon(FontAwesomeIcons.instagram),
                             color: Colors.white,
                             onPressed: () {
                               _launchURL(
@@ -205,7 +209,7 @@ class FooterWidget extends StatelessWidget {
                             },
                           ),
                           IconButton(
-                            icon: Icon(FontAwesomeIcons.facebook),
+                            icon: const Icon(FontAwesomeIcons.facebook),
                             color: Colors.white,
                             onPressed: () {
                               _launchURL(
@@ -213,7 +217,7 @@ class FooterWidget extends StatelessWidget {
                             },
                           ),
                           IconButton(
-                            icon: Icon(FontAwesomeIcons.twitter),
+                            icon: const Icon(FontAwesomeIcons.twitter),
                             color: Colors.white,
                             onPressed: () {
                               _launchURL(
@@ -221,7 +225,7 @@ class FooterWidget extends StatelessWidget {
                             },
                           ),
                           IconButton(
-                            icon: Icon(FontAwesomeIcons.tiktok),
+                            icon: const Icon(FontAwesomeIcons.tiktok),
                             color: Colors.white,
                             onPressed: () {
                               _launchURL(
@@ -229,7 +233,7 @@ class FooterWidget extends StatelessWidget {
                             },
                           ),
                           IconButton(
-                            icon: Icon(FontAwesomeIcons.youtube),
+                            icon: const Icon(FontAwesomeIcons.youtube),
                             color: Colors.white,
                             onPressed: () {
                               _launchURL(

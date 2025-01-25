@@ -103,7 +103,7 @@ class GastronomiaContent extends StatelessWidget {
                     onTap: () {
                       routerCore.go('/ejes/patacones');
                     },
-                    child: IdiosincrasiaCard(
+                    child: const IdiosincrasiaCard(
                       imagePath: 'assets/images/axis/patacones.jpeg',
                       title: 'Patacones',
                       description:
@@ -118,7 +118,7 @@ class GastronomiaContent extends StatelessWidget {
                     onTap: () {
                       routerCore.go('/ejes/mandocas');
                     },
-                    child: IdiosincrasiaCard(
+                    child: const IdiosincrasiaCard(
                       imagePath: 'assets/images/axis/mandocas.jpg',
                       title: 'Mandocas',
                       description:
@@ -133,7 +133,7 @@ class GastronomiaContent extends StatelessWidget {
                     onTap: () {
                       routerCore.go('/ejes/bollospelones');
                     },
-                    child: IdiosincrasiaCard(
+                    child: const IdiosincrasiaCard(
                       imagePath: 'assets/images/axis/bollospelones.webp',
                       title: 'Bollos pelones',
                       description:

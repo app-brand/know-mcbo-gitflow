@@ -7,6 +7,7 @@ import 'package:know_my_city/domain/core/value_validator.dart';
 @immutable
 class PhoneNumber extends ValueObject<String> {
   // Return
+  @override
   final Either<ValueFailure<String>, String> value;
   // Constructor
   factory PhoneNumber(String input) {

@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:know_my_city/domain/core/value_failure.dart';
 import 'package:know_my_city/application/facade/auth_facade.dart';
 import 'package:know_my_city/domain/user/user_failures.dart';
 import 'package:know_my_city/domain/value_objects/phone_number.dart';
