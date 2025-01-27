@@ -13,17 +13,17 @@ dependencies:
   go_router: ^14.2.7 # Enrutador de pantallas
   dartz: ^0.10.1 # Either, una nueva forma de manejar respuesta
   get_it: ^7.7.0 # Localizador de instancias creadas
-  flutter_bloc: ^8.1.6 # Libreria para aplicar el patron bloc
+  flutter_bloc: ^9.0.0 # Libreria para aplicar el patron bloc
   freezed: ^2.5.7 # Autogenerador de codigo usado, para crear propiedades elementales que debe tener una clase
   build_runner: ^2.4.12 # Motor de los autogeneradores de codigos, como freezed y injection
   freezed_annotation: ^2.4.4 # Anotaciones para utilizar el modulo de freezed
   injectable: ^2.4.4 # Paquete de anotaciones para utilizar el patron de inyeccion de dependencias
   firebase_auth: ^5.3.0
-  bloc: ^8.1.4
+  bloc: ^9.0.0
   injectable_generator: ^2.6.2
   cloud_firestore: ^5.4.2
   google_maps_flutter: ^2.9.0
-  dio: ^4.0.0
+  dio: ^5.7.0
   flutter_polyline_points: ^2.1.0
   http: ^1.2.2
   geolocator: ^13.0.1
