@@ -1,181 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="/">
-
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
-
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="know_my_city">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <!-- Google Maps ApiKey -->
-  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0vsjSJXoisdpB-ouzVZuk0aCiEaievws&callback=initMap"></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>know_my_city</title>
   <link rel="manifest" href="manifest.json">
-  <style>
-    
-    body, html {
-    margin: 0;
-<<<<<<< HEAD
-    padding: 0;
-    overflow: hidden; 
-    height: 100%; 
-    background: darkgreen;
-=======
-    overflow: hidden; 
-    height: 100%;
-    box-sizing: border-box; 
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
-  }
-
-    /* BARRA DE CARGA */
-    .flutter-loader {
-      display: none !important;
-    }
-    /* IMAGEN DE CARGA */
-    #loading{
-      top: 0;
-      left: 0;
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-<<<<<<< HEAD
-      align-items: center;
-      background-color: darkgreen;
-=======
-      align-items: center;      
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
-      z-index: 1;
-      opacity: 1;
-      background-size: cover;
-      background-position: center;
-      transition: opacity 1.4s ease-out, filter 1.4s ease-out;
-    }
-
-    #loading.fade-out {
-      opacity: 0;
-      filter: blur(10px);
-    }
-<<<<<<< HEAD
-
-    /* ANIMACIÓN LOGO CONOCE */
-    @keyframes scaleInOut {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-
-=======
-    
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
-    #loading img {
-      position: relative;
-      z-index: 2;
-      animation: scaleInOut 5s ease-in-out infinite;
-    }
-
-    #overlay{
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-<<<<<<< HEAD
-      background-color: darkgreen;
-      z-index: 1;
-      opacity: 0.7;
-=======
-      background-color: #006341;
-      z-index: 1;
-      opacity: 50%;
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
-    }
-/* Estilos responsivos */
-@media (max-width: 768px) {
-    #loading img {
-      width: 80%;
-    }
-  }
-
-  @media (max-width: 480px) {
-    #loading img {
-      width: 70%;
-    }
-  }
-  </style>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0vsjSJXoisdpB-ouzVZuk0aCiEaievws&callback=initMap"></script>
 </head>
 <body>
   <div id="loading">
     <div id="overlay"></div>
-<<<<<<< HEAD
-      <img src="assets/conoce.png" alt="loading" width="600" height="auto">
-=======
-      <img src="assets/logo-animado_conoce-maracaibo.gif" alt="loading" width="600" height="auto">
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
-</div>
+    <img src="assets/logo-animado_conoce-maracaibo.gif" alt="loading" width="600" height="auto">
+  </div>
   <script src="flutter_bootstrap.js" async></script>
   <script>
     window.addEventListener('flutter-first-frame', function() {
-      // Retardar la imagen de carga
       setTimeout(function() {
         const loadingElement = document.getElementById('loading');
         loadingElement.classList.add('fade-out');
-        // Esperar a que termine la transición antes de ocultar el elemento
         setTimeout(function() {
           loadingElement.style.display = 'none';
-<<<<<<< HEAD
-        }, 1000); // Duración de la transición en milisegundos
-=======
-        }, 1400); // Duración de la transición en milisegundos
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
-      }, 3000); 
+        }, 1400);
+      }, 3000);
     });
-
-       // Lista de URLs de imágenes
-       const imageUrls = [
-<<<<<<< HEAD
-      'assets/imagen_carga_1.jpg',
-      'assets/imagen_carga_2.jpg',
-      'assets/imagen_carga_3.jpg'
-=======
-      'assets/imagen_carga_1copiabyn.jpg',
-      'assets/imagen_carga_2copiabyn.jpg',
-      'assets/imagen_carga_3copiabyn.jpg',
-      'assets/maracaibo-2copiabyn.jpg',  
-      'assets/maracaibo-7copiabyn.jpg',     
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
-    ];
-
-    // Seleccionar una imagen aleatoriamente
-    const randomImageUrl = imageUrls[Math.floor(Math.random() * imageUrls.length)];
-
-    // Aplicar la imagen seleccionada como fondo del contenedor de carga
-    document.getElementById('loading').style.backgroundImage = `url(${randomImageUrl})`;
-
   </script>
 </body>
 </html>
-
