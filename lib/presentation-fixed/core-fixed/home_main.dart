@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'about_page.dart';
-import 'maps_page.dart';
+import '../paged-fixed/about_page.dart';
+import '../paged-fixed/maps_page.dart';
 import '../dialogs-fixed/sign_in.dart';
 
 class McboMain extends StatefulWidget {

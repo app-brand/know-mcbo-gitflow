@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:know_my_city/presentation-fixed/paged-fixed/home_main.dart';
+import 'package:know_my_city/presentation-fixed/core-fixed/home_main.dart';
 import 'package:know_my_city/presentation/pages/axi_page.dart';
 import 'package:know_my_city/presentation/pages/home_page.dart';
 import 'package:know_my_city/presentation-fixed/paged-fixed/maps_page.dart';
