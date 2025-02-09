@@ -1,8 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:know_my_city/presentation-fixed/core-fixed/home_main.dart';
+import 'package:know_my_city/presentation-fixed/pages-fixed/map-fixed.dart';
 import 'package:know_my_city/presentation/pages/axi_page.dart';
-import 'package:know_my_city/presentation/pages/home_page.dart';
-import 'package:know_my_city/presentation-fixed/paged-fixed/maps_page.dart';
 
 int getIndexFromList(List<String> list, String value) {
   return list.indexOf(value);
@@ -18,7 +17,7 @@ final routerCore = GoRouter(
     ),
     GoRoute(
       path: '/maps',
-      builder: (context, state) => const MapsPage(),
+      builder: (context, state) => MapFixed(),
     ),
     GoRoute(
       path: '/ejes/:id', // el :id representa el parámetro string

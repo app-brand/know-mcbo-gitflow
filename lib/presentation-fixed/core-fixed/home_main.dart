@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../paged-fixed/about_page.dart';
-import '../paged-fixed/maps_page.dart';
-import '../dialogs-fixed/sign_in.dart';
+import 'package:know_my_city/presentation-fixed/dialogs-fixed/sign_in-fixed.dart';
+import 'package:know_my_city/presentation-fixed/pages-fixed/map-fixed.dart';
+import 'package:know_my_city/presentation-fixed/pages-fixed/about-fixed.dart';
 
 class McboMain extends StatefulWidget {
   @override
@@ -94,9 +93,9 @@ class _McboMainState extends State<McboMain>
           : null,
       body: TabBarView(
         controller: _tabController,
-        children: const [
-          MapsPage(),
-          AboutUsPage(),
+        children: [
+          MapFixed(),
+          AboutFixed(),
           SignIn(),
         ],
       ),

@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:know_my_city/presentation-fixed/dialogs-fixed/sign_in.dart';
+import 'package:know_my_city/presentation-fixed/dialogs-fixed/sign_in-fixed.dart';
 import 'package:know_my_city/presentation/core/app_theme.dart';
 import 'package:know_my_city/presentation/core/router_core.dart';
 import 'package:know_my_city/presentation/dialogs/sign_in_dialog.dart';
@@ -148,15 +148,7 @@ class _HeaderCustomState extends State<HeaderCustom> {
                         ),
                         const SizedBox(width: 12), // Espacio entre los botones
                         TextButton(
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                //return SignInDialog();
-                                return SignIn();
-                              },
-                            );
-                          },
+                          onPressed: () {},
                           child: Text(
                             'Perfil',
                             style: GoogleFonts.montserrat(
