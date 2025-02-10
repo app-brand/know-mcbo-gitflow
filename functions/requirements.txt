@@ -1,6 +1,0 @@
-<<<<<<< HEAD
-firebase_functions~=0.1.0
-requests
-=======
-firebase_functions~=0.1.0
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)

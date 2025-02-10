@@ -1,4 +1,20 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
-    "cmake.sourceDirectory": "/home/carlos/Develop/know-mcbo/linux"
+    "cmake.sourceDirectory": "/home/carlos/Develop/know-mcbo/linux",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "search.exclude": {
+          "**/build": true,
+          "**/android/.gradle": true,
+          "**/ios/Pods": true
+        },
+        "files.exclude": {
+          "**/build": true,
+          "**/android/.gradle": true,
+          "**/ios/Pods": true
+        },
+        "dart.analysisExcludedFolders": [
+    "build",
+    "android/.gradle",
+    "ios/Pods"
+  ]
 }
