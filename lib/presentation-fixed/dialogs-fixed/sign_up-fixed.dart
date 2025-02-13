@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:know_my_city/application/sign_in/sign_in_bloc.dart';
+import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/dialogs/loading_dialog.dart';
-import 'package:know_my_city/presentation-fixed/dialogs-fixed/sign_up-fixed.dart';
+import 'package:know_my_city/presentation/dialogs/mail_check_dialog.dart';
 import 'package:know_my_city/presentation/widgets/email_form_field.dart';
 import 'package:know_my_city/presentation/widgets/password_form_field.dart';
 
 const double kMobileBreakpoint = 600;
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+class SignUpDialog extends StatefulWidget {
+  const SignUpDialog({super.key});
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignUpDialog> createState() => _SignUpDialog();
 }
 
-class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
+class _SignUpDialog extends State<SignUpDialog>
+    with SingleTickerProviderStateMixin {
   final formKey = GlobalKey<FormState>();
-  late SignInBloc _signInBloc;
+  late SignUpBloc _signUpBloc;
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
   final _emailController = TextEditingController();
@@ -26,7 +27,7 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _signInBloc = sl<SignInBloc>();
+    _signUpBloc = sl<SignUpBloc>();
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 500),
@@ -37,21 +38,18 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
         curve: Curves.easeInOut,
       ),
     );
-    _animationController.addStatusListener(_animationStatusListener);
+    _animationController.addStatusListener((status) {
+      if (status == AnimationStatus.dismissed) {
+        Navigator.of(context).pop();
+      }
+    });
     _animationController.forward();
-  }
-
-  void _animationStatusListener(AnimationStatus status) {
-    if (status == AnimationStatus.dismissed) {
-      Navigator.of(context).pop();
-    }
   }
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
-    _animationController.removeStatusListener(_animationStatusListener);
     _animationController.dispose();
     super.dispose();
   }
@@ -63,51 +61,41 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
   void _showErrorDialog(String message) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Error'),
-        content: Text(message),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Error'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 
-  void _successSignInDialog() {
-    _animationController.reverse();
-    _animationController.addStatusListener((status) {
-      if (status == AnimationStatus.dismissed) {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('Inicio exitoso!'),
-            content: const Text('Bienvenido'),
-            actions: [
-              TextButton(
-                onPressed: () =>
-                    Navigator.of(context).popUntil((route) => route.isFirst),
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-        );
-      }
-    });
+  void _showSuccessDialog() {
+    Navigator.of(context).popUntil((route) => route.isFirst);
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const MailVerificationDialog();
+      },
+    );
   }
 
-  Widget _buildSignInForm() {
+  Widget _buildSignUpForm() {
     return Form(
       key: formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            'Iniciar Sesión',
+            'Registro de Correo - Paso #1',
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.black87,
             ),
@@ -115,22 +103,30 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
           const SizedBox(height: 10.0),
           EmailFormField(
             mailController: _emailController,
-            onChanged: (email) =>
-                _signInBloc.add(SignInEvent.emailChanged(email)),
-            validator: (email) => _signInBloc.state.emailAddress.value.fold(
-              (failure) => failure.message,
-              (_) => null,
-            ),
+            onChanged: (email) {
+              _signUpBloc.add(
+                SignUpEvent.emailChanged(email),
+              );
+            },
+            validator: (email) {
+              return _signUpBloc.state.emailAddress.value.fold(
+                (failure) => failure.message,
+                (_) => null,
+              );
+            },
           ),
           const SizedBox(height: 10.0),
           PasswordFormField(
             passwordController: _passwordController,
-            validator: (password) => _signInBloc.state.password.value.fold(
-              (failure) => failure.message,
-              (_) => null,
+            validator: (password) {
+              return _signUpBloc.state.password.value.fold(
+                (failure) => failure.message,
+                (_) => null,
+              );
+            },
+            onChanged: (password) => _signUpBloc.add(
+              SignUpEvent.passwordChanged(password),
             ),
-            onChanged: (password) =>
-                _signInBloc.add(SignInEvent.passwordChanged(password)),
           ),
           const SizedBox(height: 20.0),
           Row(
@@ -171,11 +167,11 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
                 ),
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    _signInBloc.add(const SignInEvent.singInEmail());
+                    _signUpBloc.add(const SignUpEvent.signUpMail());
                   }
                 },
                 child: const Text(
-                  'Iniciar sesión',
+                  'Registrarse',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -183,36 +179,6 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
                 ),
               ),
             ],
-          ),
-          const SizedBox(height: 15.0),
-          TextButton(
-            onPressed: () {},
-            child: const Text(
-              '¿Olvidaste tu contraseña?',
-              style: TextStyle(
-                color: Colors.teal,
-                fontSize: 14,
-                decoration: TextDecoration.underline,
-              ),
-            ),
-          ),
-          const SizedBox(height: 15.0),
-          TextButton(
-            onPressed: () {
-              /* Navigator.of(context).pop(); */
-              showDialog(
-                context: context,
-                builder: (context) => const SignUpDialog(),
-              );
-            },
-            child: const Text(
-              '¿No tienes una cuenta? Regístrate',
-              style: TextStyle(
-                color: Colors.teal,
-                fontSize: 14,
-                decoration: TextDecoration.underline,
-              ),
-            ),
           ),
         ],
       ),
@@ -233,7 +199,7 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
                 topRight: Radius.circular(16),
               ),
               child: Image.asset(
-                'assets/images/banner/Teatro_Baralt.jpg',
+                'assets/images/banner/Puente_de_Maracaibo.jpg',
                 fit: BoxFit.cover,
                 height: 200,
                 width: double.infinity,
@@ -248,7 +214,7 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
                   bottomRight: Radius.circular(16),
                 ),
               ),
-              child: _buildSignInForm(),
+              child: _buildSignUpForm(),
             ),
           ],
         ),
@@ -260,7 +226,8 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
             child: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/banner/Teatro_Baralt.jpg'),
+                  image: AssetImage(
+                      'assets/images/banner/Puente_de_Maracaibo.jpg'),
                   fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.only(
@@ -280,7 +247,7 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
                   bottomRight: Radius.circular(16),
                 ),
               ),
-              child: _buildSignInForm(),
+              child: _buildSignUpForm(),
             ),
           ),
         ],
@@ -290,16 +257,27 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignInBloc, SignInState>(
-      bloc: _signInBloc,
+    return BlocConsumer<SignUpBloc, SignUpState>(
+      bloc: _signUpBloc,
       listener: (context, state) {
-        // Aquí puedes gestionar cambios de estado o notificar errores, etc.
+        state.userFailureOrUserSuccess.fold(
+          () => {},
+          (ifSome) => ifSome.fold(
+            (failure) {
+              _showErrorDialog(failure.message);
+            },
+            (success) {
+              _showSuccessDialog();
+            },
+          ),
+        );
       },
       builder: (context, state) {
         if (state.isSubmitting) {
           return LoadingDialog(
-            text: 'Ingresando mediante el sistema cerrado de autenticación',
-            content: 'Validando la combinación de correo de usuario',
+            text: 'Ingresando el correo y contraseña a la base de datos',
+            content:
+                'Recuerde validar el correo en el tiempo marcado o repetir el proceso desde el principio',
             onConfirm: () {},
             onCancel: () {},
           );
