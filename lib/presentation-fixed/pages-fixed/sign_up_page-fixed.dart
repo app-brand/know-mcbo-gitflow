@@ -105,51 +105,55 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           const SizedBox(height: 20.0),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                  backgroundColor: Colors.grey[700],
-                  foregroundColor: Colors.white,
-                  elevation: 4,
-                  shadowColor: Colors.grey.withOpacity(0.5),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 12),
+                    backgroundColor: Colors.grey[700],
+                    foregroundColor: Colors.white,
+                    elevation: 4,
+                    shadowColor: Colors.grey.withOpacity(0.5),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
-                ),
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text(
-                  'Cancelar',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text(
+                    'Cancelar',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                  backgroundColor: Colors.teal[600],
-                  foregroundColor: Colors.white,
-                  elevation: 4,
-                  shadowColor: Colors.teal.withOpacity(0.5),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+              const SizedBox(width: 10),
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 12),
+                    backgroundColor: Colors.teal[600],
+                    foregroundColor: Colors.white,
+                    elevation: 4,
+                    shadowColor: Colors.teal.withOpacity(0.5),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    _signUpBloc.add(const SignUpEvent.signUpMail());
-                  }
-                },
-                child: const Text(
-                  'Registrarse',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      _signUpBloc.add(const SignUpEvent.signUpMail());
+                    }
+                  },
+                  child: const Text(
+                    'Registrarse',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),

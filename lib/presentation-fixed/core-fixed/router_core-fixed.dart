@@ -11,7 +11,7 @@ final GoRouter routerCore = GoRouter(
       builder: (context, state) => McboMain(),
     ),
     GoRoute(
-      path: '/signIm',
+      path: '/signIn',
       name: 'signIn',
       builder: (context, state) => const SignInPage(),
     ),

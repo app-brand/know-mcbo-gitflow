@@ -167,7 +167,7 @@ class _SignInPageState extends State<SignInPage> {
               '¿Olvidaste tu contraseña?',
               style: TextStyle(
                 color: Colors.teal,
-                fontSize: 14,
+                fontSize: 20,
                 decoration: TextDecoration.underline,
               ),
             ),
@@ -251,7 +251,25 @@ class _SignInPageState extends State<SignInPage> {
     return BlocConsumer<SignInBloc, SignInState>(
       bloc: _signInBloc,
       listener: (context, state) {
-        // Aquí puedes gestionar cambios de estado, mostrar errores o notificar éxitos.
+        state.userFailureOrUserSuccess.fold(
+          () {}, // No se ha intentado iniciar sesión aún.
+          (failureOrSuccess) => failureOrSuccess.fold(
+            (failure) {
+              failure.map(
+                cancelledByUser: (f) => _showErrorDialog(f.message),
+                invalidEmailAndPasswordCombination: (e) =>
+                    _showErrorDialog(e.message),
+                emailNotVerified: (e) => _showErrorDialog(e.message),
+                otpExpired: (e) => _showErrorDialog(e.message),
+                emailLinkExpired: (e) => _showErrorDialog(e.message),
+                serverError: (e) => _showErrorDialog(e.message),
+              );
+            },
+            (_) {
+              _successSignInDialog();
+            },
+          ),
+        );
       },
       builder: (context, state) {
         return Scaffold(

@@ -36,8 +36,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
               emailAddress: state.emailAddress,
               password: state.password,
             );
-            // TODO: Corregir la logica anterior y cambiar el nombre de
-            // la variable showErrorEmessage para que exprese autenticacion
             emit(state.copyWith(
               isSubmitting: false,
               showErrorMessages: true,
