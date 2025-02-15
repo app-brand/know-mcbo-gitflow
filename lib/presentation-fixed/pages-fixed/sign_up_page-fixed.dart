@@ -9,18 +9,16 @@ import 'package:know_my_city/presentation/widgets/password_form_field.dart';
 
 const double kMobileBreakpoint = 700;
 
-class SignUpDialog extends StatefulWidget {
-  const SignUpDialog({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
+
   @override
-  State<SignUpDialog> createState() => _SignUpDialog();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignUpDialog extends State<SignUpDialog>
-    with SingleTickerProviderStateMixin {
+class _SignUpPageState extends State<SignUpPage> {
   final formKey = GlobalKey<FormState>();
   late SignUpBloc _signUpBloc;
-  late AnimationController _animationController;
-  late Animation<double> _scaleAnimation;
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -28,34 +26,13 @@ class _SignUpDialog extends State<SignUpDialog>
   void initState() {
     super.initState();
     _signUpBloc = sl<SignUpBloc>();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-    _scaleAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.easeInOut,
-      ),
-    );
-    _animationController.addStatusListener((status) {
-      if (status == AnimationStatus.dismissed) {
-        Navigator.of(context).pop();
-      }
-    });
-    _animationController.forward();
   }
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
-    _animationController.dispose();
     super.dispose();
-  }
-
-  void _closeWithReverseDialog() {
-    _animationController.reverse();
   }
 
   void _showErrorDialog(String message) {
@@ -104,9 +81,7 @@ class _SignUpDialog extends State<SignUpDialog>
           EmailFormField(
             mailController: _emailController,
             onChanged: (email) {
-              _signUpBloc.add(
-                SignUpEvent.emailChanged(email),
-              );
+              _signUpBloc.add(SignUpEvent.emailChanged(email));
             },
             validator: (email) {
               return _signUpBloc.state.emailAddress.value.fold(
@@ -124,9 +99,9 @@ class _SignUpDialog extends State<SignUpDialog>
                 (_) => null,
               );
             },
-            onChanged: (password) => _signUpBloc.add(
-              SignUpEvent.passwordChanged(password),
-            ),
+            onChanged: (password) {
+              _signUpBloc.add(SignUpEvent.passwordChanged(password));
+            },
           ),
           const SizedBox(height: 20.0),
           Row(
@@ -144,7 +119,7 @@ class _SignUpDialog extends State<SignUpDialog>
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                onPressed: _closeWithReverseDialog,
+                onPressed: () => Navigator.of(context).pop(),
                 child: const Text(
                   'Cancelar',
                   style: TextStyle(
@@ -261,7 +236,7 @@ class _SignUpDialog extends State<SignUpDialog>
       bloc: _signUpBloc,
       listener: (context, state) {
         state.userFailureOrUserSuccess.fold(
-          () => {},
+          () {},
           (ifSome) => ifSome.fold(
             (failure) {
               _showErrorDialog(failure.message);
@@ -273,38 +248,24 @@ class _SignUpDialog extends State<SignUpDialog>
         );
       },
       builder: (context, state) {
-        if (state.isSubmitting) {
-          return LoadingDialog(
-            text: 'Ingresando el correo y contraseña a la base de datos',
-            content:
-                'Recuerde validar el correo en el tiempo marcado o repetir el proceso desde el principio',
-            onConfirm: () {},
-            onCancel: () {},
-          );
-        } else {
-          return ScaleTransition(
-            scale: _scaleAnimation,
-            child: Dialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  final double dialogWidth = constraints.maxWidth;
-                  final double dialogHeight =
-                      MediaQuery.of(context).size.height * 0.7;
-                  return SizedBox(
-                    width: dialogWidth < kMobileBreakpoint
-                        ? MediaQuery.of(context).size.width * 0.9
-                        : MediaQuery.of(context).size.width * 0.85,
-                    height: dialogHeight,
-                    child: _buildResponsiveLayout(context, constraints),
-                  );
-                },
-              ),
-            ),
-          );
-        }
+        return Scaffold(
+          body: state.isSubmitting
+              ? LoadingDialog(
+                  text: 'Ingresando el correo y contraseña a la base de datos',
+                  content:
+                      'Recuerde validar el correo en el tiempo marcado o repetir el proceso desde el principio',
+                  onConfirm: () {},
+                  onCancel: () {},
+                )
+              : LayoutBuilder(
+                  builder: (context, constraints) {
+                    return Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: _buildResponsiveLayout(context, constraints),
+                    );
+                  },
+                ),
+        );
       },
     );
   }
