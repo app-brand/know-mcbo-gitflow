@@ -3,13 +3,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:know_my_city/domain/axi/axi.dart';
+
 
 @injectable
 class StateCore extends ChangeNotifier {
-  final FirebaseAuth _auth;
-  final FirebaseFirestore _firebaseFirestore;
-  StreamSubscription<User?>? _authSubscription;
+  late final FirebaseAuth _auth;
+  late final FirebaseFirestore _firebaseFirestore;
+  
+  
+  /* StreamSubscription<User?>? _authSubscription;
   // Suscripciones de ejes - por coleccion
   StreamSubscription<QuerySnapshot>? _axiSubscriptionIdeosincracia;
   List<Axi> _axiIdeosincrasiaList = [];
@@ -31,7 +33,6 @@ class StateCore extends ChangeNotifier {
   }
 
   int get counter => _counter;
-
   // Método para incrementar el contador y notificar a los listeners
   void incrementCounter() {
     _counter++;
@@ -100,5 +101,5 @@ class StateCore extends ChangeNotifier {
     _authSubscription?.cancel();
     _axiSubscriptionIdeosincracia?.cancel();
     super.dispose();
-  }
+  } */
 }

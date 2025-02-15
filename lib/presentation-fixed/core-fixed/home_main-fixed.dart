@@ -50,7 +50,7 @@ class _McboMainState extends State<McboMain>
       body: TabBarView(
         controller: _tabController,
         children: [
-          MapFixed(),
+          MapScreen(),
           SignInPage(),
         ],
       ),

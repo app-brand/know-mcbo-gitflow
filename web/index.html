@@ -2,14 +2,14 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <!-- Se eliminó la etiqueta meta viewport para evitar conflictos con Flutter Web -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>know_my_city</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/png" href="favicon.png"/>
-  <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0vsjSJXoisdpB-ouzVZuk0aCiEaievws&libraries=places"></script>
   
   <style>
-    /* Asegura que html y body ocupen toda la altura del viewport y elimina márgenes */
+    /* html y body ocupan toda la altura del viewport y sin márgenes */
     html, body {
       margin: 0;
       padding: 0;
@@ -23,18 +23,20 @@
       position: relative;
     }
     
-    /* Centrar el contenedor de carga con Flexbox */
+    /* Contenedor de carga centrado con Flexbox y transición para desvanecer */
     #loading {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh; /* altura completa del viewport */
+      height: 100vh;
       position: relative;
       z-index: 100;
+      padding: 0 10px;
+      opacity: 1;
+      transition: opacity 1s ease-out;
     }
     
-    /* La superposición verde con opacidad (50%),
-       se sitúa detrás del GIF */
+    /* Superposición verde con opacidad (50%) y transición para desvanecer */
     #overlay {
       position: absolute;
       top: 0;
@@ -43,12 +45,16 @@
       height: 100%;
       background-color: rgba(0, 128, 0, 0.5);
       z-index: 1;
+      opacity: 1;
+      transition: opacity 1s ease-out;
     }
     
-    /* Asegura que el GIF esté por encima de la superposición */
+    /* Ajusta el GIF para que sea responsive y se muestre por encima de la superposición */
     #loading img {
       position: relative;
       z-index: 2;
+      max-width: 100%;
+      height: auto;
     }
     
     /* Oculta el indicador nativo de Flutter, si existe */
@@ -58,21 +64,28 @@
   </style>
 </head>
 <body>
-  <!-- Pantalla de carga con imagen de fondo y GIF centrado -->
+  <!-- Pantalla de carga con imagen de fondo, superposición verde y GIF centrado -->
   <div id="loading">
     <div id="overlay"></div>
-    <img src="assets/animated_main.gif" alt="loading" width="600" height="auto">
+    <img src="assets/animated_main.gif" alt="loading">
   </div>
   
   <script src="flutter_bootstrap.js" async></script>
   
   <script>
-    // Cuando se dispare el primer frame de Flutter, elimina el contenedor de carga
+    // Al dispararse el primer frame de Flutter, se inicia la animación de desvanecimiento
     window.addEventListener('flutter-first-frame', function() {
       const loadingElement = document.getElementById('loading');
-      if (loadingElement) {
-        loadingElement.remove(); // Se elimina por completo, sin dejar rastro de animación.
-      }
+      const overlay = document.getElementById('overlay');
+      
+      // Inicia la transición: se reduce la opacidad a 0
+      loadingElement.style.opacity = '0';
+      overlay.style.opacity = '0';
+      
+      // Una vez finalizada la transición, se elimina el contenedor de carga
+      loadingElement.addEventListener('transitionend', function() {
+        loadingElement.remove();
+      });
     });
   </script>
 </body>
