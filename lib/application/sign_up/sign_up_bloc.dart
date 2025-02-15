@@ -69,6 +69,9 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
             userFailureOrUserSuccess: optionOf(failureOrSuccess),
           ));
         },
+        sendOtp: (_SendOtp value) {},
+        verifyOtp: (_SignUpFirestore value) {},
+        phoneChanged: (_PhoneChanged value) {},
       );
     });
   }

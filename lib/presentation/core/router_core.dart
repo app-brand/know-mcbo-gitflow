@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
-import 'package:know_my_city/presentation-fixed/core-fixed/home_main.dart';
-import 'package:know_my_city/presentation-fixed/pages-fixed/map-fixed.dart';
+import 'package:know_my_city/presentation-fixed/core-fixed/home_main-fixed.dart';
+import 'package:know_my_city/presentation-fixed/pages-fixed/map_page-fixed.dart';
 import 'package:know_my_city/presentation/pages/axi_page.dart';
 
 int getIndexFromList(List<String> list, String value) {

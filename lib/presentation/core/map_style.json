@@ -9,8 +9,6 @@
         ]
     },
     {
-<<<<<<< HEAD
-=======
         "featureType": "poi",
         "elementType": "labels",
         "stylers": [
@@ -18,7 +16,6 @@
         ]
     },
     {
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
         "featureType": "transit",
         "elementType": "labels",
         "stylers": [
@@ -35,10 +32,6 @@
             "visibility": "off"
           }
         ]
-<<<<<<< HEAD
-      }
-=======
     }
 
->>>>>>> baaebe3 (09-12-24 Know Maracaibo: Project rebooted - Keys are in .env file)
 ]
