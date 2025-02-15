@@ -30,7 +30,12 @@ class _McboMainState extends State<McboMain>
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Conoce Maracaibo'),
+        title: const Text(
+          'Conoce Maracaibo',
+          style: TextStyle(
+            fontSize: 24,
+          ),
+        ),
         bottom: TabBar(
           controller: _tabController,
           physics: const NeverScrollableScrollPhysics(),

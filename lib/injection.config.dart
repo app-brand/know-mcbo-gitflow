@@ -15,13 +15,13 @@ import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import 'application/facade/auth_facade.dart' as _i396;
+import 'application/facade/interface_user_facade.dart' as _i396;
 import 'application/profile/profile_bloc.dart' as _i11;
 import 'application/sign_in/sign_in_bloc.dart' as _i939;
 import 'application/sign_up/sign_up_bloc.dart' as _i1011;
 import 'domain/map/interface_map_facade.dart' as _i70;
 import 'infrastructure/core/core_module.dart' as _i189;
-import 'infrastructure/firebase/user_firebase_repository.dart' as _i191;
+import 'infrastructure/firebase/interface_firebase_auth.dart' as _i191;
 import 'infrastructure/map/google_map_repository.dart' as _i600;
 import 'presentation/core/state_core.dart' as _i607;
 

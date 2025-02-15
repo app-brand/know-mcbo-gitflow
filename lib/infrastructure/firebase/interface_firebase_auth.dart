@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
-import 'package:know_my_city/application/facade/auth_facade.dart';
+import 'package:know_my_city/application/facade/interface_user_facade.dart';
 import 'package:know_my_city/domain/user/user_failures.dart';
 import 'package:know_my_city/domain/value_objects/email_address.dart';
 import 'package:know_my_city/domain/value_objects/one_time_password.dart';
@@ -131,8 +131,6 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       return left(UserFailure.serverError(failedValue: ''));
     }
   }
-  /*
-  
 
   @override
   Future<Either<UserFailure, Unit>> phoneNumberVerification({
@@ -151,32 +149,4 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       return left(UserFailure.otpExpired(failedValue: ''));
     }
   }
-
-  @override
-  Future<Either<UserFailure, Unit>> completeUserRegistration(
-      {required String uuid,
-      required String first_name,
-      required String first_lastname,
-      required PhoneNumber phone_number,
-      required EmailAddress email_address}) async {
-    try {
-      final userDoc = _firebaseFirestore.collection('users').doc(uuid);
-      final userProfile = {
-        'firstName': first_name,
-        'lastName': first_lastname,
-        'phoneNumber': phone_number.getOrCrash(),
-        'email': email_address.getOrCrash(),
-        'createdAt': FieldValue.serverTimestamp(),
-      };
-      await userDoc.set(userProfile);
-      return right(unit);
-    } on FirebaseException catch (e) {
-      print(e.toString());
-      return left(UserFailure.serverError(failedValue: ''));
-    } catch (e) {
-      print(e.toString());
-      return left(UserFailure.serverError(failedValue: ''));
-    }
-  }
-  */
 }

@@ -2,27 +2,77 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- Se eliminó la etiqueta meta viewport para evitar conflictos con Flutter Web -->
   <title>know_my_city</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/png" href="favicon.png"/>
-  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0vsjSJXoisdpB-ouzVZuk0aCiEaievws&callback=initMap"></script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+  
+  <style>
+    /* Asegura que html y body ocupen toda la altura del viewport y elimina márgenes */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    
+    /* Se utiliza la imagen main_background.jpg como fondo */
+    body {
+      background: url('assets/main_background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+    }
+    
+    /* Centrar el contenedor de carga con Flexbox */
+    #loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* altura completa del viewport */
+      position: relative;
+      z-index: 100;
+    }
+    
+    /* La superposición verde con opacidad (50%),
+       se sitúa detrás del GIF */
+    #overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 128, 0, 0.5);
+      z-index: 1;
+    }
+    
+    /* Asegura que el GIF esté por encima de la superposición */
+    #loading img {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Oculta el indicador nativo de Flutter, si existe */
+    #flutter-loading {
+      display: none !important;
+    }
+  </style>
 </head>
 <body>
+  <!-- Pantalla de carga con imagen de fondo y GIF centrado -->
   <div id="loading">
     <div id="overlay"></div>
-    <img src="assets/logo-animado_conoce-maracaibo.gif" alt="loading" width="600" height="auto">
+    <img src="assets/animated_main.gif" alt="loading" width="600" height="auto">
   </div>
+  
   <script src="flutter_bootstrap.js" async></script>
+  
   <script>
+    // Cuando se dispare el primer frame de Flutter, elimina el contenedor de carga
     window.addEventListener('flutter-first-frame', function() {
-      setTimeout(function() {
-        const loadingElement = document.getElementById('loading');
-        loadingElement.classList.add('fade-out');
-        setTimeout(function() {
-          loadingElement.style.display = 'none';
-        }, 1400);
-      }, 3000);
+      const loadingElement = document.getElementById('loading');
+      if (loadingElement) {
+        loadingElement.remove(); // Se elimina por completo, sin dejar rastro de animación.
+      }
     });
   </script>
 </body>
