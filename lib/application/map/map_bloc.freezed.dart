@@ -22,6 +22,7 @@ mixin _$MapEvent {
     required TResult Function(CameraPosition cameraPosition) cameraMoved,
     required TResult Function(Marker marker) markerAdded,
     required TResult Function(LatLng position) mapTapped,
+    required TResult Function() centerOnMaracaibo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$MapEvent {
     TResult? Function(CameraPosition cameraPosition)? cameraMoved,
     TResult? Function(Marker marker)? markerAdded,
     TResult? Function(LatLng position)? mapTapped,
+    TResult? Function()? centerOnMaracaibo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$MapEvent {
     TResult Function(CameraPosition cameraPosition)? cameraMoved,
     TResult Function(Marker marker)? markerAdded,
     TResult Function(LatLng position)? mapTapped,
+    TResult Function()? centerOnMaracaibo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$MapEvent {
     required TResult Function(_CameraMoved value) cameraMoved,
     required TResult Function(_MarkerAdded value) markerAdded,
     required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_CenterOnMaracaibo value) centerOnMaracaibo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$MapEvent {
     TResult? Function(_CameraMoved value)? cameraMoved,
     TResult? Function(_MarkerAdded value)? markerAdded,
     TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$MapEvent {
     TResult Function(_CameraMoved value)? cameraMoved,
     TResult Function(_MarkerAdded value)? markerAdded,
     TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,6 +139,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(CameraPosition cameraPosition) cameraMoved,
     required TResult Function(Marker marker) markerAdded,
     required TResult Function(LatLng position) mapTapped,
+    required TResult Function() centerOnMaracaibo,
   }) {
     return started();
   }
@@ -144,6 +151,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(CameraPosition cameraPosition)? cameraMoved,
     TResult? Function(Marker marker)? markerAdded,
     TResult? Function(LatLng position)? mapTapped,
+    TResult? Function()? centerOnMaracaibo,
   }) {
     return started?.call();
   }
@@ -155,6 +163,7 @@ class _$StartedImpl implements _Started {
     TResult Function(CameraPosition cameraPosition)? cameraMoved,
     TResult Function(Marker marker)? markerAdded,
     TResult Function(LatLng position)? mapTapped,
+    TResult Function()? centerOnMaracaibo,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -170,6 +179,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(_CameraMoved value) cameraMoved,
     required TResult Function(_MarkerAdded value) markerAdded,
     required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_CenterOnMaracaibo value) centerOnMaracaibo,
   }) {
     return started(this);
   }
@@ -181,6 +191,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(_CameraMoved value)? cameraMoved,
     TResult? Function(_MarkerAdded value)? markerAdded,
     TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
   }) {
     return started?.call(this);
   }
@@ -192,6 +203,7 @@ class _$StartedImpl implements _Started {
     TResult Function(_CameraMoved value)? cameraMoved,
     TResult Function(_MarkerAdded value)? markerAdded,
     TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -278,6 +290,7 @@ class _$CameraMovedImpl implements _CameraMoved {
     required TResult Function(CameraPosition cameraPosition) cameraMoved,
     required TResult Function(Marker marker) markerAdded,
     required TResult Function(LatLng position) mapTapped,
+    required TResult Function() centerOnMaracaibo,
   }) {
     return cameraMoved(cameraPosition);
   }
@@ -289,6 +302,7 @@ class _$CameraMovedImpl implements _CameraMoved {
     TResult? Function(CameraPosition cameraPosition)? cameraMoved,
     TResult? Function(Marker marker)? markerAdded,
     TResult? Function(LatLng position)? mapTapped,
+    TResult? Function()? centerOnMaracaibo,
   }) {
     return cameraMoved?.call(cameraPosition);
   }
@@ -300,6 +314,7 @@ class _$CameraMovedImpl implements _CameraMoved {
     TResult Function(CameraPosition cameraPosition)? cameraMoved,
     TResult Function(Marker marker)? markerAdded,
     TResult Function(LatLng position)? mapTapped,
+    TResult Function()? centerOnMaracaibo,
     required TResult orElse(),
   }) {
     if (cameraMoved != null) {
@@ -315,6 +330,7 @@ class _$CameraMovedImpl implements _CameraMoved {
     required TResult Function(_CameraMoved value) cameraMoved,
     required TResult Function(_MarkerAdded value) markerAdded,
     required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_CenterOnMaracaibo value) centerOnMaracaibo,
   }) {
     return cameraMoved(this);
   }
@@ -326,6 +342,7 @@ class _$CameraMovedImpl implements _CameraMoved {
     TResult? Function(_CameraMoved value)? cameraMoved,
     TResult? Function(_MarkerAdded value)? markerAdded,
     TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
   }) {
     return cameraMoved?.call(this);
   }
@@ -337,6 +354,7 @@ class _$CameraMovedImpl implements _CameraMoved {
     TResult Function(_CameraMoved value)? cameraMoved,
     TResult Function(_MarkerAdded value)? markerAdded,
     TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
     required TResult orElse(),
   }) {
     if (cameraMoved != null) {
@@ -431,6 +449,7 @@ class _$MarkerAddedImpl implements _MarkerAdded {
     required TResult Function(CameraPosition cameraPosition) cameraMoved,
     required TResult Function(Marker marker) markerAdded,
     required TResult Function(LatLng position) mapTapped,
+    required TResult Function() centerOnMaracaibo,
   }) {
     return markerAdded(marker);
   }
@@ -442,6 +461,7 @@ class _$MarkerAddedImpl implements _MarkerAdded {
     TResult? Function(CameraPosition cameraPosition)? cameraMoved,
     TResult? Function(Marker marker)? markerAdded,
     TResult? Function(LatLng position)? mapTapped,
+    TResult? Function()? centerOnMaracaibo,
   }) {
     return markerAdded?.call(marker);
   }
@@ -453,6 +473,7 @@ class _$MarkerAddedImpl implements _MarkerAdded {
     TResult Function(CameraPosition cameraPosition)? cameraMoved,
     TResult Function(Marker marker)? markerAdded,
     TResult Function(LatLng position)? mapTapped,
+    TResult Function()? centerOnMaracaibo,
     required TResult orElse(),
   }) {
     if (markerAdded != null) {
@@ -468,6 +489,7 @@ class _$MarkerAddedImpl implements _MarkerAdded {
     required TResult Function(_CameraMoved value) cameraMoved,
     required TResult Function(_MarkerAdded value) markerAdded,
     required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_CenterOnMaracaibo value) centerOnMaracaibo,
   }) {
     return markerAdded(this);
   }
@@ -479,6 +501,7 @@ class _$MarkerAddedImpl implements _MarkerAdded {
     TResult? Function(_CameraMoved value)? cameraMoved,
     TResult? Function(_MarkerAdded value)? markerAdded,
     TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
   }) {
     return markerAdded?.call(this);
   }
@@ -490,6 +513,7 @@ class _$MarkerAddedImpl implements _MarkerAdded {
     TResult Function(_CameraMoved value)? cameraMoved,
     TResult Function(_MarkerAdded value)? markerAdded,
     TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
     required TResult orElse(),
   }) {
     if (markerAdded != null) {
@@ -585,6 +609,7 @@ class _$MapTappedImpl implements _MapTapped {
     required TResult Function(CameraPosition cameraPosition) cameraMoved,
     required TResult Function(Marker marker) markerAdded,
     required TResult Function(LatLng position) mapTapped,
+    required TResult Function() centerOnMaracaibo,
   }) {
     return mapTapped(position);
   }
@@ -596,6 +621,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult? Function(CameraPosition cameraPosition)? cameraMoved,
     TResult? Function(Marker marker)? markerAdded,
     TResult? Function(LatLng position)? mapTapped,
+    TResult? Function()? centerOnMaracaibo,
   }) {
     return mapTapped?.call(position);
   }
@@ -607,6 +633,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult Function(CameraPosition cameraPosition)? cameraMoved,
     TResult Function(Marker marker)? markerAdded,
     TResult Function(LatLng position)? mapTapped,
+    TResult Function()? centerOnMaracaibo,
     required TResult orElse(),
   }) {
     if (mapTapped != null) {
@@ -622,6 +649,7 @@ class _$MapTappedImpl implements _MapTapped {
     required TResult Function(_CameraMoved value) cameraMoved,
     required TResult Function(_MarkerAdded value) markerAdded,
     required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_CenterOnMaracaibo value) centerOnMaracaibo,
   }) {
     return mapTapped(this);
   }
@@ -633,6 +661,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult? Function(_CameraMoved value)? cameraMoved,
     TResult? Function(_MarkerAdded value)? markerAdded,
     TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
   }) {
     return mapTapped?.call(this);
   }
@@ -644,6 +673,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult Function(_CameraMoved value)? cameraMoved,
     TResult Function(_MarkerAdded value)? markerAdded,
     TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
     required TResult orElse(),
   }) {
     if (mapTapped != null) {
@@ -663,6 +693,129 @@ abstract class _MapTapped implements MapEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MapTappedImplCopyWith<_$MapTappedImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CenterOnMaracaiboImplCopyWith<$Res> {
+  factory _$$CenterOnMaracaiboImplCopyWith(_$CenterOnMaracaiboImpl value,
+          $Res Function(_$CenterOnMaracaiboImpl) then) =
+      __$$CenterOnMaracaiboImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CenterOnMaracaiboImplCopyWithImpl<$Res>
+    extends _$MapEventCopyWithImpl<$Res, _$CenterOnMaracaiboImpl>
+    implements _$$CenterOnMaracaiboImplCopyWith<$Res> {
+  __$$CenterOnMaracaiboImplCopyWithImpl(_$CenterOnMaracaiboImpl _value,
+      $Res Function(_$CenterOnMaracaiboImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MapEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CenterOnMaracaiboImpl implements _CenterOnMaracaibo {
+  const _$CenterOnMaracaiboImpl();
+
+  @override
+  String toString() {
+    return 'MapEvent.centerOnMaracaibo()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CenterOnMaracaiboImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(CameraPosition cameraPosition) cameraMoved,
+    required TResult Function(Marker marker) markerAdded,
+    required TResult Function(LatLng position) mapTapped,
+    required TResult Function() centerOnMaracaibo,
+  }) {
+    return centerOnMaracaibo();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(CameraPosition cameraPosition)? cameraMoved,
+    TResult? Function(Marker marker)? markerAdded,
+    TResult? Function(LatLng position)? mapTapped,
+    TResult? Function()? centerOnMaracaibo,
+  }) {
+    return centerOnMaracaibo?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(CameraPosition cameraPosition)? cameraMoved,
+    TResult Function(Marker marker)? markerAdded,
+    TResult Function(LatLng position)? mapTapped,
+    TResult Function()? centerOnMaracaibo,
+    required TResult orElse(),
+  }) {
+    if (centerOnMaracaibo != null) {
+      return centerOnMaracaibo();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_CameraMoved value) cameraMoved,
+    required TResult Function(_MarkerAdded value) markerAdded,
+    required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_CenterOnMaracaibo value) centerOnMaracaibo,
+  }) {
+    return centerOnMaracaibo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_CameraMoved value)? cameraMoved,
+    TResult? Function(_MarkerAdded value)? markerAdded,
+    TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
+  }) {
+    return centerOnMaracaibo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_CameraMoved value)? cameraMoved,
+    TResult Function(_MarkerAdded value)? markerAdded,
+    TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
+    required TResult orElse(),
+  }) {
+    if (centerOnMaracaibo != null) {
+      return centerOnMaracaibo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CenterOnMaracaibo implements MapEvent {
+  const factory _CenterOnMaracaibo() = _$CenterOnMaracaiboImpl;
 }
 
 /// @nodoc

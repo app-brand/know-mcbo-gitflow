@@ -9,11 +9,10 @@ class MapState with _$MapState {
     required Set<Marker> markers,
   }) = _MapState;
 
-  factory MapState.initial() => MapState(
-        cameraPosition: const CameraPosition(
-          target: LatLng(37.7749,
-              -122.4194), // Coordenadas iniciales (por ejemplo, San Francisco)
-          zoom: 10,
+  factory MapState.initial() => const MapState(
+        cameraPosition: CameraPosition(
+          target: LatLng(10.633333, -71.633333), // Coordenadas de Maracaibo
+          zoom: 14, // Ajusta el zoom según necesites
         ),
         markers: {},
       );

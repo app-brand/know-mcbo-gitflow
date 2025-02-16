@@ -27,11 +27,19 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         mapTapped: (e) {
           // Al tocar el mapa, se crea y agrega un marcador en la posición indicada.
           final marker = Marker(
-            markerId: MarkerId('${e.position.latitude}-${e.position.longitude}'),
+            markerId:
+                MarkerId('${e.position.latitude}-${e.position.longitude}'),
             position: e.position,
           );
           final updatedMarkers = Set<Marker>.from(state.markers)..add(marker);
           emit(state.copyWith(markers: updatedMarkers));
+        },
+        centerOnMaracaibo: (e) {
+          const maracaiboPosition = CameraPosition(
+            target: LatLng(10.633333, -71.633333),
+            zoom: 14, // Ajusta el zoom según necesites
+          );
+          emit(state.copyWith(cameraPosition: maracaiboPosition));
         },
       );
     });

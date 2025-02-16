@@ -14,4 +14,6 @@ class MapEvent with _$MapEvent {
   const factory MapEvent.mapTapped({
     required LatLng position,
   }) = _MapTapped;
+  // Evento para centrar en Maracaibo
+  const factory MapEvent.centerOnMaracaibo() = _CenterOnMaracaibo;
 }

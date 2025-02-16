@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:know_my_city/presentation/widgets/main_footer.dart';
 import 'package:know_my_city/presentation-fixed/pages-fixed/map_page-fixed.dart';
 import 'package:know_my_city/presentation-fixed/pages-fixed/about_about-fixed.dart';
 import 'package:know_my_city/presentation-fixed/pages-fixed/sign_in_page-fixed.dart';
@@ -30,15 +31,28 @@ class _McboMainState extends State<McboMain>
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Conoce Maracaibo',
-          style: TextStyle(
-            fontSize: 24,
-          ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/brand/sun_spriral.png',
+              fit: BoxFit.cover,
+              height: 40,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            const Text(
+              'Conoce Maracaibo',
+              style: TextStyle(
+                fontSize: 24,
+              ),
+            ),
+          ],
         ),
         bottom: TabBar(
           controller: _tabController,
-          physics: const NeverScrollableScrollPhysics(),
           tabs: const [
             Tab(icon: Icon(Icons.map_sharp), text: 'Explora'),
             Tab(
@@ -48,6 +62,7 @@ class _McboMainState extends State<McboMain>
         ),
       ),
       body: TabBarView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: _tabController,
         children: [
           MapScreen(),
