@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/presentation/dialogs/phone_dialog.dart';
+import 'package:know_my_city/presentation-fixed/dialogs-fixed/phone_dialog-fixed.dart';
 
 const double kMobileBreakpoint = 600;
 
@@ -52,7 +52,7 @@ class TimerScreen extends StatefulWidget {
 class _TimerScreenState extends State<TimerScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  int _start = 30;
+  int _start = 10;
   late Timer _timer;
   late SignUpBloc _signUpBloc;
 
