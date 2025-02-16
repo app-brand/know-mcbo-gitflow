@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/presentation/dialogs/loading_dialog.dart';
-import 'package:know_my_city/presentation/dialogs/mail_check_dialog.dart';
-import 'package:know_my_city/presentation/widgets/email_form_field.dart';
-import 'package:know_my_city/presentation/widgets/password_form_field.dart';
+import 'package:know_my_city/legacy-widgets/loading_dialog.dart';
+import 'package:know_my_city/presentation-fixed/pages-fixed/mail_verificacion_page-fixed.dart';
+import 'package:know_my_city/presentation-legacy/widgets/email_form_field.dart';
+import 'package:know_my_city/presentation-legacy/widgets/password_form_field.dart';
 
 class SignUpDialog extends StatefulWidget {
   const SignUpDialog({super.key});
@@ -67,14 +68,8 @@ class _SignUpDialog extends State<SignUpDialog>
     );
   }
 
-  void _showSuccessDialog() {
-    Navigator.of(context).popUntil((route) => route.isFirst);
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const MailVerificationDialog();
-      },
-    );
+  void _eventSuccessLogic() {
+    context.go('/mail_verification');
   }
 
   @override
@@ -89,7 +84,7 @@ class _SignUpDialog extends State<SignUpDialog>
               _showErrorDialog(failure.message);
             },
             (success) {
-              _showSuccessDialog();
+              _eventSuccessLogic();
             },
           ),
         );

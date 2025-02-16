@@ -1,4 +1,4 @@
-import 'package:know_my_city/presentation/core/app_theme.dart';
+import 'package:know_my_city/presentation-legacy/core/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class SecondRow extends StatelessWidget {

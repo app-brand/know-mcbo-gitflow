@@ -75,7 +75,7 @@ flutter:
         - asset: fonts/Poppins-ThinItalic.ttf
         
   assets:
-    - lib/presentation/core/map_style.json
+    - assets/map/map_style.json
     - assets/alcaldia-de-maracaibo.png
     - assets/images/brand/
     - assets/images/vector/

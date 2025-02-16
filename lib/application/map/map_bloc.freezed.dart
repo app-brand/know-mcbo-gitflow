@@ -22,6 +22,7 @@ mixin _$MapEvent {
     required TResult Function(CameraPosition cameraPosition) cameraMoved,
     required TResult Function(Marker marker) markerAdded,
     required TResult Function(LatLng position) mapTapped,
+    required TResult Function(GoogleMapController controller) mapStyled,
     required TResult Function() centerOnMaracaibo,
   }) =>
       throw _privateConstructorUsedError;
@@ -31,6 +32,7 @@ mixin _$MapEvent {
     TResult? Function(CameraPosition cameraPosition)? cameraMoved,
     TResult? Function(Marker marker)? markerAdded,
     TResult? Function(LatLng position)? mapTapped,
+    TResult? Function(GoogleMapController controller)? mapStyled,
     TResult? Function()? centerOnMaracaibo,
   }) =>
       throw _privateConstructorUsedError;
@@ -40,6 +42,7 @@ mixin _$MapEvent {
     TResult Function(CameraPosition cameraPosition)? cameraMoved,
     TResult Function(Marker marker)? markerAdded,
     TResult Function(LatLng position)? mapTapped,
+    TResult Function(GoogleMapController controller)? mapStyled,
     TResult Function()? centerOnMaracaibo,
     required TResult orElse(),
   }) =>
@@ -50,6 +53,7 @@ mixin _$MapEvent {
     required TResult Function(_CameraMoved value) cameraMoved,
     required TResult Function(_MarkerAdded value) markerAdded,
     required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_MapStyled value) mapStyled,
     required TResult Function(_CenterOnMaracaibo value) centerOnMaracaibo,
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +63,7 @@ mixin _$MapEvent {
     TResult? Function(_CameraMoved value)? cameraMoved,
     TResult? Function(_MarkerAdded value)? markerAdded,
     TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_MapStyled value)? mapStyled,
     TResult? Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +73,7 @@ mixin _$MapEvent {
     TResult Function(_CameraMoved value)? cameraMoved,
     TResult Function(_MarkerAdded value)? markerAdded,
     TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_MapStyled value)? mapStyled,
     TResult Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
     required TResult orElse(),
   }) =>
@@ -139,6 +145,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(CameraPosition cameraPosition) cameraMoved,
     required TResult Function(Marker marker) markerAdded,
     required TResult Function(LatLng position) mapTapped,
+    required TResult Function(GoogleMapController controller) mapStyled,
     required TResult Function() centerOnMaracaibo,
   }) {
     return started();
@@ -151,6 +158,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(CameraPosition cameraPosition)? cameraMoved,
     TResult? Function(Marker marker)? markerAdded,
     TResult? Function(LatLng position)? mapTapped,
+    TResult? Function(GoogleMapController controller)? mapStyled,
     TResult? Function()? centerOnMaracaibo,
   }) {
     return started?.call();
@@ -163,6 +171,7 @@ class _$StartedImpl implements _Started {
     TResult Function(CameraPosition cameraPosition)? cameraMoved,
     TResult Function(Marker marker)? markerAdded,
     TResult Function(LatLng position)? mapTapped,
+    TResult Function(GoogleMapController controller)? mapStyled,
     TResult Function()? centerOnMaracaibo,
     required TResult orElse(),
   }) {
@@ -179,6 +188,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(_CameraMoved value) cameraMoved,
     required TResult Function(_MarkerAdded value) markerAdded,
     required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_MapStyled value) mapStyled,
     required TResult Function(_CenterOnMaracaibo value) centerOnMaracaibo,
   }) {
     return started(this);
@@ -191,6 +201,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(_CameraMoved value)? cameraMoved,
     TResult? Function(_MarkerAdded value)? markerAdded,
     TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_MapStyled value)? mapStyled,
     TResult? Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
   }) {
     return started?.call(this);
@@ -203,6 +214,7 @@ class _$StartedImpl implements _Started {
     TResult Function(_CameraMoved value)? cameraMoved,
     TResult Function(_MarkerAdded value)? markerAdded,
     TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_MapStyled value)? mapStyled,
     TResult Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
     required TResult orElse(),
   }) {
@@ -290,6 +302,7 @@ class _$CameraMovedImpl implements _CameraMoved {
     required TResult Function(CameraPosition cameraPosition) cameraMoved,
     required TResult Function(Marker marker) markerAdded,
     required TResult Function(LatLng position) mapTapped,
+    required TResult Function(GoogleMapController controller) mapStyled,
     required TResult Function() centerOnMaracaibo,
   }) {
     return cameraMoved(cameraPosition);
@@ -302,6 +315,7 @@ class _$CameraMovedImpl implements _CameraMoved {
     TResult? Function(CameraPosition cameraPosition)? cameraMoved,
     TResult? Function(Marker marker)? markerAdded,
     TResult? Function(LatLng position)? mapTapped,
+    TResult? Function(GoogleMapController controller)? mapStyled,
     TResult? Function()? centerOnMaracaibo,
   }) {
     return cameraMoved?.call(cameraPosition);
@@ -314,6 +328,7 @@ class _$CameraMovedImpl implements _CameraMoved {
     TResult Function(CameraPosition cameraPosition)? cameraMoved,
     TResult Function(Marker marker)? markerAdded,
     TResult Function(LatLng position)? mapTapped,
+    TResult Function(GoogleMapController controller)? mapStyled,
     TResult Function()? centerOnMaracaibo,
     required TResult orElse(),
   }) {
@@ -330,6 +345,7 @@ class _$CameraMovedImpl implements _CameraMoved {
     required TResult Function(_CameraMoved value) cameraMoved,
     required TResult Function(_MarkerAdded value) markerAdded,
     required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_MapStyled value) mapStyled,
     required TResult Function(_CenterOnMaracaibo value) centerOnMaracaibo,
   }) {
     return cameraMoved(this);
@@ -342,6 +358,7 @@ class _$CameraMovedImpl implements _CameraMoved {
     TResult? Function(_CameraMoved value)? cameraMoved,
     TResult? Function(_MarkerAdded value)? markerAdded,
     TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_MapStyled value)? mapStyled,
     TResult? Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
   }) {
     return cameraMoved?.call(this);
@@ -354,6 +371,7 @@ class _$CameraMovedImpl implements _CameraMoved {
     TResult Function(_CameraMoved value)? cameraMoved,
     TResult Function(_MarkerAdded value)? markerAdded,
     TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_MapStyled value)? mapStyled,
     TResult Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
     required TResult orElse(),
   }) {
@@ -449,6 +467,7 @@ class _$MarkerAddedImpl implements _MarkerAdded {
     required TResult Function(CameraPosition cameraPosition) cameraMoved,
     required TResult Function(Marker marker) markerAdded,
     required TResult Function(LatLng position) mapTapped,
+    required TResult Function(GoogleMapController controller) mapStyled,
     required TResult Function() centerOnMaracaibo,
   }) {
     return markerAdded(marker);
@@ -461,6 +480,7 @@ class _$MarkerAddedImpl implements _MarkerAdded {
     TResult? Function(CameraPosition cameraPosition)? cameraMoved,
     TResult? Function(Marker marker)? markerAdded,
     TResult? Function(LatLng position)? mapTapped,
+    TResult? Function(GoogleMapController controller)? mapStyled,
     TResult? Function()? centerOnMaracaibo,
   }) {
     return markerAdded?.call(marker);
@@ -473,6 +493,7 @@ class _$MarkerAddedImpl implements _MarkerAdded {
     TResult Function(CameraPosition cameraPosition)? cameraMoved,
     TResult Function(Marker marker)? markerAdded,
     TResult Function(LatLng position)? mapTapped,
+    TResult Function(GoogleMapController controller)? mapStyled,
     TResult Function()? centerOnMaracaibo,
     required TResult orElse(),
   }) {
@@ -489,6 +510,7 @@ class _$MarkerAddedImpl implements _MarkerAdded {
     required TResult Function(_CameraMoved value) cameraMoved,
     required TResult Function(_MarkerAdded value) markerAdded,
     required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_MapStyled value) mapStyled,
     required TResult Function(_CenterOnMaracaibo value) centerOnMaracaibo,
   }) {
     return markerAdded(this);
@@ -501,6 +523,7 @@ class _$MarkerAddedImpl implements _MarkerAdded {
     TResult? Function(_CameraMoved value)? cameraMoved,
     TResult? Function(_MarkerAdded value)? markerAdded,
     TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_MapStyled value)? mapStyled,
     TResult? Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
   }) {
     return markerAdded?.call(this);
@@ -513,6 +536,7 @@ class _$MarkerAddedImpl implements _MarkerAdded {
     TResult Function(_CameraMoved value)? cameraMoved,
     TResult Function(_MarkerAdded value)? markerAdded,
     TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_MapStyled value)? mapStyled,
     TResult Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
     required TResult orElse(),
   }) {
@@ -609,6 +633,7 @@ class _$MapTappedImpl implements _MapTapped {
     required TResult Function(CameraPosition cameraPosition) cameraMoved,
     required TResult Function(Marker marker) markerAdded,
     required TResult Function(LatLng position) mapTapped,
+    required TResult Function(GoogleMapController controller) mapStyled,
     required TResult Function() centerOnMaracaibo,
   }) {
     return mapTapped(position);
@@ -621,6 +646,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult? Function(CameraPosition cameraPosition)? cameraMoved,
     TResult? Function(Marker marker)? markerAdded,
     TResult? Function(LatLng position)? mapTapped,
+    TResult? Function(GoogleMapController controller)? mapStyled,
     TResult? Function()? centerOnMaracaibo,
   }) {
     return mapTapped?.call(position);
@@ -633,6 +659,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult Function(CameraPosition cameraPosition)? cameraMoved,
     TResult Function(Marker marker)? markerAdded,
     TResult Function(LatLng position)? mapTapped,
+    TResult Function(GoogleMapController controller)? mapStyled,
     TResult Function()? centerOnMaracaibo,
     required TResult orElse(),
   }) {
@@ -649,6 +676,7 @@ class _$MapTappedImpl implements _MapTapped {
     required TResult Function(_CameraMoved value) cameraMoved,
     required TResult Function(_MarkerAdded value) markerAdded,
     required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_MapStyled value) mapStyled,
     required TResult Function(_CenterOnMaracaibo value) centerOnMaracaibo,
   }) {
     return mapTapped(this);
@@ -661,6 +689,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult? Function(_CameraMoved value)? cameraMoved,
     TResult? Function(_MarkerAdded value)? markerAdded,
     TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_MapStyled value)? mapStyled,
     TResult? Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
   }) {
     return mapTapped?.call(this);
@@ -673,6 +702,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult Function(_CameraMoved value)? cameraMoved,
     TResult Function(_MarkerAdded value)? markerAdded,
     TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_MapStyled value)? mapStyled,
     TResult Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
     required TResult orElse(),
   }) {
@@ -692,6 +722,172 @@ abstract class _MapTapped implements MapEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MapTappedImplCopyWith<_$MapTappedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MapStyledImplCopyWith<$Res> {
+  factory _$$MapStyledImplCopyWith(
+          _$MapStyledImpl value, $Res Function(_$MapStyledImpl) then) =
+      __$$MapStyledImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({GoogleMapController controller});
+}
+
+/// @nodoc
+class __$$MapStyledImplCopyWithImpl<$Res>
+    extends _$MapEventCopyWithImpl<$Res, _$MapStyledImpl>
+    implements _$$MapStyledImplCopyWith<$Res> {
+  __$$MapStyledImplCopyWithImpl(
+      _$MapStyledImpl _value, $Res Function(_$MapStyledImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MapEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? controller = null,
+  }) {
+    return _then(_$MapStyledImpl(
+      null == controller
+          ? _value.controller
+          : controller // ignore: cast_nullable_to_non_nullable
+              as GoogleMapController,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MapStyledImpl implements _MapStyled {
+  const _$MapStyledImpl(this.controller);
+
+  @override
+  final GoogleMapController controller;
+
+  @override
+  String toString() {
+    return 'MapEvent.mapStyled(controller: $controller)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MapStyledImpl &&
+            (identical(other.controller, controller) ||
+                other.controller == controller));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, controller);
+
+  /// Create a copy of MapEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MapStyledImplCopyWith<_$MapStyledImpl> get copyWith =>
+      __$$MapStyledImplCopyWithImpl<_$MapStyledImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(CameraPosition cameraPosition) cameraMoved,
+    required TResult Function(Marker marker) markerAdded,
+    required TResult Function(LatLng position) mapTapped,
+    required TResult Function(GoogleMapController controller) mapStyled,
+    required TResult Function() centerOnMaracaibo,
+  }) {
+    return mapStyled(controller);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(CameraPosition cameraPosition)? cameraMoved,
+    TResult? Function(Marker marker)? markerAdded,
+    TResult? Function(LatLng position)? mapTapped,
+    TResult? Function(GoogleMapController controller)? mapStyled,
+    TResult? Function()? centerOnMaracaibo,
+  }) {
+    return mapStyled?.call(controller);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(CameraPosition cameraPosition)? cameraMoved,
+    TResult Function(Marker marker)? markerAdded,
+    TResult Function(LatLng position)? mapTapped,
+    TResult Function(GoogleMapController controller)? mapStyled,
+    TResult Function()? centerOnMaracaibo,
+    required TResult orElse(),
+  }) {
+    if (mapStyled != null) {
+      return mapStyled(controller);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_CameraMoved value) cameraMoved,
+    required TResult Function(_MarkerAdded value) markerAdded,
+    required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_MapStyled value) mapStyled,
+    required TResult Function(_CenterOnMaracaibo value) centerOnMaracaibo,
+  }) {
+    return mapStyled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_CameraMoved value)? cameraMoved,
+    TResult? Function(_MarkerAdded value)? markerAdded,
+    TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_MapStyled value)? mapStyled,
+    TResult? Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
+  }) {
+    return mapStyled?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_CameraMoved value)? cameraMoved,
+    TResult Function(_MarkerAdded value)? markerAdded,
+    TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_MapStyled value)? mapStyled,
+    TResult Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
+    required TResult orElse(),
+  }) {
+    if (mapStyled != null) {
+      return mapStyled(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MapStyled implements MapEvent {
+  const factory _MapStyled(final GoogleMapController controller) =
+      _$MapStyledImpl;
+
+  GoogleMapController get controller;
+
+  /// Create a copy of MapEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$MapStyledImplCopyWith<_$MapStyledImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -740,6 +936,7 @@ class _$CenterOnMaracaiboImpl implements _CenterOnMaracaibo {
     required TResult Function(CameraPosition cameraPosition) cameraMoved,
     required TResult Function(Marker marker) markerAdded,
     required TResult Function(LatLng position) mapTapped,
+    required TResult Function(GoogleMapController controller) mapStyled,
     required TResult Function() centerOnMaracaibo,
   }) {
     return centerOnMaracaibo();
@@ -752,6 +949,7 @@ class _$CenterOnMaracaiboImpl implements _CenterOnMaracaibo {
     TResult? Function(CameraPosition cameraPosition)? cameraMoved,
     TResult? Function(Marker marker)? markerAdded,
     TResult? Function(LatLng position)? mapTapped,
+    TResult? Function(GoogleMapController controller)? mapStyled,
     TResult? Function()? centerOnMaracaibo,
   }) {
     return centerOnMaracaibo?.call();
@@ -764,6 +962,7 @@ class _$CenterOnMaracaiboImpl implements _CenterOnMaracaibo {
     TResult Function(CameraPosition cameraPosition)? cameraMoved,
     TResult Function(Marker marker)? markerAdded,
     TResult Function(LatLng position)? mapTapped,
+    TResult Function(GoogleMapController controller)? mapStyled,
     TResult Function()? centerOnMaracaibo,
     required TResult orElse(),
   }) {
@@ -780,6 +979,7 @@ class _$CenterOnMaracaiboImpl implements _CenterOnMaracaibo {
     required TResult Function(_CameraMoved value) cameraMoved,
     required TResult Function(_MarkerAdded value) markerAdded,
     required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_MapStyled value) mapStyled,
     required TResult Function(_CenterOnMaracaibo value) centerOnMaracaibo,
   }) {
     return centerOnMaracaibo(this);
@@ -792,6 +992,7 @@ class _$CenterOnMaracaiboImpl implements _CenterOnMaracaibo {
     TResult? Function(_CameraMoved value)? cameraMoved,
     TResult? Function(_MarkerAdded value)? markerAdded,
     TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_MapStyled value)? mapStyled,
     TResult? Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
   }) {
     return centerOnMaracaibo?.call(this);
@@ -804,6 +1005,7 @@ class _$CenterOnMaracaiboImpl implements _CenterOnMaracaibo {
     TResult Function(_CameraMoved value)? cameraMoved,
     TResult Function(_MarkerAdded value)? markerAdded,
     TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_MapStyled value)? mapStyled,
     TResult Function(_CenterOnMaracaibo value)? centerOnMaracaibo,
     required TResult orElse(),
   }) {
@@ -822,6 +1024,7 @@ abstract class _CenterOnMaracaibo implements MapEvent {
 mixin _$MapState {
   CameraPosition get cameraPosition => throw _privateConstructorUsedError;
   Set<Marker> get markers => throw _privateConstructorUsedError;
+  GoogleMapController? get mapController => throw _privateConstructorUsedError;
 
   /// Create a copy of MapState
   /// with the given fields replaced by the non-null parameter values.
@@ -835,7 +1038,10 @@ abstract class $MapStateCopyWith<$Res> {
   factory $MapStateCopyWith(MapState value, $Res Function(MapState) then) =
       _$MapStateCopyWithImpl<$Res, MapState>;
   @useResult
-  $Res call({CameraPosition cameraPosition, Set<Marker> markers});
+  $Res call(
+      {CameraPosition cameraPosition,
+      Set<Marker> markers,
+      GoogleMapController? mapController});
 }
 
 /// @nodoc
@@ -855,6 +1061,7 @@ class _$MapStateCopyWithImpl<$Res, $Val extends MapState>
   $Res call({
     Object? cameraPosition = null,
     Object? markers = null,
+    Object? mapController = freezed,
   }) {
     return _then(_value.copyWith(
       cameraPosition: null == cameraPosition
@@ -865,6 +1072,10 @@ class _$MapStateCopyWithImpl<$Res, $Val extends MapState>
           ? _value.markers
           : markers // ignore: cast_nullable_to_non_nullable
               as Set<Marker>,
+      mapController: freezed == mapController
+          ? _value.mapController
+          : mapController // ignore: cast_nullable_to_non_nullable
+              as GoogleMapController?,
     ) as $Val);
   }
 }
@@ -877,7 +1088,10 @@ abstract class _$$MapStateImplCopyWith<$Res>
       __$$MapStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({CameraPosition cameraPosition, Set<Marker> markers});
+  $Res call(
+      {CameraPosition cameraPosition,
+      Set<Marker> markers,
+      GoogleMapController? mapController});
 }
 
 /// @nodoc
@@ -895,6 +1109,7 @@ class __$$MapStateImplCopyWithImpl<$Res>
   $Res call({
     Object? cameraPosition = null,
     Object? markers = null,
+    Object? mapController = freezed,
   }) {
     return _then(_$MapStateImpl(
       cameraPosition: null == cameraPosition
@@ -905,6 +1120,10 @@ class __$$MapStateImplCopyWithImpl<$Res>
           ? _value._markers
           : markers // ignore: cast_nullable_to_non_nullable
               as Set<Marker>,
+      mapController: freezed == mapController
+          ? _value.mapController
+          : mapController // ignore: cast_nullable_to_non_nullable
+              as GoogleMapController?,
     ));
   }
 }
@@ -913,7 +1132,9 @@ class __$$MapStateImplCopyWithImpl<$Res>
 
 class _$MapStateImpl implements _MapState {
   const _$MapStateImpl(
-      {required this.cameraPosition, required final Set<Marker> markers})
+      {required this.cameraPosition,
+      required final Set<Marker> markers,
+      this.mapController})
       : _markers = markers;
 
   @override
@@ -927,8 +1148,11 @@ class _$MapStateImpl implements _MapState {
   }
 
   @override
+  final GoogleMapController? mapController;
+
+  @override
   String toString() {
-    return 'MapState(cameraPosition: $cameraPosition, markers: $markers)';
+    return 'MapState(cameraPosition: $cameraPosition, markers: $markers, mapController: $mapController)';
   }
 
   @override
@@ -938,12 +1162,14 @@ class _$MapStateImpl implements _MapState {
             other is _$MapStateImpl &&
             (identical(other.cameraPosition, cameraPosition) ||
                 other.cameraPosition == cameraPosition) &&
-            const DeepCollectionEquality().equals(other._markers, _markers));
+            const DeepCollectionEquality().equals(other._markers, _markers) &&
+            (identical(other.mapController, mapController) ||
+                other.mapController == mapController));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, cameraPosition,
-      const DeepCollectionEquality().hash(_markers));
+      const DeepCollectionEquality().hash(_markers), mapController);
 
   /// Create a copy of MapState
   /// with the given fields replaced by the non-null parameter values.
@@ -957,12 +1183,15 @@ class _$MapStateImpl implements _MapState {
 abstract class _MapState implements MapState {
   const factory _MapState(
       {required final CameraPosition cameraPosition,
-      required final Set<Marker> markers}) = _$MapStateImpl;
+      required final Set<Marker> markers,
+      final GoogleMapController? mapController}) = _$MapStateImpl;
 
   @override
   CameraPosition get cameraPosition;
   @override
   Set<Marker> get markers;
+  @override
+  GoogleMapController? get mapController;
 
   /// Create a copy of MapState
   /// with the given fields replaced by the non-null parameter values.

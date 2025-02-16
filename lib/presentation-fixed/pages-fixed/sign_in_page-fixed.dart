@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:know_my_city/application/sign_in/sign_in_bloc.dart';
 import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/presentation-fixed/pages-fixed/loading_page-fixed.dart';
-import 'package:know_my_city/presentation/widgets/email_form_field.dart';
-import 'package:know_my_city/presentation/widgets/password_form_field.dart';
+import 'package:know_my_city/presentation-fixed/pages-fixed/loading_timer-fixed.dart';
+import 'package:know_my_city/presentation-legacy/widgets/email_form_field.dart';
+import 'package:know_my_city/presentation-legacy/widgets/password_form_field.dart';
 
 const double kMobileBreakpoint = 700;
 
@@ -167,7 +167,7 @@ class _SignInPageState extends State<SignInPage> {
               '¿Olvidaste tu contraseña?',
               style: TextStyle(
                 color: Colors.teal,
-                fontSize: 20,
+                fontSize: 15,
                 decoration: TextDecoration.underline,
               ),
             ),

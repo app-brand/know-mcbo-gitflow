@@ -3,7 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-import 'package:know_my_city/presentation/core/directions_model.dart';
+import 'package:know_my_city/presentation-legacy/core/directions_model.dart';
 
 class DirectionsRepository {
   static const String baseUrl =

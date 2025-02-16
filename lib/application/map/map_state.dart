@@ -7,6 +7,7 @@ class MapState with _$MapState {
   const factory MapState({
     required CameraPosition cameraPosition,
     required Set<Marker> markers,
+    GoogleMapController? mapController,
   }) = _MapState;
 
   factory MapState.initial() => const MapState(

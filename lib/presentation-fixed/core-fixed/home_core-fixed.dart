@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:know_my_city/presentation/widgets/main_footer.dart';
+import 'package:know_my_city/presentation-legacy/widgets/main_footer.dart';
 import 'package:know_my_city/presentation-fixed/pages-fixed/map_page-fixed.dart';
 import 'package:know_my_city/presentation-fixed/pages-fixed/about_about-fixed.dart';
 import 'package:know_my_city/presentation-fixed/pages-fixed/sign_in_page-fixed.dart';
@@ -54,10 +54,14 @@ class _McboMainState extends State<McboMain>
         bottom: TabBar(
           controller: _tabController,
           tabs: const [
-            Tab(icon: Icon(Icons.map_sharp), text: 'Explora'),
             Tab(
-                icon: Icon(Icons.location_history_rounded),
-                text: 'Perfil/Sesion'),
+              icon: Icon(Icons.map_sharp),
+              text: 'Explora',
+            ),
+            Tab(
+              icon: Icon(Icons.location_history_rounded),
+              text: 'Perfil/Sesion',
+            ),
           ],
         ),
       ),

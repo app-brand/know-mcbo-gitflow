@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:know_my_city/presentation/core/app_theme.dart';
+import 'package:know_my_city/presentation-legacy/core/app_theme.dart';
 import 'package:know_my_city/domain/event/event.dart';
-import 'package:know_my_city/presentation/widgets/event_card.dart';
+import 'package:know_my_city/presentation-legacy/widgets/event_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 

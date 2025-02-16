@@ -6,6 +6,7 @@ import 'package:know_my_city/application/facade/interface_user_facade.dart';
 import 'package:know_my_city/domain/user/user_failures.dart';
 import 'package:know_my_city/domain/value_objects/email_address.dart';
 import 'package:know_my_city/domain/value_objects/password.dart';
+import 'package:know_my_city/domain/value_objects/phone_number.dart';
 
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
@@ -72,6 +73,10 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         sendOtp: (_SendOtp value) {},
         verifyOtp: (_SignUpFirestore value) {},
         phoneChanged: (_PhoneChanged value) {},
+        firstNameChanged: (_FirstNameChanged value) {},
+        lastNameChanged: (_LastNameChanged value) {},
+        ageChanged: (_AgeChanged value) {},
+        genderChanged: (_GenderChanged value) {},
       );
     });
   }

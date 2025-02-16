@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:know_my_city/presentation/core/app_theme.dart';
+import 'package:know_my_city/presentation-legacy/core/app_theme.dart';
 
 class MaracaiboAntano extends StatelessWidget {
   const MaracaiboAntano({super.key});

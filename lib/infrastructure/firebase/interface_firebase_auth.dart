@@ -82,7 +82,7 @@ class FirebaseUserRepository implements InterfaceUserFacade {
         print('IsValidatedMail - right');
         return right(unit);
       } else {
-        print('IsValidatedMain - wrong');
+        print('IsValidatedMail - wrong');
         _firebaseAuth.currentUser!.delete();
         return left(const UserFailure.emailNotVerified(failedValue: ''));
       }

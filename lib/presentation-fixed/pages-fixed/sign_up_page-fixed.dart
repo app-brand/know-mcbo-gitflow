@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/presentation/dialogs/loading_dialog.dart';
-import 'package:know_my_city/presentation/dialogs/mail_check_dialog.dart';
-import 'package:know_my_city/presentation/widgets/email_form_field.dart';
-import 'package:know_my_city/presentation/widgets/password_form_field.dart';
+import 'package:know_my_city/presentation-fixed/pages-fixed/loading_timer-fixed.dart';
+import 'package:know_my_city/legacy-widgets/loading_dialog.dart';
+
+import 'package:know_my_city/presentation-legacy/widgets/email_form_field.dart';
+import 'package:know_my_city/presentation-legacy/widgets/password_form_field.dart';
 
 const double kMobileBreakpoint = 700;
 
@@ -54,13 +56,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void _showSuccessDialog() {
-    Navigator.of(context).popUntil((route) => route.isFirst);
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const MailVerificationDialog();
-      },
-    );
+    context.go('/mail_verification');
   }
 
   Widget _buildSignUpForm() {
@@ -169,67 +165,74 @@ class _SignUpPageState extends State<SignUpPage> {
     final bool isMobile = constraints.maxWidth < kMobileBreakpoint;
     if (isMobile) {
       return SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(16),
-                topRight: Radius.circular(16),
-              ),
-              child: Image.asset(
-                'assets/images/banner/Puente_de_Maracaibo.jpg',
-                fit: BoxFit.cover,
-                height: 200,
-                width: double.infinity,
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.grey[100],
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ClipRRect(
                 borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(16),
-                  bottomRight: Radius.circular(16),
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+                ),
+                child: Image.asset(
+                  'assets/images/banner/Puente_de_Maracaibo.jpg',
+                  fit: BoxFit.cover,
+                  height: 200,
+                  width: double.infinity,
                 ),
               ),
-              child: _buildSignUpForm(),
-            ),
-          ],
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(16),
+                    bottomRight: Radius.circular(16),
+                  ),
+                ),
+                child: _buildSignUpForm(),
+              ),
+            ],
+          ),
         ),
       );
     } else {
-      return Row(
-        children: [
-          Expanded(
-            child: Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                      'assets/images/banner/Puente_de_Maracaibo.jpg'),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  bottomLeft: Radius.circular(16),
+      return Center(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                        'assets/images/banner/Puente_de_Maracaibo.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    bottomLeft: Radius.circular(16),
+                  ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(16),
-                  bottomRight: Radius.circular(16),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(16),
+                    bottomRight: Radius.circular(16),
+                  ),
                 ),
+                child: _buildSignUpForm(),
               ),
-              child: _buildSignUpForm(),
             ),
-          ),
-        ],
+          ],
+        ),
       );
     }
   }
@@ -254,12 +257,10 @@ class _SignUpPageState extends State<SignUpPage> {
       builder: (context, state) {
         return Scaffold(
           body: state.isSubmitting
-              ? LoadingDialog(
+              ? LoadingPage(
                   text: 'Ingresando el correo y contraseña a la base de datos',
                   content:
                       'Recuerde validar el correo en el tiempo marcado o repetir el proceso desde el principio',
-                  onConfirm: () {},
-                  onCancel: () {},
                 )
               : LayoutBuilder(
                   builder: (context, constraints) {
