@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:know_my_city/firebase_options.dart';
 import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/presentation-fixed/core-fixed/router_core-fixed.dart';
-import 'package:know_my_city/presentation-legacy/core/state_core.dart';
+import 'package:know_my_city/presentation/core/router_core-fixed.dart';
+import 'package:know_my_city/legacy-code/presentation-legacy/core/state_core.dart';
 import 'package:provider/provider.dart';
-import 'package:know_my_city/presentation-legacy/core/theme_core.dart';
+import 'package:know_my_city/legacy-code/presentation-legacy/core/theme_core.dart';
 
 final getIt = GetIt.instance;
 

@@ -3,16 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/presentation-fixed/pages/loading_timer-fixed.dart';
-//rimport 'package:know_my_city/legacy-widgets/loading_dialog.dart';
-import 'package:know_my_city/presentation-fixed/pages/sign_up/responsive/sign_up_laptop.dart';
-import 'package:know_my_city/presentation-fixed/pages/sign_up/responsive/sign_up_mobile.dart';
-import 'package:know_my_city/presentation-fixed/pages/sign_up/responsive/sign_up_tablet.dart';
-import 'package:know_my_city/presentation-legacy/widgets/email_form_field.dart';
-import 'package:know_my_city/presentation-legacy/widgets/password_form_field.dart';
+import 'package:know_my_city/presentation/pages/loading/loading_page.dart';
+import 'package:know_my_city/legacy-code/loading_dialog.dart';
+
+import 'package:know_my_city/legacy-code/presentation-legacy/widgets/email_form_field.dart';
+import 'package:know_my_city/legacy-code/presentation-legacy/widgets/password_form_field.dart';
 
 const double kMobileBreakpoint = 700;
-const double kTabletBreakpoint = 1200;
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -163,14 +160,80 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildResponsiveLayout(BoxConstraints constraints) {
-    final signUpForm = _buildSignUpForm();
-    if (constraints.maxWidth < kMobileBreakpoint) {
-      return MobileSignUpLayout(signUpForm: signUpForm);
-    } else if (constraints.maxWidth < kTabletBreakpoint) {
-      return TabletSignUpLayout(signUpForm: signUpForm);
+  Widget _buildResponsiveLayout(
+      BuildContext context, BoxConstraints constraints) {
+    final bool isMobile = constraints.maxWidth < kMobileBreakpoint;
+    if (isMobile) {
+      return SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+                ),
+                child: Image.asset(
+                  'assets/images/banner/Puente_de_Maracaibo.jpg',
+                  fit: BoxFit.cover,
+                  height: 200,
+                  width: double.infinity,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(16),
+                    bottomRight: Radius.circular(16),
+                  ),
+                ),
+                child: _buildSignUpForm(),
+              ),
+            ],
+          ),
+        ),
+      );
     } else {
-      return LaptopSignUpLayout(signUpForm: signUpForm);
+      return Center(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                        'assets/images/banner/Puente_de_Maracaibo.jpg'),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    bottomLeft: Radius.circular(16),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(16),
+                    bottomRight: Radius.circular(16),
+                  ),
+                ),
+                child: _buildSignUpForm(),
+              ),
+            ),
+          ],
+        ),
+      );
     }
   }
 
@@ -181,7 +244,7 @@ class _SignUpPageState extends State<SignUpPage> {
       listener: (context, state) {
         state.userFailureOrUserSuccess.fold(
           () {},
-          (result) => result.fold(
+          (ifSome) => ifSome.fold(
             (failure) {
               _showErrorDialog(failure.message);
             },
@@ -203,7 +266,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   builder: (context, constraints) {
                     return Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: _buildResponsiveLayout(constraints),
+                      child: _buildResponsiveLayout(context, constraints),
                     );
                   },
                 ),

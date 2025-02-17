@@ -3,11 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:know_my_city/application/sign_in/sign_in_bloc.dart';
 import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/presentation-fixed/pages/loading_timer-fixed.dart';
-import 'package:know_my_city/presentation-legacy/widgets/email_form_field.dart';
-import 'package:know_my_city/presentation-legacy/widgets/password_form_field.dart';
+import 'package:know_my_city/presentation/pages/loading/loading_page.dart';
+import 'package:know_my_city/presentation/pages/sign_in/responsive/sign_in_laptop.dart';
+import 'package:know_my_city/presentation/pages/sign_in/responsive/sign_in_mobile.dart';
+import 'package:know_my_city/presentation/pages/sign_in/responsive/sign_in_tablet.dart';
+import 'package:know_my_city/legacy-code/presentation-legacy/widgets/email_form_field.dart';
+import 'package:know_my_city/legacy-code/presentation-legacy/widgets/password_form_field.dart';
 
 const double kMobileBreakpoint = 700;
+const double kTabletBreakpoint = 1200;
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -67,16 +71,17 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  Widget _buildSignInForm() {
+  /// Se construye el formulario aplicando un factor [fontScale] para ajustar dinámicamente el tamaño de la fuente.
+  Widget _buildSignInForm(double fontScale) {
     return Form(
       key: formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             'Iniciar Sesión',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 20 * fontScale,
               fontWeight: FontWeight.bold,
               color: Colors.black87,
             ),
@@ -118,13 +123,12 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                   onPressed: () {
-                    // Navega a la pantalla de registro usando go_router
                     context.push('/signUp');
                   },
-                  child: const Text(
+                  child: Text(
                     'Registro',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16 * fontScale,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -149,10 +153,10 @@ class _SignInPageState extends State<SignInPage> {
                       _signInBloc.add(const SignInEvent.singInEmail());
                     }
                   },
-                  child: const Text(
+                  child: Text(
                     'Iniciar sesión',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16 * fontScale,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -163,11 +167,11 @@ class _SignInPageState extends State<SignInPage> {
           const SizedBox(height: 15.0),
           TextButton(
             onPressed: () {},
-            child: const Text(
+            child: Text(
               '¿Olvidaste tu contraseña?',
               style: TextStyle(
                 color: Colors.teal,
-                fontSize: 15,
+                fontSize: 15 * fontScale,
                 decoration: TextDecoration.underline,
               ),
             ),
@@ -177,72 +181,18 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  Widget _buildResponsiveLayout(
-      BuildContext context, BoxConstraints constraints) {
-    final bool isMobile = constraints.maxWidth < kMobileBreakpoint;
-    if (isMobile) {
-      return SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(16),
-                topRight: Radius.circular(16),
-              ),
-              child: Image.asset(
-                'assets/images/banner/Teatro_Baralt.jpg',
-                fit: BoxFit.cover,
-                height: 200,
-                width: double.infinity,
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(16),
-                  bottomRight: Radius.circular(16),
-                ),
-              ),
-              child: _buildSignInForm(),
-            ),
-          ],
-        ),
-      );
+  /// Se utiliza el LayoutBuilder para determinar el ancho y calcular el factor de fuente.
+  Widget _buildResponsiveLayout(BoxConstraints constraints) {
+    double fontScale;
+    if (constraints.maxWidth < kMobileBreakpoint) {
+      fontScale = 1.0;
+      return MobileSignInLayout(signInForm: _buildSignInForm(fontScale));
+    } else if (constraints.maxWidth < kTabletBreakpoint) {
+      fontScale = 1.2;
+      return TabletSignInLayout(signInForm: _buildSignInForm(fontScale));
     } else {
-      return Row(
-        children: [
-          Expanded(
-            child: Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/banner/Teatro_Baralt.jpg'),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  bottomLeft: Radius.circular(16),
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(16),
-                  bottomRight: Radius.circular(16),
-                ),
-              ),
-              child: _buildSignInForm(),
-            ),
-          ),
-        ],
-      );
+      fontScale = 1.4;
+      return LaptopSignInLayout(signInForm: _buildSignInForm(fontScale));
     }
   }
 
@@ -252,7 +202,7 @@ class _SignInPageState extends State<SignInPage> {
       bloc: _signInBloc,
       listener: (context, state) {
         state.userFailureOrUserSuccess.fold(
-          () {}, // No se ha intentado iniciar sesión aún.
+          () {},
           (failureOrSuccess) => failureOrSuccess.fold(
             (failure) {
               failure.map(
@@ -283,7 +233,7 @@ class _SignInPageState extends State<SignInPage> {
                   builder: (context, constraints) {
                     return Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: _buildResponsiveLayout(context, constraints),
+                      child: _buildResponsiveLayout(constraints),
                     );
                   },
                 ),

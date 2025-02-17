@@ -4,10 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/presentation-fixed/pages/email_verification/responsive/email_verification_laptop.dart';
-import 'package:know_my_city/presentation-fixed/pages/email_verification/responsive/email_verification_mobile.dart';
-import 'package:know_my_city/presentation-fixed/pages/email_verification/responsive/email_verification_tablet.dart';
-
+import 'package:know_my_city/presentation/pages/email_verification/responsive/email_verification_laptop.dart';
+import 'package:know_my_city/presentation/pages/email_verification/responsive/email_verification_mobile.dart';
+import 'package:know_my_city/presentation/pages/email_verification/responsive/email_verification_tablet.dart';
 
 const double kMobileBreakpoint = 700;
 const double kTabletBreakpoint = 1200;
@@ -86,20 +85,28 @@ class _EmailVerificationPageState extends State<EmailVerificationPage>
     super.dispose();
   }
 
-  Widget _buildVerificationContent() {
+  /// Se construye el contenido de verificación aplicando un factor [fontScale]
+  /// para ajustar dinámicamente el tamaño de la fuente.
+  Widget _buildVerificationContent(double fontScale) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
+        Text(
           "Por favor, valida tu correo electrónico",
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 18 * fontScale,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(height: 12),
-        const Text(
+        Text(
           "Revisa tu bandeja de entrada y haz clic en el enlace para verificar tu cuenta.",
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 16, color: Colors.black54),
+          style: TextStyle(
+            fontSize: 16 * fontScale,
+            color: Colors.black54,
+          ),
         ),
         const SizedBox(height: 20),
         CircularProgressIndicator(
@@ -110,8 +117,8 @@ class _EmailVerificationPageState extends State<EmailVerificationPage>
         const SizedBox(height: 20),
         Text(
           "$_start segundos restantes",
-          style: const TextStyle(
-            fontSize: 20,
+          style: TextStyle(
+            fontSize: 20 * fontScale,
             fontWeight: FontWeight.bold,
             color: Colors.teal,
           ),
@@ -120,14 +127,21 @@ class _EmailVerificationPageState extends State<EmailVerificationPage>
     );
   }
 
+  /// Se utiliza el LayoutBuilder para determinar el ancho y calcular el factor de fuente.
   Widget _buildResponsiveLayout(BoxConstraints constraints) {
-    final verificationContent = _buildVerificationContent();
+    double fontScale;
     if (constraints.maxWidth < kMobileBreakpoint) {
-      return MobileEmailVerificationLayout(content: verificationContent);
+      fontScale = 1.0;
+      return MobileEmailVerificationLayout(
+          content: _buildVerificationContent(fontScale));
     } else if (constraints.maxWidth < kTabletBreakpoint) {
-      return TabletEmailVerificationLayout(content: verificationContent);
+      fontScale = 1.2;
+      return TabletEmailVerificationLayout(
+          content: _buildVerificationContent(fontScale));
     } else {
-      return LaptopEmailVerificationLayout(content: verificationContent);
+      fontScale = 1.4;
+      return LaptopEmailVerificationLayout(
+          content: _buildVerificationContent(fontScale));
     }
   }
 

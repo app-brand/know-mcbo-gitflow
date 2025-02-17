@@ -3,15 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:know_my_city/application/sign_in/sign_in_bloc.dart';
 import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/presentation-fixed/pages/loading_timer-fixed.dart';
-import 'package:know_my_city/presentation-fixed/pages/sign_in/responsive/sign_in_laptop.dart';
-import 'package:know_my_city/presentation-fixed/pages/sign_in/responsive/sign_in_mobile.dart';
-import 'package:know_my_city/presentation-fixed/pages/sign_in/responsive/sign_in_tablet.dart';
-import 'package:know_my_city/presentation-legacy/widgets/email_form_field.dart';
-import 'package:know_my_city/presentation-legacy/widgets/password_form_field.dart';
+import 'package:know_my_city/presentation/pages/loading/loading_page.dart';
+import 'package:know_my_city/legacy-code/presentation-legacy/widgets/email_form_field.dart';
+import 'package:know_my_city/legacy-code/presentation-legacy/widgets/password_form_field.dart';
 
 const double kMobileBreakpoint = 700;
-const double kTabletBreakpoint = 1200;
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -122,6 +118,7 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                   onPressed: () {
+                    // Navega a la pantalla de registro usando go_router
                     context.push('/signUp');
                   },
                   child: const Text(
@@ -180,14 +177,72 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  Widget _buildResponsiveLayout(BoxConstraints constraints) {
-    final signInForm = _buildSignInForm();
-    if (constraints.maxWidth < kMobileBreakpoint) {
-      return MobileSignInLayout(signInForm: signInForm);
-    } else if (constraints.maxWidth < kTabletBreakpoint) {
-      return TabletSignInLayout(signInForm: signInForm);
+  Widget _buildResponsiveLayout(
+      BuildContext context, BoxConstraints constraints) {
+    final bool isMobile = constraints.maxWidth < kMobileBreakpoint;
+    if (isMobile) {
+      return SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+              ),
+              child: Image.asset(
+                'assets/images/banner/Teatro_Baralt.jpg',
+                fit: BoxFit.cover,
+                height: 200,
+                width: double.infinity,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(16),
+                  bottomRight: Radius.circular(16),
+                ),
+              ),
+              child: _buildSignInForm(),
+            ),
+          ],
+        ),
+      );
     } else {
-      return LaptopSignInLayout(signInForm: signInForm);
+      return Row(
+        children: [
+          Expanded(
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/banner/Teatro_Baralt.jpg'),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  bottomLeft: Radius.circular(16),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(16),
+                  bottomRight: Radius.circular(16),
+                ),
+              ),
+              child: _buildSignInForm(),
+            ),
+          ),
+        ],
+      );
     }
   }
 
@@ -197,7 +252,7 @@ class _SignInPageState extends State<SignInPage> {
       bloc: _signInBloc,
       listener: (context, state) {
         state.userFailureOrUserSuccess.fold(
-          () {},
+          () {}, // No se ha intentado iniciar sesión aún.
           (failureOrSuccess) => failureOrSuccess.fold(
             (failure) {
               failure.map(
@@ -228,7 +283,7 @@ class _SignInPageState extends State<SignInPage> {
                   builder: (context, constraints) {
                     return Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: _buildResponsiveLayout(constraints),
+                      child: _buildResponsiveLayout(context, constraints),
                     );
                   },
                 ),

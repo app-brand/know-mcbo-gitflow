@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:know_my_city/application/profile/profile_bloc.dart';
 import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/presentation-fixed/widgets-fixed/phone_number_field.dart';
+import 'package:know_my_city/presentation/widgets/phone_number_field.dart';
 
 class PhoneDialog extends StatefulWidget {
   const PhoneDialog({Key? key}) : super(key: key);

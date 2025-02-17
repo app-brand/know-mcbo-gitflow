@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/domain/value_objects/phone_number.dart';
 import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/presentation-fixed/widgets-fixed/phone_number_field.dart';
-import 'package:know_my_city/presentation-fixed/pages/loading_timer-fixed.dart';
+import 'package:know_my_city/presentation/widgets/phone_number_field.dart';
+import 'package:know_my_city/presentation/pages/loading/loading_page.dart';
 import 'package:country_picker/country_picker.dart';
 
 const double kMobileBreakpoint = 700;

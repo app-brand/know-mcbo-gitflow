@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
-import 'package:know_my_city/domain/value_objects/phone_number.dart';
 import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/presentation-fixed/pages/phone_verification/responsive/phone_verification_laptop.dart';
-import 'package:know_my_city/presentation-fixed/pages/phone_verification/responsive/phone_verification_mobile.dart';
-import 'package:know_my_city/presentation-fixed/pages/phone_verification/responsive/phone_verification_tablet.dart';
-import 'package:know_my_city/presentation-fixed/widgets-fixed/phone_number_field.dart';
-import 'package:know_my_city/presentation-fixed/pages/loading_timer-fixed.dart';
+import 'package:know_my_city/presentation/pages/loading/loading_page.dart';
+import 'package:know_my_city/presentation/pages/phone_verification/responsive/phone_verification_laptop.dart';
+import 'package:know_my_city/presentation/pages/phone_verification/responsive/phone_verification_mobile.dart';
+import 'package:know_my_city/presentation/pages/phone_verification/responsive/phone_verification_tablet.dart';
+import 'package:know_my_city/presentation/widgets/phone_number_field.dart';
 import 'package:country_picker/country_picker.dart';
 
 const double kMobileBreakpoint = 700;
@@ -74,7 +72,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
     }
   }
 
-  Widget _buildForm() {
+  Widget _buildForm(double fontScale) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -86,28 +84,37 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
+            Text(
               "Ingresa tu información",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20 * fontScale, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             TextFormField(
               controller: _nameController,
-              decoration: const InputDecoration(labelText: "Nombre"),
+              decoration: InputDecoration(
+                labelText: "Nombre",
+                labelStyle: TextStyle(fontSize: 16 * fontScale),
+              ),
               validator: (value) =>
                   value == null || value.isEmpty ? "Ingrese su nombre" : null,
             ),
             const SizedBox(height: 10),
             TextFormField(
               controller: _lastNameController,
-              decoration: const InputDecoration(labelText: "Apellido"),
+              decoration: InputDecoration(
+                labelText: "Apellido",
+                labelStyle: TextStyle(fontSize: 16 * fontScale),
+              ),
               validator: (value) =>
                   value == null || value.isEmpty ? "Ingrese su apellido" : null,
             ),
             const SizedBox(height: 10),
             TextFormField(
               controller: _ageController,
-              decoration: const InputDecoration(labelText: "Edad"),
+              decoration: InputDecoration(
+                labelText: "Edad",
+                labelStyle: TextStyle(fontSize: 16 * fontScale),
+              ),
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 10),
@@ -115,8 +122,10 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
               value: _selectedGender,
               items: ["Masculino", "Femenino"]
                   .map(
-                    (gender) =>
-                        DropdownMenuItem(value: gender, child: Text(gender)),
+                    (gender) => DropdownMenuItem(
+                      value: gender,
+                      child: Text(gender, style: TextStyle(fontSize: 16 * fontScale)),
+                    ),
                   )
                   .toList(),
               onChanged: (value) =>
@@ -136,7 +145,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _submitForm,
-              child: const Text("Enviar Código"),
+              child: Text("Enviar Código", style: TextStyle(fontSize: 16 * fontScale)),
             ),
           ],
         ),
@@ -145,12 +154,16 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
   }
 
   Widget _buildResponsiveLayout(BoxConstraints constraints) {
+    double fontScale;
     if (constraints.maxWidth < kMobileBreakpoint) {
-      return MobilePhoneVerificationLayout(form: _buildForm());
+      fontScale = 1.0;
+      return MobilePhoneVerificationLayout(form: _buildForm(fontScale));
     } else if (constraints.maxWidth < kTabletBreakpoint) {
-      return TabletPhoneVerificationLayout(form: _buildForm());
+      fontScale = 1.2;
+      return TabletPhoneVerificationLayout(form: _buildForm(fontScale));
     } else {
-      return LaptopPhoneVerificationLayout(form: _buildForm());
+      fontScale = 1.4;
+      return LaptopPhoneVerificationLayout(form: _buildForm(fontScale));
     }
   }
 
@@ -168,9 +181,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
               title: const Text("Verificación Telefónica"),
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
-                onPressed: () {
-                  context.go('/');
-                },
+                onPressed: () => Navigator.of(context).pop(),
               ),
             ),
             body: state.isSubmitting

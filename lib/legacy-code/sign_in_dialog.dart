@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:know_my_city/application/sign_in/sign_in_bloc.dart';
 import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/legacy-widgets/loading_dialog.dart';
-import 'package:know_my_city/legacy-widgets/sign_up_dialog.dart';
-import 'package:know_my_city/presentation-legacy/widgets/email_form_field.dart';
-import 'package:know_my_city/presentation-legacy/widgets/password_form_field.dart';
+import 'package:know_my_city/legacy-code/loading_dialog.dart';
+import 'package:know_my_city/legacy-code/sign_up_dialog.dart';
+import 'package:know_my_city/legacy-code/presentation-legacy/widgets/email_form_field.dart';
+import 'package:know_my_city/legacy-code/presentation-legacy/widgets/password_form_field.dart';
 
 class SignInDialog extends StatefulWidget {
   const SignInDialog({super.key});

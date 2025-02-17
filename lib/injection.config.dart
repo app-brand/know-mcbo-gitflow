@@ -21,7 +21,7 @@ import 'application/sign_in/sign_in_bloc.dart' as _i939;
 import 'application/sign_up/sign_up_bloc.dart' as _i1011;
 import 'infrastructure/core/core_module.dart' as _i189;
 import 'infrastructure/firebase/interface_firebase_auth.dart' as _i172;
-import 'presentation-legacy/core/state_core.dart' as _i657;
+import 'legacy-code/presentation-legacy/core/state_core.dart' as _i657;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt

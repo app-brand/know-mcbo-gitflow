@@ -3,13 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/presentation-fixed/pages/loading_timer-fixed.dart';
-import 'package:know_my_city/legacy-widgets/loading_dialog.dart';
-
-import 'package:know_my_city/presentation-legacy/widgets/email_form_field.dart';
-import 'package:know_my_city/presentation-legacy/widgets/password_form_field.dart';
+import 'package:know_my_city/presentation/pages/loading/loading_page.dart';
+import 'package:know_my_city/presentation/pages/sign_up/responsive/sign_up_laptop.dart';
+import 'package:know_my_city/presentation/pages/sign_up/responsive/sign_up_mobile.dart';
+import 'package:know_my_city/presentation/pages/sign_up/responsive/sign_up_tablet.dart';
+import 'package:know_my_city/legacy-code/presentation-legacy/widgets/email_form_field.dart';
+import 'package:know_my_city/legacy-code/presentation-legacy/widgets/password_form_field.dart';
 
 const double kMobileBreakpoint = 700;
+const double kTabletBreakpoint = 1200;
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -59,16 +61,17 @@ class _SignUpPageState extends State<SignUpPage> {
     context.go('/mail_verification');
   }
 
-  Widget _buildSignUpForm() {
+  /// Se construye el formulario aplicando un factor [fontScale] para ajustar dinámicamente el tamaño de la fuente.
+  Widget _buildSignUpForm(double fontScale) {
     return Form(
       key: formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             'Registro de Correo - Paso #1',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 20 * fontScale,
               fontWeight: FontWeight.bold,
               color: Colors.black87,
             ),
@@ -105,8 +108,7 @@ class _SignUpPageState extends State<SignUpPage> {
               Expanded(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                     backgroundColor: Colors.grey[700],
                     foregroundColor: Colors.white,
                     elevation: 4,
@@ -116,10 +118,10 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                   onPressed: () => Navigator.of(context).pop(),
-                  child: const Text(
+                  child: Text(
                     'Cancelar',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16 * fontScale,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -129,8 +131,7 @@ class _SignUpPageState extends State<SignUpPage> {
               Expanded(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                     backgroundColor: Colors.teal[600],
                     foregroundColor: Colors.white,
                     elevation: 4,
@@ -144,10 +145,10 @@ class _SignUpPageState extends State<SignUpPage> {
                       _signUpBloc.add(const SignUpEvent.signUpMail());
                     }
                   },
-                  child: const Text(
+                  child: Text(
                     'Registrarse',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 16 * fontScale,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -160,80 +161,18 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildResponsiveLayout(
-      BuildContext context, BoxConstraints constraints) {
-    final bool isMobile = constraints.maxWidth < kMobileBreakpoint;
-    if (isMobile) {
-      return SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
-                ),
-                child: Image.asset(
-                  'assets/images/banner/Puente_de_Maracaibo.jpg',
-                  fit: BoxFit.cover,
-                  height: 200,
-                  width: double.infinity,
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16),
-                  ),
-                ),
-                child: _buildSignUpForm(),
-              ),
-            ],
-          ),
-        ),
-      );
+  /// Se utiliza el LayoutBuilder para determinar el ancho y calcular el factor de fuente.
+  Widget _buildResponsiveLayout(BoxConstraints constraints) {
+    double fontScale;
+    if (constraints.maxWidth < kMobileBreakpoint) {
+      fontScale = 1.0;
+      return MobileSignUpLayout(signUpForm: _buildSignUpForm(fontScale));
+    } else if (constraints.maxWidth < kTabletBreakpoint) {
+      fontScale = 1.2;
+      return TabletSignUpLayout(signUpForm: _buildSignUpForm(fontScale));
     } else {
-      return Center(
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                        'assets/images/banner/Puente_de_Maracaibo.jpg'),
-                    fit: BoxFit.cover,
-                  ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    bottomLeft: Radius.circular(16),
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(16),
-                    bottomRight: Radius.circular(16),
-                  ),
-                ),
-                child: _buildSignUpForm(),
-              ),
-            ),
-          ],
-        ),
-      );
+      fontScale = 1.4;
+      return LaptopSignUpLayout(signUpForm: _buildSignUpForm(fontScale));
     }
   }
 
@@ -244,7 +183,7 @@ class _SignUpPageState extends State<SignUpPage> {
       listener: (context, state) {
         state.userFailureOrUserSuccess.fold(
           () {},
-          (ifSome) => ifSome.fold(
+          (result) => result.fold(
             (failure) {
               _showErrorDialog(failure.message);
             },
@@ -266,7 +205,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   builder: (context, constraints) {
                     return Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: _buildResponsiveLayout(context, constraints),
+                      child: _buildResponsiveLayout(constraints),
                     );
                   },
                 ),

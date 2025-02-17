@@ -1,4 +1,4 @@
-import 'package:know_my_city/presentation-legacy/core/app_theme.dart';
+import 'package:know_my_city/legacy-code/presentation-legacy/core/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
