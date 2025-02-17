@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:know_my_city/application/sign_in/sign_in_bloc.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation-fixed/pages-fixed/loading_timer-fixed.dart';
-import 'package:know_my_city/presentation-fixed/pages-fixed/sign_in.dart/responsive/sign_in_laptop.dart';
-import 'package:know_my_city/presentation-fixed/pages-fixed/sign_in.dart/responsive/sign_in_mobile.dart';
-import 'package:know_my_city/presentation-fixed/pages-fixed/sign_in.dart/responsive/sign_in_tablet.dart';
+import 'package:know_my_city/presentation-fixed/pages-fixed/sign_in/responsive/sign_in_laptop.dart';
+import 'package:know_my_city/presentation-fixed/pages-fixed/sign_in/responsive/sign_in_mobile.dart';
+import 'package:know_my_city/presentation-fixed/pages-fixed/sign_in/responsive/sign_in_tablet.dart';
 import 'package:know_my_city/presentation-legacy/widgets/email_form_field.dart';
 import 'package:know_my_city/presentation-legacy/widgets/password_form_field.dart';
 
