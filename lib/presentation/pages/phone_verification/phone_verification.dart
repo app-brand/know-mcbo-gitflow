@@ -86,7 +86,8 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
           children: [
             Text(
               "Ingresa tu información",
-              style: TextStyle(fontSize: 20 * fontScale, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 20 * fontScale, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             TextFormField(
@@ -124,7 +125,8 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
                   .map(
                     (gender) => DropdownMenuItem(
                       value: gender,
-                      child: Text(gender, style: TextStyle(fontSize: 16 * fontScale)),
+                      child: Text(gender,
+                          style: TextStyle(fontSize: 16 * fontScale)),
                     ),
                   )
                   .toList(),
@@ -145,7 +147,8 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _submitForm,
-              child: Text("Enviar Código", style: TextStyle(fontSize: 16 * fontScale)),
+              child: Text("Enviar Código",
+                  style: TextStyle(fontSize: 16 * fontScale)),
             ),
           ],
         ),
@@ -156,7 +159,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
   Widget _buildResponsiveLayout(BoxConstraints constraints) {
     double fontScale;
     if (constraints.maxWidth < kMobileBreakpoint) {
-      fontScale = 1.0;
+      fontScale = 0.7;
       return MobilePhoneVerificationLayout(form: _buildForm(fontScale));
     } else if (constraints.maxWidth < kTabletBreakpoint) {
       fontScale = 1.2;

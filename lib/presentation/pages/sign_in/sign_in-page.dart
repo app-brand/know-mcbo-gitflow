@@ -185,7 +185,7 @@ class _SignInPageState extends State<SignInPage> {
   Widget _buildResponsiveLayout(BoxConstraints constraints) {
     double fontScale;
     if (constraints.maxWidth < kMobileBreakpoint) {
-      fontScale = 1.0;
+      fontScale = 0.7;
       return MobileSignInLayout(signInForm: _buildSignInForm(fontScale));
     } else if (constraints.maxWidth < kTabletBreakpoint) {
       fontScale = 1.2;

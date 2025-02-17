@@ -15,8 +15,7 @@ class EmailVerificationPage extends StatefulWidget {
   const EmailVerificationPage({Key? key}) : super(key: key);
 
   @override
-  _EmailVerificationPageState createState() =>
-      _EmailVerificationPageState();
+  _EmailVerificationPageState createState() => _EmailVerificationPageState();
 }
 
 class _EmailVerificationPageState extends State<EmailVerificationPage>
@@ -63,8 +62,8 @@ class _EmailVerificationPageState extends State<EmailVerificationPage>
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           title: const Text("Tiempo Finalizado"),
-          content: const Text(
-              "Correo no validado. Por favor, inténtalo de nuevo."),
+          content:
+              const Text("Correo no validado. Por favor, inténtalo de nuevo."),
           actions: [
             TextButton(
               onPressed: () {
@@ -131,7 +130,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage>
   Widget _buildResponsiveLayout(BoxConstraints constraints) {
     double fontScale;
     if (constraints.maxWidth < kMobileBreakpoint) {
-      fontScale = 1.0;
+      fontScale = 0.3;
       return MobileEmailVerificationLayout(
           content: _buildVerificationContent(fontScale));
     } else if (constraints.maxWidth < kTabletBreakpoint) {
