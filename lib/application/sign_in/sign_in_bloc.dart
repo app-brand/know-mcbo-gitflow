@@ -54,7 +54,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             password: Password(e.password),
             userFailureOrUserSuccess: none(),
           ));
-        },
+        }, 
       );
     });
   }

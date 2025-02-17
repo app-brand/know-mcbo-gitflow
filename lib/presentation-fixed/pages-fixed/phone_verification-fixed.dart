@@ -61,7 +61,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
       _signUpBloc.add(SignUpEvent.lastNameChanged(_lastNameController.text));
       _signUpBloc.add(SignUpEvent.ageChanged(_ageController.text));
       _signUpBloc.add(SignUpEvent.genderChanged(_selectedGender));
-      _signUpBloc.add(SignUpEvent.phoneChanged(PhoneNumber(fullPhoneNumber)));
+      _signUpBloc.add(SignUpEvent.phoneChanged(fullPhoneNumber));
       _signUpBloc.add(SignUpEvent.sendOtp());
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Enviando código a $fullPhoneNumber")),
@@ -123,10 +123,8 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
                     ? 'Verifique el numero'
                     : null,
                 onChanged: (value) {
-                  _signUpBloc.add(SignUpEvent.phoneChanged(
-                      PhoneNumber(_countryCode + value)));
                   phone_real = _countryCode + value;
-                  print(phone_real);
+                  _signUpBloc.add(SignUpEvent.phoneChanged(phone_real));
                 },
                 phoneController: _phoneController),
             const SizedBox(height: 20),
