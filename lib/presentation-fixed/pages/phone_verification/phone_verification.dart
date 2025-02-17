@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/domain/value_objects/phone_number.dart';
 import 'package:know_my_city/injection.dart';
@@ -167,7 +168,9 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
               title: const Text("Verificación Telefónica"),
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () {
+                  context.go('/');
+                },
               ),
             ),
             body: state.isSubmitting

@@ -1,5 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:know_my_city/presentation-fixed/core-fixed/home_core-fixed.dart';
+import 'package:know_my_city/presentation-fixed/pages/email_verification/email_verification.dart';
+import 'package:know_my_city/presentation-fixed/pages/phone_verification/phone_verification.dart';
 import 'package:know_my_city/presentation-fixed/pages/sign_in/sign_in-page.dart';
 import 'package:know_my_city/presentation-fixed/pages/sign_up/sign_up.dart';
 
