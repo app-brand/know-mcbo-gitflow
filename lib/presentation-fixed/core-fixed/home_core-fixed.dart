@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:know_my_city/presentation-legacy/widgets/main_footer.dart';
 import 'package:know_my_city/presentation-fixed/pages-fixed/map_page-fixed.dart';
-import 'package:know_my_city/presentation-fixed/pages-fixed/about_about-fixed.dart';
-import 'package:know_my_city/presentation-fixed/pages-fixed/sign_in_page-fixed.dart';
+import 'package:know_my_city/presentation-fixed/pages-fixed/sign_in.dart/sign_in-page.dart';
 
 class McboMain extends StatefulWidget {
   @override
