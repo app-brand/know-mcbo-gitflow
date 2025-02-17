@@ -104,9 +104,10 @@ class _MailVerificationScreenState extends State<MailVerificationScreen>
           appBar: AppBar(
             title: const Text("Verificación de correo"),
             leading: IconButton(
-              icon: const Icon(Icons.close),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
+                icon: const Icon(Icons.close),
+                onPressed: () {
+                  context.go('/signUp');
+                }),
           ),
           body: Center(
             child: Column(

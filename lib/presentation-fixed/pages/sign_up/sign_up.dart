@@ -1,34 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:know_my_city/application/sign_in/sign_in_bloc.dart';
+import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/injection.dart';
-import 'package:know_my_city/presentation-fixed/pages-fixed/loading_timer-fixed.dart';
-import 'package:know_my_city/presentation-fixed/pages-fixed/sign_in/responsive/sign_in_laptop.dart';
-import 'package:know_my_city/presentation-fixed/pages-fixed/sign_in/responsive/sign_in_mobile.dart';
-import 'package:know_my_city/presentation-fixed/pages-fixed/sign_in/responsive/sign_in_tablet.dart';
+import 'package:know_my_city/presentation-fixed/pages/loading_timer-fixed.dart';
+//rimport 'package:know_my_city/legacy-widgets/loading_dialog.dart';
+import 'package:know_my_city/presentation-fixed/pages/sign_up/responsive/sign_up_laptop.dart';
+import 'package:know_my_city/presentation-fixed/pages/sign_up/responsive/sign_up_mobile.dart';
+import 'package:know_my_city/presentation-fixed/pages/sign_up/responsive/sign_up_tablet.dart';
 import 'package:know_my_city/presentation-legacy/widgets/email_form_field.dart';
 import 'package:know_my_city/presentation-legacy/widgets/password_form_field.dart';
 
 const double kMobileBreakpoint = 700;
 const double kTabletBreakpoint = 1200;
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
+
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final formKey = GlobalKey<FormState>();
-  late SignInBloc _signInBloc;
+  late SignUpBloc _signUpBloc;
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _signInBloc = sl<SignInBloc>();
+    _signUpBloc = sl<SignUpBloc>();
   }
 
   @override
@@ -41,44 +43,33 @@ class _SignInPageState extends State<SignInPage> {
   void _showErrorDialog(String message) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Error'),
-        content: Text(message),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Error'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 
-  void _successSignInDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Inicio exitoso!'),
-        content: const Text('Bienvenido'),
-        actions: [
-          TextButton(
-            onPressed: () =>
-                Navigator.of(context).popUntil((route) => route.isFirst),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
-    );
+  void _showSuccessDialog() {
+    context.go('/mail_verification');
   }
 
-  Widget _buildSignInForm() {
+  Widget _buildSignUpForm() {
     return Form(
       key: formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            'Iniciar Sesión',
+            'Registro de Correo - Paso #1',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -88,22 +79,28 @@ class _SignInPageState extends State<SignInPage> {
           const SizedBox(height: 10.0),
           EmailFormField(
             mailController: _emailController,
-            onChanged: (email) =>
-                _signInBloc.add(SignInEvent.emailChanged(email)),
-            validator: (email) => _signInBloc.state.emailAddress.value.fold(
-              (failure) => failure.message,
-              (_) => null,
-            ),
+            onChanged: (email) {
+              _signUpBloc.add(SignUpEvent.emailChanged(email));
+            },
+            validator: (email) {
+              return _signUpBloc.state.emailAddress.value.fold(
+                (failure) => failure.message,
+                (_) => null,
+              );
+            },
           ),
           const SizedBox(height: 10.0),
           PasswordFormField(
             passwordController: _passwordController,
-            validator: (password) => _signInBloc.state.password.value.fold(
-              (failure) => failure.message,
-              (_) => null,
-            ),
-            onChanged: (password) =>
-                _signInBloc.add(SignInEvent.passwordChanged(password)),
+            validator: (password) {
+              return _signUpBloc.state.password.value.fold(
+                (failure) => failure.message,
+                (_) => null,
+              );
+            },
+            onChanged: (password) {
+              _signUpBloc.add(SignUpEvent.passwordChanged(password));
+            },
           ),
           const SizedBox(height: 20.0),
           Row(
@@ -121,11 +118,9 @@ class _SignInPageState extends State<SignInPage> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {
-                    context.push('/signUp');
-                  },
+                  onPressed: () => Navigator.of(context).pop(),
                   child: const Text(
-                    'Registro',
+                    'Cancelar',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -149,11 +144,11 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      _signInBloc.add(const SignInEvent.singInEmail());
+                      _signUpBloc.add(const SignUpEvent.signUpMail());
                     }
                   },
                   child: const Text(
-                    'Iniciar sesión',
+                    'Registrarse',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -163,55 +158,35 @@ class _SignInPageState extends State<SignInPage> {
               ),
             ],
           ),
-          const SizedBox(height: 15.0),
-          TextButton(
-            onPressed: () {},
-            child: const Text(
-              '¿Olvidaste tu contraseña?',
-              style: TextStyle(
-                color: Colors.teal,
-                fontSize: 15,
-                decoration: TextDecoration.underline,
-              ),
-            ),
-          ),
         ],
       ),
     );
   }
 
   Widget _buildResponsiveLayout(BoxConstraints constraints) {
-    final signInForm = _buildSignInForm();
+    final signUpForm = _buildSignUpForm();
     if (constraints.maxWidth < kMobileBreakpoint) {
-      return MobileSignInLayout(signInForm: signInForm);
+      return MobileSignUpLayout(signUpForm: signUpForm);
     } else if (constraints.maxWidth < kTabletBreakpoint) {
-      return TabletSignInLayout(signInForm: signInForm);
+      return TabletSignUpLayout(signUpForm: signUpForm);
     } else {
-      return LaptopSignInLayout(signInForm: signInForm);
+      return LaptopSignUpLayout(signUpForm: signUpForm);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignInBloc, SignInState>(
-      bloc: _signInBloc,
+    return BlocConsumer<SignUpBloc, SignUpState>(
+      bloc: _signUpBloc,
       listener: (context, state) {
         state.userFailureOrUserSuccess.fold(
           () {},
-          (failureOrSuccess) => failureOrSuccess.fold(
+          (result) => result.fold(
             (failure) {
-              failure.map(
-                cancelledByUser: (f) => _showErrorDialog(f.message),
-                invalidEmailAndPasswordCombination: (e) =>
-                    _showErrorDialog(e.message),
-                emailNotVerified: (e) => _showErrorDialog(e.message),
-                otpExpired: (e) => _showErrorDialog(e.message),
-                emailLinkExpired: (e) => _showErrorDialog(e.message),
-                serverError: (e) => _showErrorDialog(e.message),
-              );
+              _showErrorDialog(failure.message);
             },
-            (_) {
-              _successSignInDialog();
+            (success) {
+              _showSuccessDialog();
             },
           ),
         );
@@ -220,9 +195,9 @@ class _SignInPageState extends State<SignInPage> {
         return Scaffold(
           body: state.isSubmitting
               ? LoadingPage(
-                  text:
-                      'Ingresando mediante el sistema cerrado de autenticación',
-                  content: 'Validando la combinación de correo de usuario',
+                  text: 'Ingresando el correo y contraseña a la base de datos',
+                  content:
+                      'Recuerde validar el correo en el tiempo marcado o repetir el proceso desde el principio',
                 )
               : LayoutBuilder(
                   builder: (context, constraints) {

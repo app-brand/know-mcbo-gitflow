@@ -4,7 +4,7 @@ import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/domain/value_objects/phone_number.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation-fixed/widgets-fixed/phone_number_field.dart';
-import 'package:know_my_city/presentation-fixed/pages-fixed/loading_timer-fixed.dart';
+import 'package:know_my_city/presentation-fixed/pages/loading_timer-fixed.dart';
 import 'package:country_picker/country_picker.dart';
 
 const double kMobileBreakpoint = 700;
