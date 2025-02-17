@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/pages/loading/loading_page.dart';
@@ -159,7 +160,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
   Widget _buildResponsiveLayout(BoxConstraints constraints) {
     double fontScale;
     if (constraints.maxWidth < kMobileBreakpoint) {
-      fontScale = 0.7;
+      fontScale = 0.8;
       return MobilePhoneVerificationLayout(form: _buildForm(fontScale));
     } else if (constraints.maxWidth < kTabletBreakpoint) {
       fontScale = 1.2;
@@ -183,9 +184,10 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
             appBar: AppBar(
               title: const Text("Verificación Telefónica"),
               leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () {
+                    context.go('/');
+                  }),
             ),
             body: state.isSubmitting
                 ? const LoadingPage(

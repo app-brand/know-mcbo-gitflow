@@ -130,7 +130,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage>
   Widget _buildResponsiveLayout(BoxConstraints constraints) {
     double fontScale;
     if (constraints.maxWidth < kMobileBreakpoint) {
-      fontScale = 0.3;
+      fontScale = 0.8;
       return MobileEmailVerificationLayout(
           content: _buildVerificationContent(fontScale));
     } else if (constraints.maxWidth < kTabletBreakpoint) {

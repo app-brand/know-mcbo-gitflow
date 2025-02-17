@@ -108,7 +108,8 @@ class _SignUpPageState extends State<SignUpPage> {
               Expanded(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 12),
                     backgroundColor: Colors.grey[700],
                     foregroundColor: Colors.white,
                     elevation: 4,
@@ -131,7 +132,8 @@ class _SignUpPageState extends State<SignUpPage> {
               Expanded(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 12),
                     backgroundColor: Colors.teal[600],
                     foregroundColor: Colors.white,
                     elevation: 4,
@@ -165,7 +167,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _buildResponsiveLayout(BoxConstraints constraints) {
     double fontScale;
     if (constraints.maxWidth < kMobileBreakpoint) {
-      fontScale = 1.0;
+      fontScale = 0.8;
       return MobileSignUpLayout(signUpForm: _buildSignUpForm(fontScale));
     } else if (constraints.maxWidth < kTabletBreakpoint) {
       fontScale = 1.2;

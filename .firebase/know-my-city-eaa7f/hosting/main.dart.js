@@ -94531,7 +94531,7 @@ p=p.x
 p===$&&A.a()
 return A.eN(A.b([r,B.zs,q,B.dM,new A.uY(8,p,s,s,B.AJ,s,s,s),B.dM,A.ce(""+this.e+" segundos restantes",s,s,s,s,A.dj(s,s,B.c4,s,s,s,s,s,s,s,s,20*a,s,s,B.aU,s,s,!0,s,s,s,s,s,s,s,s),s,s)],t.p),B.H,B.cn,B.a9)},
 aee(a){var s=a.b
-if(s<700)return new A.Qd(this.FU(0.7),null)
+if(s<700)return new A.Qd(this.FU(0.3),null)
 else if(s<1200)return new A.Tp(this.FU(1.2),null)
 else return new A.PC(this.FU(1.4),null)},
 L(a){var s=this.r
