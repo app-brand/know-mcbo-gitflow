@@ -67,6 +67,7 @@ class _SignUpPageState extends State<SignUpPage> {
       key: formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             'Registro de Correo - Paso #1',
