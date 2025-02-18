@@ -21,7 +21,7 @@ class TabletSignInLayout extends StatelessWidget {
                   topRight: Radius.circular(16),
                 ),
                 child: Image.asset(
-                  'assets/images/banner/Teatro_Baralt.jpg',
+                  'assets/images/banner/monumentochinita.jpg',
                   fit: BoxFit.cover,
                   height: 250,
                   width: double.infinity,

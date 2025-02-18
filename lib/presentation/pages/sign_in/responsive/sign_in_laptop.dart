@@ -17,7 +17,8 @@ class LaptopSignInLayout extends StatelessWidget {
               child: Container(
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/images/banner/Teatro_Baralt.jpg'),
+                    image:
+                        AssetImage('assets/images/banner/monumentochinita.jpg'),
                     fit: BoxFit.cover,
                   ),
                   borderRadius: BorderRadius.only(

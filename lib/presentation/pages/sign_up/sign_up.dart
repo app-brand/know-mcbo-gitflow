@@ -199,16 +199,21 @@ class _SignUpPageState extends State<SignUpPage> {
       builder: (context, state) {
         return Scaffold(
           body: state.isSubmitting
-              ? LoadingPage(
-                  text: 'Ingresando el correo y contraseña a la base de datos',
-                  content:
-                      'Recuerde validar el correo en el tiempo marcado o repetir el proceso desde el principio',
+              ? Center(
+                  child: LoadingPage(
+                    text:
+                        'Ingresando el correo y contraseña a la base de datos',
+                    content:
+                        'Recuerde validar el correo en el tiempo marcado o repetir el proceso desde el principio',
+                  ),
                 )
               : LayoutBuilder(
                   builder: (context, constraints) {
-                    return Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: _buildResponsiveLayout(constraints),
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: _buildResponsiveLayout(constraints),
+                      ),
                     );
                   },
                 ),

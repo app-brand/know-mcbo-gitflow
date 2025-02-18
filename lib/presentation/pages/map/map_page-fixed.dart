@@ -24,12 +24,12 @@ class MapView extends StatefulWidget {
 }
 
 class _MapViewState extends State<MapView> {
-  GoogleMapController? _mapController;
+  late GoogleMapController _mapController;
   bool _isMapReady = false;
 
   @override
   void dispose() {
-    _mapController?.dispose();
+    _mapController.dispose();
     super.dispose();
   }
 
