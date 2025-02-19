@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:know_my_city/application/facade/interface_user_facade.dart';
@@ -8,6 +9,7 @@ import 'package:know_my_city/domain/user/user_failures.dart';
 import 'package:know_my_city/domain/value_objects/email_address.dart';
 import 'package:know_my_city/domain/value_objects/password.dart';
 import 'package:know_my_city/domain/value_objects/phone_number.dart';
+import 'package:know_my_city/injection.dart';
 
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';

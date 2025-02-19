@@ -2377,7 +2377,8 @@ mixin _$SignUpState {
   bool get isSubmitting => throw _privateConstructorUsedError;
   Option<Either<UserFailure, Unit>> get userFailureOrUserSuccess =>
       throw _privateConstructorUsedError;
-  bool get isEmailVerified =>
+  bool get isEmailVerified => throw _privateConstructorUsedError;
+  bool get isPhoneVerified =>
       throw _privateConstructorUsedError; // ✅ Nuevos campos
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
@@ -2404,6 +2405,7 @@ abstract class $SignUpStateCopyWith<$Res> {
       bool isSubmitting,
       Option<Either<UserFailure, Unit>> userFailureOrUserSuccess,
       bool isEmailVerified,
+      bool isPhoneVerified,
       String firstName,
       String lastName,
       String age,
@@ -2431,6 +2433,7 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
     Object? isSubmitting = null,
     Object? userFailureOrUserSuccess = null,
     Object? isEmailVerified = null,
+    Object? isPhoneVerified = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? age = null,
@@ -2457,6 +2460,10 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
       isEmailVerified: null == isEmailVerified
           ? _value.isEmailVerified
           : isEmailVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPhoneVerified: null == isPhoneVerified
+          ? _value.isPhoneVerified
+          : isPhoneVerified // ignore: cast_nullable_to_non_nullable
               as bool,
       firstName: null == firstName
           ? _value.firstName
@@ -2496,6 +2503,7 @@ abstract class _$$SignUpStateImplCopyWith<$Res>
       bool isSubmitting,
       Option<Either<UserFailure, Unit>> userFailureOrUserSuccess,
       bool isEmailVerified,
+      bool isPhoneVerified,
       String firstName,
       String lastName,
       String age,
@@ -2521,6 +2529,7 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
     Object? isSubmitting = null,
     Object? userFailureOrUserSuccess = null,
     Object? isEmailVerified = null,
+    Object? isPhoneVerified = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? age = null,
@@ -2547,6 +2556,10 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
       isEmailVerified: null == isEmailVerified
           ? _value.isEmailVerified
           : isEmailVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPhoneVerified: null == isPhoneVerified
+          ? _value.isPhoneVerified
+          : isPhoneVerified // ignore: cast_nullable_to_non_nullable
               as bool,
       firstName: null == firstName
           ? _value.firstName
@@ -2581,6 +2594,7 @@ class _$SignUpStateImpl implements _SignUpState {
       required this.isSubmitting,
       required this.userFailureOrUserSuccess,
       required this.isEmailVerified,
+      required this.isPhoneVerified,
       required this.firstName,
       required this.lastName,
       required this.age,
@@ -2597,6 +2611,8 @@ class _$SignUpStateImpl implements _SignUpState {
   final Option<Either<UserFailure, Unit>> userFailureOrUserSuccess;
   @override
   final bool isEmailVerified;
+  @override
+  final bool isPhoneVerified;
 // ✅ Nuevos campos
   @override
   final String firstName;
@@ -2611,7 +2627,7 @@ class _$SignUpStateImpl implements _SignUpState {
 
   @override
   String toString() {
-    return 'SignUpState(emailAddress: $emailAddress, password: $password, isSubmitting: $isSubmitting, userFailureOrUserSuccess: $userFailureOrUserSuccess, isEmailVerified: $isEmailVerified, firstName: $firstName, lastName: $lastName, age: $age, gender: $gender, phoneNumber: $phoneNumber)';
+    return 'SignUpState(emailAddress: $emailAddress, password: $password, isSubmitting: $isSubmitting, userFailureOrUserSuccess: $userFailureOrUserSuccess, isEmailVerified: $isEmailVerified, isPhoneVerified: $isPhoneVerified, firstName: $firstName, lastName: $lastName, age: $age, gender: $gender, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -2630,6 +2646,8 @@ class _$SignUpStateImpl implements _SignUpState {
                 other.userFailureOrUserSuccess == userFailureOrUserSuccess) &&
             (identical(other.isEmailVerified, isEmailVerified) ||
                 other.isEmailVerified == isEmailVerified) &&
+            (identical(other.isPhoneVerified, isPhoneVerified) ||
+                other.isPhoneVerified == isPhoneVerified) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -2648,6 +2666,7 @@ class _$SignUpStateImpl implements _SignUpState {
       isSubmitting,
       userFailureOrUserSuccess,
       isEmailVerified,
+      isPhoneVerified,
       firstName,
       lastName,
       age,
@@ -2670,6 +2689,7 @@ abstract class _SignUpState implements SignUpState {
       required final bool isSubmitting,
       required final Option<Either<UserFailure, Unit>> userFailureOrUserSuccess,
       required final bool isEmailVerified,
+      required final bool isPhoneVerified,
       required final String firstName,
       required final String lastName,
       required final String age,
@@ -2685,7 +2705,9 @@ abstract class _SignUpState implements SignUpState {
   @override
   Option<Either<UserFailure, Unit>> get userFailureOrUserSuccess;
   @override
-  bool get isEmailVerified; // ✅ Nuevos campos
+  bool get isEmailVerified;
+  @override
+  bool get isPhoneVerified; // ✅ Nuevos campos
   @override
   String get firstName;
   @override

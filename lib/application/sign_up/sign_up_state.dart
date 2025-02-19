@@ -8,6 +8,7 @@ class SignUpState with _$SignUpState {
     required bool isSubmitting,
     required Option<Either<UserFailure, Unit>> userFailureOrUserSuccess,
     required bool isEmailVerified,
+    required bool isPhoneVerified,
     // ✅ Nuevos campos
     required String firstName,
     required String lastName,
@@ -22,11 +23,12 @@ class SignUpState with _$SignUpState {
         isSubmitting: false,
         userFailureOrUserSuccess: none(),
         isEmailVerified: false,
+        isPhoneVerified: false,
         // ✅ Valores iniciales de los nuevos campos
         firstName: '',
         lastName: '',
         age: '',
         gender: 'Masculino', // Valor por defecto
-        phoneNumber: PhoneNumber("+584127675801"),
+        phoneNumber: PhoneNumber(''),
       );
 }
