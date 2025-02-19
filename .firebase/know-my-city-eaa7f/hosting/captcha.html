@@ -1,0 +1,50 @@
+<!-- captcha.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Captcha</title>
+  <!-- Incluye las versiones compat de Firebase (para simplificar) -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: 'AIzaSyBDln--gsZ4EgqmMb7HPOBBdvJNOHZGrSY',
+      authDomain: 'know-my-city-eaa7f.firebaseapp.com',
+      projectId: 'know-my-city-eaa7f',
+      storageBucket: 'know-my-city-eaa7f.firebasestorage.app',
+      messagingSenderId: '226065988319',
+      appId: '1:226065988319:web:63972b02433966e06c076a'
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <style>
+    /* Establece dimensiones para el contenedor */
+    #recaptcha-container {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="recaptcha-container"></div>
+  <script>
+    // Inicializa el reCAPTCHA
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+      'size': 'normal',
+      'callback': (response) => {
+        console.log("reCAPTCHA verificado:", response);
+        // Aquí puedes enviar el resultado a tu aplicación Flutter (usando postMessage, por ejemplo)
+        window.parent.postMessage({ type: 'recaptchaSuccess', token: response }, '*');
+      },
+      'expired-callback': () => {
+        console.log("reCAPTCHA expirado");
+        window.parent.postMessage({ type: 'recaptchaExpired' }, '*');
+      }
+    });
+    window.recaptchaVerifier.render().then(function(widgetId) {
+      console.log("Widget de reCAPTCHA renderizado, id:", widgetId);
+    });
+  </script>
+</body>
+</html>

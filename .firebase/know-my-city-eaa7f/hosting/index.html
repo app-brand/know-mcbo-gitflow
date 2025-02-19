@@ -6,6 +6,14 @@
   <title>know_my_city</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/png" href="favicon.png"/>
+  
+  <!-- Scripts de Firebase -->
+  <!-- Incluye Firebase App y Firebase Auth versión compat -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+
+  
+  
   <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0vsjSJXoisdpB-ouzVZuk0aCiEaievws&libraries=places"></script>
   
   <style>
@@ -16,14 +24,14 @@
       height: 100%;
     }
     
-    /* Se utiliza la imagen main_background.jpg como fondo */
+    /* Fondo y estilos generales */
     body {
       background: url('assets/main_background.jpg') no-repeat center center fixed;
       background-size: cover;
       position: relative;
     }
     
-    /* Contenedor de carga centrado con Flexbox y transición para desvanecer */
+    /* Contenedor de carga centrado */
     #loading {
       display: flex;
       justify-content: center;
@@ -36,7 +44,7 @@
       transition: opacity 1s ease-out;
     }
     
-    /* Superposición verde con opacidad (50%) y transición para desvanecer */
+    /* Superposición */
     #overlay {
       position: absolute;
       top: 0;
@@ -49,12 +57,17 @@
       transition: opacity 1s ease-out;
     }
     
-    /* Ajusta el GIF para que sea responsive y se muestre por encima de la superposición */
+    /* Estilos para el GIF */
     #loading img {
       position: relative;
       z-index: 2;
       max-width: 45%;
       height: auto;
+    }
+
+    #recaptcha-container {
+      width: 300px;
+      height: 150px;
     }
     
     /* Oculta el indicador nativo de Flutter, si existe */
@@ -64,8 +77,10 @@
   </style>
 </head>
 <body>
-  <div id="recaptcha-container"></div>
-  <!-- Pantalla de carga con imagen de fondo, superposición verde y GIF centrado -->
+  <!-- Contenedor para reCAPTCHA con tamaño definido -->
+  <div id="recaptcha-container" style="width: 300px; height: 150px;"></div>
+  
+  <!-- Pantalla de carga -->
   <div id="loading">
     <div id="overlay"></div>
     <img src="assets/animated_main.gif" alt="loading">
@@ -74,16 +89,37 @@
   <script src="flutter_bootstrap.js" async></script>
   
   <script>
-    // Al dispararse el primer frame de Flutter, se inicia la animación de desvanecimiento
+    // Inicializa reCAPTCHA al cargar la página
+    function initRecaptcha() {
+      if (typeof firebase !== 'undefined' && firebase.auth) {
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+          'size': 'normal',
+          'callback': function(response) {
+            console.log("reCAPTCHA verificado con éxito:", response);
+          },
+          'expired-callback': function() {
+            console.log("reCAPTCHA expirado, por favor vuelve a validarlo.");
+          }
+        });
+        window.recaptchaVerifier.render().then(function(widgetId) {
+          console.log("reCAPTCHA widget renderizado, id:", widgetId);
+        });
+      } else {
+        console.error("Firebase Auth no está disponible. Asegúrate de incluir el SDK de Firebase.");
+      }
+    }
+    window.addEventListener('load', initRecaptcha);
+  </script>
+  
+  <script>
+    // Desvanecer la pantalla de carga cuando Flutter esté listo
     window.addEventListener('flutter-first-frame', function() {
       const loadingElement = document.getElementById('loading');
       const overlay = document.getElementById('overlay');
       
-      // Inicia la transición: se reduce la opacidad a 0
       loadingElement.style.opacity = '0';
       overlay.style.opacity = '0';
       
-      // Una vez finalizada la transición, se elimina el contenedor de carga
       loadingElement.addEventListener('transitionend', function() {
         loadingElement.remove();
       });
