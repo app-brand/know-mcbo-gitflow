@@ -1,22 +1,7 @@
 import 'dart:html' as html;
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-
-void listenToCaptchaMessages() {
-  html.window.onMessage.listen((html.MessageEvent event) {
-    // Verifica que el mensaje tenga la estructura que esperamos
-    if (event.data is Map) {
-      final data = event.data as Map;
-      if (data['type'] == 'recaptchaSuccess') {
-        final token = data['token'];
-        print("reCAPTCHA verificado, token: $token");
-        // Aquí puedes actualizar el estado de tu aplicación o comunicar este dato al BLoC/Provider
-      } else if (data['type'] == 'recaptchaExpired') {
-        print("reCAPTCHA expirado, se requiere una nueva validación");
-      }
-    }
-  });
-}
+import 'package:go_router/go_router.dart';
 
 class CaptchaView extends StatefulWidget {
   @override
@@ -24,6 +9,22 @@ class CaptchaView extends StatefulWidget {
 }
 
 class _CaptchaViewState extends State<CaptchaView> {
+  void listenToCaptchaMessages() {
+    html.window.onMessage.listen((html.MessageEvent event) {
+      // Verifica que el mensaje tenga la estructura que esperamos
+      if (event.data is Map) {
+        final data = event.data as Map;
+        if (data['type'] == 'recaptchaSuccess') {
+          final token = data['token'];
+          print("reCAPTCHA verificado, token: $token");
+          context.go('/phone_profile');
+        } else if (data['type'] == 'recaptchaExpired') {
+          print("reCAPTCHA expirado, se requiere una nueva validación");
+        }
+      }
+    });
+  }
+
   @override
   void initState() {
     super.initState();
