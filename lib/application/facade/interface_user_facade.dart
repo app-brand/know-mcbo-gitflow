@@ -25,10 +25,12 @@ abstract interface class InterfaceUserFacade {
   Future<Either<UserFailure, Unit>> sendOneTimePassword(
       {required PhoneNumber phone_number});
 
-  // Verifica el OTP  
+  // Verifica el OTP
   Future<Either<UserFailure, Unit>> phoneNumberVerification({
     required String verification_id,
     required OneTimePassword otp,
   });
-  
+
+  // Pantalla de recapchat
+  Future<bool> verifyRecaptchaAvailable();
 }

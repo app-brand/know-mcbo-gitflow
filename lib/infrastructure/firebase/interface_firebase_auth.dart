@@ -90,63 +90,22 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       return left(const UserFailure.serverError(failedValue: ''));
     }
   }
-
+  
   @override
-  Future<Either<UserFailure, Unit>> sendOneTimePassword(
-      {required PhoneNumber phone_number}) async {
-    print('OneTimePasswordSend - Infraestructura');
-    final Completer<Either<UserFailure, Unit>> completer = Completer();
-    try {
-      await _firebaseAuth.verifyPhoneNumber(
-        phoneNumber: phone_number.getOrCrash(),
-        timeout: Duration(seconds: 60),
-        verificationCompleted: (PhoneAuthCredential credential) async {
-          // Metodo que se activa en caso de que el dispositivo movil
-          // auto - detecte el sms
-          print('automatic verification - phone number');
-          await _firebaseAuth.currentUser!.linkWithCredential(credential);
-          return completer.complete(right(unit));
-        },
-        verificationFailed: (FirebaseAuthException e) {
-          print('verification - Falla codigo + ' + e.code);
-          print('verification - Falla  message+ ' + e.message.toString());
-          return completer
-              .complete(left(UserFailure.serverError(failedValue: '')));
-        },
-        codeSent: (String userId, int? resendToken) {
-          print('code - sent');
-          print('verificaciontionId: ' + userId);
-          print('verification token:' + resendToken.toString());
-          return completer.complete(right(unit));
-        },
-        codeAutoRetrievalTimeout: (String userId) {
-          print("codeAutoRetrievalTimeout" + userId);
-          return completer.complete(right(unit));
-        },
-      );
-      // Esto debe ser corregido programacion defensiva
-      return right(unit);
-    } on FirebaseAuthException catch (e) {
-      print(e.toString() + 'Error de Firebase - Out Control');
-      return left(UserFailure.serverError(failedValue: ''));
-    }
+  Future<Either<UserFailure, Unit>> phoneNumberVerification({required String verification_id, required OneTimePassword otp}) {
+    // TODO: implement phoneNumberVerification
+    throw UnimplementedError();
   }
-
+  
   @override
-  Future<Either<UserFailure, Unit>> phoneNumberVerification({
-    required String verification_id,
-    required OneTimePassword otp,
-  }) async {
-    try {
-      final PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: verification_id,
-        smsCode: otp.getOrCrash(),
-      );
-      await _firebaseAuth.currentUser!.linkWithCredential(credential);
-      return right(unit);
-    } catch (e) {
-      print(e.toString() + ' Entendiendo el error');
-      return left(UserFailure.otpExpired(failedValue: ''));
-    }
+  Future<Either<UserFailure, Unit>> sendOneTimePassword({required PhoneNumber phone_number}) {
+    // TODO: implement sendOneTimePassword
+    throw UnimplementedError();
   }
+  
+  @override
+  Future<bool> verifyRecaptchaAvailable() {
+    // TODO: implement verifyRecaptchaAvailable
+    throw UnimplementedError();
+  }// O ajusta la lógica según tu entorno.
 }

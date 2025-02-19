@@ -1,3 +1,4 @@
+import 'dart:ui_web' as ui;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -9,6 +10,8 @@ import 'package:know_my_city/presentation/core/router_core-fixed.dart';
 import 'package:know_my_city/legacy-code/presentation-legacy/core/state_core.dart';
 import 'package:provider/provider.dart';
 import 'package:know_my_city/legacy-code/presentation-legacy/core/theme_core.dart';
+import 'dart:html';
+
 
 final getIt = GetIt.instance;
 
@@ -20,6 +23,11 @@ void main() async {
     persistenceEnabled: false,
     sslEnabled: true,
     host: "firestore.googleapis.com",
+  );
+  //#3
+  ui.platformViewRegistry.registerViewFactory(
+    'recaptcha-container',
+    (int viewId) => DivElement()..id = 'recaptcha-container',
   );
   //#2
   await serviceLocator();
