@@ -43,5 +43,10 @@ final GoRouter routerCore = GoRouter(
       name: 'otp',
       builder: (context, state) => const MyOtpScreen(),
     ),
+    GoRoute(
+      path: '/otp_verification',
+      name: 'otp_verification',
+      builder: (context, state) => const MyOtpScreen(),
+    ),
   ],
 );

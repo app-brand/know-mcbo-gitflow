@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/pages/loading/loading_page.dart';
+import 'package:know_my_city/presentation/pages/otp_verificataion_page/otp_verification_page.dart';
 import 'package:know_my_city/presentation/pages/phone_verification/responsive/phone_verification_laptop.dart';
 import 'package:know_my_city/presentation/pages/phone_verification/responsive/phone_verification_mobile.dart';
 import 'package:know_my_city/presentation/pages/phone_verification/responsive/phone_verification_tablet.dart';
@@ -66,10 +67,13 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
       _signUpBloc.add(SignUpEvent.ageChanged(_ageController.text));
       _signUpBloc.add(SignUpEvent.genderChanged(_selectedGender));
       _signUpBloc.add(SignUpEvent.phoneChanged(fullPhoneNumber));
+      // Aqui esta el problema...
       _signUpBloc.add(SignUpEvent.sendOtp());
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Enviando código a $fullPhoneNumber")),
-      );
+      if (_signUpBloc.state.isPhoneVerified == true) {
+        context.go('/otp_verication');
+      } else {
+        print('No hay validacion exitosa - falla llamada');
+      }
     }
   }
 
@@ -177,32 +181,23 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
       create: (context) => sl<SignUpBloc>(),
       child: BlocConsumer<SignUpBloc, SignUpState>(
         listener: (context, state) {
-          if (state.verificationId.isNotEmpty) {
-            context.go('/otp');
-          }
+          state.userFailureOrUserSuccess.fold(
+              () => {print('Existoso en proceso Envio OTP')},
+              (failure) => {print('Fallo en proceso Envio OTP')});
         },
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(
-              title: const Text("Verificación Telefónica"),
-              leading: IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () {
-                    context.go('/');
-                  }),
-            ),
             body: state.isSubmitting
-                ? const LoadingPage(
-                    text: "Enviando código...",
-                    content: "Por favor espera mientras enviamos el OTP.",
+                ? LoadingPage(
+                    text: 'Enviando el OTP de existir el numero',
+                    content:
+                        'Proceda a introducirlo en las siguientes pantalla',
                   )
                 : LayoutBuilder(
                     builder: (context, constraints) {
-                      return Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: _buildResponsiveLayout(constraints),
-                        ),
+                      return Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: _buildResponsiveLayout(constraints),
                       );
                     },
                   ),

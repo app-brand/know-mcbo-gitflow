@@ -7,7 +7,6 @@ import 'package:know_my_city/application/core/interface_user_facade.dart';
 import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/domain/user/user_failures.dart';
 import 'package:know_my_city/domain/value_objects/email_address.dart';
-import 'package:know_my_city/domain/value_objects/one_time_password.dart';
 import 'package:know_my_city/domain/value_objects/password.dart';
 import 'package:know_my_city/domain/value_objects/phone_number.dart';
 import 'package:know_my_city/injection.dart';
@@ -49,36 +48,10 @@ class FirebaseUserRepository implements InterfaceUserFacade {
   }
 
   @override
-  Future<Either<UserFailure, Unit>> registerWithEmailAndPassword({
-    required EmailAddress emailAddress,
-    required Password password,
-  }) async {
-    print('RegisterInWithMail - Infraestructura');
-    final userMail = emailAddress.getOrCrash();
-    final userPassword = password.getOrCrash();
-    try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-          email: userMail, password: userPassword);
-      await _firebaseAuth.currentUser!.sendEmailVerification();
-      print('RegisterInWith Verification email it is send - right');
-      return right(unit);
-    } on FirebaseAuthException catch (e) {
-      print(e.code);
-      if (e.code == 'email-already-in-use') {
-        return left(const UserFailure.invalidEmailAndPasswordCombination(
-            failedValue: ''));
-      } else {
-        return left(const UserFailure.serverError(failedValue: ''));
-      }
-    }
-  }
-
-  @override
   Future<Either<UserFailure, Unit>> verifyIsMailisActive() async {
     //TODO: Agregar correr en un bucle - for o u otra salida
     try {
       User? user = _firebaseAuth.currentUser;
-      //await Future.delayed(Duration(seconds: 59));
       await user!.reload();
       if (_firebaseAuth.currentUser!.emailVerified) {
         print('IsValidatedMail - right');
@@ -94,7 +67,44 @@ class FirebaseUserRepository implements InterfaceUserFacade {
   }
 
   @override
-  Future<Either<UserFailure, Unit>> sendOneTimePassword(
+  Future<Either<UserFailure, Unit>> signUpWithMail(
+      {required EmailAddress emailAddress, required Password password}) async {
+    print('regisrterUserOne - Infraestructura');
+    final userMail = emailAddress.getOrCrash();
+    final userPassword = password.getOrCrash();
+    try {
+      await _firebaseAuth.createUserWithEmailAndPassword(
+          email: userMail, password: userPassword);
+      await _firebaseAuth.currentUser!.sendEmailVerification();
+      print('RegisterInWith Verification email it is sended to the user');
+      return right(unit);
+    } on FirebaseAuthException catch (e) {
+      print('RegisterInWith Verification email error ' + e.code);
+      if (e.code == 'email-already-in-use') {
+        return left(const UserFailure.invalidEmailAndPasswordCombination(
+            failedValue: ''));
+      } else {
+        return left(const UserFailure.serverError(failedValue: ''));
+      }
+    }
+  }
+
+  /* @override
+  Future<Either<UserFailure, Unit>> OtpIsValid(
+      {required String verification_id, required String otp})  async {
+    try {
+      final PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verification_id,
+        smsCode: otp,
+      );
+      print('validacion exitosa');
+    } catch (e) {
+      print(e.toString() + ' Entendiendo el error');
+    }
+  } */
+
+  @override
+  Future<Either<UserFailure, Unit>> phoneIsValid(
       {required PhoneNumber phone_number}) async {
     print('SMS send tringger - Infraestructura');
     final Completer<Either<UserFailure, Unit>> completer = Completer();
@@ -103,12 +113,7 @@ class FirebaseUserRepository implements InterfaceUserFacade {
         phoneNumber: phone_number.getOrCrash(),
         timeout: Duration(seconds: 60),
         verificationCompleted: (PhoneAuthCredential credential) async {
-          print('automatic verification - phone number');
-          sl<SignUpBloc>()
-              .add(SignUpEvent.verificationChanged(credential.verificationId!));
-          sl<SignUpBloc>()
-              .add(SignUpEvent.verificationChanged(credential.smsCode!));
-
+          print('automatic verification - does not exist');
           return completer.complete(right(unit));
         },
         verificationFailed: (FirebaseAuthException e) {
@@ -120,19 +125,18 @@ class FirebaseUserRepository implements InterfaceUserFacade {
         codeSent: (String userId, int? resendToken) {
           print('code - sent');
           print('verificaciontionId: ' + userId);
-          print('verification token:' + resendToken!.toString());
           sl<SignUpBloc>().add(SignUpEvent.verificationChanged(userId));
-          sl<SignUpBloc>()
-              .add(SignUpEvent.verificationChanged(resendToken!.toString()));
-          sl<SignUpBloc>().add(SignUpEvent.sendOtp());
           return completer.complete(right(unit));
         },
         codeAutoRetrievalTimeout: (String userId) {
           print("codeAutoRetrievalTimeout" + userId);
-          return completer.complete(right(unit));
+          print("False by default" + userId);
+          return completer
+              .complete(left(UserFailure.serverError(failedValue: '')));
         },
       );
       // Esto debe ser corregido programacion defensiva
+      print(unit.toString());
       return right(unit);
     } on FirebaseAuthException catch (e) {
       print(e.toString() + 'Error de Firebase - Out Control');
@@ -141,44 +145,19 @@ class FirebaseUserRepository implements InterfaceUserFacade {
   }
 
   @override
-  Future<void> phoneNumberVerification({
-    required String verification_id,
-    required String otp,
-  }) async {
+  Future<Either<UserFailure, Unit>> OtpIsValid(
+      {required String verification_id, required String otp}) async {
+    final Completer<Either<UserFailure, Unit>> completer = Completer();
     try {
       final PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verification_id,
-        smsCode: '131213',
+        smsCode: otp,
       );
+      print('validacion exitosa');
     } catch (e) {
       print(e.toString() + ' Entendiendo el error');
     }
-  }
-
-  @override
-  Future<Either<UserFailure, Unit>> completeUserRegistration(
-      {required String uuid,
-      required String first_name,
-      required String first_lastname,
-      required PhoneNumber phone_number,
-      required EmailAddress email_address}) async {
-    try {
-      final userDoc = _firebaseFirestore.collection('users').doc(uuid);
-      final userProfile = {
-        'firstName': first_name,
-        'lastName': first_lastname,
-        'phoneNumber': phone_number.getOrCrash(),
-        'email': email_address.getOrCrash(),
-        'createdAt': FieldValue.serverTimestamp(),
-      };
-      await userDoc.set(userProfile);
-      return right(unit);
-    } on FirebaseException catch (e) {
-      print(e.toString());
-      return left(UserFailure.serverError(failedValue: ''));
-    } catch (e) {
-      print(e.toString());
-      return left(UserFailure.serverError(failedValue: ''));
-    }
+    // Investigar
+    return right(unit);
   }
 }

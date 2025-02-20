@@ -51,7 +51,8 @@ class _EmailVerificationPageState extends State<EmailVerificationPage>
   }
 
   void _emailIsVerified() {
-    context.go('/recapchat');
+    //context.go('/recapchat');
+    context.go('/phone_profile');
   }
 
   void _emailIsNotVerified() {

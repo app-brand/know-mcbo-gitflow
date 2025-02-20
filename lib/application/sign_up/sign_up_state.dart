@@ -26,7 +26,7 @@ class SignUpState with _$SignUpState {
         userFailureOrUserSuccess: none(),
         isEmailVerified: false,
         isPhoneVerified: false,
-        // ✅ Valores iniciales de los nuevos campos
+        // ✅ Valores para inicializar en cadena logica.
         firstName: '',
         lastName: '',
         age: '',
