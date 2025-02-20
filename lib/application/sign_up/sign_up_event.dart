@@ -6,10 +6,12 @@ class SignUpEvent with _$SignUpEvent {
   const factory SignUpEvent.started() = _Started;
   const factory SignUpEvent.emailChanged(String email) = _EmailChanged;
   const factory SignUpEvent.passwordChanged(String password) = _PasswordChanged;
+  const factory SignUpEvent.verificationChanged(String verification) = _VerificationChanged;
   const factory SignUpEvent.signUpMail() = _SignUpMail;
   const factory SignUpEvent.mailVerification() = _MailVerification;
+  // ✅  Sms eventos
   const factory SignUpEvent.sendOtp() = _SendOtp;
-  const factory SignUpEvent.verifyOtp() = _SignUpFirestore;
+  const factory SignUpEvent.verifyOtp() = _verifyOtp;
   const factory SignUpEvent.phoneChanged(String phone_numer) = _PhoneChanged;
   // ✅ Nuevos eventos
   const factory SignUpEvent.firstNameChanged(String firstName) =

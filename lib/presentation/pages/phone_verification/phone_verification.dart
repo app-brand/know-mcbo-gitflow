@@ -177,7 +177,9 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
       create: (context) => sl<SignUpBloc>(),
       child: BlocConsumer<SignUpBloc, SignUpState>(
         listener: (context, state) {
-          // Aquí puedes manejar la lógica de errores o éxitos en el envío del OTP.
+          if (state.verificationId.isNotEmpty) {
+            context.go('/otp');
+          }
         },
         builder: (context, state) {
           return Scaffold(

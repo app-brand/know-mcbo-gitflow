@@ -1,15 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:know_my_city/application/facade/interface_user_facade.dart';
-import 'package:know_my_city/domain/core/value_failure.dart';
+import 'package:know_my_city/application/core/interface_user_facade.dart';
 import 'package:know_my_city/domain/user/user_failures.dart';
 import 'package:know_my_city/domain/value_objects/email_address.dart';
 import 'package:know_my_city/domain/value_objects/password.dart';
 import 'package:know_my_city/domain/value_objects/phone_number.dart';
-import 'package:know_my_city/injection.dart';
 
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
@@ -74,7 +71,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           ));
         },
         sendOtp: (e) async {
-          Either<UserFailure, Unit>? failureOrSuccess;
           final isPhoneValid = state.phoneNumber.isValid();
 
           if (isPhoneValid) {
@@ -82,15 +78,30 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
               isSubmitting: true,
               userFailureOrUserSuccess: none(),
             ));
-            failureOrSuccess = await _interfaceUserFacade.sendOneTimePassword(
+            print('Enviando OTP');
+            await _interfaceUserFacade.sendOneTimePassword(
                 phone_number: state.phoneNumber);
             emit(state.copyWith(
               isSubmitting: false,
-              userFailureOrUserSuccess: optionOf(failureOrSuccess),
+              userFailureOrUserSuccess: none(),
             ));
+          } else {
+            print('phone invalid');
           }
         },
-        verifyOtp: (_SignUpFirestore value) {},
+        verifyOtp: (e) async {
+          emit(state.copyWith(
+            isSubmitting: true,
+            userFailureOrUserSuccess: none(),
+          ));
+          print('verificando OTP');
+          await _interfaceUserFacade.phoneNumberVerification(
+              verification_id: state.verificationId, otp: state.smsCode);
+          emit(state.copyWith(
+            isSubmitting: false,
+            userFailureOrUserSuccess: none(),
+          ));
+        },
         phoneChanged: (e) async {
           emit(state.copyWith(
             phoneNumber: PhoneNumber(e.phone_numer),
@@ -118,6 +129,12 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         genderChanged: (e) async {
           emit(state.copyWith(
             gender: e.gender,
+            userFailureOrUserSuccess: none(),
+          ));
+        },
+        verificationChanged: (e) async {
+          emit(state.copyWith(
+            verificationId: e.verification,
             userFailureOrUserSuccess: none(),
           ));
         },

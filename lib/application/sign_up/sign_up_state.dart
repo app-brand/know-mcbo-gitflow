@@ -15,6 +15,8 @@ class SignUpState with _$SignUpState {
     required String age,
     required String gender,
     required PhoneNumber phoneNumber,
+    required String verificationId,
+    required String smsCode,
   }) = _SignUpState;
 
   factory SignUpState.initial() => SignUpState(
@@ -30,5 +32,7 @@ class SignUpState with _$SignUpState {
         age: '',
         gender: 'Masculino', // Valor por defecto
         phoneNumber: PhoneNumber(''),
+        verificationId: '',
+        smsCode: '',
       );
 }
