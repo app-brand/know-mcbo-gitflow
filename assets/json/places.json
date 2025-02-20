@@ -98,5 +98,15 @@
       "hours": "8:00 AM - 8:00 PM",
       "instagram": "@cafeterialugar10",
       "category": "Cafeterías"
-    }
+    },
+    {
+        "id": "lugar_10",
+        "name": "Cafetería Lugar 10",
+        "address": "Calle 10, Maracaibo",
+        "whatsapp": "+58 123 456 7899",
+        "services": ["Café", "Postres", "WiFi"],
+        "hours": "8:00 AM - 8:00 PM",
+        "instagram": "@cafeterialugar10",
+        "category": "Cafeterías"
+      }
   ]
