@@ -69,6 +69,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
               labelText: "Código de 6 dígitos",
               labelStyle: TextStyle(fontSize: 16 * fontScale),
               border: const OutlineInputBorder(),
+              counterText: '', // Oculta el contador de caracteres
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {
