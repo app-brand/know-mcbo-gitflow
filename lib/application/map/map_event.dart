@@ -16,4 +16,9 @@ class MapEvent with _$MapEvent {
   }) = _MapTapped;
   const factory MapEvent.mapStyled(GoogleMapController controller) = _MapStyled;
   const factory MapEvent.centerOnMaracaibo() = _CenterOnMaracaibo;
+  const factory MapEvent.showLowZoomMarkers() = _ShowLowZoomMarkers;
+  const factory MapEvent.showMediumZoomMarkers() = _ShowMediumZoomMarkers;
+  const factory MapEvent.showHighZoomMarkers() = _ShowHighZoomMarkers;
+  const factory MapEvent.showCategory(String category) = _ShowCategory;
+  const factory MapEvent.showPlaceDetails(String placeId, BuildContext context) = _ShowPlaceDetails;
 }
