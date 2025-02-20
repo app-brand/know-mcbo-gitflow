@@ -88,21 +88,6 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       }
     }
   }
-
-  /* @override
-  Future<Either<UserFailure, Unit>> OtpIsValid(
-      {required String verification_id, required String otp})  async {
-    try {
-      final PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: verification_id,
-        smsCode: otp,
-      );
-      print('validacion exitosa');
-    } catch (e) {
-      print(e.toString() + ' Entendiendo el error');
-    }
-  } */
-
   @override
   Future<Either<UserFailure, Unit>> phoneIsValid(
       {required PhoneNumber phone_number}) async {
@@ -135,7 +120,7 @@ class FirebaseUserRepository implements InterfaceUserFacade {
               .complete(left(UserFailure.serverError(failedValue: '')));
         },
       );
-      // Esto debe ser corregido programacion defensiva
+      print('Que pasa aqui - aqui deberia entrar si no retorna nada');
       print(unit.toString());
       return right(unit);
     } on FirebaseAuthException catch (e) {
@@ -153,7 +138,7 @@ class FirebaseUserRepository implements InterfaceUserFacade {
         verificationId: verification_id,
         smsCode: otp,
       );
-      print('validacion exitosa');
+      print('validacion exitosa ' + credential.toString());
     } catch (e) {
       print(e.toString() + ' Entendiendo el error');
     }

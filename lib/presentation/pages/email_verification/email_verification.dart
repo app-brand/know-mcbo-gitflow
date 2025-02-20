@@ -164,15 +164,6 @@ class _EmailVerificationPageState extends State<EmailVerificationPage>
       },
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            title: const Text("Verificación de correo"),
-            leading: IconButton(
-              icon: const Icon(Icons.close),
-              onPressed: () {
-                context.go('/signUp');
-              },
-            ),
-          ),
           body: LayoutBuilder(
             builder: (context, constraints) {
               return Padding(

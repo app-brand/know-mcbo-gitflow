@@ -69,11 +69,6 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
       _signUpBloc.add(SignUpEvent.phoneChanged(fullPhoneNumber));
       // Aqui esta el problema...
       _signUpBloc.add(SignUpEvent.sendOtp());
-      if (_signUpBloc.state.isPhoneVerified == true) {
-        context.go('/otp_verication');
-      } else {
-        print('No hay validacion exitosa - falla llamada');
-      }
     }
   }
 
@@ -175,6 +170,10 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
     }
   }
 
+  void navigateJuan() {
+    context.go('/otpVerification');
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -182,8 +181,14 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
       child: BlocConsumer<SignUpBloc, SignUpState>(
         listener: (context, state) {
           state.userFailureOrUserSuccess.fold(
-              () => {print('Existoso en proceso Envio OTP')},
-              (failure) => {print('Fallo en proceso Envio OTP')});
+              () => {print('No hay envio primer render OTP')},
+              (failure) =>
+                  {print('Fallo en proceso Envio - evento disparado OTP')});
+          if (state.isPhoneVerified == true) {
+            navigateJuan();
+          } else {
+            print('No hay validacion exitosa - falla llamada');
+          }
         },
         builder: (context, state) {
           return Scaffold(
