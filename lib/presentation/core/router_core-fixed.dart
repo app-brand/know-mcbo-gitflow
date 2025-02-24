@@ -6,7 +6,6 @@ import 'package:know_my_city/presentation/pages/phone_verification/phone_verific
 import 'package:know_my_city/presentation/pages/recaptha/recaptcha_validation.dart';
 import 'package:know_my_city/presentation/pages/sign_in/sign_in-page.dart';
 import 'package:know_my_city/presentation/pages/sign_up/sign_up.dart';
-import 'package:know_my_city/presentation/pages/sms_verification/sms_main.dart';
 
 final GoRouter routerCore = GoRouter(
   routes: [
@@ -42,7 +41,7 @@ final GoRouter routerCore = GoRouter(
     GoRoute(
       path: '/otpVerification',
       name: 'otpVerification',
-      builder: (context, state) => const MyOtpScreen(),
+      builder: (context, state) => const OtpVerificationPage(),
     ),
   ],
 );

@@ -76,11 +76,8 @@ flutter:
         - asset: fonts/Poppins-ThinItalic.ttf
         
   assets:
-    - assets/map/map_style.json
-    - assets/alcaldia-de-maracaibo.png
-    - assets/images/banner/Teatro_Baralt.jpg
+    - assets/map/
+    - assets/aux/alcaldia-de-maracaibo.png
     - assets/images/brand/
-    - assets/images/vector/
     - assets/json/      
     - assets/images/markers/
-    - assets/json/places.json

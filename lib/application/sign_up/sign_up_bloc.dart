@@ -93,7 +93,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           userFailureOrUserSuccess: none(),
         ));
         print('verificando OTP');
-        await _interfaceUserFacade.OtpIsValid(
+        await _interfaceUserFacade.otpIsValid(
             verification_id: state.verificationId, otp: state.smsCode);
         emit(state.copyWith(
           isSubmitting: false,

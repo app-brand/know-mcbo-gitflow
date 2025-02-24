@@ -24,7 +24,7 @@ abstract interface class InterfaceUserFacade {
   Future<Either<UserFailure, Unit>> phoneIsValid(
       {required PhoneNumber phone_number});
   // Verifica el OTP
-  Future<Either<UserFailure, Unit>> OtpIsValid({
+  Future<Either<UserFailure, Unit>> otpIsValid({
     required String verification_id,
     required String otp,
   });

@@ -88,6 +88,7 @@ class FirebaseUserRepository implements InterfaceUserFacade {
       }
     }
   }
+
   @override
   Future<Either<UserFailure, Unit>> phoneIsValid(
       {required PhoneNumber phone_number}) async {
@@ -130,9 +131,10 @@ class FirebaseUserRepository implements InterfaceUserFacade {
   }
 
   @override
-  Future<Either<UserFailure, Unit>> OtpIsValid(
+  Future<Either<UserFailure, Unit>> otpIsValid(
       {required String verification_id, required String otp}) async {
     final Completer<Either<UserFailure, Unit>> completer = Completer();
+    print('Validando OTP y verification code $verification_id $otp');
     try {
       final PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verification_id,

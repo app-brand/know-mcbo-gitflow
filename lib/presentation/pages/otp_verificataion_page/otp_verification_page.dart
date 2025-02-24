@@ -38,7 +38,6 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
   void _submitOtp() {
     if (_formKey.currentState!.validate()) {
       final otp = _otpController.text;
-      // Se asume que el evento OTPVerification se define en el blo
       _signUpBloc.add(SignUpEvent.verifyOtp());
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Verificando OTP: $otp")),
@@ -133,7 +132,8 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
             },
             (success) {
               // Si es exitoso, navega a la siguiente página (por ejemplo, perfil telefónico)
-              context.go('/phone_profile');
+              // Show snack-bar
+              context.go('/');
             },
           ),
         );
