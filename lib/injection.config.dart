@@ -43,10 +43,12 @@ extension GetItInjectableX on _i174.GetIt {
               firebaseAuth: gh<_i59.FirebaseAuth>(),
               firebaseFirestore: gh<_i974.FirebaseFirestore>(),
             ));
-    gh.singleton<_i1011.SignUpBloc>(
-        () => _i1011.SignUpBloc(gh<_i134.InterfaceUserFacade>()));
+    gh.singleton<_i11.ProfileBloc>(
+        () => _i11.ProfileBloc(gh<_i2.InterfaceUserFacade>()));
     gh.singleton<_i939.SignInBloc>(
-        () => _i939.SignInBloc(gh<_i134.InterfaceUserFacade>()));
+        () => _i939.SignInBloc(gh<_i2.InterfaceUserFacade>()));
+    gh.singleton<_i1011.SignUpBloc>(
+        () => _i1011.SignUpBloc(gh<_i2.InterfaceUserFacade>()));
     return this;
   }
 }

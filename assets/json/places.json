@@ -1,0 +1,112 @@
+[
+    {
+      "id": "maracaibo",
+      "name": "Cafetería Maracaibo",
+      "address": "Calle 1, Maracaibo",
+      "whatsapp": "+58 123 456 7890",
+      "services": ["Café", "Desayunos", "WiFi"],
+      "hours": "8:00 AM - 8:00 PM",
+      "instagram": "@cafeteriamaracaibo",
+      "category": "Cafeterías"
+    },
+    {
+      "id": "plaza_republica",
+      "name": "Restaurante Plaza República",
+      "address": "Avenida 2, Maracaibo",
+      "whatsapp": "+58 123 456 7891",
+      "services": ["Almuerzos", "Cenas", "WiFi"],
+      "hours": "12:00 PM - 10:00 PM",
+      "instagram": "@plazarepublica",
+      "category": "Restaurantes"
+    },
+    {
+      "id": "costa_verde",
+      "name": "Bar Costa Verde",
+      "address": "Calle 3, Maracaibo",
+      "whatsapp": "+58 123 456 7892",
+      "services": ["Bebidas", "Música en vivo", "WiFi"],
+      "hours": "6:00 PM - 2:00 AM",
+      "instagram": "@barcostaverde",
+      "category": "Bares"
+    },
+    {
+      "id": "kristoff",
+      "name": "Cafetería Kristoff",
+      "address": "Calle 4, Maracaibo",
+      "whatsapp": "+58 123 456 7893",
+      "services": ["Café", "Postres", "WiFi"],
+      "hours": "8:00 AM - 8:00 PM",
+      "instagram": "@cafeteriakristoff",
+      "category": "Cafeterías"
+    },
+    {
+      "id": "punto_medio",
+      "name": "Restaurante Punto Medio",
+      "address": "Avenida 5, Maracaibo",
+      "whatsapp": "+58 123 456 7894",
+      "services": ["Almuerzos", "Cenas", "WiFi"],
+      "hours": "12:00 PM - 10:00 PM",
+      "instagram": "@puntomedio",
+      "category": "Restaurantes"
+    },
+    {
+      "id": "punto_medio_2",
+      "name": "Bar Punto Medio 2",
+      "address": "Calle 6, Maracaibo",
+      "whatsapp": "+58 123 456 7895",
+      "services": ["Bebidas", "Música en vivo", "WiFi"],
+      "hours": "6:00 PM - 2:00 AM",
+      "instagram": "@barpuntomedio2",
+      "category": "Bares"
+    },
+    {
+      "id": "lugar_7",
+      "name": "Cafetería Lugar 7",
+      "address": "Calle 7, Maracaibo",
+      "whatsapp": "+58 123 456 7896",
+      "services": ["Café", "Desayunos", "WiFi"],
+      "hours": "8:00 AM - 8:00 PM",
+      "instagram": "@cafeterialugar7",
+      "category": "Cafeterías"
+    },
+    {
+      "id": "lugar_8",
+      "name": "Restaurante Lugar 8",
+      "address": "Avenida 8, Maracaibo",
+      "whatsapp": "+58 123 456 7897",
+      "services": ["Almuerzos", "Cenas", "WiFi"],
+      "hours": "12:00 PM - 10:00 PM",
+      "instagram": "@restaurante8",
+      "category": "Restaurantes"
+    },
+    {
+      "id": "lugar_9",
+      "name": "Bar Lugar 9",
+      "address": "Calle 9, Maracaibo",
+      "whatsapp": "+58 123 456 7898",
+      "services": ["Bebidas", "Música en vivo", "WiFi"],
+      "hours": "6:00 PM - 2:00 AM",
+      "instagram": "@barlugar9",
+      "category": "Bares"
+    },
+    {
+      "id": "lugar_10",
+      "name": "Cafetería Lugar 10",
+      "address": "Calle 10, Maracaibo",
+      "whatsapp": "+58 123 456 7899",
+      "services": ["Café", "Postres", "WiFi"],
+      "hours": "8:00 AM - 8:00 PM",
+      "instagram": "@cafeterialugar10",
+      "category": "Cafeterías"
+    },
+    {
+        "id": "lugar_10",
+        "name": "Cafetería Lugar 10",
+        "address": "Calle 10, Maracaibo",
+        "whatsapp": "+58 123 456 7899",
+        "services": ["Café", "Postres", "WiFi"],
+        "hours": "8:00 AM - 8:00 PM",
+        "instagram": "@cafeterialugar10",
+        "category": "Cafeterías"
+      }
+  ]
