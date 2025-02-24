@@ -83,5 +83,4 @@ flutter:
     - assets/images/vector/
     - assets/json/      
     - assets/images/markers/
-    - assets/images/banner/
- 
+    - assets/json/places.json

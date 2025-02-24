@@ -14,23 +14,18 @@ abstract interface class InterfaceUserFacade {
     required Password password,
   });
   // Registro de correo y contrasena
-  Future<Either<UserFailure, Unit>> registerWithEmailAndPassword({
+  Future<Either<UserFailure, Unit>> signUpWithMail({
     required EmailAddress emailAddress,
     required Password password,
   });
   // Verificador de correo electronico
   Future<Either<UserFailure, Unit>> verifyIsMailisActive();
-
   // Envia el otp al usuario - validar.
-  Future<Either<UserFailure, Unit>> sendOneTimePassword(
+  Future<Either<UserFailure, Unit>> phoneIsValid(
       {required PhoneNumber phone_number});
-
   // Verifica el OTP
-  Future<Either<UserFailure, Unit>> phoneNumberVerification({
+  Future<Either<UserFailure, Unit>> OtpIsValid({
     required String verification_id,
-    required OneTimePassword otp,
+    required String otp,
   });
-
-  // Pantalla de recapchat
-  Future<bool> verifyRecaptchaAvailable();
 }

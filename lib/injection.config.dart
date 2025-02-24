@@ -15,8 +15,7 @@ import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import 'application/facade/interface_user_facade.dart' as _i2;
-import 'application/profile/profile_bloc.dart' as _i11;
+import 'application/core/interface_user_facade.dart' as _i134;
 import 'application/sign_in/sign_in_bloc.dart' as _i939;
 import 'application/sign_up/sign_up_bloc.dart' as _i1011;
 import 'infrastructure/core/core_module.dart' as _i189;
@@ -39,17 +38,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i59.FirebaseAuth>(() => coreModule.firebaseAuth);
     gh.lazySingleton<_i974.FirebaseFirestore>(() => coreModule.firestore);
     gh.lazySingleton<_i361.Dio>(() => coreModule.dio);
-    gh.lazySingleton<_i2.InterfaceUserFacade>(
+    gh.lazySingleton<_i134.InterfaceUserFacade>(
         () => _i172.FirebaseUserRepository(
               firebaseAuth: gh<_i59.FirebaseAuth>(),
               firebaseFirestore: gh<_i974.FirebaseFirestore>(),
             ));
-    gh.singleton<_i1011.SignUpBloc>(
-        () => _i1011.SignUpBloc(gh<_i2.InterfaceUserFacade>()));
-    gh.singleton<_i939.SignInBloc>(
-        () => _i939.SignInBloc(gh<_i2.InterfaceUserFacade>()));
     gh.singleton<_i11.ProfileBloc>(
         () => _i11.ProfileBloc(gh<_i2.InterfaceUserFacade>()));
+    gh.singleton<_i939.SignInBloc>(
+        () => _i939.SignInBloc(gh<_i2.InterfaceUserFacade>()));
+    gh.singleton<_i1011.SignUpBloc>(
+        () => _i1011.SignUpBloc(gh<_i2.InterfaceUserFacade>()));
     return this;
   }
 }

@@ -1,10 +1,12 @@
 import 'package:go_router/go_router.dart';
 import 'package:know_my_city/presentation/core/home_core-fixed.dart';
 import 'package:know_my_city/presentation/pages/email_verification/email_verification.dart';
+import 'package:know_my_city/presentation/pages/otp_verificataion_page/otp_verification_page.dart';
 import 'package:know_my_city/presentation/pages/phone_verification/phone_verification.dart';
 import 'package:know_my_city/presentation/pages/recaptha/recaptcha_validation.dart';
 import 'package:know_my_city/presentation/pages/sign_in/sign_in-page.dart';
 import 'package:know_my_city/presentation/pages/sign_up/sign_up.dart';
+import 'package:know_my_city/presentation/pages/sms_verification/sms_main.dart';
 
 final GoRouter routerCore = GoRouter(
   routes: [
@@ -36,6 +38,11 @@ final GoRouter routerCore = GoRouter(
       path: '/signUp',
       name: 'signUp',
       builder: (context, state) => const SignUpPage(),
+    ),
+    GoRoute(
+      path: '/otpVerification',
+      name: 'otpVerification',
+      builder: (context, state) => const MyOtpScreen(),
     ),
   ],
 );

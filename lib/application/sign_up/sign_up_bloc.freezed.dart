@@ -21,6 +21,7 @@ mixin _$SignUpEvent {
     required TResult Function() started,
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String verification) verificationChanged,
     required TResult Function() signUpMail,
     required TResult Function() mailVerification,
     required TResult Function() sendOtp,
@@ -30,6 +31,7 @@ mixin _$SignUpEvent {
     required TResult Function(String lastName) lastNameChanged,
     required TResult Function(String age) ageChanged,
     required TResult Function(String gender) genderChanged,
+    required TResult Function(String sms_code) otpChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,6 +39,7 @@ mixin _$SignUpEvent {
     TResult? Function()? started,
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
+    TResult? Function(String verification)? verificationChanged,
     TResult? Function()? signUpMail,
     TResult? Function()? mailVerification,
     TResult? Function()? sendOtp,
@@ -46,6 +49,7 @@ mixin _$SignUpEvent {
     TResult? Function(String lastName)? lastNameChanged,
     TResult? Function(String age)? ageChanged,
     TResult? Function(String gender)? genderChanged,
+    TResult? Function(String sms_code)? otpChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +57,7 @@ mixin _$SignUpEvent {
     TResult Function()? started,
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String verification)? verificationChanged,
     TResult Function()? signUpMail,
     TResult Function()? mailVerification,
     TResult Function()? sendOtp,
@@ -62,6 +67,7 @@ mixin _$SignUpEvent {
     TResult Function(String lastName)? lastNameChanged,
     TResult Function(String age)? ageChanged,
     TResult Function(String gender)? genderChanged,
+    TResult Function(String sms_code)? otpChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -70,15 +76,17 @@ mixin _$SignUpEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_VerificationChanged value) verificationChanged,
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_MailVerification value) mailVerification,
     required TResult Function(_SendOtp value) sendOtp,
-    required TResult Function(_SignUpFirestore value) verifyOtp,
+    required TResult Function(_verifyOtp value) verifyOtp,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_FirstNameChanged value) firstNameChanged,
     required TResult Function(_LastNameChanged value) lastNameChanged,
     required TResult Function(_AgeChanged value) ageChanged,
     required TResult Function(_GenderChanged value) genderChanged,
+    required TResult Function(_SmsChanged value) otpChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -86,15 +94,17 @@ mixin _$SignUpEvent {
     TResult? Function(_Started value)? started,
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_VerificationChanged value)? verificationChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_MailVerification value)? mailVerification,
     TResult? Function(_SendOtp value)? sendOtp,
-    TResult? Function(_SignUpFirestore value)? verifyOtp,
+    TResult? Function(_verifyOtp value)? verifyOtp,
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_FirstNameChanged value)? firstNameChanged,
     TResult? Function(_LastNameChanged value)? lastNameChanged,
     TResult? Function(_AgeChanged value)? ageChanged,
     TResult? Function(_GenderChanged value)? genderChanged,
+    TResult? Function(_SmsChanged value)? otpChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -102,15 +112,17 @@ mixin _$SignUpEvent {
     TResult Function(_Started value)? started,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_VerificationChanged value)? verificationChanged,
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_MailVerification value)? mailVerification,
     TResult Function(_SendOtp value)? sendOtp,
-    TResult Function(_SignUpFirestore value)? verifyOtp,
+    TResult Function(_verifyOtp value)? verifyOtp,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_FirstNameChanged value)? firstNameChanged,
     TResult Function(_LastNameChanged value)? lastNameChanged,
     TResult Function(_AgeChanged value)? ageChanged,
     TResult Function(_GenderChanged value)? genderChanged,
+    TResult Function(_SmsChanged value)? otpChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -181,6 +193,7 @@ class _$StartedImpl implements _Started {
     required TResult Function() started,
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String verification) verificationChanged,
     required TResult Function() signUpMail,
     required TResult Function() mailVerification,
     required TResult Function() sendOtp,
@@ -190,6 +203,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(String lastName) lastNameChanged,
     required TResult Function(String age) ageChanged,
     required TResult Function(String gender) genderChanged,
+    required TResult Function(String sms_code) otpChanged,
   }) {
     return started();
   }
@@ -200,6 +214,7 @@ class _$StartedImpl implements _Started {
     TResult? Function()? started,
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
+    TResult? Function(String verification)? verificationChanged,
     TResult? Function()? signUpMail,
     TResult? Function()? mailVerification,
     TResult? Function()? sendOtp,
@@ -209,6 +224,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(String lastName)? lastNameChanged,
     TResult? Function(String age)? ageChanged,
     TResult? Function(String gender)? genderChanged,
+    TResult? Function(String sms_code)? otpChanged,
   }) {
     return started?.call();
   }
@@ -219,6 +235,7 @@ class _$StartedImpl implements _Started {
     TResult Function()? started,
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String verification)? verificationChanged,
     TResult Function()? signUpMail,
     TResult Function()? mailVerification,
     TResult Function()? sendOtp,
@@ -228,6 +245,7 @@ class _$StartedImpl implements _Started {
     TResult Function(String lastName)? lastNameChanged,
     TResult Function(String age)? ageChanged,
     TResult Function(String gender)? genderChanged,
+    TResult Function(String sms_code)? otpChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -242,15 +260,17 @@ class _$StartedImpl implements _Started {
     required TResult Function(_Started value) started,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_VerificationChanged value) verificationChanged,
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_MailVerification value) mailVerification,
     required TResult Function(_SendOtp value) sendOtp,
-    required TResult Function(_SignUpFirestore value) verifyOtp,
+    required TResult Function(_verifyOtp value) verifyOtp,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_FirstNameChanged value) firstNameChanged,
     required TResult Function(_LastNameChanged value) lastNameChanged,
     required TResult Function(_AgeChanged value) ageChanged,
     required TResult Function(_GenderChanged value) genderChanged,
+    required TResult Function(_SmsChanged value) otpChanged,
   }) {
     return started(this);
   }
@@ -261,15 +281,17 @@ class _$StartedImpl implements _Started {
     TResult? Function(_Started value)? started,
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_VerificationChanged value)? verificationChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_MailVerification value)? mailVerification,
     TResult? Function(_SendOtp value)? sendOtp,
-    TResult? Function(_SignUpFirestore value)? verifyOtp,
+    TResult? Function(_verifyOtp value)? verifyOtp,
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_FirstNameChanged value)? firstNameChanged,
     TResult? Function(_LastNameChanged value)? lastNameChanged,
     TResult? Function(_AgeChanged value)? ageChanged,
     TResult? Function(_GenderChanged value)? genderChanged,
+    TResult? Function(_SmsChanged value)? otpChanged,
   }) {
     return started?.call(this);
   }
@@ -280,15 +302,17 @@ class _$StartedImpl implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_VerificationChanged value)? verificationChanged,
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_MailVerification value)? mailVerification,
     TResult Function(_SendOtp value)? sendOtp,
-    TResult Function(_SignUpFirestore value)? verifyOtp,
+    TResult Function(_verifyOtp value)? verifyOtp,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_FirstNameChanged value)? firstNameChanged,
     TResult Function(_LastNameChanged value)? lastNameChanged,
     TResult Function(_AgeChanged value)? ageChanged,
     TResult Function(_GenderChanged value)? genderChanged,
+    TResult Function(_SmsChanged value)? otpChanged,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -373,6 +397,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     required TResult Function() started,
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String verification) verificationChanged,
     required TResult Function() signUpMail,
     required TResult Function() mailVerification,
     required TResult Function() sendOtp,
@@ -382,6 +407,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     required TResult Function(String lastName) lastNameChanged,
     required TResult Function(String age) ageChanged,
     required TResult Function(String gender) genderChanged,
+    required TResult Function(String sms_code) otpChanged,
   }) {
     return emailChanged(email);
   }
@@ -392,6 +418,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult? Function()? started,
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
+    TResult? Function(String verification)? verificationChanged,
     TResult? Function()? signUpMail,
     TResult? Function()? mailVerification,
     TResult? Function()? sendOtp,
@@ -401,6 +428,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult? Function(String lastName)? lastNameChanged,
     TResult? Function(String age)? ageChanged,
     TResult? Function(String gender)? genderChanged,
+    TResult? Function(String sms_code)? otpChanged,
   }) {
     return emailChanged?.call(email);
   }
@@ -411,6 +439,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult Function()? started,
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String verification)? verificationChanged,
     TResult Function()? signUpMail,
     TResult Function()? mailVerification,
     TResult Function()? sendOtp,
@@ -420,6 +449,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult Function(String lastName)? lastNameChanged,
     TResult Function(String age)? ageChanged,
     TResult Function(String gender)? genderChanged,
+    TResult Function(String sms_code)? otpChanged,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -434,15 +464,17 @@ class _$EmailChangedImpl implements _EmailChanged {
     required TResult Function(_Started value) started,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_VerificationChanged value) verificationChanged,
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_MailVerification value) mailVerification,
     required TResult Function(_SendOtp value) sendOtp,
-    required TResult Function(_SignUpFirestore value) verifyOtp,
+    required TResult Function(_verifyOtp value) verifyOtp,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_FirstNameChanged value) firstNameChanged,
     required TResult Function(_LastNameChanged value) lastNameChanged,
     required TResult Function(_AgeChanged value) ageChanged,
     required TResult Function(_GenderChanged value) genderChanged,
+    required TResult Function(_SmsChanged value) otpChanged,
   }) {
     return emailChanged(this);
   }
@@ -453,15 +485,17 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult? Function(_Started value)? started,
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_VerificationChanged value)? verificationChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_MailVerification value)? mailVerification,
     TResult? Function(_SendOtp value)? sendOtp,
-    TResult? Function(_SignUpFirestore value)? verifyOtp,
+    TResult? Function(_verifyOtp value)? verifyOtp,
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_FirstNameChanged value)? firstNameChanged,
     TResult? Function(_LastNameChanged value)? lastNameChanged,
     TResult? Function(_AgeChanged value)? ageChanged,
     TResult? Function(_GenderChanged value)? genderChanged,
+    TResult? Function(_SmsChanged value)? otpChanged,
   }) {
     return emailChanged?.call(this);
   }
@@ -472,15 +506,17 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult Function(_Started value)? started,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_VerificationChanged value)? verificationChanged,
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_MailVerification value)? mailVerification,
     TResult Function(_SendOtp value)? sendOtp,
-    TResult Function(_SignUpFirestore value)? verifyOtp,
+    TResult Function(_verifyOtp value)? verifyOtp,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_FirstNameChanged value)? firstNameChanged,
     TResult Function(_LastNameChanged value)? lastNameChanged,
     TResult Function(_AgeChanged value)? ageChanged,
     TResult Function(_GenderChanged value)? genderChanged,
+    TResult Function(_SmsChanged value)? otpChanged,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -575,6 +611,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     required TResult Function() started,
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String verification) verificationChanged,
     required TResult Function() signUpMail,
     required TResult Function() mailVerification,
     required TResult Function() sendOtp,
@@ -584,6 +621,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     required TResult Function(String lastName) lastNameChanged,
     required TResult Function(String age) ageChanged,
     required TResult Function(String gender) genderChanged,
+    required TResult Function(String sms_code) otpChanged,
   }) {
     return passwordChanged(password);
   }
@@ -594,6 +632,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult? Function()? started,
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
+    TResult? Function(String verification)? verificationChanged,
     TResult? Function()? signUpMail,
     TResult? Function()? mailVerification,
     TResult? Function()? sendOtp,
@@ -603,6 +642,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult? Function(String lastName)? lastNameChanged,
     TResult? Function(String age)? ageChanged,
     TResult? Function(String gender)? genderChanged,
+    TResult? Function(String sms_code)? otpChanged,
   }) {
     return passwordChanged?.call(password);
   }
@@ -613,6 +653,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult Function()? started,
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String verification)? verificationChanged,
     TResult Function()? signUpMail,
     TResult Function()? mailVerification,
     TResult Function()? sendOtp,
@@ -622,6 +663,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult Function(String lastName)? lastNameChanged,
     TResult Function(String age)? ageChanged,
     TResult Function(String gender)? genderChanged,
+    TResult Function(String sms_code)? otpChanged,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -636,15 +678,17 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     required TResult Function(_Started value) started,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_VerificationChanged value) verificationChanged,
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_MailVerification value) mailVerification,
     required TResult Function(_SendOtp value) sendOtp,
-    required TResult Function(_SignUpFirestore value) verifyOtp,
+    required TResult Function(_verifyOtp value) verifyOtp,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_FirstNameChanged value) firstNameChanged,
     required TResult Function(_LastNameChanged value) lastNameChanged,
     required TResult Function(_AgeChanged value) ageChanged,
     required TResult Function(_GenderChanged value) genderChanged,
+    required TResult Function(_SmsChanged value) otpChanged,
   }) {
     return passwordChanged(this);
   }
@@ -655,15 +699,17 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult? Function(_Started value)? started,
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_VerificationChanged value)? verificationChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_MailVerification value)? mailVerification,
     TResult? Function(_SendOtp value)? sendOtp,
-    TResult? Function(_SignUpFirestore value)? verifyOtp,
+    TResult? Function(_verifyOtp value)? verifyOtp,
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_FirstNameChanged value)? firstNameChanged,
     TResult? Function(_LastNameChanged value)? lastNameChanged,
     TResult? Function(_AgeChanged value)? ageChanged,
     TResult? Function(_GenderChanged value)? genderChanged,
+    TResult? Function(_SmsChanged value)? otpChanged,
   }) {
     return passwordChanged?.call(this);
   }
@@ -674,15 +720,17 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult Function(_Started value)? started,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_VerificationChanged value)? verificationChanged,
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_MailVerification value)? mailVerification,
     TResult Function(_SendOtp value)? sendOtp,
-    TResult Function(_SignUpFirestore value)? verifyOtp,
+    TResult Function(_verifyOtp value)? verifyOtp,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_FirstNameChanged value)? firstNameChanged,
     TResult Function(_LastNameChanged value)? lastNameChanged,
     TResult Function(_AgeChanged value)? ageChanged,
     TResult Function(_GenderChanged value)? genderChanged,
+    TResult Function(_SmsChanged value)? otpChanged,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -701,6 +749,221 @@ abstract class _PasswordChanged implements SignUpEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PasswordChangedImplCopyWith<_$PasswordChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$VerificationChangedImplCopyWith<$Res> {
+  factory _$$VerificationChangedImplCopyWith(_$VerificationChangedImpl value,
+          $Res Function(_$VerificationChangedImpl) then) =
+      __$$VerificationChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String verification});
+}
+
+/// @nodoc
+class __$$VerificationChangedImplCopyWithImpl<$Res>
+    extends _$SignUpEventCopyWithImpl<$Res, _$VerificationChangedImpl>
+    implements _$$VerificationChangedImplCopyWith<$Res> {
+  __$$VerificationChangedImplCopyWithImpl(_$VerificationChangedImpl _value,
+      $Res Function(_$VerificationChangedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SignUpEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? verification = null,
+  }) {
+    return _then(_$VerificationChangedImpl(
+      null == verification
+          ? _value.verification
+          : verification // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$VerificationChangedImpl implements _VerificationChanged {
+  const _$VerificationChangedImpl(this.verification);
+
+  @override
+  final String verification;
+
+  @override
+  String toString() {
+    return 'SignUpEvent.verificationChanged(verification: $verification)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$VerificationChangedImpl &&
+            (identical(other.verification, verification) ||
+                other.verification == verification));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, verification);
+
+  /// Create a copy of SignUpEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$VerificationChangedImplCopyWith<_$VerificationChangedImpl> get copyWith =>
+      __$$VerificationChangedImplCopyWithImpl<_$VerificationChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String email) emailChanged,
+    required TResult Function(String password) passwordChanged,
+    required TResult Function(String verification) verificationChanged,
+    required TResult Function() signUpMail,
+    required TResult Function() mailVerification,
+    required TResult Function() sendOtp,
+    required TResult Function() verifyOtp,
+    required TResult Function(String phone_numer) phoneChanged,
+    required TResult Function(String firstName) firstNameChanged,
+    required TResult Function(String lastName) lastNameChanged,
+    required TResult Function(String age) ageChanged,
+    required TResult Function(String gender) genderChanged,
+    required TResult Function(String sms_code) otpChanged,
+  }) {
+    return verificationChanged(verification);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String email)? emailChanged,
+    TResult? Function(String password)? passwordChanged,
+    TResult? Function(String verification)? verificationChanged,
+    TResult? Function()? signUpMail,
+    TResult? Function()? mailVerification,
+    TResult? Function()? sendOtp,
+    TResult? Function()? verifyOtp,
+    TResult? Function(String phone_numer)? phoneChanged,
+    TResult? Function(String firstName)? firstNameChanged,
+    TResult? Function(String lastName)? lastNameChanged,
+    TResult? Function(String age)? ageChanged,
+    TResult? Function(String gender)? genderChanged,
+    TResult? Function(String sms_code)? otpChanged,
+  }) {
+    return verificationChanged?.call(verification);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String email)? emailChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function(String verification)? verificationChanged,
+    TResult Function()? signUpMail,
+    TResult Function()? mailVerification,
+    TResult Function()? sendOtp,
+    TResult Function()? verifyOtp,
+    TResult Function(String phone_numer)? phoneChanged,
+    TResult Function(String firstName)? firstNameChanged,
+    TResult Function(String lastName)? lastNameChanged,
+    TResult Function(String age)? ageChanged,
+    TResult Function(String gender)? genderChanged,
+    TResult Function(String sms_code)? otpChanged,
+    required TResult orElse(),
+  }) {
+    if (verificationChanged != null) {
+      return verificationChanged(verification);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_VerificationChanged value) verificationChanged,
+    required TResult Function(_SignUpMail value) signUpMail,
+    required TResult Function(_MailVerification value) mailVerification,
+    required TResult Function(_SendOtp value) sendOtp,
+    required TResult Function(_verifyOtp value) verifyOtp,
+    required TResult Function(_PhoneChanged value) phoneChanged,
+    required TResult Function(_FirstNameChanged value) firstNameChanged,
+    required TResult Function(_LastNameChanged value) lastNameChanged,
+    required TResult Function(_AgeChanged value) ageChanged,
+    required TResult Function(_GenderChanged value) genderChanged,
+    required TResult Function(_SmsChanged value) otpChanged,
+  }) {
+    return verificationChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_EmailChanged value)? emailChanged,
+    TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_VerificationChanged value)? verificationChanged,
+    TResult? Function(_SignUpMail value)? signUpMail,
+    TResult? Function(_MailVerification value)? mailVerification,
+    TResult? Function(_SendOtp value)? sendOtp,
+    TResult? Function(_verifyOtp value)? verifyOtp,
+    TResult? Function(_PhoneChanged value)? phoneChanged,
+    TResult? Function(_FirstNameChanged value)? firstNameChanged,
+    TResult? Function(_LastNameChanged value)? lastNameChanged,
+    TResult? Function(_AgeChanged value)? ageChanged,
+    TResult? Function(_GenderChanged value)? genderChanged,
+    TResult? Function(_SmsChanged value)? otpChanged,
+  }) {
+    return verificationChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_VerificationChanged value)? verificationChanged,
+    TResult Function(_SignUpMail value)? signUpMail,
+    TResult Function(_MailVerification value)? mailVerification,
+    TResult Function(_SendOtp value)? sendOtp,
+    TResult Function(_verifyOtp value)? verifyOtp,
+    TResult Function(_PhoneChanged value)? phoneChanged,
+    TResult Function(_FirstNameChanged value)? firstNameChanged,
+    TResult Function(_LastNameChanged value)? lastNameChanged,
+    TResult Function(_AgeChanged value)? ageChanged,
+    TResult Function(_GenderChanged value)? genderChanged,
+    TResult Function(_SmsChanged value)? otpChanged,
+    required TResult orElse(),
+  }) {
+    if (verificationChanged != null) {
+      return verificationChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _VerificationChanged implements SignUpEvent {
+  const factory _VerificationChanged(final String verification) =
+      _$VerificationChangedImpl;
+
+  String get verification;
+
+  /// Create a copy of SignUpEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$VerificationChangedImplCopyWith<_$VerificationChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -748,6 +1011,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     required TResult Function() started,
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String verification) verificationChanged,
     required TResult Function() signUpMail,
     required TResult Function() mailVerification,
     required TResult Function() sendOtp,
@@ -757,6 +1021,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     required TResult Function(String lastName) lastNameChanged,
     required TResult Function(String age) ageChanged,
     required TResult Function(String gender) genderChanged,
+    required TResult Function(String sms_code) otpChanged,
   }) {
     return signUpMail();
   }
@@ -767,6 +1032,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     TResult? Function()? started,
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
+    TResult? Function(String verification)? verificationChanged,
     TResult? Function()? signUpMail,
     TResult? Function()? mailVerification,
     TResult? Function()? sendOtp,
@@ -776,6 +1042,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     TResult? Function(String lastName)? lastNameChanged,
     TResult? Function(String age)? ageChanged,
     TResult? Function(String gender)? genderChanged,
+    TResult? Function(String sms_code)? otpChanged,
   }) {
     return signUpMail?.call();
   }
@@ -786,6 +1053,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     TResult Function()? started,
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String verification)? verificationChanged,
     TResult Function()? signUpMail,
     TResult Function()? mailVerification,
     TResult Function()? sendOtp,
@@ -795,6 +1063,7 @@ class _$SignUpMailImpl implements _SignUpMail {
     TResult Function(String lastName)? lastNameChanged,
     TResult Function(String age)? ageChanged,
     TResult Function(String gender)? genderChanged,
+    TResult Function(String sms_code)? otpChanged,
     required TResult orElse(),
   }) {
     if (signUpMail != null) {
@@ -809,15 +1078,17 @@ class _$SignUpMailImpl implements _SignUpMail {
     required TResult Function(_Started value) started,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_VerificationChanged value) verificationChanged,
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_MailVerification value) mailVerification,
     required TResult Function(_SendOtp value) sendOtp,
-    required TResult Function(_SignUpFirestore value) verifyOtp,
+    required TResult Function(_verifyOtp value) verifyOtp,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_FirstNameChanged value) firstNameChanged,
     required TResult Function(_LastNameChanged value) lastNameChanged,
     required TResult Function(_AgeChanged value) ageChanged,
     required TResult Function(_GenderChanged value) genderChanged,
+    required TResult Function(_SmsChanged value) otpChanged,
   }) {
     return signUpMail(this);
   }
@@ -828,15 +1099,17 @@ class _$SignUpMailImpl implements _SignUpMail {
     TResult? Function(_Started value)? started,
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_VerificationChanged value)? verificationChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_MailVerification value)? mailVerification,
     TResult? Function(_SendOtp value)? sendOtp,
-    TResult? Function(_SignUpFirestore value)? verifyOtp,
+    TResult? Function(_verifyOtp value)? verifyOtp,
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_FirstNameChanged value)? firstNameChanged,
     TResult? Function(_LastNameChanged value)? lastNameChanged,
     TResult? Function(_AgeChanged value)? ageChanged,
     TResult? Function(_GenderChanged value)? genderChanged,
+    TResult? Function(_SmsChanged value)? otpChanged,
   }) {
     return signUpMail?.call(this);
   }
@@ -847,15 +1120,17 @@ class _$SignUpMailImpl implements _SignUpMail {
     TResult Function(_Started value)? started,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_VerificationChanged value)? verificationChanged,
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_MailVerification value)? mailVerification,
     TResult Function(_SendOtp value)? sendOtp,
-    TResult Function(_SignUpFirestore value)? verifyOtp,
+    TResult Function(_verifyOtp value)? verifyOtp,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_FirstNameChanged value)? firstNameChanged,
     TResult Function(_LastNameChanged value)? lastNameChanged,
     TResult Function(_AgeChanged value)? ageChanged,
     TResult Function(_GenderChanged value)? genderChanged,
+    TResult Function(_SmsChanged value)? otpChanged,
     required TResult orElse(),
   }) {
     if (signUpMail != null) {
@@ -913,6 +1188,7 @@ class _$MailVerificationImpl implements _MailVerification {
     required TResult Function() started,
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String verification) verificationChanged,
     required TResult Function() signUpMail,
     required TResult Function() mailVerification,
     required TResult Function() sendOtp,
@@ -922,6 +1198,7 @@ class _$MailVerificationImpl implements _MailVerification {
     required TResult Function(String lastName) lastNameChanged,
     required TResult Function(String age) ageChanged,
     required TResult Function(String gender) genderChanged,
+    required TResult Function(String sms_code) otpChanged,
   }) {
     return mailVerification();
   }
@@ -932,6 +1209,7 @@ class _$MailVerificationImpl implements _MailVerification {
     TResult? Function()? started,
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
+    TResult? Function(String verification)? verificationChanged,
     TResult? Function()? signUpMail,
     TResult? Function()? mailVerification,
     TResult? Function()? sendOtp,
@@ -941,6 +1219,7 @@ class _$MailVerificationImpl implements _MailVerification {
     TResult? Function(String lastName)? lastNameChanged,
     TResult? Function(String age)? ageChanged,
     TResult? Function(String gender)? genderChanged,
+    TResult? Function(String sms_code)? otpChanged,
   }) {
     return mailVerification?.call();
   }
@@ -951,6 +1230,7 @@ class _$MailVerificationImpl implements _MailVerification {
     TResult Function()? started,
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String verification)? verificationChanged,
     TResult Function()? signUpMail,
     TResult Function()? mailVerification,
     TResult Function()? sendOtp,
@@ -960,6 +1240,7 @@ class _$MailVerificationImpl implements _MailVerification {
     TResult Function(String lastName)? lastNameChanged,
     TResult Function(String age)? ageChanged,
     TResult Function(String gender)? genderChanged,
+    TResult Function(String sms_code)? otpChanged,
     required TResult orElse(),
   }) {
     if (mailVerification != null) {
@@ -974,15 +1255,17 @@ class _$MailVerificationImpl implements _MailVerification {
     required TResult Function(_Started value) started,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_VerificationChanged value) verificationChanged,
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_MailVerification value) mailVerification,
     required TResult Function(_SendOtp value) sendOtp,
-    required TResult Function(_SignUpFirestore value) verifyOtp,
+    required TResult Function(_verifyOtp value) verifyOtp,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_FirstNameChanged value) firstNameChanged,
     required TResult Function(_LastNameChanged value) lastNameChanged,
     required TResult Function(_AgeChanged value) ageChanged,
     required TResult Function(_GenderChanged value) genderChanged,
+    required TResult Function(_SmsChanged value) otpChanged,
   }) {
     return mailVerification(this);
   }
@@ -993,15 +1276,17 @@ class _$MailVerificationImpl implements _MailVerification {
     TResult? Function(_Started value)? started,
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_VerificationChanged value)? verificationChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_MailVerification value)? mailVerification,
     TResult? Function(_SendOtp value)? sendOtp,
-    TResult? Function(_SignUpFirestore value)? verifyOtp,
+    TResult? Function(_verifyOtp value)? verifyOtp,
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_FirstNameChanged value)? firstNameChanged,
     TResult? Function(_LastNameChanged value)? lastNameChanged,
     TResult? Function(_AgeChanged value)? ageChanged,
     TResult? Function(_GenderChanged value)? genderChanged,
+    TResult? Function(_SmsChanged value)? otpChanged,
   }) {
     return mailVerification?.call(this);
   }
@@ -1012,15 +1297,17 @@ class _$MailVerificationImpl implements _MailVerification {
     TResult Function(_Started value)? started,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_VerificationChanged value)? verificationChanged,
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_MailVerification value)? mailVerification,
     TResult Function(_SendOtp value)? sendOtp,
-    TResult Function(_SignUpFirestore value)? verifyOtp,
+    TResult Function(_verifyOtp value)? verifyOtp,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_FirstNameChanged value)? firstNameChanged,
     TResult Function(_LastNameChanged value)? lastNameChanged,
     TResult Function(_AgeChanged value)? ageChanged,
     TResult Function(_GenderChanged value)? genderChanged,
+    TResult Function(_SmsChanged value)? otpChanged,
     required TResult orElse(),
   }) {
     if (mailVerification != null) {
@@ -1078,6 +1365,7 @@ class _$SendOtpImpl implements _SendOtp {
     required TResult Function() started,
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String verification) verificationChanged,
     required TResult Function() signUpMail,
     required TResult Function() mailVerification,
     required TResult Function() sendOtp,
@@ -1087,6 +1375,7 @@ class _$SendOtpImpl implements _SendOtp {
     required TResult Function(String lastName) lastNameChanged,
     required TResult Function(String age) ageChanged,
     required TResult Function(String gender) genderChanged,
+    required TResult Function(String sms_code) otpChanged,
   }) {
     return sendOtp();
   }
@@ -1097,6 +1386,7 @@ class _$SendOtpImpl implements _SendOtp {
     TResult? Function()? started,
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
+    TResult? Function(String verification)? verificationChanged,
     TResult? Function()? signUpMail,
     TResult? Function()? mailVerification,
     TResult? Function()? sendOtp,
@@ -1106,6 +1396,7 @@ class _$SendOtpImpl implements _SendOtp {
     TResult? Function(String lastName)? lastNameChanged,
     TResult? Function(String age)? ageChanged,
     TResult? Function(String gender)? genderChanged,
+    TResult? Function(String sms_code)? otpChanged,
   }) {
     return sendOtp?.call();
   }
@@ -1116,6 +1407,7 @@ class _$SendOtpImpl implements _SendOtp {
     TResult Function()? started,
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String verification)? verificationChanged,
     TResult Function()? signUpMail,
     TResult Function()? mailVerification,
     TResult Function()? sendOtp,
@@ -1125,6 +1417,7 @@ class _$SendOtpImpl implements _SendOtp {
     TResult Function(String lastName)? lastNameChanged,
     TResult Function(String age)? ageChanged,
     TResult Function(String gender)? genderChanged,
+    TResult Function(String sms_code)? otpChanged,
     required TResult orElse(),
   }) {
     if (sendOtp != null) {
@@ -1139,15 +1432,17 @@ class _$SendOtpImpl implements _SendOtp {
     required TResult Function(_Started value) started,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_VerificationChanged value) verificationChanged,
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_MailVerification value) mailVerification,
     required TResult Function(_SendOtp value) sendOtp,
-    required TResult Function(_SignUpFirestore value) verifyOtp,
+    required TResult Function(_verifyOtp value) verifyOtp,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_FirstNameChanged value) firstNameChanged,
     required TResult Function(_LastNameChanged value) lastNameChanged,
     required TResult Function(_AgeChanged value) ageChanged,
     required TResult Function(_GenderChanged value) genderChanged,
+    required TResult Function(_SmsChanged value) otpChanged,
   }) {
     return sendOtp(this);
   }
@@ -1158,15 +1453,17 @@ class _$SendOtpImpl implements _SendOtp {
     TResult? Function(_Started value)? started,
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_VerificationChanged value)? verificationChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_MailVerification value)? mailVerification,
     TResult? Function(_SendOtp value)? sendOtp,
-    TResult? Function(_SignUpFirestore value)? verifyOtp,
+    TResult? Function(_verifyOtp value)? verifyOtp,
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_FirstNameChanged value)? firstNameChanged,
     TResult? Function(_LastNameChanged value)? lastNameChanged,
     TResult? Function(_AgeChanged value)? ageChanged,
     TResult? Function(_GenderChanged value)? genderChanged,
+    TResult? Function(_SmsChanged value)? otpChanged,
   }) {
     return sendOtp?.call(this);
   }
@@ -1177,15 +1474,17 @@ class _$SendOtpImpl implements _SendOtp {
     TResult Function(_Started value)? started,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_VerificationChanged value)? verificationChanged,
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_MailVerification value)? mailVerification,
     TResult Function(_SendOtp value)? sendOtp,
-    TResult Function(_SignUpFirestore value)? verifyOtp,
+    TResult Function(_verifyOtp value)? verifyOtp,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_FirstNameChanged value)? firstNameChanged,
     TResult Function(_LastNameChanged value)? lastNameChanged,
     TResult Function(_AgeChanged value)? ageChanged,
     TResult Function(_GenderChanged value)? genderChanged,
+    TResult Function(_SmsChanged value)? otpChanged,
     required TResult orElse(),
   }) {
     if (sendOtp != null) {
@@ -1200,18 +1499,18 @@ abstract class _SendOtp implements SignUpEvent {
 }
 
 /// @nodoc
-abstract class _$$SignUpFirestoreImplCopyWith<$Res> {
-  factory _$$SignUpFirestoreImplCopyWith(_$SignUpFirestoreImpl value,
-          $Res Function(_$SignUpFirestoreImpl) then) =
-      __$$SignUpFirestoreImplCopyWithImpl<$Res>;
+abstract class _$$verifyOtpImplCopyWith<$Res> {
+  factory _$$verifyOtpImplCopyWith(
+          _$verifyOtpImpl value, $Res Function(_$verifyOtpImpl) then) =
+      __$$verifyOtpImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SignUpFirestoreImplCopyWithImpl<$Res>
-    extends _$SignUpEventCopyWithImpl<$Res, _$SignUpFirestoreImpl>
-    implements _$$SignUpFirestoreImplCopyWith<$Res> {
-  __$$SignUpFirestoreImplCopyWithImpl(
-      _$SignUpFirestoreImpl _value, $Res Function(_$SignUpFirestoreImpl) _then)
+class __$$verifyOtpImplCopyWithImpl<$Res>
+    extends _$SignUpEventCopyWithImpl<$Res, _$verifyOtpImpl>
+    implements _$$verifyOtpImplCopyWith<$Res> {
+  __$$verifyOtpImplCopyWithImpl(
+      _$verifyOtpImpl _value, $Res Function(_$verifyOtpImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SignUpEvent
@@ -1220,8 +1519,8 @@ class __$$SignUpFirestoreImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SignUpFirestoreImpl implements _SignUpFirestore {
-  const _$SignUpFirestoreImpl();
+class _$verifyOtpImpl implements _verifyOtp {
+  const _$verifyOtpImpl();
 
   @override
   String toString() {
@@ -1231,7 +1530,7 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SignUpFirestoreImpl);
+        (other.runtimeType == runtimeType && other is _$verifyOtpImpl);
   }
 
   @override
@@ -1243,6 +1542,7 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
     required TResult Function() started,
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String verification) verificationChanged,
     required TResult Function() signUpMail,
     required TResult Function() mailVerification,
     required TResult Function() sendOtp,
@@ -1252,6 +1552,7 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
     required TResult Function(String lastName) lastNameChanged,
     required TResult Function(String age) ageChanged,
     required TResult Function(String gender) genderChanged,
+    required TResult Function(String sms_code) otpChanged,
   }) {
     return verifyOtp();
   }
@@ -1262,6 +1563,7 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
     TResult? Function()? started,
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
+    TResult? Function(String verification)? verificationChanged,
     TResult? Function()? signUpMail,
     TResult? Function()? mailVerification,
     TResult? Function()? sendOtp,
@@ -1271,6 +1573,7 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
     TResult? Function(String lastName)? lastNameChanged,
     TResult? Function(String age)? ageChanged,
     TResult? Function(String gender)? genderChanged,
+    TResult? Function(String sms_code)? otpChanged,
   }) {
     return verifyOtp?.call();
   }
@@ -1281,6 +1584,7 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
     TResult Function()? started,
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String verification)? verificationChanged,
     TResult Function()? signUpMail,
     TResult Function()? mailVerification,
     TResult Function()? sendOtp,
@@ -1290,6 +1594,7 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
     TResult Function(String lastName)? lastNameChanged,
     TResult Function(String age)? ageChanged,
     TResult Function(String gender)? genderChanged,
+    TResult Function(String sms_code)? otpChanged,
     required TResult orElse(),
   }) {
     if (verifyOtp != null) {
@@ -1304,15 +1609,17 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
     required TResult Function(_Started value) started,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_VerificationChanged value) verificationChanged,
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_MailVerification value) mailVerification,
     required TResult Function(_SendOtp value) sendOtp,
-    required TResult Function(_SignUpFirestore value) verifyOtp,
+    required TResult Function(_verifyOtp value) verifyOtp,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_FirstNameChanged value) firstNameChanged,
     required TResult Function(_LastNameChanged value) lastNameChanged,
     required TResult Function(_AgeChanged value) ageChanged,
     required TResult Function(_GenderChanged value) genderChanged,
+    required TResult Function(_SmsChanged value) otpChanged,
   }) {
     return verifyOtp(this);
   }
@@ -1323,15 +1630,17 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
     TResult? Function(_Started value)? started,
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_VerificationChanged value)? verificationChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_MailVerification value)? mailVerification,
     TResult? Function(_SendOtp value)? sendOtp,
-    TResult? Function(_SignUpFirestore value)? verifyOtp,
+    TResult? Function(_verifyOtp value)? verifyOtp,
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_FirstNameChanged value)? firstNameChanged,
     TResult? Function(_LastNameChanged value)? lastNameChanged,
     TResult? Function(_AgeChanged value)? ageChanged,
     TResult? Function(_GenderChanged value)? genderChanged,
+    TResult? Function(_SmsChanged value)? otpChanged,
   }) {
     return verifyOtp?.call(this);
   }
@@ -1342,15 +1651,17 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
     TResult Function(_Started value)? started,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_VerificationChanged value)? verificationChanged,
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_MailVerification value)? mailVerification,
     TResult Function(_SendOtp value)? sendOtp,
-    TResult Function(_SignUpFirestore value)? verifyOtp,
+    TResult Function(_verifyOtp value)? verifyOtp,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_FirstNameChanged value)? firstNameChanged,
     TResult Function(_LastNameChanged value)? lastNameChanged,
     TResult Function(_AgeChanged value)? ageChanged,
     TResult Function(_GenderChanged value)? genderChanged,
+    TResult Function(_SmsChanged value)? otpChanged,
     required TResult orElse(),
   }) {
     if (verifyOtp != null) {
@@ -1360,8 +1671,8 @@ class _$SignUpFirestoreImpl implements _SignUpFirestore {
   }
 }
 
-abstract class _SignUpFirestore implements SignUpEvent {
-  const factory _SignUpFirestore() = _$SignUpFirestoreImpl;
+abstract class _verifyOtp implements SignUpEvent {
+  const factory _verifyOtp() = _$verifyOtpImpl;
 }
 
 /// @nodoc
@@ -1436,6 +1747,7 @@ class _$PhoneChangedImpl implements _PhoneChanged {
     required TResult Function() started,
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String verification) verificationChanged,
     required TResult Function() signUpMail,
     required TResult Function() mailVerification,
     required TResult Function() sendOtp,
@@ -1445,6 +1757,7 @@ class _$PhoneChangedImpl implements _PhoneChanged {
     required TResult Function(String lastName) lastNameChanged,
     required TResult Function(String age) ageChanged,
     required TResult Function(String gender) genderChanged,
+    required TResult Function(String sms_code) otpChanged,
   }) {
     return phoneChanged(phone_numer);
   }
@@ -1455,6 +1768,7 @@ class _$PhoneChangedImpl implements _PhoneChanged {
     TResult? Function()? started,
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
+    TResult? Function(String verification)? verificationChanged,
     TResult? Function()? signUpMail,
     TResult? Function()? mailVerification,
     TResult? Function()? sendOtp,
@@ -1464,6 +1778,7 @@ class _$PhoneChangedImpl implements _PhoneChanged {
     TResult? Function(String lastName)? lastNameChanged,
     TResult? Function(String age)? ageChanged,
     TResult? Function(String gender)? genderChanged,
+    TResult? Function(String sms_code)? otpChanged,
   }) {
     return phoneChanged?.call(phone_numer);
   }
@@ -1474,6 +1789,7 @@ class _$PhoneChangedImpl implements _PhoneChanged {
     TResult Function()? started,
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String verification)? verificationChanged,
     TResult Function()? signUpMail,
     TResult Function()? mailVerification,
     TResult Function()? sendOtp,
@@ -1483,6 +1799,7 @@ class _$PhoneChangedImpl implements _PhoneChanged {
     TResult Function(String lastName)? lastNameChanged,
     TResult Function(String age)? ageChanged,
     TResult Function(String gender)? genderChanged,
+    TResult Function(String sms_code)? otpChanged,
     required TResult orElse(),
   }) {
     if (phoneChanged != null) {
@@ -1497,15 +1814,17 @@ class _$PhoneChangedImpl implements _PhoneChanged {
     required TResult Function(_Started value) started,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_VerificationChanged value) verificationChanged,
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_MailVerification value) mailVerification,
     required TResult Function(_SendOtp value) sendOtp,
-    required TResult Function(_SignUpFirestore value) verifyOtp,
+    required TResult Function(_verifyOtp value) verifyOtp,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_FirstNameChanged value) firstNameChanged,
     required TResult Function(_LastNameChanged value) lastNameChanged,
     required TResult Function(_AgeChanged value) ageChanged,
     required TResult Function(_GenderChanged value) genderChanged,
+    required TResult Function(_SmsChanged value) otpChanged,
   }) {
     return phoneChanged(this);
   }
@@ -1516,15 +1835,17 @@ class _$PhoneChangedImpl implements _PhoneChanged {
     TResult? Function(_Started value)? started,
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_VerificationChanged value)? verificationChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_MailVerification value)? mailVerification,
     TResult? Function(_SendOtp value)? sendOtp,
-    TResult? Function(_SignUpFirestore value)? verifyOtp,
+    TResult? Function(_verifyOtp value)? verifyOtp,
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_FirstNameChanged value)? firstNameChanged,
     TResult? Function(_LastNameChanged value)? lastNameChanged,
     TResult? Function(_AgeChanged value)? ageChanged,
     TResult? Function(_GenderChanged value)? genderChanged,
+    TResult? Function(_SmsChanged value)? otpChanged,
   }) {
     return phoneChanged?.call(this);
   }
@@ -1535,15 +1856,17 @@ class _$PhoneChangedImpl implements _PhoneChanged {
     TResult Function(_Started value)? started,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_VerificationChanged value)? verificationChanged,
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_MailVerification value)? mailVerification,
     TResult Function(_SendOtp value)? sendOtp,
-    TResult Function(_SignUpFirestore value)? verifyOtp,
+    TResult Function(_verifyOtp value)? verifyOtp,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_FirstNameChanged value)? firstNameChanged,
     TResult Function(_LastNameChanged value)? lastNameChanged,
     TResult Function(_AgeChanged value)? ageChanged,
     TResult Function(_GenderChanged value)? genderChanged,
+    TResult Function(_SmsChanged value)? otpChanged,
     required TResult orElse(),
   }) {
     if (phoneChanged != null) {
@@ -1638,6 +1961,7 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     required TResult Function() started,
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String verification) verificationChanged,
     required TResult Function() signUpMail,
     required TResult Function() mailVerification,
     required TResult Function() sendOtp,
@@ -1647,6 +1971,7 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     required TResult Function(String lastName) lastNameChanged,
     required TResult Function(String age) ageChanged,
     required TResult Function(String gender) genderChanged,
+    required TResult Function(String sms_code) otpChanged,
   }) {
     return firstNameChanged(firstName);
   }
@@ -1657,6 +1982,7 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     TResult? Function()? started,
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
+    TResult? Function(String verification)? verificationChanged,
     TResult? Function()? signUpMail,
     TResult? Function()? mailVerification,
     TResult? Function()? sendOtp,
@@ -1666,6 +1992,7 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     TResult? Function(String lastName)? lastNameChanged,
     TResult? Function(String age)? ageChanged,
     TResult? Function(String gender)? genderChanged,
+    TResult? Function(String sms_code)? otpChanged,
   }) {
     return firstNameChanged?.call(firstName);
   }
@@ -1676,6 +2003,7 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     TResult Function()? started,
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String verification)? verificationChanged,
     TResult Function()? signUpMail,
     TResult Function()? mailVerification,
     TResult Function()? sendOtp,
@@ -1685,6 +2013,7 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     TResult Function(String lastName)? lastNameChanged,
     TResult Function(String age)? ageChanged,
     TResult Function(String gender)? genderChanged,
+    TResult Function(String sms_code)? otpChanged,
     required TResult orElse(),
   }) {
     if (firstNameChanged != null) {
@@ -1699,15 +2028,17 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     required TResult Function(_Started value) started,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_VerificationChanged value) verificationChanged,
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_MailVerification value) mailVerification,
     required TResult Function(_SendOtp value) sendOtp,
-    required TResult Function(_SignUpFirestore value) verifyOtp,
+    required TResult Function(_verifyOtp value) verifyOtp,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_FirstNameChanged value) firstNameChanged,
     required TResult Function(_LastNameChanged value) lastNameChanged,
     required TResult Function(_AgeChanged value) ageChanged,
     required TResult Function(_GenderChanged value) genderChanged,
+    required TResult Function(_SmsChanged value) otpChanged,
   }) {
     return firstNameChanged(this);
   }
@@ -1718,15 +2049,17 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     TResult? Function(_Started value)? started,
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_VerificationChanged value)? verificationChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_MailVerification value)? mailVerification,
     TResult? Function(_SendOtp value)? sendOtp,
-    TResult? Function(_SignUpFirestore value)? verifyOtp,
+    TResult? Function(_verifyOtp value)? verifyOtp,
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_FirstNameChanged value)? firstNameChanged,
     TResult? Function(_LastNameChanged value)? lastNameChanged,
     TResult? Function(_AgeChanged value)? ageChanged,
     TResult? Function(_GenderChanged value)? genderChanged,
+    TResult? Function(_SmsChanged value)? otpChanged,
   }) {
     return firstNameChanged?.call(this);
   }
@@ -1737,15 +2070,17 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     TResult Function(_Started value)? started,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_VerificationChanged value)? verificationChanged,
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_MailVerification value)? mailVerification,
     TResult Function(_SendOtp value)? sendOtp,
-    TResult Function(_SignUpFirestore value)? verifyOtp,
+    TResult Function(_verifyOtp value)? verifyOtp,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_FirstNameChanged value)? firstNameChanged,
     TResult Function(_LastNameChanged value)? lastNameChanged,
     TResult Function(_AgeChanged value)? ageChanged,
     TResult Function(_GenderChanged value)? genderChanged,
+    TResult Function(_SmsChanged value)? otpChanged,
     required TResult orElse(),
   }) {
     if (firstNameChanged != null) {
@@ -1841,6 +2176,7 @@ class _$LastNameChangedImpl implements _LastNameChanged {
     required TResult Function() started,
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String verification) verificationChanged,
     required TResult Function() signUpMail,
     required TResult Function() mailVerification,
     required TResult Function() sendOtp,
@@ -1850,6 +2186,7 @@ class _$LastNameChangedImpl implements _LastNameChanged {
     required TResult Function(String lastName) lastNameChanged,
     required TResult Function(String age) ageChanged,
     required TResult Function(String gender) genderChanged,
+    required TResult Function(String sms_code) otpChanged,
   }) {
     return lastNameChanged(lastName);
   }
@@ -1860,6 +2197,7 @@ class _$LastNameChangedImpl implements _LastNameChanged {
     TResult? Function()? started,
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
+    TResult? Function(String verification)? verificationChanged,
     TResult? Function()? signUpMail,
     TResult? Function()? mailVerification,
     TResult? Function()? sendOtp,
@@ -1869,6 +2207,7 @@ class _$LastNameChangedImpl implements _LastNameChanged {
     TResult? Function(String lastName)? lastNameChanged,
     TResult? Function(String age)? ageChanged,
     TResult? Function(String gender)? genderChanged,
+    TResult? Function(String sms_code)? otpChanged,
   }) {
     return lastNameChanged?.call(lastName);
   }
@@ -1879,6 +2218,7 @@ class _$LastNameChangedImpl implements _LastNameChanged {
     TResult Function()? started,
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String verification)? verificationChanged,
     TResult Function()? signUpMail,
     TResult Function()? mailVerification,
     TResult Function()? sendOtp,
@@ -1888,6 +2228,7 @@ class _$LastNameChangedImpl implements _LastNameChanged {
     TResult Function(String lastName)? lastNameChanged,
     TResult Function(String age)? ageChanged,
     TResult Function(String gender)? genderChanged,
+    TResult Function(String sms_code)? otpChanged,
     required TResult orElse(),
   }) {
     if (lastNameChanged != null) {
@@ -1902,15 +2243,17 @@ class _$LastNameChangedImpl implements _LastNameChanged {
     required TResult Function(_Started value) started,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_VerificationChanged value) verificationChanged,
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_MailVerification value) mailVerification,
     required TResult Function(_SendOtp value) sendOtp,
-    required TResult Function(_SignUpFirestore value) verifyOtp,
+    required TResult Function(_verifyOtp value) verifyOtp,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_FirstNameChanged value) firstNameChanged,
     required TResult Function(_LastNameChanged value) lastNameChanged,
     required TResult Function(_AgeChanged value) ageChanged,
     required TResult Function(_GenderChanged value) genderChanged,
+    required TResult Function(_SmsChanged value) otpChanged,
   }) {
     return lastNameChanged(this);
   }
@@ -1921,15 +2264,17 @@ class _$LastNameChangedImpl implements _LastNameChanged {
     TResult? Function(_Started value)? started,
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_VerificationChanged value)? verificationChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_MailVerification value)? mailVerification,
     TResult? Function(_SendOtp value)? sendOtp,
-    TResult? Function(_SignUpFirestore value)? verifyOtp,
+    TResult? Function(_verifyOtp value)? verifyOtp,
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_FirstNameChanged value)? firstNameChanged,
     TResult? Function(_LastNameChanged value)? lastNameChanged,
     TResult? Function(_AgeChanged value)? ageChanged,
     TResult? Function(_GenderChanged value)? genderChanged,
+    TResult? Function(_SmsChanged value)? otpChanged,
   }) {
     return lastNameChanged?.call(this);
   }
@@ -1940,15 +2285,17 @@ class _$LastNameChangedImpl implements _LastNameChanged {
     TResult Function(_Started value)? started,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_VerificationChanged value)? verificationChanged,
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_MailVerification value)? mailVerification,
     TResult Function(_SendOtp value)? sendOtp,
-    TResult Function(_SignUpFirestore value)? verifyOtp,
+    TResult Function(_verifyOtp value)? verifyOtp,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_FirstNameChanged value)? firstNameChanged,
     TResult Function(_LastNameChanged value)? lastNameChanged,
     TResult Function(_AgeChanged value)? ageChanged,
     TResult Function(_GenderChanged value)? genderChanged,
+    TResult Function(_SmsChanged value)? otpChanged,
     required TResult orElse(),
   }) {
     if (lastNameChanged != null) {
@@ -2041,6 +2388,7 @@ class _$AgeChangedImpl implements _AgeChanged {
     required TResult Function() started,
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String verification) verificationChanged,
     required TResult Function() signUpMail,
     required TResult Function() mailVerification,
     required TResult Function() sendOtp,
@@ -2050,6 +2398,7 @@ class _$AgeChangedImpl implements _AgeChanged {
     required TResult Function(String lastName) lastNameChanged,
     required TResult Function(String age) ageChanged,
     required TResult Function(String gender) genderChanged,
+    required TResult Function(String sms_code) otpChanged,
   }) {
     return ageChanged(age);
   }
@@ -2060,6 +2409,7 @@ class _$AgeChangedImpl implements _AgeChanged {
     TResult? Function()? started,
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
+    TResult? Function(String verification)? verificationChanged,
     TResult? Function()? signUpMail,
     TResult? Function()? mailVerification,
     TResult? Function()? sendOtp,
@@ -2069,6 +2419,7 @@ class _$AgeChangedImpl implements _AgeChanged {
     TResult? Function(String lastName)? lastNameChanged,
     TResult? Function(String age)? ageChanged,
     TResult? Function(String gender)? genderChanged,
+    TResult? Function(String sms_code)? otpChanged,
   }) {
     return ageChanged?.call(age);
   }
@@ -2079,6 +2430,7 @@ class _$AgeChangedImpl implements _AgeChanged {
     TResult Function()? started,
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String verification)? verificationChanged,
     TResult Function()? signUpMail,
     TResult Function()? mailVerification,
     TResult Function()? sendOtp,
@@ -2088,6 +2440,7 @@ class _$AgeChangedImpl implements _AgeChanged {
     TResult Function(String lastName)? lastNameChanged,
     TResult Function(String age)? ageChanged,
     TResult Function(String gender)? genderChanged,
+    TResult Function(String sms_code)? otpChanged,
     required TResult orElse(),
   }) {
     if (ageChanged != null) {
@@ -2102,15 +2455,17 @@ class _$AgeChangedImpl implements _AgeChanged {
     required TResult Function(_Started value) started,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_VerificationChanged value) verificationChanged,
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_MailVerification value) mailVerification,
     required TResult Function(_SendOtp value) sendOtp,
-    required TResult Function(_SignUpFirestore value) verifyOtp,
+    required TResult Function(_verifyOtp value) verifyOtp,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_FirstNameChanged value) firstNameChanged,
     required TResult Function(_LastNameChanged value) lastNameChanged,
     required TResult Function(_AgeChanged value) ageChanged,
     required TResult Function(_GenderChanged value) genderChanged,
+    required TResult Function(_SmsChanged value) otpChanged,
   }) {
     return ageChanged(this);
   }
@@ -2121,15 +2476,17 @@ class _$AgeChangedImpl implements _AgeChanged {
     TResult? Function(_Started value)? started,
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_VerificationChanged value)? verificationChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_MailVerification value)? mailVerification,
     TResult? Function(_SendOtp value)? sendOtp,
-    TResult? Function(_SignUpFirestore value)? verifyOtp,
+    TResult? Function(_verifyOtp value)? verifyOtp,
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_FirstNameChanged value)? firstNameChanged,
     TResult? Function(_LastNameChanged value)? lastNameChanged,
     TResult? Function(_AgeChanged value)? ageChanged,
     TResult? Function(_GenderChanged value)? genderChanged,
+    TResult? Function(_SmsChanged value)? otpChanged,
   }) {
     return ageChanged?.call(this);
   }
@@ -2140,15 +2497,17 @@ class _$AgeChangedImpl implements _AgeChanged {
     TResult Function(_Started value)? started,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_VerificationChanged value)? verificationChanged,
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_MailVerification value)? mailVerification,
     TResult Function(_SendOtp value)? sendOtp,
-    TResult Function(_SignUpFirestore value)? verifyOtp,
+    TResult Function(_verifyOtp value)? verifyOtp,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_FirstNameChanged value)? firstNameChanged,
     TResult Function(_LastNameChanged value)? lastNameChanged,
     TResult Function(_AgeChanged value)? ageChanged,
     TResult Function(_GenderChanged value)? genderChanged,
+    TResult Function(_SmsChanged value)? otpChanged,
     required TResult orElse(),
   }) {
     if (ageChanged != null) {
@@ -2241,6 +2600,7 @@ class _$GenderChangedImpl implements _GenderChanged {
     required TResult Function() started,
     required TResult Function(String email) emailChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String verification) verificationChanged,
     required TResult Function() signUpMail,
     required TResult Function() mailVerification,
     required TResult Function() sendOtp,
@@ -2250,6 +2610,7 @@ class _$GenderChangedImpl implements _GenderChanged {
     required TResult Function(String lastName) lastNameChanged,
     required TResult Function(String age) ageChanged,
     required TResult Function(String gender) genderChanged,
+    required TResult Function(String sms_code) otpChanged,
   }) {
     return genderChanged(gender);
   }
@@ -2260,6 +2621,7 @@ class _$GenderChangedImpl implements _GenderChanged {
     TResult? Function()? started,
     TResult? Function(String email)? emailChanged,
     TResult? Function(String password)? passwordChanged,
+    TResult? Function(String verification)? verificationChanged,
     TResult? Function()? signUpMail,
     TResult? Function()? mailVerification,
     TResult? Function()? sendOtp,
@@ -2269,6 +2631,7 @@ class _$GenderChangedImpl implements _GenderChanged {
     TResult? Function(String lastName)? lastNameChanged,
     TResult? Function(String age)? ageChanged,
     TResult? Function(String gender)? genderChanged,
+    TResult? Function(String sms_code)? otpChanged,
   }) {
     return genderChanged?.call(gender);
   }
@@ -2279,6 +2642,7 @@ class _$GenderChangedImpl implements _GenderChanged {
     TResult Function()? started,
     TResult Function(String email)? emailChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String verification)? verificationChanged,
     TResult Function()? signUpMail,
     TResult Function()? mailVerification,
     TResult Function()? sendOtp,
@@ -2288,6 +2652,7 @@ class _$GenderChangedImpl implements _GenderChanged {
     TResult Function(String lastName)? lastNameChanged,
     TResult Function(String age)? ageChanged,
     TResult Function(String gender)? genderChanged,
+    TResult Function(String sms_code)? otpChanged,
     required TResult orElse(),
   }) {
     if (genderChanged != null) {
@@ -2302,15 +2667,17 @@ class _$GenderChangedImpl implements _GenderChanged {
     required TResult Function(_Started value) started,
     required TResult Function(_EmailChanged value) emailChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_VerificationChanged value) verificationChanged,
     required TResult Function(_SignUpMail value) signUpMail,
     required TResult Function(_MailVerification value) mailVerification,
     required TResult Function(_SendOtp value) sendOtp,
-    required TResult Function(_SignUpFirestore value) verifyOtp,
+    required TResult Function(_verifyOtp value) verifyOtp,
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_FirstNameChanged value) firstNameChanged,
     required TResult Function(_LastNameChanged value) lastNameChanged,
     required TResult Function(_AgeChanged value) ageChanged,
     required TResult Function(_GenderChanged value) genderChanged,
+    required TResult Function(_SmsChanged value) otpChanged,
   }) {
     return genderChanged(this);
   }
@@ -2321,15 +2688,17 @@ class _$GenderChangedImpl implements _GenderChanged {
     TResult? Function(_Started value)? started,
     TResult? Function(_EmailChanged value)? emailChanged,
     TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_VerificationChanged value)? verificationChanged,
     TResult? Function(_SignUpMail value)? signUpMail,
     TResult? Function(_MailVerification value)? mailVerification,
     TResult? Function(_SendOtp value)? sendOtp,
-    TResult? Function(_SignUpFirestore value)? verifyOtp,
+    TResult? Function(_verifyOtp value)? verifyOtp,
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_FirstNameChanged value)? firstNameChanged,
     TResult? Function(_LastNameChanged value)? lastNameChanged,
     TResult? Function(_AgeChanged value)? ageChanged,
     TResult? Function(_GenderChanged value)? genderChanged,
+    TResult? Function(_SmsChanged value)? otpChanged,
   }) {
     return genderChanged?.call(this);
   }
@@ -2340,15 +2709,17 @@ class _$GenderChangedImpl implements _GenderChanged {
     TResult Function(_Started value)? started,
     TResult Function(_EmailChanged value)? emailChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_VerificationChanged value)? verificationChanged,
     TResult Function(_SignUpMail value)? signUpMail,
     TResult Function(_MailVerification value)? mailVerification,
     TResult Function(_SendOtp value)? sendOtp,
-    TResult Function(_SignUpFirestore value)? verifyOtp,
+    TResult Function(_verifyOtp value)? verifyOtp,
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_FirstNameChanged value)? firstNameChanged,
     TResult Function(_LastNameChanged value)? lastNameChanged,
     TResult Function(_AgeChanged value)? ageChanged,
     TResult Function(_GenderChanged value)? genderChanged,
+    TResult Function(_SmsChanged value)? otpChanged,
     required TResult orElse(),
   }) {
     if (genderChanged != null) {
@@ -2371,6 +2742,219 @@ abstract class _GenderChanged implements SignUpEvent {
 }
 
 /// @nodoc
+abstract class _$$SmsChangedImplCopyWith<$Res> {
+  factory _$$SmsChangedImplCopyWith(
+          _$SmsChangedImpl value, $Res Function(_$SmsChangedImpl) then) =
+      __$$SmsChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String sms_code});
+}
+
+/// @nodoc
+class __$$SmsChangedImplCopyWithImpl<$Res>
+    extends _$SignUpEventCopyWithImpl<$Res, _$SmsChangedImpl>
+    implements _$$SmsChangedImplCopyWith<$Res> {
+  __$$SmsChangedImplCopyWithImpl(
+      _$SmsChangedImpl _value, $Res Function(_$SmsChangedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SignUpEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sms_code = null,
+  }) {
+    return _then(_$SmsChangedImpl(
+      null == sms_code
+          ? _value.sms_code
+          : sms_code // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SmsChangedImpl implements _SmsChanged {
+  const _$SmsChangedImpl(this.sms_code);
+
+  @override
+  final String sms_code;
+
+  @override
+  String toString() {
+    return 'SignUpEvent.otpChanged(sms_code: $sms_code)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SmsChangedImpl &&
+            (identical(other.sms_code, sms_code) ||
+                other.sms_code == sms_code));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, sms_code);
+
+  /// Create a copy of SignUpEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SmsChangedImplCopyWith<_$SmsChangedImpl> get copyWith =>
+      __$$SmsChangedImplCopyWithImpl<_$SmsChangedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String email) emailChanged,
+    required TResult Function(String password) passwordChanged,
+    required TResult Function(String verification) verificationChanged,
+    required TResult Function() signUpMail,
+    required TResult Function() mailVerification,
+    required TResult Function() sendOtp,
+    required TResult Function() verifyOtp,
+    required TResult Function(String phone_numer) phoneChanged,
+    required TResult Function(String firstName) firstNameChanged,
+    required TResult Function(String lastName) lastNameChanged,
+    required TResult Function(String age) ageChanged,
+    required TResult Function(String gender) genderChanged,
+    required TResult Function(String sms_code) otpChanged,
+  }) {
+    return otpChanged(sms_code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String email)? emailChanged,
+    TResult? Function(String password)? passwordChanged,
+    TResult? Function(String verification)? verificationChanged,
+    TResult? Function()? signUpMail,
+    TResult? Function()? mailVerification,
+    TResult? Function()? sendOtp,
+    TResult? Function()? verifyOtp,
+    TResult? Function(String phone_numer)? phoneChanged,
+    TResult? Function(String firstName)? firstNameChanged,
+    TResult? Function(String lastName)? lastNameChanged,
+    TResult? Function(String age)? ageChanged,
+    TResult? Function(String gender)? genderChanged,
+    TResult? Function(String sms_code)? otpChanged,
+  }) {
+    return otpChanged?.call(sms_code);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String email)? emailChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function(String verification)? verificationChanged,
+    TResult Function()? signUpMail,
+    TResult Function()? mailVerification,
+    TResult Function()? sendOtp,
+    TResult Function()? verifyOtp,
+    TResult Function(String phone_numer)? phoneChanged,
+    TResult Function(String firstName)? firstNameChanged,
+    TResult Function(String lastName)? lastNameChanged,
+    TResult Function(String age)? ageChanged,
+    TResult Function(String gender)? genderChanged,
+    TResult Function(String sms_code)? otpChanged,
+    required TResult orElse(),
+  }) {
+    if (otpChanged != null) {
+      return otpChanged(sms_code);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_VerificationChanged value) verificationChanged,
+    required TResult Function(_SignUpMail value) signUpMail,
+    required TResult Function(_MailVerification value) mailVerification,
+    required TResult Function(_SendOtp value) sendOtp,
+    required TResult Function(_verifyOtp value) verifyOtp,
+    required TResult Function(_PhoneChanged value) phoneChanged,
+    required TResult Function(_FirstNameChanged value) firstNameChanged,
+    required TResult Function(_LastNameChanged value) lastNameChanged,
+    required TResult Function(_AgeChanged value) ageChanged,
+    required TResult Function(_GenderChanged value) genderChanged,
+    required TResult Function(_SmsChanged value) otpChanged,
+  }) {
+    return otpChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_EmailChanged value)? emailChanged,
+    TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_VerificationChanged value)? verificationChanged,
+    TResult? Function(_SignUpMail value)? signUpMail,
+    TResult? Function(_MailVerification value)? mailVerification,
+    TResult? Function(_SendOtp value)? sendOtp,
+    TResult? Function(_verifyOtp value)? verifyOtp,
+    TResult? Function(_PhoneChanged value)? phoneChanged,
+    TResult? Function(_FirstNameChanged value)? firstNameChanged,
+    TResult? Function(_LastNameChanged value)? lastNameChanged,
+    TResult? Function(_AgeChanged value)? ageChanged,
+    TResult? Function(_GenderChanged value)? genderChanged,
+    TResult? Function(_SmsChanged value)? otpChanged,
+  }) {
+    return otpChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_VerificationChanged value)? verificationChanged,
+    TResult Function(_SignUpMail value)? signUpMail,
+    TResult Function(_MailVerification value)? mailVerification,
+    TResult Function(_SendOtp value)? sendOtp,
+    TResult Function(_verifyOtp value)? verifyOtp,
+    TResult Function(_PhoneChanged value)? phoneChanged,
+    TResult Function(_FirstNameChanged value)? firstNameChanged,
+    TResult Function(_LastNameChanged value)? lastNameChanged,
+    TResult Function(_AgeChanged value)? ageChanged,
+    TResult Function(_GenderChanged value)? genderChanged,
+    TResult Function(_SmsChanged value)? otpChanged,
+    required TResult orElse(),
+  }) {
+    if (otpChanged != null) {
+      return otpChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SmsChanged implements SignUpEvent {
+  const factory _SmsChanged(final String sms_code) = _$SmsChangedImpl;
+
+  String get sms_code;
+
+  /// Create a copy of SignUpEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SmsChangedImplCopyWith<_$SmsChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$SignUpState {
   EmailAddress get emailAddress => throw _privateConstructorUsedError;
   Password get password => throw _privateConstructorUsedError;
@@ -2385,6 +2969,8 @@ mixin _$SignUpState {
   String get age => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
   PhoneNumber get phoneNumber => throw _privateConstructorUsedError;
+  String get verificationId => throw _privateConstructorUsedError;
+  String get smsCode => throw _privateConstructorUsedError;
 
   /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
@@ -2410,7 +2996,9 @@ abstract class $SignUpStateCopyWith<$Res> {
       String lastName,
       String age,
       String gender,
-      PhoneNumber phoneNumber});
+      PhoneNumber phoneNumber,
+      String verificationId,
+      String smsCode});
 }
 
 /// @nodoc
@@ -2439,6 +3027,8 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
     Object? age = null,
     Object? gender = null,
     Object? phoneNumber = null,
+    Object? verificationId = null,
+    Object? smsCode = null,
   }) {
     return _then(_value.copyWith(
       emailAddress: null == emailAddress
@@ -2485,6 +3075,14 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as PhoneNumber,
+      verificationId: null == verificationId
+          ? _value.verificationId
+          : verificationId // ignore: cast_nullable_to_non_nullable
+              as String,
+      smsCode: null == smsCode
+          ? _value.smsCode
+          : smsCode // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -2508,7 +3106,9 @@ abstract class _$$SignUpStateImplCopyWith<$Res>
       String lastName,
       String age,
       String gender,
-      PhoneNumber phoneNumber});
+      PhoneNumber phoneNumber,
+      String verificationId,
+      String smsCode});
 }
 
 /// @nodoc
@@ -2535,6 +3135,8 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
     Object? age = null,
     Object? gender = null,
     Object? phoneNumber = null,
+    Object? verificationId = null,
+    Object? smsCode = null,
   }) {
     return _then(_$SignUpStateImpl(
       emailAddress: null == emailAddress
@@ -2581,6 +3183,14 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as PhoneNumber,
+      verificationId: null == verificationId
+          ? _value.verificationId
+          : verificationId // ignore: cast_nullable_to_non_nullable
+              as String,
+      smsCode: null == smsCode
+          ? _value.smsCode
+          : smsCode // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -2599,7 +3209,9 @@ class _$SignUpStateImpl implements _SignUpState {
       required this.lastName,
       required this.age,
       required this.gender,
-      required this.phoneNumber});
+      required this.phoneNumber,
+      required this.verificationId,
+      required this.smsCode});
 
   @override
   final EmailAddress emailAddress;
@@ -2624,10 +3236,14 @@ class _$SignUpStateImpl implements _SignUpState {
   final String gender;
   @override
   final PhoneNumber phoneNumber;
+  @override
+  final String verificationId;
+  @override
+  final String smsCode;
 
   @override
   String toString() {
-    return 'SignUpState(emailAddress: $emailAddress, password: $password, isSubmitting: $isSubmitting, userFailureOrUserSuccess: $userFailureOrUserSuccess, isEmailVerified: $isEmailVerified, isPhoneVerified: $isPhoneVerified, firstName: $firstName, lastName: $lastName, age: $age, gender: $gender, phoneNumber: $phoneNumber)';
+    return 'SignUpState(emailAddress: $emailAddress, password: $password, isSubmitting: $isSubmitting, userFailureOrUserSuccess: $userFailureOrUserSuccess, isEmailVerified: $isEmailVerified, isPhoneVerified: $isPhoneVerified, firstName: $firstName, lastName: $lastName, age: $age, gender: $gender, phoneNumber: $phoneNumber, verificationId: $verificationId, smsCode: $smsCode)';
   }
 
   @override
@@ -2655,7 +3271,10 @@ class _$SignUpStateImpl implements _SignUpState {
             (identical(other.age, age) || other.age == age) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber));
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.verificationId, verificationId) ||
+                other.verificationId == verificationId) &&
+            (identical(other.smsCode, smsCode) || other.smsCode == smsCode));
   }
 
   @override
@@ -2671,7 +3290,9 @@ class _$SignUpStateImpl implements _SignUpState {
       lastName,
       age,
       gender,
-      phoneNumber);
+      phoneNumber,
+      verificationId,
+      smsCode);
 
   /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
@@ -2694,7 +3315,9 @@ abstract class _SignUpState implements SignUpState {
       required final String lastName,
       required final String age,
       required final String gender,
-      required final PhoneNumber phoneNumber}) = _$SignUpStateImpl;
+      required final PhoneNumber phoneNumber,
+      required final String verificationId,
+      required final String smsCode}) = _$SignUpStateImpl;
 
   @override
   EmailAddress get emailAddress;
@@ -2718,6 +3341,10 @@ abstract class _SignUpState implements SignUpState {
   String get gender;
   @override
   PhoneNumber get phoneNumber;
+  @override
+  String get verificationId;
+  @override
+  String get smsCode;
 
   /// Create a copy of SignUpState
   /// with the given fields replaced by the non-null parameter values.
