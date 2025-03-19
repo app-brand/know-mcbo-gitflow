@@ -8,7 +8,7 @@ import 'package:know_my_city/presentation/pages/otp_verificataion_page/otp_verif
 import 'package:know_my_city/presentation/pages/phone_verification/responsive/phone_verification_laptop.dart';
 import 'package:know_my_city/presentation/pages/phone_verification/responsive/phone_verification_mobile.dart';
 import 'package:know_my_city/presentation/pages/phone_verification/responsive/phone_verification_tablet.dart';
-import 'package:know_my_city/presentation/widgets/phone_number_field.dart';
+import 'package:know_my_city/presentation/widgets/phone_number/phone_number_field.dart';
 import 'package:country_picker/country_picker.dart';
 
 const double kMobileBreakpoint = 700;
