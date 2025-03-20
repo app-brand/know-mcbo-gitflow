@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:know_my_city/legacy-code/map_page-fixed.dart';
+import 'package:know_my_city/legacy-presentation/map_page-fixed.dart';
 import 'package:know_my_city/presentation/pages/map/map_screen.dart';
 import 'package:know_my_city/presentation/pages/sign_in/sign_in-page.dart';
+import 'package:know_my_city/presentation/widgets/drawer_widget/drawer_widget.dart';
 
 
 class MobileHomeLayout extends StatefulWidget {
@@ -49,16 +50,7 @@ class _MobileHomeLayoutState extends State<MobileHomeLayout>
       ),
     ],
   ),
-  endDrawer: Drawer(
-    child: ListView(
-      padding: EdgeInsets.zero,
-      children: const [
-        DrawerHeader(child: Text('Menú')),
-        ListTile(title: Text('Inicio')),
-        ListTile(title: Text('Configuración')),
-      ],
-    ),
-  ),
+  endDrawer: CustomDrawer(),
   body: TabBarView(
     controller: _tabController,
     children: [

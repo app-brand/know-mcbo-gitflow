@@ -4,10 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:know_my_city/application/sign_up/sign_up_bloc.dart';
 import 'package:know_my_city/injection.dart';
 import 'package:know_my_city/presentation/pages/loading/loading_page.dart';
-import 'package:know_my_city/legacy-code/loading_dialog.dart';
+import 'package:know_my_city/legacy-presentation/loading_dialog.dart';
 
-import 'package:know_my_city/legacy-code/presentation-legacy/widgets/email_form_field.dart';
-import 'package:know_my_city/legacy-code/presentation-legacy/widgets/password_form_field.dart';
+import 'package:know_my_city/legacy-presentation/presentation-legacy/widgets/email_form_field.dart';
+import 'package:know_my_city/legacy-presentation/presentation-legacy/widgets/password_form_field.dart';
 
 const double kMobileBreakpoint = 700;
 

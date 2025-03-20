@@ -7,8 +7,8 @@ import 'package:know_my_city/presentation/pages/loading/loading_page.dart';
 import 'package:know_my_city/presentation/pages/sign_up/responsive/sign_up_laptop.dart';
 import 'package:know_my_city/presentation/pages/sign_up/responsive/sign_up_mobile.dart';
 import 'package:know_my_city/presentation/pages/sign_up/responsive/sign_up_tablet.dart';
-import 'package:know_my_city/legacy-code/presentation-legacy/widgets/email_form_field.dart';
-import 'package:know_my_city/legacy-code/presentation-legacy/widgets/password_form_field.dart';
+import 'package:know_my_city/legacy-presentation/presentation-legacy/widgets/email_form_field.dart';
+import 'package:know_my_city/legacy-presentation/presentation-legacy/widgets/password_form_field.dart';
 
 const double kMobileBreakpoint = 700;
 const double kTabletBreakpoint = 1200;

@@ -20,7 +20,7 @@ import 'application/sign_in/sign_in_bloc.dart' as _i939;
 import 'application/sign_up/sign_up_bloc.dart' as _i1011;
 import 'infrastructure/core/core_module.dart' as _i189;
 import 'infrastructure/firebase/interface_firebase_auth.dart' as _i172;
-import 'legacy-code/presentation-legacy/core/state_core.dart' as _i998;
+import 'legacy-presentation/presentation-legacy/core/state_core.dart' as _i347;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -34,7 +34,7 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final coreModule = _$CoreModule();
-    gh.factory<_i998.StateCore>(() => _i998.StateCore());
+    gh.factory<_i347.StateCore>(() => _i347.StateCore());
     gh.lazySingleton<_i59.FirebaseAuth>(() => coreModule.firebaseAuth);
     gh.lazySingleton<_i974.FirebaseFirestore>(() => coreModule.firestore);
     gh.lazySingleton<_i361.Dio>(() => coreModule.dio);
