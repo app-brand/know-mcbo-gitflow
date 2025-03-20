@@ -12,11 +12,11 @@ class CustomDrawer extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
 
     if (isMobile(context)) {
-      return const DrawerMobile(fontScale: 1);
+      return const DrawerMobile(fontScale: 0.8);
     } else if (isTablet(context)) {
       return const DrawerTablet(fontScale: 0.9);
     } else {
-      return const DrawerLaptop(fontScale: 0.8);
+      return const DrawerLaptop(fontScale: 1);
     }
   }
 }
