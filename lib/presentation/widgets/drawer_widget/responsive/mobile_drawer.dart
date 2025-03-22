@@ -17,6 +17,8 @@ class DrawerMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      child: Container(
+      color: Colors.grey[850],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -57,7 +59,8 @@ class DrawerMobile extends StatelessWidget {
           ),
         ],
       ),
-    );
+     ),
+   );
   }
 
   // Esta es la función correctamente definida:
@@ -93,26 +96,26 @@ class DrawerMobile extends StatelessWidget {
           leading: const Icon(Icons.schedule, color: Colors.teal),
           title: Text(
             'Horario: Lunes a viernes 8:00 a.m. a 4:00 p.m.',
-            style: TextStyle(fontSize: 16 * fontScale),
+            style: TextStyle(fontSize: 16 * fontScale, color: Colors.white),
           ),
         ),
         ListTile(
           leading: const Icon(Icons.place, color: Colors.teal),
           title: Text(
             'Av. 4 con Calle 96, Maracaibo',
-            style: TextStyle(fontSize: 16 * fontScale),
+            style: TextStyle(fontSize: 16 * fontScale, color: Colors.white),
           ),
         ),
         ListTile(
           leading: const Icon(Icons.picture_as_pdf, color: Colors.redAccent),
           title:
-              Text('Descargar PDF', style: TextStyle(fontSize: 16 * fontScale)),
+              Text('Descargar PDF', style: TextStyle(fontSize: 16 * fontScale, color: Colors.white)),
           onTap: () {},
         ),
         const Divider(),
         ListTile(
           leading: const Icon(FontAwesomeIcons.whatsapp, color: Colors.green),
-          title: Text('WhatsApp', style: TextStyle(fontSize: 16 * fontScale)),
+          title: Text('WhatsApp', style: TextStyle(fontSize: 16 * fontScale, color: Colors.white)),
           onTap: () {
             launchUrl(Uri.parse('https://wa.me/584127334000'));
           },
@@ -120,21 +123,21 @@ class DrawerMobile extends StatelessWidget {
         ListTile(
           leading:
               const Icon(FontAwesomeIcons.facebook, color: Colors.blueAccent),
-          title: Text('Facebook', style: TextStyle(fontSize: 16 * fontScale)),
+          title: Text('Facebook', style: TextStyle(fontSize: 16 * fontScale, color: Colors.white)),
           onTap: () {
             launchUrl(Uri.parse('https://www.facebook.com/mcboalcaldia/'));
           },
         ),
         ListTile(
           leading: const Icon(FontAwesomeIcons.instagram, color: Colors.purple),
-          title: Text('Instagram', style: TextStyle(fontSize: 16 * fontScale)),
+          title: Text('Instagram', style: TextStyle(fontSize: 16 * fontScale, color: Colors.white)),
           onTap: () {
             launchUrl(Uri.parse('https://www.instagram.com/mcboalcaldia/'));
           },
         ),
         ListTile(
           leading: const Icon(FontAwesomeIcons.youtube, color: Colors.red),
-          title: Text('YouTube', style: TextStyle(fontSize: 16 * fontScale)),
+          title: Text('YouTube', style: TextStyle(fontSize: 16 * fontScale, color: Colors.white)),
           onTap: () {
             launchUrl(Uri.parse('https://www.youtube.com/@mcboalcaldia/'));
           },
