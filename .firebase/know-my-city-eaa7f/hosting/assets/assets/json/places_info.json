@@ -1,0 +1,227 @@
+[
+    {
+      "id": 1,
+      "name": "Rechanfles",
+      "address": "Av. 4 Bella Vista, entre calle 63 y 64, Centro Comercial Centro Norte, Local Nro. 11",
+      "whatsapp": "04125889068",
+      "services": "Disponible para Eventos",
+      "hours": "Domingo a Jueves: 12:00pm a 9:30pm \nViernes y Sábado: 12:00pm a 10:30pm",
+      "instagram": "rechanfles.ve",
+      "category": "Comida",
+      "latitude": "10.68091541150775",
+      "longitude": "-71.60633104802983",
+      "description": "Rechanfles es un lugar único para disfrutar de la mejor comida y eventos especiales en Maracaibo. ¡Ven y vive la experiencia!",
+      "image": "assets/images/places/529.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Super Duper (Santa Rita)",
+      "address": "Av. 8 Santa Rita con Calle 73, Cas Nro. 73-08, Sector Tierra Negra",
+      "whatsapp": "04143253993",
+      "services": "Disponible para Eventos",
+      "hours": "Lunes a Sábado: 7:00am a 8:00pm \nDomingo: 7:00am a 2:00pm",
+      "instagram": "pastelitossuperduper",
+      "category": "Comida"
+    },
+    {
+      "id": 3,
+      "name": "Super Duper (Canta Claro)",
+      "address": "Av. 12 con Calle 45, C.C. Paseo Canta Claro, Sector La Paraguay",
+      "whatsapp": "04146329033",
+      "services": "Disponible para Eventos",
+      "hours": "Lunes a Sábado: 7:00am a 8:00pm \nDomingo: 7:00am a 2:00pm",
+      "instagram": "pastelitossuperduper",
+      "category": "Comida"
+    },
+    {
+      "id": 4,
+      "name": "Super Duper (Plaza El Angel)",
+      "address": "Av. 4 Bella Vista con Calle 56, Sector Bella Vista",
+      "whatsapp": "04246404272",
+      "services": "Disponible para Eventos",
+      "hours": "Lunes a Sábado: 7:00am a 8:00pm \nDomingo: 7:00am a 2:00pm",
+      "instagram": "pastelitossuperduper",
+      "category": "Comida"
+    },
+    {
+      "id": 5,
+      "name": "Gula (Calle 72)",
+      "address": "Av. 3H con Calle 72, Casa 72-33",
+      "whatsapp": "04246224797",
+      "services": "Restaurante, Bar y Café (Desayuno, Almuerzo y Cena)",
+      "hours": "Domingo a Jueves: 7:30am a 11:30pm \nViernes y Sábado: 7:30am a 1:00am",
+      "instagram": "gulacoffeebistro",
+      "category": "Comida"
+    },
+    {
+      "id": 6,
+      "name": "La Taqueria",
+      "address": "Av. 9 entre Calles 66 y 67, C.C Doña Casilda",
+      "whatsapp": "04146155250",
+      "services": "Disponible de Eventos (solo dentro del restaurante)",
+      "hours": "Martes a Jueves: 11:00am a 10:00pm \nViernes y Sábado: 11:00am a 11:00pm \nDomingo: 11:00am a 9:00pm",
+      "instagram": "lataqueriamcbo",
+      "category": "Comida"
+    },
+    {
+      "id": 7,
+      "name": "Volta Maracaibo",
+      "address": "Vereda del Lago y Parque Ana María Campos",
+      "whatsapp": "Redes Sociales",
+      "services": "Alquiler de Scooters desde los USD 2",
+      "hours": "Lunes a Viernes: 5:00pm a 10:00pm\nSábado y Domingp: 3:00pm a 11:000pm",
+      "instagram": "voltamaracaibo",
+      "category": "Entretenimiento"
+    },
+    {
+      "id": 8,
+      "name": "Sushi House",
+      "address": "Calle 77 (5 de Julio), Diagonal a Stuffa",
+      "whatsapp": "04246670039",
+      "services": "",
+      "hours": "Lunes a Domingo: 11:00am a 10:30pm",
+      "instagram": "sushihousemcbo",
+      "category": "Comida"
+    },
+    {
+      "id": 9,
+      "name": "Pasapalo Express (Calle 72)",
+      "address": "Calle 72 entre Av. 12 y 13, C.C. Delmel",
+      "whatsapp": "04246624425",
+      "services": "Disponible para Eventos",
+      "hours": "Lunes a Sábado: 7:00am a 9:00pm\nDomingo: 7:00am a 5:00pm",
+      "instagram": "pasapaloexpressve",
+      "category": "Comida"
+    },
+    {
+      "id": 10,
+      "name": "Pasapalo Express (C.C. Terraza 77)",
+      "address": "Av. 5 de Julio, C.C. Terraza 77, Local 9 PB",
+      "whatsapp": "04246029408",
+      "services": "Disponible para Eventos",
+      "hours": "Domingo a Miercoles: 7:00am a 9:00pm\nJueves a Sábado: 7:00am a 10:00pm",
+      "instagram": "pasapaloexpressve",
+      "category": "Comida"
+    },
+    {
+      "id": 11,
+      "name": "Pasapalo Express (C.C. Costa Verde)",
+      "address": "C.C. Costa Verde, ubicado en el estacionamiento de planta ",
+      "whatsapp": "04146815275",
+      "services": "Disponible para Eventos",
+      "hours": "Lunes a Sábado: 8:00am a 7:00pm\nDomingo: 8:00am a 1:00pm",
+      "instagram": "pasapaloexpressve",
+      "category": "Comida"
+    },
+    {
+      "id": 12,
+      "name": "Pasapalo Express (Av. Milagro Norte)",
+      "address": "Av. Milagro Norte, Calle 18B, C.C. Lago Caribe, Planta Baja",
+      "whatsapp": "04149628960",
+      "services": "Disponible para Eventos",
+      "hours": "Lunes a Sábado: 8:00am a 7:30pm\nDomingo: 8:00am a 1:00pm",
+      "instagram": "pasapaloexpressve",
+      "category": "Comida"
+    },
+    {
+        "id": 13,
+        "name": "Oceanía Hotel Boutique ",
+        "address": "Calle 78 Dr. Portillo, Casa #2C-42, Sector Dr. Portillo",
+        "whatsapp": "04246049291",
+        "services": "Hospedaje con atención personalizada\nSalón de Reuniones\nSalones de Eventos\nRestaurante 24 horas para todo público\nDesayuno buffet\nPlanta eléctrica para todas las áreas\nZona Wi-Fi\nEstacionamiento\nCasino\nSpa y barbería",
+        "hours": "Check-in a partir de las 3:00pm\nCheck-out hasta las 11:00am",
+        "instagram": "reservas@oceaniahotelboutique.com\n@oceaniahotelb\nwww.oceaniahotelboutique.com",
+        "category": "Hotel"
+      },
+      {
+        "id": 14,
+        "name": "Zpeed Zone",
+        "address": "Av. 5 El Milagro, Parque Vereda del Lago, Complejo ZpeedZone (Diagonal Sede PoliMaracaibo)",
+        "whatsapp": "04126888901",
+        "services": "Karting\nDisponible para Eventos",
+        "hours": "Jueves a Domingo: 4:30pm a 10:00pm",
+        "instagram": "zpeed.zone",
+        "category": "Entretenimiento"
+      },
+      {
+        "id": 15,
+        "name": "Hotel Tibisay",
+        "address": "Av. El Milagro, Edificio Hotel Tibisay del Lago",
+        "whatsapp": "04127064695",
+        "services": "Hospedaje\nRestaurante (7:30am a 11:00pm)\nSalones para Eventos\nTiendas Comerciales\nÁreas recreativas\nGym (8:00am a 9:00pm)\nCanchas de Padel",
+        "hours": "Check-in a partir de las 3:00pm\nCheck-out hasta la 1:00pm",
+        "instagram": "tibisayhoteldellago",
+        "category": "Hotel"
+      },
+      {
+        "id": 16,
+        "name": "Kayak Maracaibo",
+        "address": "Av. Milagro Norte, Res. Isla Dorada, última isla en el área de la playa",
+        "whatsapp": "04246792699",
+        "services": "Kayak y actividades para personas con experiencia y sin experiencia\nOfrecemos transporte privado desde tu ubicación hasta el punto de la actividad\nPara solicitar precios, debe indicar el día y la cantidad de personas",
+        "hours": "A partir de las 7:30am",
+        "instagram": "kayakmaracaibo",
+        "category": "Deportes"
+      },
+      {
+        "id": 17,
+        "name": "Parador Turístico El Paraíso",
+        "address": "Av. 4, Hotel Paraíso, Los Puertos de Altagracia",
+        "whatsapp": "04126473728",
+        "services": "Rumba Paraíso\nOlogá Mágico\nCienaga Los Olivitos",
+        "hours": "Horario de atención al cliente: \nLunes a Viernes 8:00am a 5:00pm\nCheck in a partir de las 3:00pm\nCheck out hasta la 1:00pm\n",
+        "instagram": "hotelparaisove",
+        "category": "Turismo"
+      },
+      {
+        "id": 18,
+        "name": "Franco",
+        "address": "Av. 9 con calle 67, C.C. La Rosalera, Sector Tierra Negra",
+        "whatsapp": "04246743776",
+        "services": "Disponible para Eventos",
+        "hours": "Lunes a Miércoles: 5:00pm a 2:30am\nJueves a Domingo: 5:00pm a 6:00am",
+        "instagram": "francoesfranco_ve",
+        "category": "Comida"
+      },
+      {
+        "id": 19,
+        "name": "Avenida 4",
+        "address": "Avenida 4 Bella Vista con calle 68, al lado de la Iglesia Sagrado Corazón de Jesús",
+        "whatsapp": "04146557966",
+        "services": "Disponible para Eventos",
+        "hours": "Martes a Jueves: 12:00pm a 12:00am\nViernes a Domingo: 12:00pm a 2:00am",
+        "instagram": "somosavenida4",
+        "category": "Comida"
+      },
+      {
+        "id": 20,
+        "name": "Parque Vereda del Lago",
+        "address": "Av. 2 Parque Vereda del Lago, Local S/N, Sector El Milagro",
+        "whatsapp": "04127331298",
+        "services": "Disponible para Eventos (con previa notificación por correo)\nBohíos\nÁrea Food Truck\nParques\nCanchas de úsos múltiples\nCalistenia",
+        "hours": "Lunes a Domingo: 5:00am a 11:00pm",
+        "instagram": "laveredamcbo\nCorreo: infovereda@maracaibo.gob.ve",
+        "category": "Parque"
+      },
+      {
+        "id": 21,
+        "name": "Pitts",
+        "address": "C.C. Costa Verde, 2do. Piso Local 39",
+        "whatsapp": "04246567909",
+        "services": "Disponible para Eventos (con previa notificación por correo)\n",
+        "hours": "Lunes a Miércoles: 4:00pm a 11:00pm\nJueves: 4:00pm a 1:00am\nViernes: 4:00pm a 2:00am\nSábado: 2:00pm a 2:00am\nDomingo: 2:00pm a 11:00pm",
+        "instagram": "pittsbowling",
+        "category": "Entretenimiento"
+      },
+      {
+        "id": 22,
+        "name": "Solo Aventura",
+        "address": "Calle 67 con Av. 24, Sector Santa María",
+        "whatsapp": "04246946569",
+        "services": "Tours en Kayak\nTours Goajira\nTours Casco Central\nTour Maracaibo Diferente\nTour Juyasirrain\nTours privados y grupales con servicio de transporte desde su lugar de residencia u hotel",
+        "hours": "Lunes a Domingo con previa anticipación",
+        "instagram": "soloaventura_camp",
+        "category": "Turismo"
+      }
+    ]
+ 

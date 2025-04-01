@@ -1,37 +1,16 @@
 [
     {
-        "featureType": "poi",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
+      "featureType": "all",
+      "elementType": "labels",
+      "stylers": [
+        { "visibility": "off" }
+      ]
     },
     {
-        "featureType": "poi",
-        "elementType": "labels",
-        "stylers": [
-          { "visibility": "off" }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.locality",
-        "elementType": "labels.text",
-        "stylers": [
-          {
-            "visibility": "off"
-          }
-        ]
+      "featureType": "all",
+      "elementType": "geometry",
+      "stylers": [
+        { "visibility": "off" }
+      ]
     }
-
-]
+  ]
