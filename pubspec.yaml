@@ -46,7 +46,7 @@ dependencies:
   firebase_auth_platform_interface: ^7.6.0
   firebase_storage: ^12.4.4
   path_provider: ^2.1.5
-  permission_handler: ^11.4.0
+  permission_handler: ^11.4.0  
  
 
 dev_dependencies:
@@ -83,3 +83,4 @@ flutter:
     - assets/images/brand/
     - assets/json/      
     - assets/images/markers/
+    - assets/images/places/
